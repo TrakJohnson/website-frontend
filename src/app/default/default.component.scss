@@ -1,0 +1,54 @@
+carousel {
+    display : flex;
+    // height : 80vmin;
+    margin : 2vmin 0;
+}
+
+.event_title {
+    position :absolute;
+    z-index : 99;
+}
+
+figure {
+    padding : 0;
+}
+
+.title {
+    font-size : 5vmin;
+    font-weight: 300;
+}
+
+
+figcaption{
+    position: absolute;
+    bottom: 2vmin;
+    height: 15vmin;
+    left: 5.8vmin;
+    right : 5.8vmin;
+    background: rgba(239, 239, 239, 0.6);
+    -webkit-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+}
+
+figcaption p {
+    margin : .5vh 1vh;
+}
+
+figure:hover figcaption{
+        height: 25vmin;
+    }
+
+.details {
+    opacity : 0;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+
+figure:hover .details {
+    opacity : 1
+}

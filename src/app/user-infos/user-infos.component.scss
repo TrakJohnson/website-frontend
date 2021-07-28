@@ -1,0 +1,63 @@
+
+.container-fluid { 
+  display : flex;
+  flex-direction: row;
+  justify-content : space-between;
+
+  background-color: lightgrey;
+  height : 8vh;
+}
+
+.column {
+  display : flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items:flex-end;
+}
+
+p { 
+  margin : 0 1vmin 0 0;
+}
+
+a {
+    color: black;  
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+  
+  .active {
+    background-color: #6eb5ff;
+    color: white;
+    padding: 0.3rem 0.5rem;
+  }
+  
+
+  
+#login {
+  font-size : 3vmin;
+}
+
+#signin {
+  text-decoration: underline;
+  font-size : 2vmin;
+}
+
+#profil_pic {
+  height : 6vh;
+  width : 6vh;
+  margin : 1vh;
+  padding : 0;
+}
+
+@media only screen and (max-width: 800px) {
+  #profil_pic {
+    display : none;
+  }
+
+  .container-fluid {
+    justify-content: space-evenly;
+  }
+
+}

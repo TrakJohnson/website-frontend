@@ -1,0 +1,32 @@
+<header>
+    <div class = "container" id = "container-logbar">
+        
+        <img id = "logo" alt = "logo" src = "./assets/img/logoP20.png">
+        
+        <p id = "title"> <a (click) = "onNavigate('default')"> BDA Mines Paris</a></p>
+
+        <app-user-infos></app-user-infos>
+
+
+    </div>
+    <div class="container" id="container-navbar">
+        <ul id = "navbar">
+            <li class = "item">
+                <a (click)="onNavigate('default')"> Accueil </a>
+            </li>    
+            <li class = "item">
+                <a (click)="onNavigate('events')"> Evènements </a>
+            </li>    
+            <li class = "item">
+                <a (click)="onNavigate('calendar')"> Calendrier </a>
+            </li>
+            <li class = "item">
+                <a (click)="onNavigate('team')"> L'équipe </a>
+            </li>
+            <li class = "item">
+                <a (click)="onNavigate('masterclass')"> Masterclass </a>
+            </li>
+        </ul>
+    </div>
+    
+</header>

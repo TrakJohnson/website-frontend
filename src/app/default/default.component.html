@@ -1,0 +1,17 @@
+
+<carousel [height] = 600 [objectFit]="'cover'" [cellsToShow]=1.5 [counter]="true" [margin]=10>
+    <div class = "carousel-cell" *ngFor = "let event of events">
+
+        <a id = "{{event.id}}" href = "{{event.link}}">
+            <figure class="textover">
+                <img alt = "{{event.title}}" src = "{{event.image}}">
+                <figcaption> 
+                    <p class = "title">{{event.title}} </p>
+                    <p class = "details" >{{event.details}}</p>
+                </figcaption>
+            </figure>
+        </a>
+    </div>
+</carousel>
+
+<!--[cellsToShow] = 1.3-->

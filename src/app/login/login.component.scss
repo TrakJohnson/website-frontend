@@ -1,0 +1,20 @@
+#external-link-login{
+  font-size: 1em;
+  text-decoration: underline;
+  &:hover{
+    opacity: 0.6;  
+    cursor: pointer;
+  }
+}
+
+.titre-page-login {
+border-bottom: solid; 
+padding: 0.5em; 
+width: 8em;
+}
+
+.signal-response-login{
+text-align: center; 
+width: 60%; 
+margin: 20px auto auto auto;
+}

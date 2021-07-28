@@ -1,0 +1,88 @@
+header {
+    display: flex;
+    flex-direction : column;
+    // align-items: center;
+    
+    color: white;
+    // padding: 0.2rem 2%;
+    margin: 0 0 1vmin 0;
+    padding :0;
+  }
+
+
+
+  #container-logbar {
+    display: flex; 
+    color: black;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content : space-between;
+    margin-bottom : 0%;
+    margin-top : 0;
+    height: 8vh;
+
+  }
+
+  
+  app-user-infos {   
+    margin : 0;  
+    width : 20%;
+    height : 8vh;
+    background-color: lightgrey;
+   
+  }
+
+  #title {
+    font-size : 6vmin;
+    text-align : center;
+    margin : 1vmin
+  }
+
+  #logo {
+    max-width: 6vmin;
+    max-height: 6vmin;
+    margin : 1vmin 0 0 3vmin
+  }
+
+
+    
+  #container-navbar ul{
+    display: flex; 
+    justify-content :flex-start; 
+    background-color: rgba(255, 0, 0, 0.658);
+    color: white;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size : 3vmin;
+    height : 4vh; 
+    list-style: none;
+    padding : 0;
+    margin : 0
+  }
+
+  .item {
+    text-align :center;
+    margin : 0 0;
+    width : 19vw;
+  }
+
+  .item:active {
+    background-color: #ff000098;
+    box-shadow: 0 2px rgba(230, 81, 81, 0.651);
+    transform: translateY(1px);
+  }
+
+  a {
+    font-weight: 300;
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+  
+  .active {
+    background-color: #6eb5ff;
+    color: white;
+    padding: 0.3rem 0.5rem;
+  }
+  
