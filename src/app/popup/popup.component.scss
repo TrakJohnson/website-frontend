@@ -1,0 +1,19 @@
+.card {
+    transition: opacity 3s;
+    position: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    width: 50%;
+    top: 15%;
+    opacity: 0;
+    background-color: white;
+    user-select: none;
+    pointer-events: none;
+}
+
+// i#text {
+//     font-family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
+// }

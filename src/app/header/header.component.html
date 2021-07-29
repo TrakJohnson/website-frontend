@@ -1,5 +1,5 @@
 <header>
-    <div class = "container" id = "container-logbar">
+    <div class = "container-fluid" id = "container-logbar">
         
         <img id = "logo" alt = "logo" src = "./assets/img/logoP20.png">
         
@@ -9,24 +9,44 @@
 
 
     </div>
-    <div class="container" id="container-navbar">
+    <!-- <div class="container-fluid" id="container-navbar">
         <ul id = "navbar">
-            <li class = "item">
-                <a (click)="onNavigate('default')"> Accueil </a>
-            </li>    
-            <li class = "item">
-                <a (click)="onNavigate('events')"> Evènements </a>
-            </li>    
-            <li class = "item">
-                <a (click)="onNavigate('calendar')"> Calendrier </a>
-            </li>
-            <li class = "item">
-                <a (click)="onNavigate('team')"> L'équipe </a>
-            </li>
-            <li class = "item">
-                <a (click)="onNavigate('masterclass')"> Masterclass </a>
-            </li>
+            <a (click)="onNavigate('default')">
+                <li class = "item">Accueil</li>
+            </a>
+              
+            <a (click)="onNavigate('events')">
+                <li class = "item"> Evènements </li>
+            </a>
+
+            <a (click)="onNavigate('calendar')">
+                <li class = "item"> Calendrier </li>
+            </a>
+            
+            <a (click)="onNavigate('team')">
+                <li class = "item"> L'équipe </li>
+            </a>
+        
+            <a (click)="onNavigate('masterclass')">
+                <li class = "item"> Masterclass </li>
+            </a>
+        
         </ul>
-    </div>
-    
+    </div> -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" (click)="onNavigate('default')" >BDA Mines</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" (click)="onNavigate('default')" >Accueil </a>
+                <a class="nav-item nav-link" (click)="onNavigate('events')"> Evènements</a>
+                <a class="nav-item nav-link" (click)="onNavigate('calendar')">Calendrier</a>
+                <a class="nav-item nav-link" (click)="onNavigate('team')">L'équipe</a>
+                <a class="nav-item nav-link" (click)="onNavigate('masterclass')">Masterclass</a>
+            </div>
+        </div>
+    </nav>
 </header>

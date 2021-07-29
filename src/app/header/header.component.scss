@@ -23,6 +23,7 @@ header {
 
   }
 
+  .container-fluid { padding : 0}
   
   app-user-infos {   
     margin : 0;  
@@ -35,7 +36,7 @@ header {
   #title {
     font-size : 6vmin;
     text-align : center;
-    margin : 1vmin
+    margin-bottom: 1vmin;
   }
 
   #logo {
@@ -44,36 +45,15 @@ header {
     margin : 1vmin 0 0 3vmin
   }
 
-
-    
-  #container-navbar ul{
-    display: flex; 
-    justify-content :flex-start; 
-    background-color: rgba(255, 0, 0, 0.658);
-    color: white;
-    flex-direction: row;
-    flex-wrap: wrap;
-    font-size : 3vmin;
-    height : 4vh; 
-    list-style: none;
-    padding : 0;
-    margin : 0
+  .navbar-brand {
+    margin-left : 1rem
   }
 
-  .item {
-    text-align :center;
-    margin : 0 0;
-    width : 19vw;
-  }
-
-  .item:active {
-    background-color: #ff000098;
-    box-shadow: 0 2px rgba(230, 81, 81, 0.651);
-    transform: translateY(1px);
+  .navbar-nav a{
+    color : white
   }
 
   a {
-    font-weight: 300;
     &:hover {
       opacity: 0.6;
       cursor: pointer;

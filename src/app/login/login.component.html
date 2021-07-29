@@ -1,17 +1,17 @@
-<h2 class="titre-page-login"> Connexion résident </h2>
+<h2 class="titre-page-login"> Connexion </h2>
 
 <div class="col-sm-8 offset-sm-2 mt-2">
   <form [formGroup]="loginForm">
     <div class="form-group">
-      <label for="login">Prenom</label>
-      <input type="text" id="login" formControlName="login" class="form-control">
+      <label for="login"> Nom d'utilisateur</label>
+      <input type="text" id="login" formControlName="login" class="form-control" placeholder="n°promo+8lettres nom">
     </div>
     <div class="form-group">
       <label for="password">Mot de passe</label>
-      <input type="password" id="password" formControlName="password" class="form-control">
+      <input type="password" id="password" formControlName="password" class="form-control" placeholder="Par défaut celui des Mines">
     </div>
     <p id="external-link-login" (click)="onNavigate('/recover/demand')">  Mot de passe oublié ? </p>
-    <p id="external-link-login" (click)="onNavigate('/register')"> Créer mon compte </p>
+    <p id="external-link-login" (click)="onNavigate('/signup')"> Créer mon compte </p>
     <button class="btn btn-success" (click)="onLogin()" [disabled]="loginForm.invalid"> Je me connecte</button>
   </form>
 </div>

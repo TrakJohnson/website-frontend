@@ -47,7 +47,11 @@ export class AuthService {
 
                 console.log("connected");
                 resolve();
-
+              
+                  
+            }
+            else {
+              reject({error : "wrong password or username"} );
             }
 
 
