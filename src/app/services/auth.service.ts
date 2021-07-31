@@ -44,7 +44,8 @@ export class AuthService {
                 this.compteService.compte$.next(defaultAccount);
 
                 this.admin$.next(true);
-
+                this.isAuth$.next(true);
+                
                 console.log("connected");
                 resolve();
               

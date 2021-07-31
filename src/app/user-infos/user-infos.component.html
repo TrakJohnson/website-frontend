@@ -1,9 +1,19 @@
-<div class="container-fluid">
+<div *ngIf = "!isAuth" class="container-fluid">
     <div class = column >
-        <img id = "profil_pic" src = "./assets/img/visitor.png" >
+        <img id = "profil_pic" src = "/assets/img/const/visitor.png" >
     </div>
     <div class = column >
         <p> <a id = "login" (click) = "onNavigate('login')"> Se connecter</a></p>
         <p> <a id = "signin" (click) = "onNavigate('signup')"> Créer un compte</a></p>
+    </div>
+</div>
+
+<div *ngIf = "isAuth" class="container-fluid">
+    <div class = column >
+        <img id = "profil_pic" src = "/assets/img/dev/profil_pic_test.jpg" >
+    </div>
+    <div class = column >
+        <p> Bienvenue {{account.login}} </p>
+        <p> <a id = "signin" (click) = "onNavigate('account/params')"> Mon Compte </a></p>
     </div>
 </div>

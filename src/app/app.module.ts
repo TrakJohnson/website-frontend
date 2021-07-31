@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
+import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 import { DefaultComponent } from './default/default.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,6 +17,7 @@ import { UserInfosComponent } from './user-infos/user-infos.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { PopupComponent } from './popup/popup.component';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { PopupComponent } from './popup/popup.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

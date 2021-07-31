@@ -1,19 +1,56 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+import { Subscription } from 'rxjs';
+
+import { AuthGuard } from '../services/auth-guard.service';
+import { AuthService } from '../services/auth.service';
+import { AccountService } from '../services/account.service';
+
+import { Account } from '../models/user.model';
+import { OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-user-infos',
   templateUrl: './user-infos.component.html',
   styleUrls: ['./user-infos.component.scss']
 })
-export class UserInfosComponent implements OnInit {
+export class UserInfosComponent implements OnInit, OnDestroy {
 
-  constructor(private router : Router) { }
+  constructor(private router : Router,
+              private auth : AuthService,
+              private acc : AccountService) { }
 
-  ngOnInit(): void {
+  private isAuthSub: Subscription;
+  isAuth: boolean = false;
+
+  private accountSub: Subscription;
+  account: Account;
+
+  ngOnInit() {
+    this.isAuthSub = this.auth.isAuth$.subscribe(
+      (status) => {
+        this.isAuth = status;
+      }
+    )
+    this.accountSub = this.acc.compte$.subscribe(
+      (account) => {
+        this.account = account!;
+      }
+    )
+  }
+
+  ngOnDestroy() {
+    this.isAuthSub.unsubscribe();
   }
 
   onNavigate(endpoint: string) {
     this.router.navigate([endpoint]);
   }
+
+  onDisconnect() {
+    this.auth.logout();
+    this.acc.disconnect();
+    this.onNavigate('/');
+  }
+
 }
