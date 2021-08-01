@@ -23,56 +23,68 @@ export class AuthService {
     login(login: string, password: string) {
         return new Promise<void>((resolve, reject) => {
 
-            if (login === "test" && password === "test") {
-                this.token = "12345a";
+            // if (login === "test" && password === "test") {
+            //     this.token = "12345a";
 
-                var defaultAccount = new Account({
-                    id : 1,
-                    prenom : "testprenom",  
-                    nom : "testnom",
-                    login: "20test",
-                    email: "test@test.test",
-                    chambre: "testch",
-                    promotion: "Ptest",
-                    cotisant: true,
-                    compteVerifie: true,
-                    dateCreation: "28/07/2021",
-                    dateApprobation: "28/07/2021",
-                    isInRadius: true,})
+            //     var defaultAccount = new Account({
+            //         id : 1,
+            //         prenom : "testprenom",  
+            //         nom : "testnom",
+            //         login: "20test",
+            //         email: "test@test.test",
+            //         chambre: "testch",
+            //         promotion: "Ptest",
+            //         cotisant: true,
+            //         compteVerifie: true,
+            //         dateCreation: "28/07/2021",
+            //         dateApprobation: "28/07/2021",
+            //         isInRadius: true,})
 
 
-                this.compteService.compte$.next(defaultAccount);
+            //     this.compteService.compte$.next(defaultAccount);
 
-                this.admin$.next(true);
-                this.isAuth$.next(true);
+            //     this.admin$.next(true);
+            //     this.isAuth$.next(true);
                 
-                console.log("connected");
-                resolve();
+            //     console.log("connected");
+            //     resolve();
               
                   
-            }
-            else {
-              reject({error : "wrong password or username"} );
-            }
+            // }
+            // else {
+            //   reject({error : "wrong password or username"} );
+            // }
 
+            var defaultAccount = new Account({
+              id : 1,
+              prenom : "testprenom",  
+              nom : "testnom",
+              login: "20test",
+              email: "test@test.test",
+              chambre: "testch",
+              promotion: "Ptest",
+              cotisant: true,
+              dateCreation: "28/07/2021",
+            })
 
+            this.http.post<authData>(
+            environment.apiUrl + '/api/user/login',
+            {login: login, password: password })
+            .subscribe(
+                (authData) => {
+                  console.log({"success " : authData})
+                  this.token = authData.token;
+                  this.compteService.compte$.next(defaultAccount);
+                  // console.log({leCompte : this.compteService.compte$.value});
+                  // this.admin$.next(authData.admin);
 
-            // this.http.post<authData>(
-            // environment.apiUrl + '/api/user/login',
-            // {loginResident: login, password: password })
-            // .subscribe(
-            //     (authData) => {
-            //       this.token = authData.token;
-            //       this.compteService.compte$.next(new Account(authData.compte));
-            //       // console.log({leCompte : this.compteService.compte$.value});
-            //       this.admin$.next(authData.admin);
-            //       this.isAuth$.next(true);
-            //       resolve();
-            //     },  
-            //     (error) => {  
-            //       reject(error);
-            //     }
-            // );
+                  this.isAuth$.next(true);
+                  resolve();
+                },  
+                (error) => {  
+                  reject(error);
+                }
+            );
         });
     }
 
