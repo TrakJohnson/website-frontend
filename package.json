@@ -20,6 +20,7 @@
     "@angular/router": "~12.0.3",
     "angular-responsive-carousel": "^2.1.2",
     "bootstrap": "^5.0.2",
+    "carousel": "^0.0.3",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",
     "ng-image-slider": "^2.8.0",
@@ -41,5 +42,17 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "typescript": "~4.2.3"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bda-minesparis/website-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bda-minesparis/website-frontend/issues"
+  },
+  "homepage": "https://github.com/bda-minesparis/website-frontend#readme"
 }
