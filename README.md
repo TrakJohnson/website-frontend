@@ -1,27 +1,29 @@
 # Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
+## Installer les compostants nécessaires
 
-## Development server
+Installer nodejs (https://nodejs.org/en/download/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Installer npm en allant dans le dossier website-frontend puis en terminal `npm install`.
 
-## Code scaffolding
+Installer les packages suivants avec la commande : npm install [nom du package] (--force si npm est rétissent) :
+* @angular/cli
+* bootstrap
+* @ng-bootstrap/ng-bootstrap
+* carousel
+* (peut-être angular-responsive-carousel mais pas certain)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Lancer le frontend sur une machine
 
-## Build
+En terminal taper `ng serve` avec comme argument `--open` por l'ouvrir directement sur le navigateur par défaut, sinon il sera accessible à l'adresse : `localhost:4200`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Lancer le frontend sur le réseau local
 
-## Running unit tests
+Pour pouvoir ouvrir le même frontend sur plusieurs PC :
+1) S'assurer que les PC sont connectés au même réseau local
+2) Sur le PC serveur ouvrir le port 4200 (sous windows : pare-feu -> paramètres avancés -> règles entrantes -> nouvelle règle, sous linux : sudo iptables -I INPUT -p tcp --dport 4000 --syn -j ACCEPT)
+3) Sur le PC serveur en terminal, récupérer l'adresse locale avec `ipconfig` : l'adresse IPv4 est souvent de la forme `192.168.x.x`.
+4) Sur le PC serveur en terminal dans le dossier `website-frontend/` : `ng serve --host 0.0.0.0` pour lancer le serveur local.
+5) Pour s'y connecter depuis n'importe quel PC du réseau local : dans le navigateur entrer d'adresse : `192.168.x.x:4200` (adresse locale de la machine serveur).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Attention : cette fonctionnalité peut potentiellement représenter une faile de sécurité, préféré son utilisation sur un réseau de confiance.
