@@ -4,7 +4,7 @@
     </div>
     <div class = column >
         <p> <a id = "login" (click) = "onNavigate('login')"> Se connecter</a></p>
-        <p> <a id = "signin" (click) = "onNavigate('signup')"> Créer un compte</a></p>
+        <p> <a id = "signin" (click) = "onNavigate('register')"> Créer un compte</a></p>
     </div>
 </div>
 
@@ -14,7 +14,8 @@
     </div>
     <div class = column >
         <p> Bienvenue {{account.login}} </p>
-        <p> <a id = "signin" (click) = "onNavigate('account/params')"> Mon Compte </a></p>
+        <!-- <p id = "welcome"> Bienvenue 20abcdefgh</p> -->
+        <p> <a id = "params" (click) = "onNavigate('account/params')"> Mon Compte </a></p>
         <p> <a id = "signout" (click) = "onDisconnect()"> Deconnexion </a></p>
     </div>
 </div>

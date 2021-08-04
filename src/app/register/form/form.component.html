@@ -1,0 +1,67 @@
+<h2 class="titre-page-registerForm"> Inscription </h2>
+
+<div class="col-sm-8 offset-sm-2 mt-2">
+  <form [formGroup]="registerForm">
+    <div class="form-group">
+      <label for="prenom">Prenom</label>
+      <input type="text" id="prenom" formControlName="prenom" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" formControlName="nom" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" formControlName="email" class="form-control">
+        <span class="help-block" style = "color: red;" *ngIf="!registerForm.get('email')!.valid && registerForm.get('email')!.touched">
+            Email is invalid
+       </span>
+    </div>
+    <div class="form-group">
+      <label for="emailBis">Vérification email</label>
+      <input type="text" id="emailBis" formControlName="emailBis" class="form-control">
+      <span class="help-block" style = "color: red;" *ngIf="!registerForm.get('emailBis')!.valid && registerForm.get('emailBis')!.touched">
+          Email is invalid
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" name = "password" formControlName="password" class="form-control">
+      <span class="help-block" style = "color: red;" *ngIf="!registerForm.get('password')!.valid && registerForm.get('password')!.touched">
+        Mot de passe invalide : doit contenir au minimum 8 caractères dont 1 minuscule, 1 majuscule, 1 chiffre.
+      </span>
+    </div>
+
+    <div class="form-group" >
+      <label for="passwordBis">Vérification mot de passe</label>
+      <input type="password" id="passwordBis" formControlName="passwordBis" class="form-control">
+      <span class="help-block" style = "color: red;" *ngIf="!registerForm.get('passwordBis')!.valid && registerForm.get('passwordBis')!.touched">
+        Password is invalid
+      </span>
+    </div>
+
+
+
+    <div class = "form-group" style = "display: flex;">
+      <select formControlName="promotion" style = "width: 40%" class="form-control" >
+          <option [ngValue]="null" disabled> Promotion </option>
+          <option *ngFor="let promotion of promotions" [ngValue]="promotion.value">
+            {{ promotion.viewValue }}
+          </option>
+      </select> 
+    </div>
+
+
+
+ 
+
+    <!-- <div class="form-check">
+      <input class="form-check-input" (click)="updateAcceptCharte()" type="checkbox" value="" id="acceptCharte">
+      <label class="form-check-label" for="acceptCharte">
+        J'ai lu et j'accepte la <a href="/assets/doc/Charte_VF.pdf" target="_blank">charte d'utilisation du réseau</a>
+      </label>
+    </div> -->
+    <button class="btn btn-success" style="margin : 1%;" (click)="onCreateAccount()" [disabled]="registerForm.invalid"> Je crée mon compte</button>
+  </form>
+</div>

@@ -16,8 +16,10 @@
 }
 
 p { 
-  margin : 0 1vmin 0 0;
+  margin : 0 1vmin 0vmin 0;
 }
+
+#welcome {font-size : 2.3vmin}
 
 a {
     color: black;  
@@ -34,18 +36,19 @@ a {
 }
   
 #login {
-  font-size : 3vmin;
+  font-size : 2.5vmin;
 }
 
-#signin {
+#signin, #params {
   text-decoration: underline;
-  font-size : 2vmin;
+  font-size : 1.8vmin;
 }
 
 #signout {
   text-decoration: underline;
-  font-size : 2vmin;
+  font-size : 1.8vmin;
 }
+
 
 #profil_pic {
   height : 6vh;
@@ -53,6 +56,7 @@ a {
   margin : 1vh;
   padding : 0;
 }
+
 
 @media only screen and (max-width: 800px) {
   #profil_pic {
@@ -63,4 +67,7 @@ a {
     justify-content: space-evenly;
   }
 
+  #welcome {display :none}
+
+  
 }

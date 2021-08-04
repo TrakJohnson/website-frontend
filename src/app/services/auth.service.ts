@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { AccountService } from './account.service';
 import { Account, authData } from '../models/user.model';
 import { environment } from 'src/environments/environment';
+import * as CryptoJS from 'crypto-js';
+
 
 @Injectable({
   providedIn: 'root'
@@ -67,9 +69,13 @@ export class AuthService {
               dateCreation: "28/07/2021",
             })
 
+
+
+            var password_encr =  CryptoJS.SHA3(password);
+
             this.http.post<authData>(
             environment.apiUrl + '/api/user/login',
-            {login: login, password: password })
+            {login: login, password: password_encr })
             .subscribe(
                 (authData) => {
                   console.log({"success " : authData})
@@ -90,9 +96,11 @@ export class AuthService {
 
     adminLogin(login: string, password: string) {
       return new Promise<void>((resolve, reject) => {
+
+          var password_encr =  CryptoJS.SHA3(password);
           this.http.post<authData>(
             environment.apiUrl + '/api/admin/login',
-          {loginAdmin: login, password: password})
+          {loginAdmin: login, password: password_encr})
           .subscribe(
               (authData) => {
                 this.token = authData.token;

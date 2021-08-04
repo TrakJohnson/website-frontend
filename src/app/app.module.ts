@@ -15,7 +15,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserInfosComponent } from './user-infos/user-infos.component';
 import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { RegisterComponent } from './register/register.component';
+import { FormComponent } from './register/form/form.component';
+import { VerifyEmailComponent } from './register/verify-email/verify-email.component';
+import { InfosRegisterComponent } from './register/infos-register/infos-register.component';
 import { PopupComponent } from './popup/popup.component';
 
 
@@ -27,9 +30,17 @@ import { PopupComponent } from './popup/popup.component';
     FooterComponent,
     UserInfosComponent,
     LoginComponent,
-    SignupComponent,
-    PopupComponent
+    PopupComponent,
+    RegisterComponent,
+    FormComponent,
+    VerifyEmailComponent,
+    InfosRegisterComponent,
   ],
+
+  
+
+
+    
   imports: [
     BrowserModule,
     AppRoutingModule,
