@@ -10,7 +10,6 @@ export class Account {
     compteVerifie: boolean;
     dateCreation: string;
     dateApprobation: string;
-    isInRadius: boolean;
 
     constructor(data?: any | undefined) {
       this.prenom = data.prenom || undefined;
@@ -23,7 +22,6 @@ export class Account {
       this.compteVerifie = data.compteVerifie? data.compteVerifie:0;
       this.dateCreation = data.dateCreation || undefined;
       this.dateApprobation = data.dateApprobation || undefined;
-      this.isInRadius = data.isInRadius? data.isInRadius:0;
     }
 }
 

@@ -25,38 +25,6 @@ export class AuthService {
     login(login: string, password: string) {
         return new Promise<void>((resolve, reject) => {
 
-            // if (login === "test" && password === "test") {
-            //     this.token = "12345a";
-
-            //     var defaultAccount = new Account({
-            //         id : 1,
-            //         prenom : "testprenom",  
-            //         nom : "testnom",
-            //         login: "20test",
-            //         email: "test@test.test",
-            //         chambre: "testch",
-            //         promotion: "Ptest",
-            //         cotisant: true,
-            //         compteVerifie: true,
-            //         dateCreation: "28/07/2021",
-            //         dateApprobation: "28/07/2021",
-            //         isInRadius: true,})
-
-
-            //     this.compteService.compte$.next(defaultAccount);
-
-            //     this.admin$.next(true);
-            //     this.isAuth$.next(true);
-                
-            //     console.log("connected");
-            //     resolve();
-              
-                  
-            // }
-            // else {
-            //   reject({error : "wrong password or username"} );
-            // }
-
             var defaultAccount = new Account({
               id : 1,
               prenom : "testprenom",  
@@ -71,7 +39,8 @@ export class AuthService {
 
 
 
-            var password_encr =  CryptoJS.SHA3(password);
+            var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
+            console.log({password_encr : password_encr});
 
             this.http.post<authData>(
             environment.apiUrl + '/api/user/login',
@@ -97,7 +66,7 @@ export class AuthService {
     adminLogin(login: string, password: string) {
       return new Promise<void>((resolve, reject) => {
 
-          var password_encr =  CryptoJS.SHA3(password);
+          var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 });
           this.http.post<authData>(
             environment.apiUrl + '/api/admin/login',
           {loginAdmin: login, password: password_encr})
