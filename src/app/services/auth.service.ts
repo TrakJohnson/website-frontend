@@ -66,7 +66,7 @@ export class AuthService {
     adminLogin(login: string, password: string) {
       return new Promise<void>((resolve, reject) => {
 
-          var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 });
+          var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
           this.http.post<authData>(
             environment.apiUrl + '/api/admin/login',
           {loginAdmin: login, password: password_encr})

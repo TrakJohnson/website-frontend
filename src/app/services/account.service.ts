@@ -19,12 +19,12 @@ export class AccountService {
     constructor(private http: HttpClient) {}
 
     createAccount(prenom: string, nom : string, login: string, password: string, email : string, promotion: string) {
-        var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 });
+        var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
         console.log({"login": login, "password": password_encr});
         return new Promise<any>((resolve, reject) => {
             this.http.post(
             environment.apiUrl + '/api/user/register',
-            {prenom : prenom, nom: nom,  loginAccountCreated: login, password: password_encr, email : email, promotion : promotion})
+            {prenom : prenom, nom: nom,  loginAccountCreated: login, password: password_encr, email : email, admin : false, contributor : false, promotion : promotion})
             .subscribe(
                 (response) => {
                     resolve(response);
@@ -38,7 +38,7 @@ export class AccountService {
     }   
 
     createAccountFromAdmin(prenom: string, nom : string, login: string, password: string, email : string, demandT1 : boolean, demandT2 : boolean, demandT3 : boolean, isMineur: boolean, promotion: string, paiement : string,  chambre: string) {
-        var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 });
+        var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
         console.log({"login": login, "password": password_encr});
         return new Promise<any>((resolve, reject) => {
             this.http.post(
@@ -88,7 +88,7 @@ export class AccountService {
         /* On doit mettre des headers particuliers dans cette fonction, c'est unique dans tout le site (avec la fonction verifyEmail, plus bas).
         Normalement quand on veut faire authentifier un token dans le site c'est pour un compte, on peut donc utiliser l'interceptor.
         Cependant ici le token ne sert pas le même but, il faut donc le faire "à la main", c'est à dire en donnant des options à la requête HTTP */
-        var newPassword_encr =  CryptoJS.SHA3(newPassword, { outputLength: 512 });
+        var newPassword_encr =  CryptoJS.SHA3(newPassword, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
         return new Promise<void>((resolve, reject) => {
             this.http.post(
             environment.apiUrl +'/api/recover/change',
