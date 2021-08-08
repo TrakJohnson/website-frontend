@@ -10,6 +10,8 @@ import { VerifyEmailComponent } from './register/verify-email/verify-email.compo
 
 
 import { AuthGuard } from './services/auth-guard.service';
+import { AccountComponent } from './account/account.component';
+import { AccountViewComponent } from './account/account-view/account-view.component';
 
 const routes: Routes = [
   {path : 'login', component: LoginComponent},
@@ -19,6 +21,10 @@ children : [
   {path : 'infos', component: InfosRegisterComponent},
   {path : 'verify-email/:token', component: VerifyEmailComponent},
   {path: '**', redirectTo: 'form'},
+]},
+  { path : 'account', component : AccountComponent,
+children : [
+  {path : 'view', component : AccountViewComponent, canActivate: [AuthGuard]}
 ]},
   { path: 'default', component: DefaultComponent},
   { path: '', pathMatch: 'full', component: DefaultComponent },

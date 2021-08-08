@@ -11,20 +11,23 @@ export class Account {
     dateCreation: Date;
     dateLastCon: string;
     promo : string;
+    placesDemanded : Array<any>;
 
-    constructor(data?: any | undefined) {
+    constructor(data: any | undefined) {
+      console.log({dataAcc : data});
       this.id = data.id || undefined;
       this.prenom = data.prenom || undefined;
       this.nom = data.nom || undefined;
       this.login = data.login || undefined;
       this.email = data.email || undefined;
-      this.emailVerified = data.emailVerified || undefined;
+      this.emailVerified = data.email_verified || undefined;
       this.contributor = data.contributor || undefined;
       this.admin = data.admin || undefined;
-      this.points = data.points || false;
-      this.dateCreation = data.dateCreation || undefined;
-      this.dateLastCon = data.dateLastCon || undefined;
+      this.points = data.points;
+      this.dateCreation = data.date_creation || undefined;
+      this.dateLastCon = data.date_last_con || undefined;
       this.promo = data.promo || undefined;
+      this.placesDemanded = data.placesDemanded || [];
     }
 }
 

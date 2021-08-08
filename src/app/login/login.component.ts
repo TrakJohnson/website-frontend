@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
     this.auth.login(login, password)
       .then(() => {
         this.popup.loading$.next(false);
-        this.popup.state$.next([true, "Login successful !"]);
         this.router.navigate(['/default']);
       })
       .catch((error) => {

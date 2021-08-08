@@ -3,41 +3,26 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AccountService } from './account.service';
-import { Account, authData } from '../models/user.model';
+import { Account, authData } from '../models/account.model';
 import { environment } from 'src/environments/environment';
 import * as CryptoJS from 'crypto-js';
+import { PopupService } from './popup.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-    
-
     isAuth$ = new BehaviorSubject<boolean>(false);
     token: string | null;
     admin$ = new BehaviorSubject<boolean>(false);
 
     constructor(private http: HttpClient,
+                private popup: PopupService,
                 private compteService: AccountService) {}
 
     login(login: string, password: string) {
         return new Promise<void>((resolve, reject) => {
-
-            var defaultAccount = new Account({
-              id : 1,
-              prenom : "testprenom",  
-              nom : "testnom",
-              login: "20test",
-              email: "test@test.test",
-              chambre: "testch",
-              promotion: "Ptest",
-              cotisant: true,
-              dateCreation: "28/07/2021",
-            })
-
-
 
             var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
             console.log({password_encr : password_encr});
@@ -49,9 +34,10 @@ export class AuthService {
                 (authData) => {
                   console.log({"success " : authData})
                   this.token = authData.token;
-                  this.compteService.compte$.next(defaultAccount);
+                  this.compteService.compte$.next(authData.compte);
                   // console.log({leCompte : this.compteService.compte$.value});
                   // this.admin$.next(authData.admin);
+                  this.popup.state$.next([true, "Login successful !"]);
 
                   this.isAuth$.next(true);
                   resolve();

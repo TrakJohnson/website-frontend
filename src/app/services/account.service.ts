@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Account } from '../models/user.model';
+import { Account } from '../models/account.model';
 import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
 import { nodeModuleNameResolver } from 'typescript';
 import { environment } from 'src/environments/environment';
@@ -72,6 +72,22 @@ export class AccountService {
             );
         });
     };
+
+    getDemandedPlacesStatus() {
+        return new Promise<Account>((resolve, reject) => {
+            this.http.post(
+                environment.apiUrl +'/api/event/getDemandedPlacesStatus', {loginSender : this.compte$.value!.login})
+            .subscribe(
+                (places : any) => {
+                    console.log({placesReceived: places});
+                    resolve(places);
+                },
+                (error) => {
+                    reject(error);
+                }
+            );
+        });
+    }
 
     pwdChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     pwdLen = 10;

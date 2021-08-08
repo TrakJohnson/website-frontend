@@ -2,7 +2,9 @@
 
 <div style="display: block; min-height: 100vh;">
     <app-popup></app-popup>
-    <router-outlet ></router-outlet>
+    <div *ngIf="!loading">
+        <router-outlet ></router-outlet>
+    </div>
 </div>
 
 <app-footer></app-footer>

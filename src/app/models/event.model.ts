@@ -1,5 +1,5 @@
 export class Event {
-    id_event : number;
+    public id_event : number;
     title : string;  
     description : string;
     dateEvent: Date;
@@ -14,7 +14,8 @@ export class Event {
     points: number;
     status: boolean;
 
-    constructor(data?: any | undefined) {
+    constructor(data: any | undefined) {
+        console.log({data : data});
         this.id_event = data.id_event || undefined;
         this.title = data.title || undefined;
         this.description = data.description || undefined;
