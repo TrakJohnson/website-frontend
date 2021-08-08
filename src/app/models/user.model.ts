@@ -4,24 +4,27 @@ export class Account {
     nom : string;
     login: string;
     email: string;
-    chambre: string;
-    promotion: string;
-    cotisant: boolean;
-    compteVerifie: boolean;
-    dateCreation: string;
-    dateApprobation: string;
+    emailVerified: string;
+    contributor: boolean;
+    admin: boolean;
+    points: number;
+    dateCreation: Date;
+    dateLastCon: string;
+    promo : string;
 
     constructor(data?: any | undefined) {
+      this.id = data.id || undefined;
       this.prenom = data.prenom || undefined;
       this.nom = data.nom || undefined;
       this.login = data.login || undefined;
       this.email = data.email || undefined;
-      this.chambre = data.chambre || undefined;
-      this.promotion = data.promotion || undefined;
-      this.cotisant = data.cotisant || false;
-      this.compteVerifie = data.compteVerifie? data.compteVerifie:0;
+      this.emailVerified = data.emailVerified || undefined;
+      this.contributor = data.contributor || undefined;
+      this.admin = data.admin || undefined;
+      this.points = data.points || false;
       this.dateCreation = data.dateCreation || undefined;
-      this.dateApprobation = data.dateApprobation || undefined;
+      this.dateLastCon = data.dateLastCon || undefined;
+      this.promo = data.promo || undefined;
     }
 }
 
