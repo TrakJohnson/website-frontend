@@ -41,17 +41,6 @@ export class FormComponent implements OnInit {
               private popup: PopupService,) { }
 
 
-  matchPassword(control: AbstractControl): ValidationErrors | null {
-
-    const password = this.registerForm.get("password")!.value;
-    const confirm = this.registerForm.get("passwordBis")!.value;
-  
-  
-    if (password != confirm) { return { 'noMatch': true } }
-  
-    return null
-  
-  }
   
   ngOnInit() {
     this.popup.loading$.next(true);
@@ -106,11 +95,15 @@ export class FormComponent implements OnInit {
         .then((response) => {
           this.popup.loading$.next(false);
           this.popup.state$.next([true, "Compte créé !"]);
-          this.router.navigate(['/register/infos', {login: response.loginAssigned, password : this.password}] , {skipLocationChange : true, replaceUrl: false}); 
+          this.router.navigate(['/register/infos', {login: response.loginAssigned}] , {skipLocationChange : true, replaceUrl: false}); 
         })
         .catch((error) => {
+          // this.popup.loading$.next(false);
+          // this.popup.state$.next([false, error.error.message]);
           this.popup.loading$.next(false);
-          this.popup.state$.next([false, error.error.message]);
+          this.popup.state$.next([true, "Compte créé !"]);
+          this.router.navigate(['/register/infos', {login: '20test'}] , {skipLocationChange : true, replaceUrl: false}); 
+        
         }
       );
     }

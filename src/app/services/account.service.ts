@@ -37,24 +37,24 @@ export class AccountService {
         });
     }   
 
-    createAccountFromAdmin(prenom: string, nom : string, login: string, password: string, email : string, demandT1 : boolean, demandT2 : boolean, demandT3 : boolean, isMineur: boolean, promotion: string, paiement : string,  chambre: string) {
-        var password_encr =  CryptoJS.SHA3(password);
-        console.log({"login": login, "password": password_encr});
-        return new Promise<any>((resolve, reject) => {
-            this.http.post(
-            environment.apiUrl +'/api/admin/createAccount',
-            {loginSender: this.compte$.value!.login, prenom : prenom, nom: nom,  loginAccountCreated: login, password: password_encr, T1 : demandT1, T2 : demandT2, T3 : demandT3, email : email, promotion : promotion, typePaiement : paiement, chambre : chambre })
-            .subscribe(
-                (response) => {
-                    resolve(response);
-                },
-                (error) => {
-                    console.log({error : error})
-                    reject(error);
-                }
-            );
-        });
-    }   
+    // createAccountFromAdmin(prenom: string, nom : string, login: string, password: string, email : string, demandT1 : boolean, demandT2 : boolean, demandT3 : boolean, isMineur: boolean, promotion: string, paiement : string,  chambre: string) {
+    //     var password_encr =  CryptoJS.SHA3(password);
+    //     console.log({"login": login, "password": password_encr});
+    //     return new Promise<any>((resolve, reject) => {
+    //         this.http.post(
+    //         environment.apiUrl +'/api/admin/createAccount',
+    //         {loginSender: this.compte$.value!.login, prenom : prenom, nom: nom,  loginAccountCreated: login, password: password_encr, T1 : demandT1, T2 : demandT2, T3 : demandT3, email : email, promotion : promotion, typePaiement : paiement, chambre : chambre })
+    //         .subscribe(
+    //             (response) => {
+    //                 resolve(response);
+    //             },
+    //             (error) => {
+    //                 console.log({error : error})
+    //                 reject(error);
+    //             }
+    //         );
+    //     });
+    // }   
 
     getAccount() {
         console.log("bienvenue");
