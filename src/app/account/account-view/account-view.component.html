@@ -1,0 +1,7 @@
+<h2> <u>{{account?.login}}</u>  </h2>
+<p> {{account?.placesDemanded?.length? account?.placesDemanded?.length : 0}} </p>
+<div *ngFor="let place of account?.placesDemanded? account?.placesDemanded : []">
+    <p> Lalal </p>
+    <p> Une place : {{place["event_id"]}} </p>
+    <p> Une description : {{events[place["event_id"]].description}} </p>
+</div>

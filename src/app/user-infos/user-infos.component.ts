@@ -6,7 +6,7 @@ import { AuthGuard } from '../services/auth-guard.service';
 import { AuthService } from '../services/auth.service';
 import { AccountService } from '../services/account.service';
 
-import { Account } from '../models/user.model';
+import { Account } from '../models/account.model';
 import { OnDestroy } from '@angular/core';
 
 @Component({

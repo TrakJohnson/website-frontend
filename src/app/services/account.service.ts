@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Account } from '../models/user.model';
+import { Account } from '../models/account.model';
 import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
 import { nodeModuleNameResolver } from 'typescript';
 import { environment } from 'src/environments/environment';
@@ -19,12 +19,12 @@ export class AccountService {
     constructor(private http: HttpClient) {}
 
     createAccount(prenom: string, nom : string, login: string, password: string, email : string, promotion: string) {
-        var password_encr =  CryptoJS.SHA3(password);
+        var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
         console.log({"login": login, "password": password_encr});
         return new Promise<any>((resolve, reject) => {
             this.http.post(
             environment.apiUrl + '/api/user/register',
-            {prenom : prenom, nom: nom,  loginAccountCreated: login, password: password_encr, email : email, promotion : promotion})
+            {prenom : prenom, nom: nom,  loginAccountCreated: login, password: password_encr, email : email, admin : false, contributor : false, promotion : promotion})
             .subscribe(
                 (response) => {
                     resolve(response);
@@ -73,6 +73,22 @@ export class AccountService {
         });
     };
 
+    getDemandedPlacesStatus() {
+        return new Promise<Account>((resolve, reject) => {
+            this.http.post(
+                environment.apiUrl +'/api/event/getDemandedPlacesStatus', {loginSender : this.compte$.value!.login})
+            .subscribe(
+                (places : any) => {
+                    console.log({placesReceived: places});
+                    resolve(places);
+                },
+                (error) => {
+                    reject(error);
+                }
+            );
+        });
+    }
+
     pwdChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     pwdLen = 10;
 
@@ -88,7 +104,7 @@ export class AccountService {
         /* On doit mettre des headers particuliers dans cette fonction, c'est unique dans tout le site (avec la fonction verifyEmail, plus bas).
         Normalement quand on veut faire authentifier un token dans le site c'est pour un compte, on peut donc utiliser l'interceptor.
         Cependant ici le token ne sert pas le même but, il faut donc le faire "à la main", c'est à dire en donnant des options à la requête HTTP */
-        var newPassword_encr =  CryptoJS.SHA3(newPassword);
+        var newPassword_encr =  CryptoJS.SHA3(newPassword, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
         return new Promise<void>((resolve, reject) => {
             this.http.post(
             environment.apiUrl +'/api/recover/change',

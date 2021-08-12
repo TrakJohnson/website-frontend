@@ -20,6 +20,8 @@ import { FormComponent } from './register/form/form.component';
 import { VerifyEmailComponent } from './register/verify-email/verify-email.component';
 import { InfosRegisterComponent } from './register/infos-register/infos-register.component';
 import { PopupComponent } from './popup/popup.component';
+import { AccountComponent } from './account/account.component';
+import { AccountViewComponent } from './account/account-view/account-view.component';
 
 
 @NgModule({
@@ -35,11 +37,9 @@ import { PopupComponent } from './popup/popup.component';
     FormComponent,
     VerifyEmailComponent,
     InfosRegisterComponent,
+    AccountComponent,
+    AccountViewComponent,
   ],
-
-  
-
-
     
   imports: [
     BrowserModule,
