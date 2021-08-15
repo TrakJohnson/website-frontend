@@ -3,31 +3,33 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Event } from "../models/event.model";
+import { Pole } from "../models/pole.model";
 
 
 @Injectable({
 providedIn: 'root'
 })
-export class EventService {
+export class PoleService {
 
     constructor(private http: HttpClient) {}
 
-    events$ = new BehaviorSubject<any>({});
+    poles$ = new BehaviorSubject<any>({});
 
-    getEvents() {
+    getPoles() {
+        console.log("coucou");
         return new Promise<void>((resolve, reject) => {
 
             this.http.get<any>(
-            environment.apiUrl + '/api/event/getAllEvents')
+            environment.apiUrl + '/api/pole/getPoles')
             .subscribe(
-                (eventData : Array<any>) => {
-                  console.log({"successEvents " : eventData});
-                  var eventsTreated : any = {};
-                  eventData.forEach(event => {
-                    eventsTreated[event.event_id] = new Event(event);
+                (polesData : Array<any>) => {
+                  console.log({"polesSent " : polesData});
+                  var polesTreated : any = {};
+                  polesData.forEach(pole => {
+                    polesTreated[pole.pole_id] = new Pole(pole);
                   });
-                  console.log({"successeventsTreatedEvents " : eventsTreated});
-                  this.events$.next(eventsTreated);
+                  console.log({"polesTreated " : polesTreated});
+                  this.poles$.next(polesTreated);
                   resolve();
                 },  
                 (error) => {  

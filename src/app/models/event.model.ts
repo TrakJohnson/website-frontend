@@ -1,10 +1,10 @@
 export class Event {
-    public id_event : number;
+    public event_id : number;
     title : string;  
     description : string;
     dateEvent: Date;
     event_place: string;
-    id_pole: string;
+    pole_id: string;
     login_creator: string;
     date_open: Date;
     date_close: Date;
@@ -12,16 +12,16 @@ export class Event {
     cost_contributor: number;
     const_non_contributor: number;
     points: number;
-    status: boolean;
+    on_sale: boolean;
 
     constructor(data: any | undefined) {
         console.log({data : data});
-        this.id_event = data.id_event || undefined;
+        this.event_id = data.event_id || undefined;
         this.title = data.title || undefined;
         this.description = data.description || undefined;
         this.dateEvent = data.dateEvent || undefined;
         this.event_place = data.event_place || undefined;
-        this.id_pole = data.id_pole || undefined;
+        this.pole_id = data.pole_id || undefined;
         this.login_creator = data.login_creator || false;
         this.date_open = data.date_open;
         this.date_close = data.date_close || undefined;
@@ -29,7 +29,7 @@ export class Event {
         this.cost_contributor = data.cost_contributor || undefined;
         this.const_non_contributor = data.const_non_contributor || undefined;
         this.points = data.points || undefined;
-        this.status = data.status || undefined;
+        this.on_sale = data.on_sale || undefined;
       }
 
 }  

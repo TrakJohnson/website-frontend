@@ -22,6 +22,8 @@ import { InfosRegisterComponent } from './register/infos-register/infos-register
 import { PopupComponent } from './popup/popup.component';
 import { AccountComponent } from './account/account.component';
 import { AccountViewComponent } from './account/account-view/account-view.component';
+import { BilleterieComponent } from './billeterie/billeterie.component';
+import { DisplayPlaceComponent } from './account/display-place/display-place.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { AccountViewComponent } from './account/account-view/account-view.compon
     InfosRegisterComponent,
     AccountComponent,
     AccountViewComponent,
+    BilleterieComponent,
+    DisplayPlaceComponent,
   ],
     
   imports: [
