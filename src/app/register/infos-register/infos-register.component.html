@@ -15,12 +15,10 @@
 
 <div id="container-info-connection" style="display: flex; margin: auto;">
   <div class="alert alert-success signal-response-registerForm" role="alert" *ngIf="texteLu">
-    <p>Voici tes identifiants</p>
-    <p> <b> Login </b> : {{login}} </p>
-    <p> <b> Mot de passe </b> : {{password}} </p>
-    <p> Un email t'as été envoyé pour vérifier l'adresse mail que tu as entré, ainsi qu'un email contenant tes informations de connexion </p>
+    <p> <b> Voici ton login </b> : {{login}} </p>
+    <p> Un email t'as été envoyé pour vérifier l'adresse mail que tu as entrée </p>
     <button class="btn btn-outline-success" id="btn-before-redirection"  
-            (click)="onRedirectionLogin()" *ngIf="texteLu">J'ai bien noté mes identifiants</button>
+            (click)="onRedirectionLogin()" *ngIf="texteLu">J'ai bien noté mon login </button>
   </div>
 </div>
 

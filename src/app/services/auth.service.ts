@@ -49,31 +49,31 @@ export class AuthService {
         });
     }
 
-    adminLogin(login: string, password: string) {
-      return new Promise<void>((resolve, reject) => {
+    // adminLogin(login: string, password: string) {
+    //   return new Promise<void>((resolve, reject) => {
 
-          var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
-          this.http.post<authData>(
-            environment.apiUrl + '/api/admin/login',
-          {loginAdmin: login, password: password_encr})
-          .subscribe(
-              (authData) => {
-                this.token = authData.token;
-                this.compteService.compte$.next( new Account(authData.compte));
-                this.admin$.next(authData.admin);
-                if (authData.admin != true) {
-                  const error = {error : "Vous n'avez pas les accès administrateur"};
-                  reject(error);
-                }
-                this.isAuth$.next(true);
-                resolve();
-              },  
-              (error) => {  
-                reject(error);
-              }
-          );
-      });
-  }
+    //       var password_encr =  CryptoJS.SHA3(password);
+    //       this.http.post<authData>(
+    //         environment.apiUrl + '/api/admin/login',
+    //       {loginAdmin: login, password: password_encr})
+    //       .subscribe(
+    //           (authData) => {
+    //             this.token = authData.token;
+    //             this.compteService.compte$.next( new Account(authData.compte));
+    //             this.admin$.next(authData.admin);
+    //             if (authData.admin != true) {
+    //               const error = {error : "Vous n'avez pas les accès administrateur"};
+    //               reject(error);
+    //             }
+    //             this.isAuth$.next(true);
+    //             resolve();
+    //           },  
+    //           (error) => {  
+    //             reject(error);
+    //           }
+    //       );
+    //   });
+  // }
 
   logout() {
     this.isAuth$.next(false);

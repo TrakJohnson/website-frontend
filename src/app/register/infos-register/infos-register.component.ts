@@ -27,7 +27,6 @@ export class InfosRegisterComponent implements OnInit {
       texteLu: [null]
     });
     this.login = this.route.snapshot.params['login'];
-    this.password = this.route.snapshot.params['password'];
     this.popup.loading$.next(false);
   }
 
