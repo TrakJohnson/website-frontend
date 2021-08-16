@@ -101,8 +101,8 @@ export class FormComponent implements OnInit {
           // this.popup.loading$.next(false);
           // this.popup.state$.next([false, error.error.message]);
           this.popup.loading$.next(false);
-          this.popup.state$.next([true, "Compte créé !"]);
-          this.router.navigate(['/register/infos', {login: '20test'}] , {skipLocationChange : true, replaceUrl: false}); 
+          this.popup.state$.next([true, "Error"]);
+          this.router.navigate(['/register/infos', {login: "ERROR"}] , {skipLocationChange : true, replaceUrl: false}); 
         
         }
       );

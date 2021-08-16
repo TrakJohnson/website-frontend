@@ -23,7 +23,7 @@ export class AuthService {
 
     login(login: string, password: string) {
         return new Promise<void>((resolve, reject) => {
-
+            
             var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
             console.log({password_encr : password_encr});
 

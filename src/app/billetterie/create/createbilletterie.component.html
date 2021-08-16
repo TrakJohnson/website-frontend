@@ -1,0 +1,103 @@
+<h2 class="titre-page-registerForm"> Création d'une billetterie </h2>
+
+<div class="col-sm-8 offset-sm-2 mt-2">
+  <form [formGroup]="creatorForm">
+    <div class="form-group">
+      <label for="titre">Titre</label>
+      <input type="text" id="titre" formControlName="titre" class="form-control" >
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" formControlName="description" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="lieu">Date de l'évènement</label>
+        <input type="datetime-local" id="date" formControlName="date" class="form-control">
+        
+    </div>
+
+    <div class="form-group">
+      <label for="lieu">Lieu de l'évènement</label>
+      <input type="text" id="lieu" formControlName="lieu" class="form-control">
+     
+    </div>
+
+
+
+
+    <div class = "form-group">
+      <label for = "image"> Vignette de l'évènement (image png ou jpg au format 4/3, sinon ça rend mal)</label>
+      <input type = "file" accept = ".jpg,.jpeg,.png" (change)="fileChanged($event)" id = "image" formControleName = "image" class = "form-control">
+    </div>
+
+
+
+    <!-- image preview -->
+    <div id = "imagePreview" *ngIf="filePath && filePath !== ''">
+      <img [src]="filePath" [alt]="creatorForm.value.name">
+    </div>
+
+    <div class="form-group">
+      <label for="Pole">Pole</label>
+      <select formControlName="idPole" style = "width: 40%" class="form-control" >
+        <option *ngFor="let pole of poles" [ngValue]="pole.value">
+          {{ pole.viewValue }}
+        </option>
+    </select> 
+    </div>
+
+    <div class="form-group" >
+      <label for="dateOuverture">Date de l'ouverture de la billetterie</label>
+      <input type="datetime-local" id="dateOuverture" formControlName="dateOuverture" class="form-control">
+    </div>
+
+    <div class="form-group" >
+      <label for="dateFermeture">Date de fermeture de la billetterie</label>
+      <input type="datetime-local" id="dateFermeture" formControlName="dateFermeture" class="form-control">
+    </div>
+
+    <div class="form-group" >
+      <label for="nPlaces">Nombre de places</label>
+      <input type="number" id="nPlaces" formControlName="nPlaces" class="form-control">
+    </div>
+
+    <div class="form-group" >
+      <label for="prixC">Prix cotisants</label>
+      <input type="number" id="prixC" formControlName="prixC" class="form-control">
+    
+    </div>
+
+    <div class="form-group" >
+      <label for="prixNC">Prix non cotisants</label>
+      <input type="number" id="prixNC" formControlName="prixNC" class="form-control">
+    
+    </div>
+
+    <div class="form-group" >
+      <label for="points">Nombre de points</label>
+      <input type="number" id="points" formControlName="points" class="form-control">
+    
+    </div>
+
+    <!-- <div class = "form-group" style = "display: flex;">
+      <select formControlName="promotion" style = "width: 40%" class="form-control" >
+          <option [ngValue]="null" disabled> Promotion </option>
+          <option *ngFor="let promotion of promotions" [ngValue]="promotion.value">
+            {{ promotion.viewValue }}
+          </option>
+      </select> 
+    </div> -->
+
+
+
+ 
+
+    <!-- <div class="form-check">
+      <input class="form-check-input" (click)="updateAcceptCharte()" type="checkbox" value="" id="acceptCharte">
+      <label class="form-check-label" for="acceptCharte">
+        J'ai lu et j'accepte la <a href="/assets/doc/Charte_VF.pdf" target="_blank">charte d'utilisation du réseau</a>
+      </label>
+    </div> -->
+    <button class="btn btn-success" style="margin : 1%;" (click)="onCreateBilletterie()" [disabled]="creatorForm.invalid"> Créer l'évènement </button>
+  </form>
+</div>

@@ -8,6 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 import { DefaultComponent } from './default/default.component';
@@ -22,8 +24,9 @@ import { InfosRegisterComponent } from './register/infos-register/infos-register
 import { PopupComponent } from './popup/popup.component';
 import { AccountComponent } from './account/account.component';
 import { AccountViewComponent } from './account/account-view/account-view.component';
-import { BilleterieComponent } from './billeterie/billeterie.component';
+import { BilletterieComponent } from './billetterie/billetterie.component';
 import { DisplayPlaceComponent } from './account/display-place/display-place.component';
+import { CreateBilletterieComponent } from './billetterie/create/createbilletterie.component';
 
 
 @NgModule({
@@ -41,8 +44,9 @@ import { DisplayPlaceComponent } from './account/display-place/display-place.com
     InfosRegisterComponent,
     AccountComponent,
     AccountViewComponent,
-    BilleterieComponent,
+    BilletterieComponent,
     DisplayPlaceComponent,
+    CreateBilletterieComponent,
   ],
     
   imports: [
@@ -53,6 +57,7 @@ import { DisplayPlaceComponent } from './account/display-place/display-place.com
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatProgressBarModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

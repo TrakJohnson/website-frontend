@@ -56,22 +56,22 @@ export class AccountService {
     //     });
     // }   
 
-    getAccount() {
-        console.log("bienvenue");
-        return new Promise<Account>((resolve, reject) => {
-            this.http.post(
-                environment.apiUrl +'/api/resident/', {loginSender : this.compte$.value!.login})
-            .subscribe(
-                (compte : any) => {
-                    console.log({CompteReceived: compte});
-                    resolve(compte.compte);
-                },
-                (error) => {
-                    reject(error);
-                }
-            );
-        });
-    };
+    // getAccount() {
+    //     console.log("bienvenue");
+    //     return new Promise<Account>((resolve, reject) => {
+    //         this.http.post(
+    //             environment.apiUrl +'/api/resident/', {loginSender : this.compte$.value!.login})
+    //         .subscribe(
+    //             (compte : any) => {
+    //                 console.log({CompteReceived: compte});
+    //                 resolve(compte.compte);
+    //             },
+    //             (error) => {
+    //                 reject(error);
+    //             }
+    //         );
+    //     });
+    // };
 
     getDemandedPlacesStatus() {
         return new Promise<Account>((resolve, reject) => {

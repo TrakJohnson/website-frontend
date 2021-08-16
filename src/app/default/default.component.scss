@@ -51,3 +51,12 @@ figure:hover figcaption{
 figure:hover .details {
     opacity : 1
 }
+
+
+#noEventContainer {
+    display : flex;
+    justify-content: space-around;
+}
+#noEvent {
+    width : 70%;
+}

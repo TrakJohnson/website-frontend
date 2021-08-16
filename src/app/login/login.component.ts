@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
       })
       .catch((error) => {
         this.popup.loading$.next(false);
-        this.popup.state$.next([false, error.error]);
-        console.log(error.error)
+        this.popup.state$.next([false, error.error.message]);
+        console.log(error.message)
       }
     );
   }
