@@ -8,6 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
+import {NgxImageCompressService} from 'ngx-image-compress';
+
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { AuthInterceptor } from './interceptors/auth-interceptor';
@@ -57,9 +59,10 @@ import { CreateBilletterieComponent } from './billetterie/create/createbilletter
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [NgxImageCompressService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

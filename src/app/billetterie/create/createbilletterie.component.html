@@ -22,17 +22,13 @@
      
     </div>
 
-
-
+   
 
     <div class = "form-group">
       <label for = "image"> Vignette de l'évènement (image png ou jpg au format 4/3, sinon ça rend mal)</label>
-      <input type = "file" accept = ".jpg,.jpeg,.png" (change)="fileChanged($event)" id = "image" formControleName = "image" class = "form-control">
+      <input type = "file" accept = ".jpg,.jpeg,.png" (change)="fileChangedEvent($event)" id = "image" formControleName = "image" class = "form-control">
     </div>
 
-
-
-    <!-- image preview -->
     <div id = "imagePreview" *ngIf="filePath && filePath !== ''">
       <img [src]="filePath" [alt]="creatorForm.value.name">
     </div>

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { PopupService } from 'src/app/services/popup.service';
 import { AccountService } from '../../services/account.service';
 import { EventService } from 'src/app/services/events.service';
 
-import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class CreateBilletterieComponent implements OnInit {
   filePath: string;
 
   file : File;
-  base64 : string;
+  resized_filePath : string;
 
   public poles = [
     {value: '1', viewValue: 'Bureau'},
@@ -59,23 +59,68 @@ export class CreateBilletterieComponent implements OnInit {
     this.popup.loading$.next(false);
   }
   
-  fileChanged(e : any) {
+  fileChangedEvent(e : any) {
     this.file = (e.target as HTMLInputElement).files![0];
     
     this.creatorForm.patchValue({
       img: this.file
     });
 
+
     this.creatorForm.get('image')?.updateValueAndValidity()
 
     const reader = new FileReader();
+    reader.readAsDataURL(this.file as Blob)
     reader.onload = () => {
       this.filePath = reader.result as string;
+      console.log("origin : " + this.filePath.length)
+
+      let img = new Image();
+      img.src = this.filePath;
+      if (img.width/img.height != 4/3){
+        this.popup.loading$.next(false);
+        this.popup.state$.next([false, "L'image n'est pas au format 4/3, merci de la redimensionner"]);
+      }
+
+
     }
-    reader.readAsDataURL(this.file)
+    
+    
+
   }
 
 
+  resizeImage = (base64Str : string, maxWidth = 720, maxHeight = 540) => {
+    return new Promise((resolve) => {
+      let img = new Image()
+      img.src = base64Str
+      img.onload = () => {
+        let canvas = document.createElement('canvas')
+        const MAX_WIDTH = maxWidth
+        const MAX_HEIGHT = maxHeight
+        let width = img.width
+        let height = img.height
+
+  
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width
+            width = MAX_WIDTH
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height
+            height = MAX_HEIGHT
+          }
+        }
+        canvas.width = width
+        canvas.height = height
+        let ctx = canvas.getContext('2d')
+        ctx!.drawImage(img, 0, 0, width, height)
+        resolve(canvas.toDataURL())
+      }
+    })
+  }
 
 
   
@@ -123,15 +168,27 @@ export class CreateBilletterieComponent implements OnInit {
 
       else {
 
-        //TODO : verifier que l'image n'est pas trop grande et la compresser au besoin
+        if (this.filePath.length > 500000) { //TODO condition exacte à trouver
 
-        let reader = new FileReader();
-        reader.readAsDataURL(this.file as Blob);
-        reader.onload = () => { 
-          this.base64 = reader.result as string;
-          console.log("result = " + this.base64)
+          this.resizeImage(this.filePath)
+          .then((response:any)=>{
+            this.resized_filePath = response;
+            console.log(this.resized_filePath.length);
+          })
+          .catch((error)=> {
+          
+            this.popup.loading$.next(false);
+            this.popup.state$.next([false, error]);
+        
+          })
+        }
+        else {
+          this.resized_filePath = this.filePath;
+        }
 
-          this.event.createBilletterie(titre, description, date, lieu, this.base64, idPole, createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points)
+        
+      
+          this.event.createBilletterie(titre, description, date, lieu, this.resized_filePath, idPole, createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points)
           .then((response) => {
             this.popup.loading$.next(false);
             this.popup.state$.next([true, "Billetterie créé !"]);
@@ -143,10 +200,6 @@ export class CreateBilletterieComponent implements OnInit {
             this.popup.loading$.next(false);
             this.popup.state$.next([false, "ERROR"]);
           });
-        }
-        
-      
-
        
       }
     }
