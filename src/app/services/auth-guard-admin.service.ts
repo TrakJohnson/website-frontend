@@ -18,8 +18,17 @@ export class AuthGuardAdmin implements CanActivate {
                 this.auth.isAuth$.subscribe(
                     (auth) => {
                         if (!auth) {
-                            console.log({message : "redirect to login..."});
-                            this.router.navigate(['/login']);                      
+                            console.log("token : " + localStorage.getItem('token'))
+                            if (localStorage.getItem('token') != null) {
+                              this.auth.loginFromToken(localStorage.getItem('token'))
+                              .then(() => {
+                                observer.next(true);
+                              })
+                              .catch((error) => {
+                                console.log({message : "redirect to login..."});
+                                this.router.navigate(['/login']); 
+                              });
+                            }                  
                         }
                         else {
                             console.log('there')

@@ -49,7 +49,7 @@ export class AuthService {
         });
     }
 
-  loginFromToken(token : string) {
+  loginFromToken(token : string | null) {
     return new Promise<void>((resolve, reject) => {
  
       this.http.post<authData>(
@@ -82,7 +82,7 @@ export class AuthService {
     this.isAuth$.next(false);
     this.admin$.next(false);
     this.token = null;
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
   }    
 
 }          
