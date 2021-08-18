@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AccountService } from './account.service';
@@ -34,11 +33,12 @@ export class AuthService {
                 (authData) => {
                   console.log({"success " : authData})
                   this.token = authData.token;
+                  localStorage.setItem('token', this.token)
                   this.compteService.compte$.next(authData.compte);
-                  // console.log({leCompte : this.compteService.compte$.value});
-                  // this.admin$.next(authData.admin);
+                  console.log({leCompte : this.compteService.compte$.value});
                   this.popup.state$.next([true, "Login successful !"]);
-
+                  
+                  this.admin$.next(authData.compte.admin);
                   this.isAuth$.next(true);
                   resolve();
                 },  
@@ -49,36 +49,40 @@ export class AuthService {
         });
     }
 
-    // adminLogin(login: string, password: string) {
-    //   return new Promise<void>((resolve, reject) => {
-
-    //       var password_encr =  CryptoJS.SHA3(password);
-    //       this.http.post<authData>(
-    //         environment.apiUrl + '/api/admin/login',
-    //       {loginAdmin: login, password: password_encr})
-    //       .subscribe(
-    //           (authData) => {
-    //             this.token = authData.token;
-    //             this.compteService.compte$.next( new Account(authData.compte));
-    //             this.admin$.next(authData.admin);
-    //             if (authData.admin != true) {
-    //               const error = {error : "Vous n'avez pas les accès administrateur"};
-    //               reject(error);
-    //             }
-    //             this.isAuth$.next(true);
-    //             resolve();
-    //           },  
-    //           (error) => {  
-    //             reject(error);
-    //           }
-    //       );
-    //   });
-  // }
+  loginFromToken(token : string) {
+    return new Promise<void>((resolve, reject) => {
+ 
+      this.http.post<authData>(
+      environment.apiUrl + '/api/user/loginFromToken',
+      {token : token})
+      .subscribe(
+          (authData) => {
+            console.log({"success " : authData})
+            this.token = authData.token;
+            localStorage.setItem('token', this.token)
+            this.compteService.compte$.next(authData.compte);
+            console.log({leCompte : this.compteService.compte$.value});
+            
+            this.admin$.next(authData.compte.admin);
+            this.isAuth$.next(true);
+            resolve();
+          },  
+          (error) => {
+            this.token  = null;  
+            localStorage.removeItem('token') //pour n'avoir le message qu'une fois on retire le token
+            this.popup.state$.next([false, "Votre compte à expiré."]);
+            reject(error);
+          }
+      );
+    });
+  }
+  
 
   logout() {
     this.isAuth$.next(false);
     this.admin$.next(false);
     this.token = null;
+    localStorage.removeItem('token')
   }    
 
 }          

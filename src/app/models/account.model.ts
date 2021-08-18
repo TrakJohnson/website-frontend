@@ -33,7 +33,6 @@ export class Account {
 
 export class authData {
     compte : Account;
-    admin : boolean;
     token : string;
 }
 

@@ -10,10 +10,14 @@ import { VerifyEmailComponent } from './register/verify-email/verify-email.compo
 
 
 import { AuthGuard } from './services/auth-guard.service';
+import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 import { AccountComponent } from './account/account.component';
 import { AccountViewComponent } from './account/account-view/account-view.component';
 import { BilletterieComponent } from './billetterie/billetterie.component';
 import { CreateBilletterieComponent } from './billetterie/create/createbilletterie.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { MasterclassComponent } from './masterclass/masterclass.component';
+import { authData } from './models/account.model';
 
 const routes: Routes = [
   {path : 'login', component: LoginComponent},
@@ -30,8 +34,10 @@ children : [
 ]},
   {path : 'billetterie', component : BilletterieComponent,
 children : [
-  {path : 'create', component : CreateBilletterieComponent}] // ATTENTION adminAuthGuard a ajouter ici
-  },
+  {path : 'create', component : CreateBilletterieComponent, canActivate : [AuthGuardAdmin]}
+]},
+  {path : 'calendar', component : CalendarComponent},
+  {path : 'masterclass', component : MasterclassComponent},
   { path: 'default', component: DefaultComponent},
   { path: '', pathMatch: 'full', component: DefaultComponent },
   { path: '**', redirectTo: '' }
@@ -42,7 +48,8 @@ children : [
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule],
   providers: [
-    AuthGuard
+    AuthGuard,
+    AuthGuardAdmin
   ]
 })
 export class AppRoutingModule { }

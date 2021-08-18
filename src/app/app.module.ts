@@ -29,6 +29,8 @@ import { AccountViewComponent } from './account/account-view/account-view.compon
 import { BilletterieComponent } from './billetterie/billetterie.component';
 import { DisplayPlaceComponent } from './account/display-place/display-place.component';
 import { CreateBilletterieComponent } from './billetterie/create/createbilletterie.component';
+import { MasterclassComponent } from './masterclass/masterclass.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { CreateBilletterieComponent } from './billetterie/create/createbilletter
     BilletterieComponent,
     DisplayPlaceComponent,
     CreateBilletterieComponent,
+    MasterclassComponent,
+    CalendarComponent,
   ],
     
   imports: [

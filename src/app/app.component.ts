@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { AuthService } from './services/auth.service';
 import { PopupService } from './services/popup.service';
 
 @Component({
@@ -11,12 +12,31 @@ import { PopupService } from './services/popup.service';
 export class AppComponent implements OnInit {
   title = 'app';
 
-  constructor(private popup: PopupService) {}
+  constructor(private popup: PopupService,
+    private auth : AuthService) {}
 
   loadingSub : Subscription;
   loading : boolean;
+  token : string | null;
 
   ngOnInit() {
+    
+
+    this.token = localStorage.getItem('token')
+
+    console.log("token : " + this.token)
+
+    if (this.token) {
+      this.auth.loginFromToken(this.token)
+      .then(() => {
+        this.popup.loading$.next(false);
+      })
+      .catch((error) => {
+        this.popup.loading$.next(false);
+        console.log(error.message)
+      }
+    );
+    }
 
     this.loadingSub = this.popup.loading$.subscribe(
       (loading) => {

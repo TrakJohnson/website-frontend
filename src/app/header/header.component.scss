@@ -37,6 +37,8 @@ header {
     font-size : 6vmin;
     text-align : center;
     margin-bottom: 1vmin;
+    max-height: 5vmin;
+    transform : translateY(3vmin);
   }
 
   #logo {
