@@ -35,12 +35,21 @@ export class AuthService {
                   this.token = authData.token;
                   localStorage.setItem('token', this.token)
                   this.compteService.compte$.next(authData.compte);
-                  console.log({leCompte : this.compteService.compte$.value});
-                  this.popup.state$.next([true, "Login successful !"]);
+                  // console.log({leCompte : this.compteService.compte$.value});
+                  if (this.compteService.compte$.value?.email_verified == 0){
+                    this.popup.state$.next([false, "Merci de penser à vérifier votre adresse mail !"]);
+                    this.admin$.next(authData.compte.admin);
+                    this.isAuth$.next(true);
+                    resolve();
+                  }
+                  else {
+                    this.popup.state$.next([true, "Login successful !"]);
+                    this.admin$.next(authData.compte.admin);
+                    this.isAuth$.next(true);
+                    resolve();
+                  }
                   
-                  this.admin$.next(authData.compte.admin);
-                  this.isAuth$.next(true);
-                  resolve();
+                  
                 },  
                 (error) => {  
                   reject(error);

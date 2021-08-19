@@ -1,10 +1,11 @@
-import { Component, ErrorHandler, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { PopupService } from 'src/app/services/popup.service';
 import { AccountService } from '../../services/account.service';
 import { EventService } from 'src/app/services/events.service';
+import { Subscription } from 'rxjs';
 
 
 
@@ -21,6 +22,8 @@ export class CreateBilletterieComponent implements OnInit {
 
   file : File;
   resized_filePath : string;
+
+  createurid : string;
 
   public poles = [
     {value: '1', viewValue: 'Bureau'},
@@ -57,6 +60,16 @@ export class CreateBilletterieComponent implements OnInit {
     });
     
     this.popup.loading$.next(false);
+
+
+
+    var accountSub : Subscription;
+      accountSub = this.account.compte$.subscribe(
+        (account) => {
+          this.createurid = account!.login;
+        }
+      )
+      
   }
   
   fileChangedEvent(e : any) {
@@ -77,9 +90,11 @@ export class CreateBilletterieComponent implements OnInit {
 
       let img = new Image();
       img.src = this.filePath;
-      if (img.width/img.height != 4/3){
-        this.popup.loading$.next(false);
-        this.popup.state$.next([false, "L'image n'est pas au format 4/3, merci de la redimensionner"]);
+      img.onload = () => {
+        if (img.width/img.height > 1.4 || img.width/img.height < 1.25){
+          this.popup.loading$.next(false);
+          this.popup.state$.next([false, "L'image n'est pas au format 4/3, merci de la redimensionner"]);
+        }
       }
 
 
@@ -147,13 +162,8 @@ export class CreateBilletterieComponent implements OnInit {
       this.popup.state$.next([false, "Il faut upload une vignette"]);
     }
     else {
-
-  
-  // TODO SECTION :  get createur id (login)
-
-      const createurid = "20test";
-
-  ////////////////////////////////////
+      
+      
 
       if (dateFermeture < dateOuverture ) {
         this.popup.loading$.next(false);
@@ -173,7 +183,19 @@ export class CreateBilletterieComponent implements OnInit {
           this.resizeImage(this.filePath)
           .then((response:any)=>{
             this.resized_filePath = response;
-            console.log(this.resized_filePath.length);
+            console.log("resized : " + this.resized_filePath.length);
+            this.event.createBilletterie(titre, description, date, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points)
+              .then((response) => {
+                this.popup.loading$.next(false);
+                this.popup.state$.next([true, "Billetterie créé !"]);
+                this.router.navigate(['/default']); 
+              })
+              .catch((error) => {
+                // this.popup.loading$.next(false);
+                // this.popup.state$.next([false, error.error.message]);
+                this.popup.loading$.next(false);
+                this.popup.state$.next([false, "ERROR"]);
+              });
           })
           .catch((error)=> {
           
@@ -183,24 +205,22 @@ export class CreateBilletterieComponent implements OnInit {
           })
         }
         else {
+          console.log("no resize")
           this.resized_filePath = this.filePath;
+          this.event.createBilletterie(titre, description, date, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points)
+            .then((response) => {
+              this.popup.loading$.next(false);
+              this.popup.state$.next([true, "Billetterie créé !"]);
+              this.router.navigate(['/default']); 
+            })
+            .catch((error) => {
+              // this.popup.loading$.next(false);
+              // this.popup.state$.next([false, error.error.message]);
+              this.popup.loading$.next(false);
+              this.popup.state$.next([false, "ERROR"]);
+            });
         }
 
-        
-      
-          this.event.createBilletterie(titre, description, date, lieu, this.resized_filePath, idPole, createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points)
-          .then((response) => {
-            this.popup.loading$.next(false);
-            this.popup.state$.next([true, "Billetterie créé !"]);
-            this.router.navigate(['/default']); 
-          })
-          .catch((error) => {
-            // this.popup.loading$.next(false);
-            // this.popup.state$.next([false, error.error.message]);
-            this.popup.loading$.next(false);
-            this.popup.state$.next([false, "ERROR"]);
-          });
-       
       }
     }
   }

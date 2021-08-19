@@ -1,6 +1,6 @@
-<div id="container-info-register">
+<!-- <div id="container-info-register">
 
-  <!-- <markdown [src]="'/assets/doc/markdown/infos-register.md'"> </markdown> -->
+  <markdown [src]="'/assets/doc/markdown/infos-register.md'"> </markdown>
 
   <form [formGroup]="texteLuForm">
   <div class="form-check">
@@ -10,15 +10,15 @@
     </label>
   </div>  
   </form>
-</div>
+</div> -->
   
 
 <div id="container-info-connection" style="display: flex; margin: auto;">
-  <div class="alert alert-success signal-response-registerForm" role="alert" *ngIf="texteLu">
+  <div class="alert alert-success signal-response-registerForm" role="alert">
     <p> <b> Voici ton login </b> : {{login}} </p>
     <p> Un email t'as été envoyé pour vérifier l'adresse mail que tu as entrée </p>
     <button class="btn btn-outline-success" id="btn-before-redirection"  
-            (click)="onRedirectionLogin()" *ngIf="texteLu">J'ai bien noté mon login </button>
+            (click)="onRedirectionLogin()">J'ai bien noté mon login </button>
   </div>
 </div>
 

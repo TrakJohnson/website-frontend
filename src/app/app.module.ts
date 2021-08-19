@@ -31,6 +31,9 @@ import { DisplayPlaceComponent } from './account/display-place/display-place.com
 import { CreateBilletterieComponent } from './billetterie/create/createbilletterie.component';
 import { MasterclassComponent } from './masterclass/masterclass.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { RecoverComponent } from './recover/recover.component';
+import { DemandPasswordComponent } from './recover/demandPassword/demandPassword.component';
+import { ChangePasswordComponent } from './recover/changePassword/changePassword.component';
 
 
 @NgModule({
@@ -53,6 +56,10 @@ import { CalendarComponent } from './calendar/calendar.component';
     CreateBilletterieComponent,
     MasterclassComponent,
     CalendarComponent,
+    RecoverComponent,
+    RecoverComponent,
+    DemandPasswordComponent,
+    ChangePasswordComponent
   ],
     
   imports: [

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { AccountService } from 'src/app/services/account.service';
 import { PopupService } from 'src/app/services/popup.service';
 
@@ -19,9 +20,11 @@ export class VerifyEmailComponent implements OnInit {
 
   ngOnInit(): void {
     this.popup.loading$.next(true);
+    console.log(this.route.snapshot.params)
     this.token = this.route.snapshot.params['token'];
+    console.log(this.token);
 
-    // Envoi du token 
+    // // Envoi du token 
 
     this.account.verifyEmail(this.token)
     .then(() => {

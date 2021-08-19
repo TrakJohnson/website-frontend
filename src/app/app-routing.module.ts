@@ -17,7 +17,10 @@ import { BilletterieComponent } from './billetterie/billetterie.component';
 import { CreateBilletterieComponent } from './billetterie/create/createbilletterie.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { MasterclassComponent } from './masterclass/masterclass.component';
-import { authData } from './models/account.model';
+import { RecoverComponent } from './recover/recover.component';
+import { DemandPasswordComponent } from './recover/demandPassword/demandPassword.component';
+import { ChangePasswordComponent } from './recover/changePassword/changePassword.component';
+
 
 const routes: Routes = [
   {path : 'login', component: LoginComponent},
@@ -38,6 +41,13 @@ children : [
 ]},
   {path : 'calendar', component : CalendarComponent},
   {path : 'masterclass', component : MasterclassComponent},
+  { path : 'recover', component: RecoverComponent,
+  children: [
+    {path : 'demand', component: DemandPasswordComponent},
+    {path : 'change-password/:token', component: ChangePasswordComponent},
+    {path: '**', redirectTo: 'demand'},
+  ]
+},
   { path: 'default', component: DefaultComponent},
   { path: '', pathMatch: 'full', component: DefaultComponent },
   { path: '**', redirectTo: '' }

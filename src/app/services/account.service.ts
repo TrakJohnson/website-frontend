@@ -20,7 +20,7 @@ export class AccountService {
 
     createAccount(prenom: string, nom : string, login: string, password: string, email : string, promotion: string) {
         var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
-        console.log({"login": login, "password": password_encr});
+        console.log("create account", {"login": login, "password": password_encr});
         return new Promise<any>((resolve, reject) => {
             this.http.post(
             environment.apiUrl + '/api/user/register',
@@ -120,7 +120,7 @@ export class AccountService {
         });
     }
     
-    demandSendEmailRecoverPassword(login: string, email: string) {
+    demandSendEmailChangePassword(login: string, email: string) {
         return new Promise<void>((resolve, reject) => {
             this.http.post(
             environment.apiUrl +'/api/recover/demand',
@@ -140,11 +140,10 @@ export class AccountService {
         /* On doit mettre des headers particuliers dans cette fonction, c'est unique dans tout le site (avec la fonction changePasswordAccount, plus haut).
         Normalement quand on veut faire authentifier un token dans le site c'est pour un compte, on peut donc utiliser l'interceptor.
         Cependant ici le token ne sert pas le même but, il faut donc le faire "à la main", c'est à dire en donnant des options à la requête HTTP */
-
         return new Promise<void>((resolve, reject) => {
             this.http.post(
-            environment.apiUrl +'/api/resident/verify',
-            {token : 'bearer ' + token})
+            environment.apiUrl +'/api/user/verify',
+            {code : token})
             .subscribe(
                 () => {
                     resolve();

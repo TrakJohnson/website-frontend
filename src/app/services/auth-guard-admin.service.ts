@@ -22,7 +22,6 @@ export class AuthGuardAdmin implements CanActivate {
                             this.router.navigate(['/login']);                      
                         }
                         else {
-                            console.log('there')
                             this.auth.admin$.subscribe(
                                 (admin) => {
                                     if (!admin) {

@@ -4,8 +4,8 @@ export class Account {
     nom : string;
     login: string;
     email: string;
-    emailVerified: string;
-    contributor: boolean;
+    email_verified: number; 
+    contributor: number;
     admin: boolean;
     points: number;
     dateCreation: Date;
@@ -20,7 +20,7 @@ export class Account {
       this.nom = data.nom || undefined;
       this.login = data.login || undefined;
       this.email = data.email || undefined;
-      this.emailVerified = data.email_verified || undefined;
+      this.email_verified = data.email_verified || undefined;
       this.contributor = data.contributor || undefined;
       this.admin = data.admin || undefined;
       this.points = data.points;

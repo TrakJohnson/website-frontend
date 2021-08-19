@@ -71,7 +71,11 @@
 
     <div class="form-group" >
       <label for="points">Nombre de points</label>
-      <input type="number" id="points" formControlName="points" class="form-control">
+      <select type="number" id="points" formControlName="points" class="form-control">
+        <option [ngValue] = 2> 2 </option>
+        <option [ngValue] = 4> 4 </option>
+        <option [ngValue] = 5> 5 </option>
+      </select>
     
     </div>
 
