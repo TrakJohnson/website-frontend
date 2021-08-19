@@ -20,9 +20,10 @@ export class AppComponent implements OnInit {
   token : string | null;
 
   ngOnInit() {
+    this.popup.loading$.next(true);
     
 
-    this.token = localStorage.getItem('token')
+    this.token = localStorage.getItem('token');
 
     console.log("token : " + this.token)
 
