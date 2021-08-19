@@ -107,8 +107,8 @@ export class AccountService {
         var newPassword_encr =  CryptoJS.SHA3(newPassword, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
         return new Promise<void>((resolve, reject) => {
             this.http.post(
-            environment.apiUrl +'/api/recover/change',
-            {token : 'bearer ' + token, newPassword : newPassword_encr})
+            environment.apiUrl +'/api/recover/changePassword',
+            {token : token, newPassword : newPassword_encr})
             .subscribe(
                 () => {
                     resolve();

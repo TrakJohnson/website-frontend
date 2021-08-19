@@ -38,7 +38,7 @@ export class FormComponent implements OnInit {
     {value: 'None', viewValue: 'Aucun'},
   ]
 
-  promoToLog = new Map<String, String>(
+  promoToLog = new Map<string, string>(
     [["P17", "17"],
     ["P18", "18"],
     ["P19", "19"],
