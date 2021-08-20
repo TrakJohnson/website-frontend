@@ -19,6 +19,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserInfosComponent } from './user-infos/user-infos.component';
 import { LoginComponent } from './login/login.component';
+import { MarkdownModule } from 'ngx-markdown';
 import { RegisterComponent } from './register/register.component';
 import { FormComponent } from './register/form/form.component';
 import { VerifyEmailComponent } from './register/verify-email/verify-email.component';
@@ -67,7 +68,7 @@ import { DisplayEventComponent } from './events/display-event/display-event.comp
     ChangePasswordComponent,
     DeleteBilletterieComponent,
     EventsComponent,
-    DisplayEventComponent
+    DisplayEventComponent,
   ],
     
   imports: [
@@ -79,6 +80,8 @@ import { DisplayEventComponent } from './events/display-event/display-event.comp
     ReactiveFormsModule,
     HttpClientModule,
     MatProgressBarModule,
+    MarkdownModule.forChild(),
+    MarkdownModule.forRoot({loader : HttpClientModule}),
   ],
   providers: [NgxImageCompressService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],

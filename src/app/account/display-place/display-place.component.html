@@ -1,6 +1,7 @@
 <div class="card">
     <div class="card-body">
         <p [ngStyle]="{'color': colorAccordingToStatus(place.status)}"> Statut : {{textAccordingToStatus(place.status)}}</p>
-    </div>
-   
+    </div>   
 </div>
+<app-display-event [event]="event" [poles]="poles"></app-display-event>
+
