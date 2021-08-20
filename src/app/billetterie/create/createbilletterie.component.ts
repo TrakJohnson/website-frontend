@@ -217,7 +217,7 @@ export class CreateBilletterieComponent implements OnInit {
               // this.popup.loading$.next(false);
               // this.popup.state$.next([false, error.error.message]);
               this.popup.loading$.next(false);
-              this.popup.state$.next([false, "ERROR"]);
+              this.popup.state$.next([false, "Erreur, contactez un admin"]);
             });
         }
 

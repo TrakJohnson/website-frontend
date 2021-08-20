@@ -14,6 +14,7 @@ export class EventService {
 
     events$ = new BehaviorSubject<any>({});
 
+
     getEvents() {
         return new Promise<void>((resolve, reject) => {
 
@@ -37,6 +38,24 @@ export class EventService {
         });
     }
 
+
+    getOneBilletterie(id : number){
+        return new Promise<any>((resolve, reject) => {
+            this.http.post<any>(
+                environment.apiUrl + '/api/event/getOneBilletterie', {id : id})
+                .subscribe(
+                    (eventData : Array<any>) => {
+                      console.log({"successEvent " : eventData});
+                      
+                      resolve(eventData);
+                    },  
+                    (error) => {  
+                      reject(error);
+                    }
+                );
+        })
+    }
+
     getEventsTocome() {
       return new Promise<any[]>((resolve, reject) => {
           this.http.post(environment.apiUrl + '/api/event/getEventsTocome', {})
@@ -54,7 +73,8 @@ export class EventService {
   }
 
   createBilletterie(titre : string, description : string, date : Date, lieu : string, image: string, idPole : number, createur : string, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number) {
-      return new Promise<any>((resolve, reject) => {
+      
+    return new Promise<any>((resolve, reject) => {
           this.http.post(
           environment.apiUrl + '/api/event/createBilletterie',
           {title : titre, description : description, dateEvent : date, event_place : lieu, thumbnail : image, pole_id : idPole, loginSender : createur, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points})
@@ -71,11 +91,11 @@ export class EventService {
   }
 
 
-  modificationBilletterie(idBilletterie : Number, titre : string, description : string, date : Date, lieu : string, idPole : number, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number) {
-      return new Promise<any>((resolve, reject) => {
+  modifyBilletterie(idBilletterie : Number, titre : string, description : string, date : Date, lieu : string, image : string, idPole : number, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number, sendMail : boolean) {
+    return new Promise<any>((resolve, reject) => {
           this.http.post(
           environment.apiUrl + '/api/event/modifyBilletterie',
-          {idBilletterie : idBilletterie, titre : titre, description : description, date : date, lieu : lieu, idPole : idPole, dateOuverture : dateOuverture, dateFermeture : dateFermeture, nPlaces : nPlaces, prixC : prixC, prixNC : prixNC, points : points})
+          {event_id : idBilletterie, title : titre, description : description, dateEvent : date, event_place : lieu, thumbnail : image, pole_id : idPole, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points, sendMail : sendMail})
           .subscribe(
               (response) => {
                   resolve(response);
@@ -90,7 +110,7 @@ export class EventService {
 
   deleteBilletterie(idBilletterie : number) {
       return new Promise<any>((resolve, reject) => {
-          this.http.post(environment.apiUrl + '/api/event/deleteBilletterie', {idBilletterie : idBilletterie})
+          this.http.post(environment.apiUrl + '/api/event/deleteBilletterie', {event_id : idBilletterie})
           .subscribe(
               (response) => {
                   resolve(response)

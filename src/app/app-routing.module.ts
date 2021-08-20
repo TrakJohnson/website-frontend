@@ -20,6 +20,8 @@ import { MasterclassComponent } from './masterclass/masterclass.component';
 import { RecoverComponent } from './recover/recover.component';
 import { DemandPasswordComponent } from './recover/demandPassword/demandPassword.component';
 import { ChangePasswordComponent } from './recover/changePassword/changePassword.component';
+import { ModifyBilletterieComponent } from './billetterie/modify/modifybilletterie.component';
+import { DeleteBilletterieComponent } from './billetterie/delete/deletebilletterie.component';
 
 
 const routes: Routes = [
@@ -37,7 +39,9 @@ children : [
 ]},
   {path : 'billetterie', component : BilletterieComponent,
 children : [
-  {path : 'create', component : CreateBilletterieComponent, canActivate : [AuthGuardAdmin]}
+  {path : 'create', component : CreateBilletterieComponent, canActivate : [AuthGuardAdmin]},
+  {path : 'modify', component : ModifyBilletterieComponent, canActivate : [AuthGuardAdmin]},
+  {path : 'delete', component : DeleteBilletterieComponent, canActivate : [AuthGuardAdmin]}
 ]},
   {path : 'calendar', component : CalendarComponent},
   {path : 'masterclass', component : MasterclassComponent},

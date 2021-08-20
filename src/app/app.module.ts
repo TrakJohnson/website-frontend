@@ -29,11 +29,13 @@ import { AccountViewComponent } from './account/account-view/account-view.compon
 import { BilletterieComponent } from './billetterie/billetterie.component';
 import { DisplayPlaceComponent } from './account/display-place/display-place.component';
 import { CreateBilletterieComponent } from './billetterie/create/createbilletterie.component';
+import { ModifyBilletterieComponent } from './billetterie/modify/modifybilletterie.component';
 import { MasterclassComponent } from './masterclass/masterclass.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { RecoverComponent } from './recover/recover.component';
 import { DemandPasswordComponent } from './recover/demandPassword/demandPassword.component';
 import { ChangePasswordComponent } from './recover/changePassword/changePassword.component';
+import { DeleteBilletterieComponent } from './billetterie/delete/deletebilletterie.component';
 
 
 @NgModule({
@@ -54,12 +56,14 @@ import { ChangePasswordComponent } from './recover/changePassword/changePassword
     BilletterieComponent,
     DisplayPlaceComponent,
     CreateBilletterieComponent,
+    ModifyBilletterieComponent,
     MasterclassComponent,
     CalendarComponent,
     RecoverComponent,
     RecoverComponent,
     DemandPasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    DeleteBilletterieComponent
   ],
     
   imports: [
