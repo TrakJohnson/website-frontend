@@ -90,7 +90,7 @@ export class ModifyBilletterieComponent implements OnInit {
    
     
 
-    this.event.getOneBilletterie(this.id)
+    this.event.getOneEvent(this.id)
     .then((eventInfos : any) => {
       this.titre = eventInfos.title;
       this.description  = eventInfos.description;
@@ -240,7 +240,7 @@ export class ModifyBilletterieComponent implements OnInit {
         .then((response:any)=>{
           this.resized_filePath = response;
           console.log("resized : " + this.resized_filePath.length);
-          this.event.modifyBilletterie(this.id, this.titre, this.description, this.date, this.lieu, this.resized_filePath, this.idPole, this.dateOuverture, this.dateFermeture, this.nPlaces, this.prixC, this.prixNC, this.points, this.sendMail)
+          this.event.modifyEvent(this.id, this.titre, this.description, this.date, this.lieu, this.resized_filePath, this.idPole, this.dateOuverture, this.dateFermeture, this.nPlaces, this.prixC, this.prixNC, this.points, this.sendMail)
             .then((response) => {
               this.popup.loading$.next(false);
               this.popup.state$.next([true, "Billetterie créé !"]);
@@ -263,7 +263,7 @@ export class ModifyBilletterieComponent implements OnInit {
       else {
         console.log("no resize")
         this.resized_filePath = this.filePath;
-        this.event.modifyBilletterie(this.id, this.titre, this.description, this.date, this.lieu, this.resized_filePath, this.idPole, this.dateOuverture, this.dateFermeture, this.nPlaces, this.prixC, this.prixNC, this.points, this.sendMail)
+        this.event.modifyEvent(this.id, this.titre, this.description, this.date, this.lieu, this.resized_filePath, this.idPole, this.dateOuverture, this.dateFermeture, this.nPlaces, this.prixC, this.prixNC, this.points, this.sendMail)
           .then((response) => {
             this.popup.loading$.next(false);
             this.popup.state$.next([true, "Billetterie modifiée !"]);

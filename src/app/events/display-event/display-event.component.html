@@ -1,3 +1,9 @@
-<h2 id="place-name"> {{event.title}} </h2>
-<p> Lieu : {{event.event_place}}</p>
-<p> Pole : {{poles[event.pole_id].name}}</p>
+<div class="card">
+    <div class="card-body">
+        <h2 id="place-name"> {{event.title}} </h2>
+        <p> Lieu : {{event.event_place}}</p>
+        <p> Pole : {{poles[event.pole_id].name}}</p>
+        <p> Description : {{event.description}} </p>
+        <p> Date : {{event.dateEvent}} </p>
+    </div>
+</div>

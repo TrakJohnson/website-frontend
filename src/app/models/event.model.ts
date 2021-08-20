@@ -13,6 +13,7 @@ export class Event {
     const_non_contributor: number;
     points: number;
     on_sale: boolean;
+    is_billetterie : boolean;
 
     constructor(data: any | undefined) {
         console.log({data : data});
@@ -30,5 +31,6 @@ export class Event {
         this.const_non_contributor = data.const_non_contributor || undefined;
         this.points = data.points || undefined;
         this.on_sale = data.on_sale || undefined;
+        this.is_billetterie = data.is_billetterie || undefined;
       }
 }  

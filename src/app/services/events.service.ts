@@ -39,10 +39,10 @@ export class EventService {
     }
 
 
-    getOneBilletterie(id : number){
+    getOneEvent(id : number){
         return new Promise<any>((resolve, reject) => {
             this.http.post<any>(
-                environment.apiUrl + '/api/event/getOneBilletterie', {id : id})
+                environment.apiUrl + '/api/event/getOneEvent', {id : id})
                 .subscribe(
                     (eventData : Array<any>) => {
                       console.log({"successEvent " : eventData});
@@ -72,11 +72,11 @@ export class EventService {
       });
   }
 
-  createBilletterie(titre : string, description : string, date : Date, lieu : string, image: string, idPole : number, createur : string, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number) {
+  createEvent(titre : string, description : string, date : Date, lieu : string, image: string, idPole : number, createur : string, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number) {
       
     return new Promise<any>((resolve, reject) => {
           this.http.post(
-          environment.apiUrl + '/api/event/createBilletterie',
+          environment.apiUrl + '/api/event/createEvent',
           {title : titre, description : description, dateEvent : date, event_place : lieu, thumbnail : image, pole_id : idPole, loginSender : createur, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points})
           .subscribe(
               (response) => {
@@ -91,10 +91,10 @@ export class EventService {
   }
 
 
-  modifyBilletterie(idBilletterie : Number, titre : string, description : string, date : Date, lieu : string, image : string, idPole : number, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number, sendMail : boolean) {
+  modifyEvent(idBilletterie : Number, titre : string, description : string, date : Date, lieu : string, image : string, idPole : number, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number, sendMail : boolean) {
     return new Promise<any>((resolve, reject) => {
           this.http.post(
-          environment.apiUrl + '/api/event/modifyBilletterie',
+          environment.apiUrl + '/api/event/modifyEvent',
           {event_id : idBilletterie, title : titre, description : description, dateEvent : date, event_place : lieu, thumbnail : image, pole_id : idPole, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points, sendMail : sendMail})
           .subscribe(
               (response) => {

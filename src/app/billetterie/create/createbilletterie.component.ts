@@ -125,7 +125,7 @@ export class CreateBilletterieComponent implements OnInit {
     })
   }
 
-  onCreateBilletterie() {
+  oncreateEvent() {
     this.popup.loading$.next(true);
     const titre = this.creatorForm.get('titre')!.value;
     const description = this.creatorForm.get('description')!.value;
@@ -165,7 +165,7 @@ export class CreateBilletterieComponent implements OnInit {
           .then((response:any)=>{
             this.resized_filePath = response;
             console.log("resized : " + this.resized_filePath.length);
-            this.event.createBilletterie(titre, description, date, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points)
+            this.event.createEvent(titre, description, date, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points)
               .then((response) => {
                 this.popup.loading$.next(false);
                 this.popup.state$.next([true, "Billetterie créé !"]);
@@ -188,7 +188,7 @@ export class CreateBilletterieComponent implements OnInit {
         else {
           console.log("no resize")
           this.resized_filePath = this.filePath;
-          this.event.createBilletterie(titre, description, date, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points)
+          this.event.createEvent(titre, description, date, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points)
             .then((response) => {
               this.popup.loading$.next(false);
               this.popup.state$.next([true, "Billetterie créé !"]);
