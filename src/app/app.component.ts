@@ -19,6 +19,9 @@ export class AppComponent implements OnInit {
   loading : boolean;
   token : string | null;
 
+
+  events = [{title: "1", description :"desc1", link: "#", image : "image"},{title: "2" , description : "desc2", link: "#", image : "image2"}]
+
   ngOnInit() {
     this.popup.loading$.next(true);
     
