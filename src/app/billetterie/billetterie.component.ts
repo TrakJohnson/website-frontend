@@ -15,9 +15,6 @@ export class BilletterieComponent implements OnInit {
   private isAdminSub: Subscription;
   isAdmin: boolean = false; 
 
-
-
-
   constructor(private router: Router,
     private auth: AuthService) { }
 

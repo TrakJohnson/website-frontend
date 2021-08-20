@@ -23,13 +23,15 @@ export class CreateBilletterieComponent implements OnInit {
   file : File;
   resized_filePath : string;
 
-  createurid : string;
 
   public poles = [
     {value: '1', viewValue: 'Bureau'},
     {value: '2', viewValue: 'Pôle alternatif'},
     {value: '0', viewValue: 'Autre'},
   ]
+
+  accountSub : Subscription;
+  createurid : string;
 
   // public dateEvent :
 
@@ -39,8 +41,6 @@ export class CreateBilletterieComponent implements OnInit {
               private popup: PopupService,
               private event: EventService) { }
 
-
-  
   ngOnInit() {
     this.popup.loading$.next(true);
 
@@ -60,16 +60,11 @@ export class CreateBilletterieComponent implements OnInit {
     });
     
     this.popup.loading$.next(false);
-
-
-
-    var accountSub : Subscription;
-      accountSub = this.account.compte$.subscribe(
-        (account) => {
-          this.createurid = account!.login;
-        }
-      )
-      
+    this.accountSub = this.account.compte$.subscribe(
+      (account) => {
+        this.createurid = account!.login;
+      }
+    )
   }
   
   fileChangedEvent(e : any) {
@@ -96,14 +91,8 @@ export class CreateBilletterieComponent implements OnInit {
           this.popup.state$.next([false, "L'image n'est pas au format 4/3, merci de la redimensionner"]);
         }
       }
-
-
     }
-    
-    
-
   }
-
 
   resizeImage = (base64Str : string, maxWidth = 720, maxHeight = 540) => {
     return new Promise((resolve) => {
@@ -116,7 +105,6 @@ export class CreateBilletterieComponent implements OnInit {
         let width = img.width
         let height = img.height
 
-  
         if (width > height) {
           if (width > MAX_WIDTH) {
             height *= MAX_WIDTH / width
@@ -136,10 +124,6 @@ export class CreateBilletterieComponent implements OnInit {
       }
     })
   }
-
-
-  
-  
 
   onCreateBilletterie() {
     this.popup.loading$.next(true);
@@ -162,9 +146,6 @@ export class CreateBilletterieComponent implements OnInit {
       this.popup.state$.next([false, "Il faut upload une vignette"]);
     }
     else {
-      
-      
-
       if (dateFermeture < dateOuverture ) {
         this.popup.loading$.next(false);
         this.popup.state$.next([false, "Les dates d'ouverture et fermture sont incohérentes"]);

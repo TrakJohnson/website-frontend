@@ -31,5 +31,4 @@ export class Event {
         this.points = data.points || undefined;
         this.on_sale = data.on_sale || undefined;
       }
-
 }  

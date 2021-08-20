@@ -1,3 +1,5 @@
+import { Place } from "./place.model";
+
 export class Account {
     id : number;
     prenom : string;  
@@ -11,7 +13,7 @@ export class Account {
     dateCreation: Date;
     dateLastCon: string;
     promo : string;
-    placesDemanded : Array<any>;
+    placesDemanded : Array<Place>;
 
     constructor(data: any | undefined) {
       console.log({dataAcc : data});
