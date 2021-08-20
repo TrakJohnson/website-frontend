@@ -39,6 +39,7 @@ import { DemandPasswordComponent } from './recover/demandPassword/demandPassword
 import { ChangePasswordComponent } from './recover/changePassword/changePassword.component';
 import { EventsComponent } from './events/events.component';
 import { DisplayEventComponent } from './events/display-event/display-event.component';
+import { EventQuickviewComponent } from './event-quickview/event-quickview.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { DisplayEventComponent } from './events/display-event/display-event.comp
     DeleteBilletterieComponent,
     EventsComponent,
     DisplayEventComponent,
+    EventQuickviewComponent
   ],
     
   imports: [

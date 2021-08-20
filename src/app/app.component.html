@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 
 <div style="display: block; min-height: 100vh;">
     <app-popup></app-popup>
@@ -7,5 +7,10 @@
     </div>
 </div>
 
-<app-footer></app-footer>
+<app-footer></app-footer> -->
 
+<app-event-quickview *ngFor = "let event of events"
+                        [title] = "event.title"
+                        [description] = "event.description"
+                        [image] = "event.image"
+                        [link] = "event.link"></app-event-quickview>
