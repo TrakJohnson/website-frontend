@@ -28,7 +28,7 @@ import { PopupComponent } from './popup/popup.component';
 import { AccountComponent } from './account/account.component';
 import { AccountViewComponent } from './account/account-view/account-view.component';
 import { BilletterieComponent } from './billetterie/billetterie.component';
-import { DisplayPlaceComponent } from './account/display-place/display-place.component';
+import { DisplayPlaceComponent } from './account/display-place/display-place.component'
 import { CreateBilletterieComponent } from './billetterie/create/createbilletterie.component';
 import { ModifyBilletterieComponent } from './billetterie/modify/modifybilletterie.component';
 import { DeleteBilletterieComponent } from './billetterie/delete/deletebilletterie.component';
@@ -40,6 +40,7 @@ import { ChangePasswordComponent } from './recover/changePassword/changePassword
 import { EventsComponent } from './events/events.component';
 import { DisplayEventComponent } from './events/display-event/display-event.component';
 import { EventQuickviewComponent } from './event-quickview/event-quickview.component';
+import { ViewBilletterieComponent } from './billetterie/view/viewBilletterie.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { EventQuickviewComponent } from './event-quickview/event-quickview.compo
     DeleteBilletterieComponent,
     EventsComponent,
     DisplayEventComponent,
-    EventQuickviewComponent
+    EventQuickviewComponent,
+    ViewBilletterieComponent
   ],
     
   imports: [

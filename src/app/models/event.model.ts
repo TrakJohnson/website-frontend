@@ -14,6 +14,7 @@ export class Event {
     points: number;
     on_sale: boolean;
     is_billetterie : boolean;
+    thumbnail : string;
 
     constructor(data: any | undefined) {
         console.log({data : data});
@@ -32,5 +33,6 @@ export class Event {
         this.points = data.points || undefined;
         this.on_sale = data.on_sale || undefined;
         this.is_billetterie = data.is_billetterie || undefined;
+        this.thumbnail = data.thumbnail || undefined;
       }
 }  

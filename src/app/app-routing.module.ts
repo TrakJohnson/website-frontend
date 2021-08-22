@@ -22,6 +22,7 @@ import { DemandPasswordComponent } from './recover/demandPassword/demandPassword
 import { ChangePasswordComponent } from './recover/changePassword/changePassword.component';
 import { ModifyBilletterieComponent } from './billetterie/modify/modifybilletterie.component';
 import { DeleteBilletterieComponent } from './billetterie/delete/deletebilletterie.component';
+import { ViewBilletterieComponent } from './billetterie/view/viewBilletterie.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ children : [
 ]},
   {path : 'billetterie', component : BilletterieComponent,
 children : [
+  {path : 'view', component : ViewBilletterieComponent},
   {path : 'create', component : CreateBilletterieComponent, canActivate : [AuthGuardAdmin]},
   {path : 'modify', component : ModifyBilletterieComponent, canActivate : [AuthGuardAdmin]},
   {path : 'delete', component : DeleteBilletterieComponent, canActivate : [AuthGuardAdmin]}

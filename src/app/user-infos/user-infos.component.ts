@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs';
 
@@ -7,7 +7,6 @@ import { AuthService } from '../services/auth.service';
 import { AccountService } from '../services/account.service';
 
 import { Account } from '../models/account.model';
-import { OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-user-infos',
@@ -41,6 +40,7 @@ export class UserInfosComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.isAuthSub.unsubscribe();
+    this.accountSub.unsubscribe();
   }
 
   onNavigate(endpoint: string) {

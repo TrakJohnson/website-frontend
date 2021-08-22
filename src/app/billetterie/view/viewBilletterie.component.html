@@ -1,0 +1,18 @@
+<div *ngIf = "isAdmin" class = "admin_options_container" >
+
+    <button id="createB_buttoon" class="btn btn-success" style="margin : 1%;" (click) = "onNavigate('billetterie/create')"> Créer une nouvelle billetterie </button>
+
+</div>
+
+<div  *ngIf = "isBilletterie" class = "container-fluid" id="events-container" >
+
+    <app-event-quickview *ngFor = "let event of eventsToDisplay" [event] = "event"> </app-event-quickview>
+
+</div>
+
+
+<div  *ngIf = "!isBilletterie" class = "container" id="noevents-container" >
+
+    <h2 class = "no_event_message"> Il n'y a pas de billetterie à venir. </h2>
+
+</div>
