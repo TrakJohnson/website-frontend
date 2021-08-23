@@ -1,5 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Event } from 'src/app/models/event.model';
+import { AccountService } from 'src/app/services/account.service';
+import { EventService } from 'src/app/services/events.service';
+import { PopupService } from 'src/app/services/popup.service';
 
 @Component({
   selector: 'app-display-event',
@@ -8,16 +13,54 @@ import { Event } from 'src/app/models/event.model';
 })
 export class DisplayEventComponent implements OnInit {
 
-  constructor() { }
+  constructor(private popup : PopupService,
+              private route : ActivatedRoute,
+              private router : Router, 
+              private eventService : EventService,
+              private acc : AccountService) { }
 
-  @Input()
+  event_id : number;
   event : Event;
-  @Input()
-  poles : any;
+  is_billetterie :boolean;
+  isAdmin : boolean | undefined = false;
+  accountSub : Subscription;
+  on_sale : boolean;
 
   ngOnInit(): void {
-    console.log({eventReceived : this.event});
-    console.log({polesReceived : this.poles});
+    this.event_id = this.route.snapshot.params["event_id"] ;
+
+    this.eventService.getOneEvent(this.event_id)
+    .then((response) =>{
+      this.event = response;
+      this.is_billetterie = this.event.is_billetterie;
+      this.on_sale = this.event.on_sale;
+      
+      if (this.event.thumbnail == undefined || this.event.thumbnail.length < 1 || this.event.thumbnail == null) {
+        this.event.thumbnail = "../../../assets/img/dev/default_event_pic.jpg"
+    
+      }
+    })
+    .catch((error)=> {
+      this.popup.state$.next([false, error.message]);
+    })
+
+    this.accountSub = this.acc.compte$.subscribe(
+      (status) => {
+        console.log(status)
+        this.isAdmin = status?.admin;
+        console.log({"isAdmin" : this.isAdmin})
+      })
+    
+
+  }
+
+  onNavigate(endpoint: string) {
+    this.router.navigate([endpoint]);
+
+  }
+
+  ngOnDestroy() {
+    this.accountSub.unsubscribe()
   }
 
 }

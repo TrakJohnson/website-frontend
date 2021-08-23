@@ -70,7 +70,23 @@ export class EventService {
               }
           );
       });
-  }
+    } 
+
+    getBilletteriesTocome() {
+        return new Promise<any[]>((resolve, reject) => {
+            this.http.post(environment.apiUrl + '/api/event/getBilletteriesTocome', {})
+            .subscribe(
+                (response : any) => {
+                  console.log(response)
+                    resolve(response);
+                },
+                (error) => {
+                    console.log({error : error})
+                    reject(error);
+                }
+            );
+        });
+      } 
 
   createEvent(titre : string, description : string, date : Date, lieu : string, image: string, idPole : number, createur : string, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number) {
       

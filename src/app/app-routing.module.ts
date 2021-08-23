@@ -23,6 +23,10 @@ import { ChangePasswordComponent } from './recover/changePassword/changePassword
 import { ModifyBilletterieComponent } from './billetterie/modify/modifybilletterie.component';
 import { DeleteBilletterieComponent } from './billetterie/delete/deletebilletterie.component';
 import { ViewBilletterieComponent } from './billetterie/view/viewBilletterie.component';
+import { EventsComponent } from './events/events.component';
+import { DisplayEventComponent } from './events/display-event/display-event.component';
+import { TeamComponent } from './team/team.component';
+import { ViewTeamComponent } from './team/view/viewTeam.component';
 
 
 const routes: Routes = [
@@ -38,12 +42,20 @@ children : [
 children : [
   {path : 'view', component : AccountViewComponent, canActivate: [AuthGuard]}
 ]},
+  {path : "team", component  : TeamComponent,
+children : [
+  {path : "view", component : ViewTeamComponent}
+]},
   {path : 'billetterie', component : BilletterieComponent,
 children : [
   {path : 'view', component : ViewBilletterieComponent},
   {path : 'create', component : CreateBilletterieComponent, canActivate : [AuthGuardAdmin]},
-  {path : 'modify', component : ModifyBilletterieComponent, canActivate : [AuthGuardAdmin]},
+  {path : 'modify/:event_id', component : ModifyBilletterieComponent, canActivate : [AuthGuardAdmin]},
   {path : 'delete', component : DeleteBilletterieComponent, canActivate : [AuthGuardAdmin]}
+]},
+{path : 'events', component : EventsComponent,
+children : [
+  {path : 'display/:event_id', component : DisplayEventComponent}
 ]},
   {path : 'calendar', component : CalendarComponent},
   {path : 'masterclass', component : MasterclassComponent},

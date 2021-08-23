@@ -10,7 +10,7 @@ export class Event {
     date_close: Date;
     num_places: number;
     cost_contributor: number;
-    const_non_contributor: number;
+    cost_non_contributor: number;
     points: number;
     on_sale: boolean;
     is_billetterie : boolean;
@@ -29,7 +29,7 @@ export class Event {
         this.date_close = data.date_close || undefined;
         this.num_places = data.num_places || undefined;
         this.cost_contributor = data.cost_contributor || undefined;
-        this.const_non_contributor = data.const_non_contributor || undefined;
+        this.cost_non_contributor = data.cost_non_contributor || undefined;
         this.points = data.points || undefined;
         this.on_sale = data.on_sale || undefined;
         this.is_billetterie = data.is_billetterie || undefined;

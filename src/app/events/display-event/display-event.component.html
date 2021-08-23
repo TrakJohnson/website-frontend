@@ -1,9 +1,36 @@
-<div class="card">
-    <div class="card-body">
-        <h2 id="place-name"> {{event.title}} </h2>
-        <p> Lieu : {{event.event_place}}</p>
-        <p> Pole : {{poles[event.pole_id].name}}</p>
-        <p> Description : {{event.description}} </p>
-        <p> Date : {{event.dateEvent}} </p>
+<div class = "container-fluid" >
+
+    <button *ngIf = "is_billetterie && isAdmin" id="modifyB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('billetterie/modify/' + event.event_id)"> Modifier cette billetterie </button>
+
+    <button *ngIf = "!is_billetterie && isAdmin" id="modifyE_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('event/modify/' + event.event_id)"> Modifier cet évènement </button>
+
+
+
+    <div class = "container" id = "quickview-container">
+        <div class = "container" id = "thumbnail_container">
+            <img id = "event_thumbnail" [src] = "event.thumbnail" alt = "event thumbnail">
+        </div>
+        <div class = "container" id = "text_container">
+            <h2 id = "title" > {{event.title}} </h2>
+            <p id = "description" > {{event.description }} </p>
+        </div>
+    </div>
+    
+    <div *ngIf = "is_billetterie" class = "details_container" id = "details_billetterie">
+        <div class = "infos-container" >
+            <p id = "lieu" class = "details" > Lieu de l'évènement : {{event.event_place}} </p>
+            <p id = "date" class = "details" > Date de l'évènement : {{(event.dateEvent | date:'EEEE d MMMM y HH:mm')}} (heure de Paris) </p>
+            <p id = "num_places" class = "details"> Nombre de places displonibles :  {{event.num_places}}</p>
+            <p id = "prixC" class = "details" > Prix cotisants : {{event.cost_contributor}} €</p>
+            <p id = "prixNC" class = "details"> Prix non cotisants : {{event.cost_non_contributor}} €</p>
+        </div>
+        <div class = "purchase_container">
+
+            <button [disabled] = "!on_sale" id="purchase_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('billetterie/modify/' + event.event_id)"> Réserver un billet </button>
+            
+            <p class = "small_infos"> ouverture prévue : {{event.date_open | date:'EEEE d MMMM y HH:mm'}} </p>
+            <p class = "small_infos"> fermeture prévue avant : {{event.date_close | date:'EEEE d MMMM y HH:mm'}} </p>
+        </div>
+
     </div>
 </div>

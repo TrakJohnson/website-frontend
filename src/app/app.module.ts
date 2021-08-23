@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,10 +11,14 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import {NgxImageCompressService} from 'ngx-image-compress';
 
+
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 
+
+// components
 import { DefaultComponent } from './default/default.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -39,9 +44,16 @@ import { DemandPasswordComponent } from './recover/demandPassword/demandPassword
 import { ChangePasswordComponent } from './recover/changePassword/changePassword.component';
 import { EventsComponent } from './events/events.component';
 import { DisplayEventComponent } from './events/display-event/display-event.component';
-import { EventQuickviewComponent } from './event-quickview/event-quickview.component';
+import { EventQuickviewComponent } from './events/event-quickview/event-quickview.component';
 import { ViewBilletterieComponent } from './billetterie/view/viewBilletterie.component';
+import { TeamComponent } from './team/team.component';
 
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import { DisplayPoleComponent } from './team/display-pole/displayPole.component';
+import { ViewTeamComponent } from './team/view/viewTeam.component';
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
@@ -72,11 +84,15 @@ import { ViewBilletterieComponent } from './billetterie/view/viewBilletterie.com
     EventsComponent,
     DisplayEventComponent,
     EventQuickviewComponent,
-    ViewBilletterieComponent
+    ViewBilletterieComponent,
+    TeamComponent,
+    DisplayPoleComponent,
+    ViewTeamComponent
   ],
     
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     IvyCarouselModule,
@@ -86,9 +102,12 @@ import { ViewBilletterieComponent } from './billetterie/view/viewBilletterie.com
     MatProgressBarModule,
     MarkdownModule.forChild(),
     MarkdownModule.forRoot({loader : HttpClientModule}),
+    MatExpansionModule,
+  
   ],
   providers: [NgxImageCompressService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
