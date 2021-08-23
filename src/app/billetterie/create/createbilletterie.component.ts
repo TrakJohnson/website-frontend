@@ -165,7 +165,7 @@ export class CreateBilletterieComponent implements OnInit {
           .then((response:any)=>{
             this.resized_filePath = response;
             console.log("resized : " + this.resized_filePath.length);
-            this.event.createEvent(titre, description, date, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points)
+            this.event.createEvent(titre, description, date, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points, 1)
               .then((response) => {
                 this.popup.loading$.next(false);
                 this.popup.state$.next([true, "Billetterie créé !"]);
@@ -188,7 +188,7 @@ export class CreateBilletterieComponent implements OnInit {
         else {
           console.log("no resize")
           this.resized_filePath = this.filePath;
-          this.event.createEvent(titre, description, date, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points)
+          this.event.createEvent(titre, description, date, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points, 1)
             .then((response) => {
               this.popup.loading$.next(false);
               this.popup.state$.next([true, "Billetterie créé !"]);

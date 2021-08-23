@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-display-pole',
@@ -9,11 +9,15 @@ export class DisplayPoleComponent implements OnInit {
   
   constructor() { }
 
+  @Input() pole : any[];
+  @Input() pole_id : number;
+  
   customCollapsedHeight : string = "20vh"
   customExpandedHeight : string = "90vh"
   panelOpenState : boolean;
 
   ngOnInit(): void {
+    
   }
 
   currentlyOpenedItemIndex = -1;

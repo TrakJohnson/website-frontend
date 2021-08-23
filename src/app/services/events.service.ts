@@ -88,12 +88,12 @@ export class EventService {
         });
       } 
 
-  createEvent(titre : string, description : string, date : Date, lieu : string, image: string, idPole : number, createur : string, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number) {
+  createEvent(titre : string, description : string, date : Date, lieu : string, image: string, idPole : number, createur : string, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number, is_billetterie : number) {
       
     return new Promise<any>((resolve, reject) => {
           this.http.post(
           environment.apiUrl + '/api/event/createEvent',
-          {title : titre, description : description, dateEvent : date, event_place : lieu, thumbnail : image, pole_id : idPole, loginSender : createur, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points})
+          {title : titre, description : description, dateEvent : date, event_place : lieu, thumbnail : image, pole_id : idPole, loginSender : createur, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points, is_billetterie : is_billetterie})
           .subscribe(
               (response) => {
                   resolve(response);

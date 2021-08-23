@@ -1,1 +1,1 @@
-<app-display-pole></app-display-pole>
+<app-display-pole *ngFor = "let pole of members_by_pole; index as i" [pole] = "pole" [pole_id] = "i + 1"></app-display-pole>
