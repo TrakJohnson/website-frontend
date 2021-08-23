@@ -1,3 +1,5 @@
+import { Place } from "./place.model";
+
 export class Event {
     public event_id : number;
     title : string;  
@@ -15,6 +17,7 @@ export class Event {
     on_sale: boolean;
     is_billetterie : boolean;
     thumbnail : string;
+    placesDemanded : Place[];
 
     constructor(data: any | undefined) {
         console.log({data : data});
