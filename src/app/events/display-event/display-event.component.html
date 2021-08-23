@@ -1,10 +1,10 @@
 <div class = "container-fluid" >
 
     <button *ngIf = "is_billetterie && isAdmin" id="modifyB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('billetterie/modify/' + event.event_id)"> Modifier cette billetterie </button>
+    <button *ngIf = "is_billetterie && isAdmin && on_sale" id="modifyB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onCloseBilletterie()"> Retirer de la vente cette billetterie </button>
+    <button *ngIf = "is_billetterie && isAdmin && !on_sale" id="modifyB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onReSaleBilletterie()"> Remettre en vente cette billetterie </button>
 
     <button *ngIf = "!is_billetterie && isAdmin" id="modifyE_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('event/modify/' + event.event_id)"> Modifier cet évènement </button>
-
-
 
     <div class = "container" id = "quickview-container">
         <div class = "container" id = "thumbnail_container">

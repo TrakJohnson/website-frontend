@@ -37,8 +37,9 @@ export class DisplayEventComponent implements OnInit {
       
       if (this.event.thumbnail == undefined || this.event.thumbnail.length < 1 || this.event.thumbnail == null) {
         this.event.thumbnail = "../../../assets/img/dev/default_event_pic.jpg"
-    
       }
+
+      
     })
     .catch((error)=> {
       this.popup.state$.next([false, error.message]);
@@ -50,13 +51,33 @@ export class DisplayEventComponent implements OnInit {
         this.isAdmin = status?.admin;
         console.log({"isAdmin" : this.isAdmin})
       })
-    
+  }
 
+  async onCloseBilletterie() {
+    this.eventService.closeBilletterie(this.event_id)
+    .then(() => {
+      this.popup.state$.next([true, "Billetterie fermée avec succès"]);
+      this.onNavigate('/events/display/' + this.event_id.toString());
+    })
+    .catch(() => {
+      this.popup.state$.next([false, "Erreur lors de la fermeture, veuillez contacter l'administrateur immédiatement"]);
+    })
+  }
+
+  async onReSaleBilletterie() {
+    this.eventService.reSaleBilletterie(this.event_id)
+    .then(() => {
+      this.popup.state$.next([true, "Billetterie rouverte avec succès"]);
+      this.onNavigate('/events/display/' + this.event_id.toString());
+    })
+    .catch(() => {
+      this.popup.state$.next([false, "Erreur lors de la réouverture, veuillez contacter l'administrateur immédiatement"]);
+    })
   }
 
   onNavigate(endpoint: string) {
-    this.router.navigate([endpoint]);
-
+    console.log({newEndpoint : endpoint});
+    this.router.navigate(['/'], {skipLocationChange: true}).then(()=> this.router.navigate([endpoint]));
   }
 
   ngOnDestroy() {
