@@ -7,7 +7,6 @@ export class Pole {
     members : Array<Member>;
 
     constructor(data: any | undefined) {
-      console.log({dataAcc : data});
       this.pole_id = data.pole_id || undefined;
       this.name = data.name || undefined;
       this.description = data.description || undefined;

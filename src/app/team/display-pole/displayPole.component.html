@@ -4,13 +4,40 @@
         (closed)="panelOpenState = false">
       <mat-expansion-panel-header [collapsedHeight]="customCollapsedHeight"       
                                  [expandedHeight]="customExpandedHeight">
-        <mat-panel-title>
-          <p> Pole n°{{pole_id}} </p>
+        <mat-panel-title *ngIf = "panelOpenState" class = "title_expanded">
+          <h2 class = "nom_pole"> {{pole_infos.name}} </h2>
+          <p class = "description_pole"> {{pole_infos.description}} </p>
         </mat-panel-title>
-        <mat-panel-description>
-            <div *ngFor = "let member of pole" class = "member">
-                {{member.login}}
-            </div>
+
+        <mat-panel-title *ngIf = "!panelOpenState" class = "title_collapsed">
+          <h2 class = "nom_pole"> {{pole_infos.name}} </h2>
+        </mat-panel-title>
+
+        <mat-panel-description [ngStyle] ="{'flex-direction' : (panelOpenState)? 'column' : 'row'}">
+
+            <ng-container *ngIf = "!panelOpenState">
+              <div *ngFor = "let member of pole" class = "memberCollapsed" [ngStyle] = "{'max-height' : customCollapsedHeight }">
+                  <div class = "recap" [ngStyle] = "{'max-height' : customCollapsedHeight }">
+                    <img class="profil_pic" alt = "photo de trombi" src = "{{'https://eleves.mines-paris.eu/static/img/trombi/' + member.login + '.jpg'}}" >
+                    <p class = "nom"> {{member.nom}}  {{member.prenom}}, {{member.role}} </p>
+                  </div>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf = "panelOpenState">
+              <div  *ngFor = "let member of pole" class = "memberExpanded" [ngStyle] = "{'max-height' : customCollapsedHeight}">
+                  <div class = "recap_expanded" [ngStyle] = "{'max-height' : customCollapsedHeight}">
+                    <img class="profil_pic" alt = "photo de trombi" src = "{{'https://eleves.mines-paris.eu/static/img/trombi/' + member.login + '.jpg'}}" >
+                    <p class = "nom"> {{member.nom}}  {{member.prenom}}, {{member.role}} </p>
+                  </div>
+                  <div class = "member_description" [ngStyle] = "{'max-height' : customCollapsedHeight }">
+                    <p class = "member_desc"> <span style = "text-decoration : underline; font-weight : bold; margin-bottom : 1vmin"> Description  : </span> <br>
+                      {{member.description}} </p>
+                  </div>
+              </div>
+            </ng-container>
+
+
         </mat-panel-description>
       </mat-expansion-panel-header>
       <p></p>

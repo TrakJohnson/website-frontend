@@ -1,0 +1,79 @@
+mat-accordion {
+    margin : 5vh
+}
+
+.profil_pic {
+    object-fit: cover;
+    max-width : 100%;
+    max-height : calc(100% - 3em);
+}
+
+.nom {
+    max-width : 100%;
+    color : black;
+}
+
+.memberCollapsed {
+    display : flex;
+    flex-direction : column;
+    width : 10vw;
+    margin : .5vw;
+    align-items : center;
+    text-align: center;
+}
+
+.memberExpanded { 
+    display : flex;
+    flex-direction : row; 
+    border : solid 1px;
+    margin : .5vh 10vw .5vh auto;
+    padding : 1vw;
+    width : 50vw
+
+}
+
+.recap_expanded {
+    display : flex;
+    flex-direction : column;
+    width : 6vw ;
+    font-size : 1.8vmin;
+    line-height: 2vmin;
+}
+
+.profil_pic {
+    
+    object-fit: contain;
+}
+
+
+
+.member_description {
+    color : black;
+    margin-left : 3vw;
+    font-size : 1.8vmin;
+    line-height: 2vmin;
+}
+
+
+.title_expanded {
+    align-items: center !important;
+    margin : 4vw;
+    display : flex;
+    flex-direction : column;
+    font-size : 2vmin;
+    line-height : 2vmin;
+}
+
+
+.title_collapsed {
+    align-items: center !important;
+    margin : 0;
+}
+
+.nom_pole {
+    font-size : 2em;
+    max-width : 10vw;
+    line-height: 1em;
+}
+mat-panel-description {display : flex; flex-direction : row}
+

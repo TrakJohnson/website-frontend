@@ -2,9 +2,9 @@
 <carousel  *ngIf = "eventExist" [height] = 600 [objectFit]="'cover'" [cellsToShow]=1.5 [counter]="true" [margin]=10>
     <div class = "carousel-cell" *ngFor = "let event of eventsToCome">
 
-        <a id = "{{event.id}}" href = "{{event.link}}">
+        <a id = "{{event.id}}" (click) = "onNavigate('events/display/' + event.event_id )">
             <figure class="textover">
-                <img alt = "{{event.title}}" src = "{{event.image}}">
+                <img alt = "{{event.title}}" src = "{{event.thumbnail}}">
                 <figcaption> 
                     <p class = "title">{{event.title}} </p>
                     <p class = "details" >{{event.description}}</p>

@@ -1,4 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Pole } from 'src/app/models/pole.model';
+import { PoleService } from 'src/app/services/poles.service';
+
+
 
 @Component({
   selector: 'app-display-pole',
@@ -7,22 +11,25 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DisplayPoleComponent implements OnInit {
   
-  constructor() { }
+  constructor(private poleServ : PoleService) { }
 
   @Input() pole : any[];
   @Input() pole_id : number;
-  
-  customCollapsedHeight : string = "20vh"
-  customExpandedHeight : string = "90vh"
+  @Input() pole_infos : Pole;
+
+
+  profile_height = 20;
+  customCollapsedHeight : string = String(this.profile_height) + "vh"
+  customExpandedHeight : string;
   panelOpenState : boolean;
 
+
   ngOnInit(): void {
-    
+    this.customExpandedHeight = String(this.profile_height * (this.pole.length+1)) +"vh";
   }
 
   currentlyOpenedItemIndex = -1;
 
-  items = [{'header' : 'yo', 'description' : "coucou", 'content' : "waw"}];
 
   setOpened(itemIndex : any) {
     this.currentlyOpenedItemIndex = itemIndex;

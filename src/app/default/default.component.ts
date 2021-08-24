@@ -32,12 +32,13 @@ export class DefaultComponent implements OnInit {
       this.eventsToCome = response;
       console.log(this.eventsToCome)
       if (this.eventsToCome.length < 1) {
-        this.eventsToCome = [{title : " ", description : " ", image : "../assets/img/const/noEvent.jpg"}] 
+        
+        this.eventExist = false;
+        // this.eventsToCome = [{title : " ", description : " ", image : "../assets/img/const/noEvent.jpg"}] 
       }
 
       else {
-        this.eventExist = false;
-        this.eventsToCome = [{title : " ", description : " ", image : "../../assets/img/const/noEvent.jpg"}]
+        this.eventExist = true;
       }
     })
     .catch((error) => {

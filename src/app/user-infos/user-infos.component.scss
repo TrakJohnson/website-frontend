@@ -62,6 +62,10 @@ a {
   #profil_pic {
     display : none;
   }
+  #signin, #view-account, #signout {
+    text-decoration: underline;
+    font-size : 2vmax;
+  }
 
   .container-fluid {
     justify-content: space-evenly;

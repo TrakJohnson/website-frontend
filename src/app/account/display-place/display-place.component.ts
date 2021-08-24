@@ -25,7 +25,7 @@ export class DisplayPlaceComponent implements OnInit {
   }
 
   colorArr = ["orange", "red", "green"];
-  textArr = ["Place non encore traitée", "Place refusée", "Place acceptée"];
+  textArr = ["Place pas encore traitée", "Place refusée", "Place acceptée"];
 
   colorAccordingToStatus(status : number) {
     return this.colorArr[status + 1];

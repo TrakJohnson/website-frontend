@@ -10,7 +10,7 @@
 
 <div *ngIf = "isAuth" class="container-fluid">
     <div class = column >
-        <img id = "profil_pic" src = "/assets/img/dev/profil_pic_test.jpg" >
+        <img id = "profil_pic" src = "{{'https://eleves.mines-paris.eu/static/img/trombi/' + account.login + '.jpg'}}" >
     </div>
     <div class = column >
         <p> Bienvenue {{account.login}} </p>

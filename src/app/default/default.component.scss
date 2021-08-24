@@ -14,6 +14,7 @@ figure {
 }
 .title {
     font-size : 5vmin;
+    line-height: 4vmin;
     font-weight: 300;
 }
 
@@ -60,3 +61,5 @@ figure:hover .details {
 #noEvent {
     width : 70%;
 }
+
+a{cursor : pointer}
