@@ -13,7 +13,7 @@ export class Account {
     dateCreation: Date;
     dateLastCon: string;
     promo : string;
-    placesDemanded : Array<Place>;
+    placesClaimed : Array<Place>;
 
     constructor(data: any | undefined) {
       console.log({dataAcc : data});
@@ -29,7 +29,7 @@ export class Account {
       this.dateCreation = data.date_creation || undefined;
       this.dateLastCon = data.date_last_con || undefined;
       this.promo = data.promo || undefined;
-      this.placesDemanded = data.placesDemanded || [];
+      this.placesClaimed = data.placesClaimed || [];
     }
 }
 

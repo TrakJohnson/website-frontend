@@ -27,7 +27,8 @@
         </div>
         <div class = "purchase_container">
 
-            <button [disabled] = "!on_sale" id="purchase_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('billetterie/modify/' + event.event_id)"> Réserver un billet </button>
+            <button [disabled] = "!on_sale || !is_connected || is_already_claimed" id="purchase_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw;" (click) = "onClaimePlace(event.event_id)"> Réserver un billet </button>
+            <button [disabled] = "!on_sale || !is_connected || !is_already_claimed" id="purchase_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onDeClaimePlace(event.event_id)"> Retirer ma réservation </button>
             
             <p class = "small_infos"> ouverture prévue : {{event.date_open | date:'EEEE d MMMM y HH:mm'}} </p>
             <p class = "small_infos"> fermeture prévue avant : {{event.date_close | date:'EEEE d MMMM y HH:mm'}} </p>

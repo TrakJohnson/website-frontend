@@ -2,6 +2,6 @@
 <button id="modif_buttoon" class="btn btn-success" style="margin : 1%;" (click) = "onNavigate('account/modify')"> Modifier mes informations </button>
 
 
-<div id="view-account-places" *ngFor="let place of account?.placesDemanded? account?.placesDemanded : []">
+<div id="view-account-places" *ngFor="let place of account?.placesClaimed? account?.placesClaimed : []">
     <app-display-place [place]="place" [event]="events[place.event_id]" [poles]="poles"></app-display-place>
 </div>

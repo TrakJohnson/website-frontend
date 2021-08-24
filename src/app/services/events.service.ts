@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { environment } from "src/environments/environment";
@@ -37,12 +37,13 @@ export class EventService {
         });
     }
 
-    getOneEvent(id : number){
-        return new Promise<any>((resolve, reject) => {
-            this.http.post<any>(
-                environment.apiUrl + '/api/event/getOneEvent', {id : id})
+    getOneEvent(event_id : number){
+        const params = new HttpParams().append('event_id', event_id);
+        return new Promise<Event>((resolve, reject) => {
+            this.http.get<Event>(
+                environment.apiUrl + '/api/event/getOneEvent', {params})
                 .subscribe(
-                    (eventData : Array<any>) => {
+                    (eventData : Event) => {
                       console.log({"successEvent " : eventData});
                       
                       resolve(eventData);

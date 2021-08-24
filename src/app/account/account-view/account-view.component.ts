@@ -38,7 +38,7 @@ export class AccountViewComponent implements OnInit {
     this.popup.loading$.next(true);
     this.accountSub = this.accountService.compte$.subscribe(
       (dataAccount) => {
-        console.log({account : dataAccount?.placesDemanded});
+        console.log({account : dataAccount?.placesClaimed});
         this.account = dataAccount;
     });
     this.eventsSub = this.event.events$.subscribe(
