@@ -17,7 +17,7 @@ export class Event {
     on_sale: boolean;
     is_billetterie : boolean;
     thumbnail : string;
-    placesDemanded : Place[];
+    placesClaimed : Place[];
 
     constructor(data: any | undefined) {
         console.log({data : data});
@@ -37,5 +37,6 @@ export class Event {
         this.on_sale = data.on_sale || undefined;
         this.is_billetterie = data.is_billetterie || undefined;
         this.thumbnail = data.thumbnail || undefined;
+        this.placesClaimed = data.placesClaimed || [];
       }
 }  

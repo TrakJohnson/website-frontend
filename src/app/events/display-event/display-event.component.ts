@@ -2,6 +2,7 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Event } from 'src/app/models/event.model';
+import { Place } from 'src/app/models/place.model';
 import { AccountService } from 'src/app/services/account.service';
 import { EventService } from 'src/app/services/events.service';
 import { PopupService } from 'src/app/services/popup.service';
@@ -23,6 +24,8 @@ export class DisplayEventComponent implements OnInit {
   event : Event;
   is_billetterie :boolean;
   isAdmin : boolean | undefined = false;
+  is_connected : boolean | undefined = false;
+  is_already_claimed : boolean  | undefined = false;
   accountSub : Subscription;
   on_sale : boolean;
 
@@ -31,15 +34,13 @@ export class DisplayEventComponent implements OnInit {
 
     this.eventService.getOneEvent(this.event_id)
     .then((response) =>{
+      console.log({statusEv : response});
       this.event = response;
       this.is_billetterie = this.event.is_billetterie;
       this.on_sale = this.event.on_sale;
-      
       if (this.event.thumbnail == undefined || this.event.thumbnail.length < 1 || this.event.thumbnail == null) {
         this.event.thumbnail = "../../../assets/img/dev/default_event_pic.jpg"
       }
-
-      
     })
     .catch((error)=> {
       this.popup.state$.next([false, error.message]);
@@ -47,10 +48,38 @@ export class DisplayEventComponent implements OnInit {
 
     this.accountSub = this.acc.compte$.subscribe(
       (status) => {
-        console.log(status)
-        this.isAdmin = status?.admin;
-        console.log({"isAdmin" : this.isAdmin})
-      })
+        if (status) {
+          this.isAdmin = status.admin;
+          this.is_connected = status.login != "";
+          this.is_already_claimed = !status?.placesClaimed.every(place => {console.log({place : place, event_id : this.event_id}); return place.event_id != this.event_id});
+        } 
+      
+        console.log({"isAdmin" : this.isAdmin, is_connected : this.is_connected})
+    })
+
+    this.acc.getPlacesClaimedByUser()
+  }
+
+  onClaimePlace(id_billetterie : number) {
+    this.acc.claimePlace(id_billetterie)
+    .then(() => {
+      this.popup.state$.next([true, "Demande enregistrée"]);
+      this.onNavigate('/events/display/' + this.event_id.toString());
+    })
+    .catch(() => {
+      this.popup.state$.next([false, "Erreur lors de la demande, veuillez contacter l'administrateur immédiatement"]);
+    })
+  }
+
+  onDeClaimePlace(id_billetterie : number) {
+    this.acc.declaimePlace(id_billetterie)
+    .then(() => {
+      this.popup.state$.next([true, "Demande retirée"]);
+      this.onNavigate('/events/display/' + this.event_id.toString());
+    })
+    .catch(() => {
+      this.popup.state$.next([false, "Erreur lors de la demande, veuillez contacter l'administrateur immédiatement"]);
+    })
   }
 
   async onCloseBilletterie() {
@@ -77,6 +106,7 @@ export class DisplayEventComponent implements OnInit {
 
   onNavigate(endpoint: string) {
     console.log({newEndpoint : endpoint});
+    // On navigate deux fois pour forcer le rechargement de la page
     this.router.navigate(['/'], {skipLocationChange: true}).then(()=> this.router.navigate([endpoint]));
   }
 

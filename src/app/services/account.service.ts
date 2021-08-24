@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Account } from '../models/account.model';
-import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
-import { nodeModuleNameResolver } from 'typescript';
 import { environment } from 'src/environments/environment';
 import * as CryptoJS from 'crypto-js';
+import { Place } from '../models/place.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,14 +36,54 @@ export class AccountService {
         });
     }   
 
-    getDemandedPlacesStatus() {
-        return new Promise<Account>((resolve, reject) => {
-            this.http.get(
-                environment.apiUrl +'/api/event/getDemandedPlacesStatus')
+    getPlacesClaimedByUser() {
+        return new Promise<void>((resolve, reject) => {
+            if (this.compte$.value?.login) {
+                const params = new HttpParams().append('login', this.compte$.value?.login);
+                this.http.get<Place[]>(
+                    environment.apiUrl +'/api/user/getPlacesClaimedByUser', {params})
+                .subscribe(
+                    (places : Place[]) => {
+                        if (this.compte$.value) {
+                            this.compte$.next({...this.compte$.value, placesClaimed : places});
+                        }
+                        console.log({placesReceived: places});
+                        resolve();
+                    },
+                    (error) => {
+                        reject(error);
+                    }
+                );
+            } else {
+                reject({error : "Pas de compte existant"});
+            }
+        });
+    }
+
+    claimePlace(id_billetterie : number) {
+        return new Promise<void>((resolve, reject) => {
+            this.http.post(
+            environment.apiUrl +'/api/user/claimePlace',
+            {id_billetterie : id_billetterie, login : this.compte$.value?.login})
             .subscribe(
-                (places : any) => {
-                    console.log({placesReceived: places});
-                    resolve(places);
+                () => {
+                    resolve();
+                },
+                (error) => {
+                    reject(error);
+                }
+            );
+        });
+    }
+
+    declaimePlace(id_billetterie : number) {
+        return new Promise<void>((resolve, reject) => {
+            this.http.post(
+            environment.apiUrl +'/api/user/declaimePlace',
+            {id_billetterie : id_billetterie, login : this.compte$.value?.login})
+            .subscribe(
+                () => {
+                    resolve();
                 },
                 (error) => {
                     reject(error);
@@ -118,7 +157,6 @@ export class AccountService {
             );
         });
     }
-
 
     disconnect() {
         this.compte$.next(undefined);

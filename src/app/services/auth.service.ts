@@ -38,17 +38,12 @@ export class AuthService {
                   // console.log({leCompte : this.compteService.compte$.value});
                   if (this.compteService.compte$.value?.email_verified == 0){
                     this.popup.state$.next([false, "Merci de penser à vérifier votre adresse mail !"]);
-                    this.admin$.next(authData.compte.admin);
-                    this.isAuth$.next(true);
-                    resolve();
-                  }
-                  else {
+                  } else {
                     this.popup.state$.next([true, "Login successful !"]);
-                    this.admin$.next(authData.compte.admin);
-                    this.isAuth$.next(true);
-                    resolve();
                   }
-                  
+                  this.admin$.next(authData.compte.admin);
+                  this.isAuth$.next(true);
+                  resolve();
                   
                 },  
                 (error) => {  

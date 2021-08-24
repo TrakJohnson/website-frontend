@@ -1,5 +1,5 @@
 <h2> <u>{{account?.login}}</u>  </h2>
 
-<div id="view-account-places" *ngFor="let place of account?.placesDemanded? account?.placesDemanded : []">
+<div id="view-account-places" *ngFor="let place of account?.placesClaimed? account?.placesClaimed : []">
     <app-display-place [place]="place" [event]="events[place.event_id]" [poles]="poles"></app-display-place>
 </div>
