@@ -1,4 +1,6 @@
 <h2> <u>{{account?.login}}</u>  </h2>
+<button id="modif_buttoon" class="btn btn-success" style="margin : 1%;" (click) = "onNavigate('account/modify')"> Modifier mes informations </button>
+
 
 <div id="view-account-places" *ngFor="let place of account?.placesDemanded? account?.placesDemanded : []">
     <app-display-place [place]="place" [event]="events[place.event_id]" [poles]="poles"></app-display-place>

@@ -1,0 +1,102 @@
+@import '~compass-mixins/lib/compass/css3';
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+// /* Colors */
+
+$dk-blue: #1E83AE;
+$blue: #3D5B94;
+$light-blue: #3DACDD;
+$green: #6dcd9a;
+$social-size: 1.2em;
+$social-width: 30%;
+
+* {
+  margin: 0;
+  padding: 0;
+  @include box-sizing(border-box);
+}
+
+html, body {
+  font-family: Raleway, sans-serif;  
+  background-color: #fff;
+}
+
+footer {
+  width: 100%;
+  display: inline-block;
+  margin: 2em 0;
+  height: 70px;
+  background-color: hsl(216, 97%, 51%);
+  .sponsor-container {
+    width: 50%;
+    display : flex;
+    flex-direction: row;
+    float: left;
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+    p {
+      padding-left: 5%;
+      color: white;
+      font-size: 1.5vmax;
+      line-height: 70px;
+      letter-spacing: 1px;
+      margin-right : 5vw;
+      @media (max-width: 600px) {
+        display : none;
+      }
+    }
+  }
+  .social {
+      width: 50%;
+      float: right;
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+     a {
+      float: left;
+      line-height: 70px;
+      text-decoration: none;
+      color: white;
+      text-align: center;
+      font-weight: bold; 
+      @include transition(all, 0.3s);
+       &:hover {
+         background-color: #222;
+         @include transition(all, .3s);
+       }
+    }
+  }
+}
+
+.linked {
+  background-color: $dk-blue;
+  font-size: $social-size;
+  width: $social-width;
+}
+
+.face {
+  background-color: $blue;
+  font-size: $social-size;
+  width: $social-width;
+}
+
+.tweet {
+  background-color: $light-blue;
+  font-size: $social-size;
+  width: $social-width;
+}
+
+.support {
+  background-color: $green;
+  font-size: $social-size;
+  width: 40%;
+  cursor : pointer
+}
+
+
+.sponsor {
+    max-height : 64px;
+    object-fit: contain;
+}

@@ -1,0 +1,19 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.fluid-container {
+    margin-top : 5vh;
+    display : flex;
+    flex-direction : row;
+    justify-content: space-between;
+}
+
+.left-container {
+    width : 30%;
+    margin-left : 10%
+}
+
+.right-container {
+    width : 30%;
+    margin-right : 10%;
+    margin-top : 10vh;
+}

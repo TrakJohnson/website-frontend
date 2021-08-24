@@ -27,6 +27,8 @@ import { EventsComponent } from './events/events.component';
 import { DisplayEventComponent } from './events/display-event/display-event.component';
 import { TeamComponent } from './team/team.component';
 import { ViewTeamComponent } from './team/view/viewTeam.component';
+import { ChangeInfosComponent } from './account/change-infos/change-infos.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 const routes: Routes = [
@@ -40,12 +42,14 @@ children : [
 ]},
   { path : 'account', component : AccountComponent,
 children : [
-  {path : 'view', component : AccountViewComponent, canActivate: [AuthGuard]}
+  {path : 'view', component : AccountViewComponent, canActivate: [AuthGuard]},
+  {path : 'modify', component : ChangeInfosComponent, canActivate : [AuthGuard]}
 ]},
   {path : "team", component  : TeamComponent,
 children : [
   {path : "view", component : ViewTeamComponent}
 ]},
+  {path : "contact-us", component : ContactUsComponent},
   {path : 'billetterie', component : BilletterieComponent,
 children : [
   {path : 'view', component : ViewBilletterieComponent},

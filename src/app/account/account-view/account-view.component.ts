@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Account } from 'src/app/models/account.model';
 import { Pole } from 'src/app/models/pole.model';
@@ -17,7 +18,8 @@ export class AccountViewComponent implements OnInit {
   constructor(private accountService : AccountService, 
               private popup : PopupService,
               private event : EventService,
-              private pole : PoleService) { }
+              private pole : PoleService,
+              private router : Router) { }
 
   accountSub : Subscription;
   account : Account | undefined;
@@ -27,6 +29,10 @@ export class AccountViewComponent implements OnInit {
 
   polesSub : Subscription;
   poles : any;
+
+  onNavigate(endpoint: string) {
+    this.router.navigate([endpoint]);
+  }
 
   ngOnInit(): void {
     this.popup.loading$.next(true);

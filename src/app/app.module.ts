@@ -14,6 +14,7 @@ import {NgxImageCompressService} from 'ngx-image-compress';
 
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
 
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 
@@ -47,6 +48,9 @@ import { DisplayEventComponent } from './events/display-event/display-event.comp
 import { EventQuickviewComponent } from './events/event-quickview/event-quickview.component';
 import { ViewBilletterieComponent } from './billetterie/view/viewBilletterie.component';
 import { TeamComponent } from './team/team.component';
+import { ChangeInfosComponent } from './account/change-infos/change-infos.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+
 
 
 import { registerLocaleData } from '@angular/common';
@@ -87,7 +91,9 @@ registerLocaleData(localeFr, 'fr');
     ViewBilletterieComponent,
     TeamComponent,
     DisplayPoleComponent,
-    ViewTeamComponent
+    ViewTeamComponent,
+    ChangeInfosComponent,
+    ContactUsComponent
   ],
     
   imports: [
@@ -103,6 +109,7 @@ registerLocaleData(localeFr, 'fr');
     MarkdownModule.forChild(),
     MarkdownModule.forRoot({loader : HttpClientModule}),
     MatExpansionModule,
+    MatCardModule
   
   ],
   providers: [NgxImageCompressService,

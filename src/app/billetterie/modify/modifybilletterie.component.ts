@@ -65,8 +65,7 @@ export class ModifyBilletterieComponent implements OnInit {
   ngOnInit() {
     this.popup.loading$.next(true);
 
-    // this.id = this.route.snapshot.params["id"]
-    this.id = 15;
+    this.id = this.route.snapshot.params["id"]
 
     this.modifierForm = this.formBuilder.group({
       titre: [null],

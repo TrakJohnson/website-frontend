@@ -83,6 +83,23 @@ export class AccountService {
             );
         });
     }
+
+    modifyAccount(token: string, prenom : string, nom : string, newPassword: string, email : string, promo : string) {
+        var newPassword_encr =  CryptoJS.SHA3(newPassword, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
+        return new Promise<void>((resolve, reject) => {
+            this.http.post(
+            environment.apiUrl +'/api/user/changeInfos',
+            {token : token, prenom : prenom, nom : nom, password : newPassword_encr, email : email, promo : promo})
+            .subscribe(
+                () => {
+                    resolve();
+                },
+                (error) => {
+                    reject(error);
+                }
+            );
+        });
+    }
     
     demandSendEmailChangePassword(login: string, email: string) {
         return new Promise<void>((resolve, reject) => {
