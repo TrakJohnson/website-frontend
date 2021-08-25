@@ -19,14 +19,8 @@ export class DefaultComponent implements OnInit {
   eventExist : boolean = false;
 
   ngOnInit(): void {
-    // for (let i = 0; i < 10; i++) {
-    //   this.events.push({
-    //     title : "event " + i,
-    //     link : "https://www.google.com",
-    //     details : "best event of the year (i think so)",
-    //     image : "https://picsum.photos/640/480?random=" + i});
-    // };
-  
+    this.popup.loading$.next(true);
+    
     this.events.getEventsTocome()
     .then((response) => {
       this.eventsToCome = response;
@@ -40,10 +34,12 @@ export class DefaultComponent implements OnInit {
       else {
         this.eventExist = true;
       }
+      this.popup.loading$.next(false);
     })
     .catch((error) => {
-      this.popup.loading$.next(false);
+      
       this.popup.state$.next([false, "Erreur : merci de contacter un administrateur"]);
+      this.popup.loading$.next(false);
       console.log(error.message);
     })
   };

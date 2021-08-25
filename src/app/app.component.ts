@@ -23,7 +23,13 @@ export class AppComponent implements OnInit {
   events = [{title: "1", description :"desc1", link: "#", image : "image"},{title: "2" , description : "desc2", link: "#", image : "image2"}]
 
   ngOnInit() {
-    this.popup.loading$.next(true);
+
+    this.loadingSub = this.popup.loading$.subscribe(
+      (loading) => {
+        this.loading = loading;
+        console.log(loading)
+      }
+    )
     
 
     this.token = localStorage.getItem('token');
@@ -42,11 +48,7 @@ export class AppComponent implements OnInit {
     );
     }
 
-    this.loadingSub = this.popup.loading$.subscribe(
-      (loading) => {
-        this.loading = loading;
-      }
-    )
+
 
     this.popup.loading$.next(false);
   }

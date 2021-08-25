@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { AccountService } from '../services/account.service';
 import { Account } from '../models/account.model';
+import { PopupService } from '../services/popup.service';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private router: Router,
     private auth: AuthService,
-    private acc: AccountService) { }
+    private acc: AccountService,
+    private popup : PopupService) { }
 
   ngOnInit(): void {
     this.isAuthSub = this.auth.isAuth$.subscribe(

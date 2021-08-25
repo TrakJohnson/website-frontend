@@ -83,5 +83,29 @@ export class PoleService {
         {value: '17', viewValue: 'Pôle Comm'},
         {value: '18', viewValue: 'RSI (on sait jamais)'},
         {value: '0', viewValue: 'Autre'},
-      ]
+      ];
+
+      PolesColors = new Map([
+        ["Bureau","#252440"],
+        ["Pôle alternatif","#EF7F1A"],
+        ["Pôle Classique","#E8C39E"],
+        ["Pôle Ciné","#fabd00"],
+        ["Pôle Comédie Musicale","#FFE901"],
+        ["Pôle Sorties/Expos/Arts du spectable","#665D1D"],
+        ["Pôle Culinaire","#F9CCCA"],
+        ["Pôle Jam-Jazz","#E0B0FF"],
+        ["Pôle Littérature","#8D4925"],
+        ["Pôle Opéra/Ballet","#B03648"],
+        ["Pôle Théâtre","#78288C"],
+        ["Pôle Salle Ins/Salle Piano","#ACF5C8"],
+        ["Pôle Radio","#E5E4E2"],
+        ["Pôle Rap","#000000"],
+        ["Pôle Mode","#FD3F92"],
+        ["Pôle Stand-up","#019B94"],
+        ["Pôle Comm'","#0CB7F2"],
+        ["Pôle RSI","#91A3B0"]
+
+      ])
+
+  
 }

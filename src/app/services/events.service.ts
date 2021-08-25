@@ -71,6 +71,22 @@ export class EventService {
       });
     } 
 
+    getEventsForCalendar() {
+        return new Promise<any[]>((resolve, reject) => {
+            this.http.get(environment.apiUrl + '/api/event/getEventsForCalendar')
+            .subscribe(
+                (response : any) => {
+                  console.log(response)
+                    resolve(response);
+                },
+                (error) => {
+                    console.log({error : error})
+                    reject(error);
+                }
+            );
+        });
+    }
+
     getBilletteriesTocome() {
         return new Promise<any[]>((resolve, reject) => {
             this.http.get(environment.apiUrl + '/api/event/getBilletteriesTocome')

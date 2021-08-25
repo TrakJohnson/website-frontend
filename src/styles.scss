@@ -3,8 +3,19 @@ body {
     margin :0;
 }
 
+mat-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 
 @import '~bootstrap/dist/css/bootstrap.min.css'; 
 // @import "~/font-awesome/css/font-awesome.css"; 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* angular-cli file: src/styles.css */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";

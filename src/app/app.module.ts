@@ -10,11 +10,14 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import {NgxImageCompressService} from 'ngx-image-compress';
-
-
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+
 
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 
@@ -107,6 +110,7 @@ registerLocaleData(localeFr, 'fr');
     BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
+    MatProgressSpinnerModule,
     IvyCarouselModule,
     FormsModule,
     ReactiveFormsModule,
@@ -115,7 +119,11 @@ registerLocaleData(localeFr, 'fr');
     MarkdownModule.forChild(),
     MarkdownModule.forRoot({loader : HttpClientModule}),
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   
   ],
   providers: [NgxImageCompressService,
