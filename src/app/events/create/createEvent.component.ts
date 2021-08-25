@@ -11,11 +11,11 @@ import { PoleService } from 'src/app/services/poles.service';
 
 
 @Component({
-  selector: 'app-createbilletterie',
-  templateUrl: './createbilletterie.component.html',
-  styleUrls: ['./createbilletterie.component.scss']
+  selector: 'app-createEvent',
+  templateUrl: './createEvent.component.html',
+  styleUrls: ['./createEvent.component.scss']
 })
-export class CreateBilletterieComponent implements OnInit {
+export class CreateEventComponent implements OnInit {
 
   creatorForm: FormGroup;
 
@@ -39,6 +39,7 @@ export class CreateBilletterieComponent implements OnInit {
               private event: EventService,
               private poleService : PoleService) { }
 
+
   public poles = this.poleService.PoleForView;
 
   ngOnInit() {
@@ -51,13 +52,11 @@ export class CreateBilletterieComponent implements OnInit {
       date: [null, [Validators.required]],
       date_end : [null],
       image: [null],
-      idPole: [null, [Validators.required]],
-      dateOuverture : [null, [Validators.required]],
-      dateFermeture : [null, [Validators.required]],
-      nPlaces : [null, [Validators.required]],
-      prixC : [null, [Validators.required]],
-      prixNC : [null, [Validators.required]],
-      points : [null, [Validators.required]],
+      idPole: [null],
+      nPlaces : [null],
+      prixC : [null],
+      prixNC : [null],
+      points : [null],
     });
     
     this.popup.loading$.next(false);
@@ -133,13 +132,10 @@ export class CreateBilletterieComponent implements OnInit {
     const description = this.creatorForm.get('description')!.value;
     const lieu = this.creatorForm.get('lieu')!.value;
     const date : Date = this.creatorForm.get('date')!.value;
-    const date_end : Date = this.creatorForm.get('date_end')!.value;
-    const dateOuverture : Date = this.creatorForm.get('dateOuverture')!.value;
-    const dateFermeture : Date = this.creatorForm.get('dateFermeture')!.value;
-    const nPlaces : number = this.creatorForm.get('nPlaces')!.value;
-    const prixC : number = this.creatorForm.get('prixC')!.value;
-    const prixNC : number = this.creatorForm.get('prixNC')!.value;
-    const points : number = this.creatorForm.get('points')!.value;
+    const date_end : Date = this.creatorForm.get('date_end')?.value;
+    const nPlaces : number = this.creatorForm.get('nPlaces')?.value;
+    const prixC : number = this.creatorForm.get('prixC')?.value;
+    const prixNC : number = this.creatorForm.get('prixNC')?.value;
     const idPole : number = this.creatorForm.get('idPole')!.value;
 
     console.log(this.file )
@@ -149,15 +145,9 @@ export class CreateBilletterieComponent implements OnInit {
       this.popup.state$.next([false, "Il faut upload une vignette"]);
     }
     else {
-      if (dateFermeture < dateOuverture || date > date_end) {
+      if (date > date_end) {
         this.popup.loading$.next(false);
         this.popup.state$.next([false, "Les dates sont incohérentes"]);
-      }
-
-      else if (date < dateFermeture) {
-        this.popup.loading$.next(false);
-        this.popup.state$.next([false, "La billetterie ferme après le début de l'évènement"]);
-
       }
 
       else {
@@ -168,11 +158,11 @@ export class CreateBilletterieComponent implements OnInit {
           .then((response:any)=>{
             this.resized_filePath = response;
             console.log("resized : " + this.resized_filePath.length);
-            this.event.createEvent(titre, description, date, date_end, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points, true)
+            this.event.createEvent(titre, description, date, date_end, lieu, this.resized_filePath, idPole, this.createurid, undefined, undefined, nPlaces, prixC, prixNC, undefined, false)
               .then((response) => {
                 this.popup.loading$.next(false);
                 this.popup.state$.next([true, "Billetterie créé !"]);
-                this.router.navigate(['/billetterie/view/']); 
+                this.router.navigate(['/default']); 
               })
               .catch((error) => {
                 // this.popup.loading$.next(false);
@@ -191,10 +181,10 @@ export class CreateBilletterieComponent implements OnInit {
         else {
           console.log("no resize")
           this.resized_filePath = this.filePath;
-          this.event.createEvent(titre, description, date, date_end, lieu, this.resized_filePath, idPole, this.createurid, dateOuverture, dateFermeture, nPlaces, prixC, prixNC, points, true)
+          this.event.createEvent(titre, description, date, date_end, lieu, this.resized_filePath, idPole, this.createurid, undefined, undefined, nPlaces, prixC, prixNC, undefined, false)
             .then((response) => {
               this.popup.loading$.next(false);
-              this.popup.state$.next([true, "Billetterie créé !"]);
+              this.popup.state$.next([true, "Evènement créé !"]);
               this.router.navigate(['/default']); 
             })
             .catch((error) => {

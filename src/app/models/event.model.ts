@@ -1,19 +1,20 @@
 import { Place } from "./place.model";
 
 export class Event {
-    public event_id : number;
+    public event_id : number ;
     title : string;  
     description : string;
     dateEvent: Date;
+    dateEvent_end : Date|undefined;
     event_place: string;
     pole_id: string;
     login_creator: string;
-    date_open: Date;
-    date_close: Date;
-    num_places: number;
-    cost_contributor: number;
-    cost_non_contributor: number;
-    points: number;
+    date_open: Date|undefined;
+    date_close: Date|undefined;
+    num_places: number|undefined;
+    cost_contributor: number|undefined;
+    cost_non_contributor: number|undefined;
+    points: number|undefined;
     on_sale: boolean;
     is_billetterie : boolean;
     thumbnail : string;
@@ -25,6 +26,7 @@ export class Event {
         this.title = data.title || undefined;
         this.description = data.description || undefined;
         this.dateEvent = data.dateEvent || undefined;
+        this.dateEvent_end = data.dateEvent_end || undefined;
         this.event_place = data.event_place || undefined;
         this.pole_id = data.pole_id || undefined;
         this.login_creator = data.login_creator || false;

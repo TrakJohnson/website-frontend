@@ -47,12 +47,13 @@
 
 
 
-    <div class = "form-group" style = "display: flex;">
+    <div class = "form-group" style = "display: flex; flex-direction: column;">
+      <label for="promotion">Promotion</label>
       <select formControlName="promotion" style = "width: 40%" class="form-control" (change) = "onChangePromotion()" >
-          <option [ngValue]="null" disabled> {{promotion}} </option>
-          <option *ngFor="let promotion of promotions" [ngValue]="promotion.value">
-            {{ promotion.viewValue }}
-          </option>
+        <option [ngValue]="null" disabled> {{promotion}} </option>
+        <option *ngFor="let promotion of promotions" [ngValue]="promotion.value">
+          {{ promotion.viewValue }}
+        </option>
       </select> 
     </div>
 

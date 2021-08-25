@@ -57,6 +57,9 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { DisplayPoleComponent } from './team/display-pole/displayPole.component';
 import { ViewTeamComponent } from './team/view/viewTeam.component';
+import { CreateEventComponent } from './events/create/createEvent.component';
+import { ModifyEventComponent } from './events/modify/modifyEvent.component';
+import { DeleteEventComponent } from './events/delete/deleteEvent.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -93,7 +96,10 @@ registerLocaleData(localeFr, 'fr');
     DisplayPoleComponent,
     ViewTeamComponent,
     ChangeInfosComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    CreateEventComponent,
+    ModifyEventComponent,
+    DeleteEventComponent,
   ],
     
   imports: [

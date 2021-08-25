@@ -1,4 +1,4 @@
-<h2 class="titre-page-registerForm"> Création d'une billetterie </h2>
+<h2 class="titre-page-registerForm"> Création d'une évènement (hors billetterie) </h2>
 
 <div class="col-sm-8 offset-sm-2 mt-2">
   <form [formGroup]="creatorForm">
@@ -44,15 +44,6 @@
     </select> 
     </div>
 
-    <div class="form-group" >
-      <label for="dateOuverture">Date de l'ouverture de la billetterie</label>
-      <input type="datetime-local" id="dateOuverture" formControlName="dateOuverture" class="form-control">
-    </div>
-
-    <div class="form-group" >
-      <label for="dateFermeture">Date de fermeture de la billetterie</label>
-      <input type="datetime-local" id="dateFermeture" formControlName="dateFermeture" class="form-control">
-    </div>
 
     <div class="form-group" >
       <label for="nPlaces">Nombre de places</label>
@@ -71,15 +62,6 @@
     
     </div>
 
-    <div class="form-group" >
-      <label for="points">Nombre de points</label>
-      <select type="number" id="points" formControlName="points" class="form-control">
-        <option [ngValue] = 2> 2 </option>
-        <option [ngValue] = 4> 4 </option>
-        <option [ngValue] = 5> 5 </option>
-      </select>
-    
-    </div>
 
     <!-- <div class = "form-group" style = "display: flex;">
       <select formControlName="promotion" style = "width: 40%" class="form-control" >

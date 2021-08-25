@@ -5,6 +5,7 @@ import { Event } from 'src/app/models/event.model';
 import { Place } from 'src/app/models/place.model';
 import { AccountService } from 'src/app/services/account.service';
 import { EventService } from 'src/app/services/events.service';
+import { PoleService } from 'src/app/services/poles.service';
 import { PopupService } from 'src/app/services/popup.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class DisplayEventComponent implements OnInit {
               private route : ActivatedRoute,
               private router : Router, 
               private eventService : EventService,
-              private acc : AccountService) { }
+              private acc : AccountService,
+              private poleService : PoleService) { }
 
   event_id : number;
   event : Event;
@@ -28,6 +30,7 @@ export class DisplayEventComponent implements OnInit {
   is_already_claimed : boolean  | undefined = false;
   accountSub : Subscription;
   on_sale : boolean;
+  pole :string
 
   ngOnInit(): void {
     this.event_id = this.route.snapshot.params["event_id"] ;
@@ -38,6 +41,7 @@ export class DisplayEventComponent implements OnInit {
       this.event = response;
       this.is_billetterie = this.event.is_billetterie;
       this.on_sale = this.event.on_sale;
+      this.pole = this.poleService.IDToPole.get(Number(this.event.pole_id))!
       if (this.event.thumbnail == undefined || this.event.thumbnail.length < 1 || this.event.thumbnail == null) {
         this.event.thumbnail = "../../../assets/img/dev/default_event_pic.jpg"
       }

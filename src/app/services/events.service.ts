@@ -151,11 +151,11 @@ export class EventService {
         });
     }
 
-    createEvent(titre : string, description : string, date : Date, lieu : string, image: string, idPole : number, createur : string, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number, is_billetterie : boolean) {
+    createEvent(titre : string, description : string, date : Date, date_end : Date | undefined, lieu : string, image: string, idPole : number, createur : string, dateOuverture : Date |undefined, dateFermeture : Date | undefined, nPlaces : number|undefined, prixC : number|undefined, prixNC : number|undefined, points : number |undefined, is_billetterie : boolean) {
         return new Promise<any>((resolve, reject) => {
             this.http.post(
             environment.apiUrl + '/api/event/createEvent',
-            {title : titre, description : description, dateEvent : date, event_place : lieu, thumbnail : image, pole_id : idPole, creator : createur, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points, is_billetterie : is_billetterie})
+            {title : titre, description : description, dateEvent : date, dateEvent_end : date_end, event_place : lieu, thumbnail : image, pole_id : idPole, loginSender : createur, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points, is_billetterie : is_billetterie})
             .subscribe(
                 (response) => {
                     resolve(response);
@@ -168,11 +168,12 @@ export class EventService {
         });
     }
 
-  modifyEvent(idBilletterie : Number, titre : string, description : string, date : Date, lieu : string, image : string, idPole : number, dateOuverture : Date, dateFermeture : Date, nPlaces : number, prixC : number, prixNC : number, points : number, sendMail : boolean) {
+  modifyEvent(idBilletterie : Number, titre : string, description : string, date : Date, date_end : Date|undefined, lieu : string, image : string, idPole : number, dateOuverture : Date|undefined, dateFermeture : Date|undefined, nPlaces : number|undefined, prixC : number|undefined, prixNC : number|undefined, points : number |undefined, sendMail : boolean) {
+
     return new Promise<any>((resolve, reject) => {
           this.http.post(
           environment.apiUrl + '/api/event/modifyEvent',
-          {event_id : idBilletterie, title : titre, description : description, dateEvent : date, event_place : lieu, thumbnail : image, pole_id : idPole, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points, sendMail : sendMail})
+          {event_id : idBilletterie, title : titre, description : description, dateEvent : date, dateEvent_end : date_end, event_place : lieu, thumbnail : image, pole_id : idPole, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points, sendMail : sendMail})
           .subscribe(
               (response) => {
                   resolve(response);
@@ -200,6 +201,21 @@ export class EventService {
       });
   }
   
+  deleteEvent(idEvent : number) {
+    console.log(idEvent)
+    return new Promise<any>((resolve, reject) => {
+        this.http.post(environment.apiUrl + '/api/event/deleteEvent', {event_id : idEvent})
+        .subscribe(
+            (response) => {
+                resolve(response)
+            },
+            (error) => {
+                console.log({error : error});
+                reject(error);
+            }
+        );
+    });
+}
 
 
 }

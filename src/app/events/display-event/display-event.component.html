@@ -5,7 +5,8 @@
         <button *ngIf = "is_billetterie && on_sale" id="closeB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onCloseBilletterie()"> Retirer de la vente cette billetterie </button>
         <button *ngIf = "is_billetterie && !on_sale" id="openB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onReSaleBilletterie()"> Remettre en vente cette billetterie </button>
 
-        <button *ngIf = "!is_billetterie" id="modifyE_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('event/modify/' + event.event_id)"> Modifier cet évènement </button>
+        <button *ngIf = "!is_billetterie" id="modifyE_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('events/modify/' + event.event_id)"> Modifier cet évènement </button>
+
     </div>
     <div class = "container" id = "quickview-container">
         <div class = "container" id = "thumbnail_container">
@@ -17,10 +18,13 @@
         </div>
     </div>
     
+    <!-- Pour les billetteries -->
     <div *ngIf = "is_billetterie" class = "details_container" id = "details_billetterie">
         <div class = "infos-container" >
+            <p id = "pole" class = "detals" > Proposé par : {{pole}} </p>
             <p id = "lieu" class = "details" > Lieu de l'évènement : {{event.event_place}} </p>
             <p id = "date" class = "details" > Date de l'évènement : {{(event.dateEvent | date:'EEEE d MMMM y HH:mm')}} (heure de Paris) </p>
+            <p *ngIf = "event.dateEvent_end" id = "date_end" class = "details" > Date de la fin de l'évènement: {{(event.dateEvent_end | date:'EEEE d MMMM y HH:mm')}} </p>
             <p id = "num_places" class = "details"> Nombre de places displonibles :  {{event.num_places}}</p>
             <p id = "prixC" class = "details" > Prix cotisants : {{event.cost_contributor}} €</p>
             <p id = "prixNC" class = "details"> Prix non cotisants : {{event.cost_non_contributor}} €</p>
@@ -35,4 +39,18 @@
         </div>
 
     </div>
+
+
+    <!-- Pour les events hors billetterie -->
+    <div *ngIf = "!is_billetterie" class = "details_container" id = "details_event">
+        <div class = "infos-container" >
+            <p *ngIf = "event.event_place" id = "lieu" class = "details" > Lieu de l'évènement : {{event.event_place}} </p>
+            <p *ngIf = "event.dateEvent" id = "date" class = "details" > Date de l'évènement : {{(event.dateEvent | date:'EEEE d MMMM y HH:mm')}} (heure de Paris) </p>
+            <p *ngIf = "event.dateEvent_end" id = "date_end" class = "details" > Date de la fin de l'évènement: {{(event.dateEvent_end | date:'EEEE d MMMM y HH:mm')}} </p>
+            <p *ngIf = "event.num_places" id = "num_places" class = "details"> Nombre de places displonibles :  {{event.num_places}}</p>
+            <p *ngIf = "event.cost_contributor" id = "prixC" class = "details" > Prix cotisants : {{event.cost_contributor}} €</p>
+            <p *ngIf = "event.cost_non_contributor" id = "prixNC" class = "details"> Prix non cotisants : {{event.cost_non_contributor}} €</p>
+        </div>
+    </div>
+
 </div>

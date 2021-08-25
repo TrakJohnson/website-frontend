@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DefaultComponent } from './default/default.component';
@@ -29,6 +29,9 @@ import { TeamComponent } from './team/team.component';
 import { ViewTeamComponent } from './team/view/viewTeam.component';
 import { ChangeInfosComponent } from './account/change-infos/change-infos.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CreateEventComponent } from './events/create/createEvent.component';
+import { ModifyEventComponent } from './events/modify/modifyEvent.component';
+import { DeleteEventComponent } from './events/delete/deleteEvent.component';
 
 
 const routes: Routes = [
@@ -59,7 +62,10 @@ children : [
 ]},
 {path : 'events', component : EventsComponent,
 children : [
-  {path : 'display/:event_id', component : DisplayEventComponent}
+  {path : 'display/:event_id', component : DisplayEventComponent},
+  {path : 'create', component : CreateEventComponent, canActivate : [AuthGuardAdmin]},
+  {path : 'modify/:event_id', component : ModifyEventComponent, canActivate : [AuthGuardAdmin]},
+  {path : 'delete', component : DeleteEventComponent, canActivate : [AuthGuardAdmin]}
 ]},
   {path : 'calendar', component : CalendarComponent},
   {path : 'masterclass', component : MasterclassComponent},

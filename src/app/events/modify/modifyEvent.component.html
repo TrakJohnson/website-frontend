@@ -1,9 +1,9 @@
-<h2 class="titre-page-registerForm"> Modification d'une billetterie </h2>
+<h2 class="titre-page-registerForm"> Modification d'une évènement (hors billetterie) </h2>
 
 <div class="col-sm-8 offset-sm-2 mt-2">
   <p> Modification de l'évènement id : {{id}} créé par {{idcreator}} </p>
 
-  <button class="btn btn-outline-danger" id="btn-before-redirection" (click) = onDelete()> Supprimer cette billetterie </button>
+  <button class="btn btn-outline-danger" id="btn-before-redirection" (click) = onDelete()> Supprimer cet évènement </button>
   <form [formGroup]="modifierForm">
     <div class="form-group">
       <label for="titre">Titre</label>
@@ -27,6 +27,7 @@
 
     <div class="form-group">
       <label for="date_end">Date de la fin de l'évènement (non obligatoire)</label>
+      <p style = "font-size : .8em;"> Si date avant 1 janvier 2000 alors pas de date définie (système D des devs) </p>
       <input type="datetime-local"
         formControlName = "date_end"
         id="date_end"
@@ -62,20 +63,11 @@
     </select> 
     </div>
 
-    <div class="form-group" >
-      <label for="dateOuverture">Date de l'ouverture de la billetterie</label>
-      <input type="datetime-local" id="dateOuverture" formControlName="dateOuverture" [(ngModel)] = "completeDateOuverture"
-      placeholder="yyyy-MM-ddTHH:mm:ss"
-      [min]="date"
-      class="form-control">
-    </div>
+
 
     <div class="form-group" >
-      <label for="dateFermeture">Date de fermeture de la billetterie</label>
-      <input type="datetime-local" id="dateFermeture" formControlName="dateFermeture" [(ngModel)] = "completeDateFermeture"
-      placeholder="yyyy-MM-ddTHH:mm:ss"
-      [min]="date"
-      class="form-control">
+      <label for="nPlaces">Nombre de places</label>
+      <input type="number" id="nPlaces" formControlName="nPlaces" class="form-control" [(ngModel)] = "nPlaces">
     </div>
 
     <div class="form-group" >
@@ -90,24 +82,8 @@
     
     </div>
 
-    <div class="form-group" >
-      <label for="points">Nombre de points</label>
-      <select type="number" id="points" formControlName="points" class="form-control" (change) = "onPointsChange()" >
-        <option [ngValue]="null" disable>{{points}}</option>
-        <option [ngValue] = 2> 2 </option>
-        <option [ngValue] = 4> 4 </option>
-        <option [ngValue] = 5> 5 </option>
-      </select>
-    
-    </div>
+   
 
-    <div class="form-group" >
-      <label>
-        <input type="checkbox" id="sendMail" formControlName="sendMail" (click) = "onChangeMail()">
-        Envoyer un mail aux personnes concernées par cette billetterie pour les prévenir qu'il y a eu des modifications
-      </label>
-    </div>
-
-    <button class="btn btn-success" style="margin : 1%;" (click)="onModifyBilletterie()" [disabled]="modifierForm.invalid"> Modifier la billetterie </button>
+    <button class="btn btn-success" style="margin : 1%;" (click)="onModifyEvent()" [disabled]="modifierForm.invalid"> Modifier l'évènement </button>
   </form>
 </div>
