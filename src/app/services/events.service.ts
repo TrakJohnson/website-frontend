@@ -26,6 +26,7 @@ export class EventService {
                     eventsTreated[event.event_id] = new Event(event);
                   });
                   this.events$.next(eventsTreated);
+                  console.log(eventsTreated)
                   resolve();
                 },  
                 (error) => {  
@@ -166,12 +167,30 @@ export class EventService {
         });
     }
 
+  modifyBilletterie(idBilletterie : Number, titre : string, description : string, date : Date, date_end : Date|undefined, lieu : string, image : string, idPole : number, dateOuverture : Date|undefined, dateFermeture : Date|undefined, nPlaces : number|undefined, prixC : number|undefined, prixNC : number|undefined, points : number |undefined, sendMail : boolean) {
+
+    return new Promise<any>((resolve, reject) => {
+          this.http.post(
+          environment.apiUrl + '/api/event/modifyBilletterie',
+          {event_id : idBilletterie, title : titre, description : description, dateEvent : date, dateEvent_end : date_end, event_place : lieu, thumbnail : image, pole_id : idPole, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points, sendMail : sendMail})
+          .subscribe(
+              (response) => {
+                  resolve(response);
+              },
+              (error) => {
+                  reject(error);
+              }
+          );
+      });
+  }
+
+  
   modifyEvent(idBilletterie : Number, titre : string, description : string, date : Date, date_end : Date|undefined, lieu : string, image : string, idPole : number, dateOuverture : Date|undefined, dateFermeture : Date|undefined, nPlaces : number|undefined, prixC : number|undefined, prixNC : number|undefined, points : number |undefined, sendMail : boolean) {
 
     return new Promise<any>((resolve, reject) => {
           this.http.post(
           environment.apiUrl + '/api/event/modifyEvent',
-          {event_id : idBilletterie, title : titre, description : description, dateEvent : date, dateEvent_end : date_end, event_place : lieu, thumbnail : image, pole_id : idPole, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC, points : points, sendMail : sendMail})
+          {event_id : idBilletterie, title : titre, description : description, dateEvent : date, dateEvent_end : date_end, event_place : lieu, thumbnail : image, pole_id : idPole, date_open : dateOuverture, date_close : dateFermeture, num_places : nPlaces, cost_contributor : prixC, cost_non_contributor : prixNC})
           .subscribe(
               (response) => {
                   resolve(response);

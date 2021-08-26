@@ -28,7 +28,7 @@
               <div  *ngFor = "let member of pole" class = "memberExpanded" [ngStyle] = "{'max-height' : customCollapsedHeight}">
                   <div class = "recap_expanded" [ngStyle] = "{'max-height' : customCollapsedHeight}">
                     <img class="profil_pic" alt = "photo de trombi" src = "{{'https://eleves.mines-paris.eu/static/img/trombi/' + member.login + '.jpg'}}" >
-                    <p class = "nom"> {{member.nom}}  {{member.prenom}}, {{member.role}} </p>
+                    <p class = "nom"> {{member.prenom}}  {{member.nom}}, {{member.role}} </p>
                   </div>
                   <div class = "member_description" [ngStyle] = "{'max-height' : customCollapsedHeight }">
                     <p class = "member_desc"> <span style = "text-decoration : underline; font-weight : bold; margin-bottom : 1vmin"> Description  : </span> <br>

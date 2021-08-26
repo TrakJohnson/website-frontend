@@ -237,7 +237,7 @@ export class ModifyEventComponent implements OnInit {
           this.event.modifyEvent(this.id, this.titre, this.description, this.date, this.date_end, this.lieu, this.resized_filePath, this.idPole, undefined, undefined, this.nPlaces, this.prixC, this.prixNC, 0, false)
             .then((response) => {
               this.popup.loading$.next(false);
-              this.popup.state$.next([true, "Billetterie créé !"]);
+              this.popup.state$.next([true, "Evenement modifié !"]);
               this.router.navigate(['/default']); 
             })
             .catch((error) => {
@@ -259,7 +259,7 @@ export class ModifyEventComponent implements OnInit {
         this.event.modifyEvent(this.id, this.titre, this.description, this.date, this.date_end, this.lieu, this.resized_filePath, this.idPole, undefined, undefined, this.nPlaces, this.prixC, this.prixNC, 0, false)
           .then((response) => {
             this.popup.loading$.next(false);
-            this.popup.state$.next([true, "Billetterie modifiée !"]);
+            this.popup.state$.next([true, "Evènement modifiée !"]);
             this.router.navigate(['/default']); 
           })
           .catch((error) => {

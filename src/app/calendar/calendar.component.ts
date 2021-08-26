@@ -15,7 +15,7 @@ import {
   isSameMonth,
   addHours,
 } from 'date-fns';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -27,6 +27,7 @@ import { EventService } from '../services/events.service';
 import { PopupService } from '../services/popup.service';
 import { CalendarEventActionsComponent } from 'angular-calendar/modules/common/calendar-event-actions.component';
 import { PoleService } from '../services/poles.service';
+import { AccountService } from '../services/account.service';
 
 
 
@@ -52,17 +53,25 @@ export class CalendarComponent implements OnInit {
  
   events : CalendarEvent[] = [];
 
+  isAdmin : boolean |undefined = false;
+  accountSub : Subscription;
 
   activeDayIsOpen: boolean = false;
 
   constructor(private router : Router,
               private eventService : EventService,
               private popup : PopupService,
-              private poleService : PoleService) {}
+              private poleService : PoleService,
+              private acc : AccountService) {}
 
 
   ngOnInit() {
     this.popup.loading$.next(true);
+
+  this.accountSub = this.acc.compte$.subscribe(
+    (status) => {
+      this.isAdmin = status?.admin;
+    })
 
     this.eventService.getEventsForCalendar()
     .then((data) => {
@@ -122,6 +131,11 @@ export class CalendarComponent implements OnInit {
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
+
+  onNavigate(endpoint: string) {
+    this.router.navigate([endpoint]);
+  }
+  
 }
 
 

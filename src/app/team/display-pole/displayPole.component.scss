@@ -11,6 +11,8 @@ mat-accordion {
 .nom {
     max-width : 100%;
     color : black;
+    font-size : 2vmin;
+    line-height : 2vmin
 }
 
 .memberCollapsed {
@@ -68,6 +70,7 @@ mat-accordion {
 .title_collapsed {
     align-items: center !important;
     margin : 0;
+    font-size : 2vmin
 }
 
 .nom_pole {

@@ -156,7 +156,7 @@ export class CreateEventComponent implements OnInit {
             this.event.createEvent(titre, description, date, date_end, lieu, this.resized_filePath, idPole, this.createurid, undefined, undefined, nPlaces, prixC, prixNC, undefined, false)
               .then((response) => {
                 this.popup.loading$.next(false);
-                this.popup.state$.next([true, "Billetterie créé !"]);
+                this.popup.state$.next([true, "Evènement créé !"]);
                 this.router.navigate(['/default']); 
               })
               .catch((error) => {
