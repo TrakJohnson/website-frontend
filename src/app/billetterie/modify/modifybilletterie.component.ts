@@ -69,7 +69,6 @@ export class ModifyBilletterieComponent implements OnInit {
 
     this.id = this.route.snapshot.params["event_id"]
 
-    console.log(this.id)
 
     this.modifierForm = this.formBuilder.group({
       titre: [null],
@@ -123,7 +122,6 @@ export class ModifyBilletterieComponent implements OnInit {
       this.idPole = eventInfos.pole_id
 
       
-      console.log({"eventInfos" : eventInfos})
       this.filePath = eventInfos.thumbnail
 
     })
@@ -148,7 +146,6 @@ export class ModifyBilletterieComponent implements OnInit {
     reader.readAsDataURL(this.file as Blob)
     reader.onload = () => {
       this.filePath = reader.result as string;
-      console.log("origin : " + this.filePath.length)
 
       let img = new Image();
       img.src = this.filePath;
@@ -221,7 +218,6 @@ export class ModifyBilletterieComponent implements OnInit {
     this.titre = this.modifierForm.get('titre')?.value;
     this.description = this.modifierForm.get('description')?.value;
     this.lieu = this.modifierForm.get('lieu')?.value;
-    console.log(this.modifierForm.get('lieu'))
     this.date = this.modifierForm.get('date')?.value;
     this.date_end = this.modifierForm.get('date_end')?.value;
     this.dateOuverture = this.modifierForm.get('dateOuverture')?.value;
@@ -251,7 +247,6 @@ export class ModifyBilletterieComponent implements OnInit {
         this.resizeImage(this.filePath)
         .then((response:any)=>{
           this.resized_filePath = response;
-          console.log("resized : " + this.resized_filePath.length);
           this.event.modifyEvent(this.id, this.titre, this.description, this.date, this.date_end, this.lieu, this.resized_filePath, this.idPole, this.dateOuverture, this.dateFermeture, this.nPlaces, this.prixC, this.prixNC, this.points, this.sendMail)
             .then((response) => {
               this.popup.loading$.next(false);
@@ -273,7 +268,6 @@ export class ModifyBilletterieComponent implements OnInit {
         })
       }
       else {
-        console.log("no resize")
         this.resized_filePath = this.filePath;
         this.event.modifyEvent(this.id, this.titre, this.description, this.date, this.date_end, this.lieu, this.resized_filePath, this.idPole, this.dateOuverture, this.dateFermeture, this.nPlaces, this.prixC, this.prixNC, this.points, this.sendMail)
           .then((response) => {

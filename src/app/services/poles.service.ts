@@ -16,19 +16,16 @@ export class PoleService {
     poles$ = new BehaviorSubject<any>({});
 
     getPoles() {
-        console.log("coucou");
         return new Promise<any>((resolve, reject) => {
 
             this.http.get<any>(
             environment.apiUrl + '/api/pole/getPoles')
             .subscribe(
                 (polesData : Array<any>) => {
-                  console.log({"polesSent " : polesData});
                   var polesTreated : any = {};
                   polesData.forEach(pole => {
                     polesTreated[pole.pole_id] = new Pole(pole);
                   });
-                  console.log({"polesTreated " : polesTreated});
                   this.poles$.next(polesTreated);
                   resolve(polesData);
                 },  

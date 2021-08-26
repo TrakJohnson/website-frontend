@@ -30,7 +30,6 @@ export class ChangePasswordComponent implements OnInit {
     this.popup.loading$.next(true);
 
     this.token = this.route.snapshot.params["token"];
-    console.log(this.token)
 
     this.changePWDForm = this.formBuilder.group({
       password : [null, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}')]],

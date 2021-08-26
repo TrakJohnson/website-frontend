@@ -8,7 +8,6 @@ export class Member {
     description : string;  
 
     constructor(data: any | undefined) {
-      console.log({dataAcc : data});
       this.pole_id = data.prenom || undefined;
       this.nom = data.nom || undefined;
       this.login = data.login || undefined;

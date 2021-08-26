@@ -29,12 +29,9 @@ export class ViewTeamComponent implements OnInit {
 
     this.team.getMembrersAllMembers()
     .then((data) => {
-      console.log(this.poles)
       for(let member of data) {
-        console.log(member)
         this.poles[member.pole_id - 1].push(member);
       }
-      console.log(this.poles)
     })
     .catch((error) => {
       this.popup.state$.next([false, error.message])
@@ -44,7 +41,6 @@ export class ViewTeamComponent implements OnInit {
     this.poleService.getPoles()
     .then((data :any) => {
       this.poles_infos = data;
-      console.log(data);
     })
     .catch((error) => {
       this.popup.state$.next([false, error.message]);

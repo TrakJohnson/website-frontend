@@ -19,7 +19,6 @@ export class AccountService {
 
     createAccount(prenom: string, nom : string, login: string, password: string, email : string, promotion: string) {
         var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
-        console.log("create account", {"login": login, "password": password_encr});
         return new Promise<any>((resolve, reject) => {
             this.http.post(
             environment.apiUrl + '/api/user/register',
@@ -29,7 +28,6 @@ export class AccountService {
                     resolve(response);
                 },
                 (error) => {
-                    console.log({error : error})
                     reject(error);
                 }
             );
@@ -47,7 +45,6 @@ export class AccountService {
                         if (this.compte$.value) {
                             this.compte$.next({...this.compte$.value, placesClaimed : places});
                         }
-                        console.log({placesReceived: places});
                         resolve();
                     },
                     (error) => {

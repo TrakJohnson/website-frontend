@@ -56,7 +56,6 @@ export class ContactUsComponent implements OnInit {
       this.popup.state$.next([true, "Message bien envoyé"])
       this.contactForm.reset();
     }, (error : any) => {
-      console.log('Error', error);
       this.popup.state$.next([false, error.message])
     });
   }

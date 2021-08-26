@@ -30,7 +30,6 @@ export class PopupComponent implements OnInit {
 
     this.stateSub = this.popup.state$.subscribe(
       (state) => {
-        console.log({"New state" : state});
         if (state[1] != "") {
           this.OnChangeState(state);
         }

@@ -20,7 +20,6 @@ export class ContactService {
                     resolve(response);
                 },
                 (error) => {
-                    console.log({error : error})
                     reject(error);
                 }
             );

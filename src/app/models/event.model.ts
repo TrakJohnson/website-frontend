@@ -21,7 +21,6 @@ export class Event {
     placesClaimed : Place[];
 
     constructor(data: any | undefined) {
-        console.log({data : data});
         this.event_id = data.event_id || undefined;
         this.title = data.title || undefined;
         this.description = data.description || undefined;

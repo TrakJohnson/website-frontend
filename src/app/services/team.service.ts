@@ -21,7 +21,6 @@ export class TeamService {
                     resolve(response);
                 },
                 (error) => {
-                    console.log({error : error})
                     reject(error);
                 }
             );

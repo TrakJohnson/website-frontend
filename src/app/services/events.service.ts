@@ -21,12 +21,10 @@ export class EventService {
             environment.apiUrl + '/api/event/getAllEvents')
             .subscribe(
                 (eventData : Array<any>) => {
-                  console.log({"successEvents " : eventData});
                   var eventsTreated : any = {};
                   eventData.forEach(event => {
                     eventsTreated[event.event_id] = new Event(event);
                   });
-                  console.log({"successeventsTreatedEvents " : eventsTreated});
                   this.events$.next(eventsTreated);
                   resolve();
                 },  
@@ -44,7 +42,6 @@ export class EventService {
                 environment.apiUrl + '/api/event/getOneEvent', {params})
                 .subscribe(
                     (eventData : Event) => {
-                      console.log({"successEvent " : eventData});
                       
                       resolve(eventData);
                     },  
@@ -60,11 +57,9 @@ export class EventService {
           this.http.get(environment.apiUrl + '/api/event/getEventsTocome')
           .subscribe(
               (response : any) => {
-                console.log(response)
                   resolve(response);
               },
               (error) => {
-                  console.log({error : error})
                   reject(error);
               }
           );
@@ -76,11 +71,9 @@ export class EventService {
             this.http.get(environment.apiUrl + '/api/event/getEventsForCalendar')
             .subscribe(
                 (response : any) => {
-                  console.log(response)
                     resolve(response);
                 },
                 (error) => {
-                    console.log({error : error})
                     reject(error);
                 }
             );
@@ -92,11 +85,9 @@ export class EventService {
             this.http.get(environment.apiUrl + '/api/event/getBilletteriesTocome')
             .subscribe(
                 (response : any) => {
-                  console.log(response)
                     resolve(response);
                 },
                 (error) => {
-                    console.log({error : error})
                     reject(error);
                 }
             );
@@ -108,11 +99,9 @@ export class EventService {
             this.http.post(environment.apiUrl + '/api/event/closeBilletterie', {id_billetterie : id_billetterie})
             .subscribe(
                 (response : any) => {
-                    console.log(response)
                     resolve(response);
                 },
                 (error) => {
-                    console.log({error : error})
                     reject(error);
                 }
             );
@@ -124,11 +113,9 @@ export class EventService {
             this.http.post(environment.apiUrl + '/api/event/reSaleBilletterie', {id_billetterie : id_billetterie})
             .subscribe(
                 (response : any) => {
-                    console.log(response)
                     resolve(response);
                 },
                 (error) => {
-                    console.log({error : error})
                     reject(error);
                 }
             );
@@ -140,11 +127,9 @@ export class EventService {
             this.http.post(environment.apiUrl + '/api/event/givePlaceToUser', {id_billetterie : id_billetterie, loginToGivePlace : loginToGivePlace})
             .subscribe(
                 (response : any) => {
-                    console.log(response)
                     resolve(response);
                 },
                 (error) => {
-                    console.log({error : error})
                     reject(error);
                 }
             );
@@ -156,11 +141,9 @@ export class EventService {
             this.http.post(environment.apiUrl + '/api/event/retirePlaceToUser', {id_billetterie : id_billetterie, loginToRetirePlace : loginToRetirePlace})
             .subscribe(
                 (response : any) => {
-                    console.log(response)
                     resolve(response);
                 },
                 (error) => {
-                    console.log({error : error})
                     reject(error);
                 }
             );
@@ -177,7 +160,6 @@ export class EventService {
                     resolve(response);
                 },
                 (error) => {
-                    console.log({error : error})
                     reject(error);
                 }
             );
@@ -195,7 +177,6 @@ export class EventService {
                   resolve(response);
               },
               (error) => {
-                  console.log({error : error});
                   reject(error);
               }
           );
@@ -210,7 +191,6 @@ export class EventService {
                   resolve(response)
               },
               (error) => {
-                  console.log({error : error});
                   reject(error);
               }
           );
@@ -218,7 +198,6 @@ export class EventService {
   }
   
   deleteEvent(idEvent : number) {
-    console.log(idEvent)
     return new Promise<any>((resolve, reject) => {
         this.http.post(environment.apiUrl + '/api/event/deleteEvent', {event_id : idEvent})
         .subscribe(
@@ -226,7 +205,6 @@ export class EventService {
                 resolve(response)
             },
             (error) => {
-                console.log({error : error});
                 reject(error);
             }
         );

@@ -26,5 +26,5 @@ for (let pole of PoleToID) {
     IDToPole.push([pole[1], pole[0]]);
 }
 
-fs.writeFile("IDToPole.json", JSON.stringify(IDToPole), function(err) { if(err) {console.log(err)}});
-fs.writeFile("PoleToID.json", JSON.stringify(PoleToID), function(err) { if(err) {console.log(err)}});
+fs.writeFile("IDToPole.json", JSON.stringify(IDToPole));
+fs.writeFile("PoleToID.json", JSON.stringify(PoleToID));

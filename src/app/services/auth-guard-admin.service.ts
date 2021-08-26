@@ -14,18 +14,15 @@ export class AuthGuardAdmin implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
         return new Observable(
             (observer) => {
-                console.log({CanActivate: this.auth});
                 this.auth.isAuth$.subscribe(
                     (auth) => {
                         if (!auth) {
-                            console.log("token : " + localStorage.getItem('token'))
                             if (localStorage.getItem('token') != null) {
                               this.auth.loginFromToken(localStorage.getItem('token'))
                               .then(() => {
                                 observer.next(true);
                               })
                               .catch((error) => {
-                                console.log({message : "redirect to login..."});
                                 this.router.navigate(['/login']); 
                               });
                             }                  
@@ -34,7 +31,6 @@ export class AuthGuardAdmin implements CanActivate {
                             this.auth.admin$.subscribe(
                                 (admin) => {
                                     if (!admin) {
-                                        console.log({message : "Non administrateur"});
                                         this.popup.loading$.next(false);
                                         this.popup.state$.next([false, "Vous n'êtes pas administrateur"]);
                                         observer.next(false);

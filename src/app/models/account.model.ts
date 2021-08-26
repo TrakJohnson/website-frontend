@@ -16,7 +16,6 @@ export class Account {
     placesClaimed : Array<Place>;
 
     constructor(data: any | undefined) {
-      console.log({dataAcc : data});
       this.id = data.id || undefined;
       this.prenom = data.prenom || undefined;
       this.nom = data.nom || undefined;

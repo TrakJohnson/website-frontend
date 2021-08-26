@@ -20,9 +20,7 @@ export class VerifyEmailComponent implements OnInit {
 
   ngOnInit(): void {
     this.popup.loading$.next(true);
-    console.log(this.route.snapshot.params)
     this.token = this.route.snapshot.params['token'];
-    console.log(this.token);
 
     // // Envoi du token 
 

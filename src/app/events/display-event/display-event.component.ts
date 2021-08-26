@@ -37,7 +37,6 @@ export class DisplayEventComponent implements OnInit {
 
     this.eventService.getOneEvent(this.event_id)
     .then((response) =>{
-      console.log({statusEv : response});
       this.event = response;
       this.is_billetterie = this.event.is_billetterie;
       this.on_sale = this.event.on_sale;
@@ -55,11 +54,9 @@ export class DisplayEventComponent implements OnInit {
         if (status) {
           this.isAdmin = status.admin;
           this.is_connected = status.login != "";
-          this.is_already_claimed = !status?.placesClaimed.every(place => {console.log({place : place, event_id : this.event_id}); return place.event_id != this.event_id});
+          this.is_already_claimed = !status?.placesClaimed.every(place => {return place.event_id != this.event_id});
         } 
-      
-        console.log({"isAdmin" : this.isAdmin, is_connected : this.is_connected})
-    })
+    });
 
     this.acc.getPlacesClaimedByUser()
   }
@@ -109,7 +106,6 @@ export class DisplayEventComponent implements OnInit {
   }
 
   onNavigate(endpoint: string) {
-    console.log({newEndpoint : endpoint});
     // On navigate deux fois pour forcer le rechargement de la page
     this.router.navigate(['/'], {skipLocationChange: true}).then(()=> this.router.navigate([endpoint]));
   }

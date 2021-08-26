@@ -31,13 +31,11 @@ export class ViewBilletterieComponent implements OnInit {
     this.eventService.getBilletteriesTocome()
     .then((response : Event[]) => {
       this.eventsToDisplay = response;
-      console.log(this.eventsToDisplay)
       this.isBilletterie = (this.eventsToDisplay.length > 0)
       this.popup.loading$.next(false);
     })
     .catch((error) => {
-      console.log(error);
-      this.popup.state$.next([false, error.error]);
+      this.popup.state$.next([false, error.message]);
       this.popup.loading$.next(false);
       
     })
@@ -46,9 +44,7 @@ export class ViewBilletterieComponent implements OnInit {
     
     this.accountSub = this.acc.compte$.subscribe(
       (status) => {
-        console.log(status)
         this.isAdmin = status?.admin;
-        console.log({"isAdmin" : this.isAdmin})
       })
 
     

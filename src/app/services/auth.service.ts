@@ -24,18 +24,15 @@ export class AuthService {
         return new Promise<void>((resolve, reject) => {
             
             var password_encr =  CryptoJS.SHA3(password, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
-            console.log({password_encr : password_encr});
 
             this.http.post<authData>(
             environment.apiUrl + '/api/user/login',
             {login: login, password: password_encr })
             .subscribe(
                 (authData) => {
-                  console.log({"success " : authData})
                   this.token = authData.token;
                   localStorage.setItem('token', this.token)
                   this.compteService.compte$.next(authData.compte);
-                  // console.log({leCompte : this.compteService.compte$.value});
                   if (this.compteService.compte$.value?.email_verified == 0){
                     this.popup.state$.next([false, "Merci de penser à vérifier votre adresse mail !"]);
                   } else {
@@ -61,11 +58,9 @@ export class AuthService {
       {token : token})
       .subscribe(
           (authData) => {
-            console.log({"success " : authData})
             this.token = authData.token;
             localStorage.setItem('token', this.token)
             this.compteService.compte$.next(authData.compte);
-            console.log({leCompte : this.compteService.compte$.value});
             
             this.admin$.next(authData.compte.admin);
             this.isAuth$.next(true);

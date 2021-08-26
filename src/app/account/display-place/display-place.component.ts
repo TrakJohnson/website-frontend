@@ -19,9 +19,7 @@ export class DisplayPlaceComponent implements OnInit {
   poles : any;
 
   ngOnInit(): void {
-    console.log({placeReceived : this.place});
-    console.log({eventReceived : this.event});
-    console.log({polesReceived : this.poles});
+
   }
 
   colorArr = ["orange", "red", "green"];

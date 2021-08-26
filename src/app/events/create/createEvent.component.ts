@@ -63,7 +63,6 @@ export class CreateEventComponent implements OnInit {
     this.accountSub = this.account.compte$.subscribe(
       (account) => {
         this.createurid = account!.login;
-        console.log(this.createurid)
       }
     )
   }
@@ -82,7 +81,6 @@ export class CreateEventComponent implements OnInit {
     reader.readAsDataURL(this.file as Blob)
     reader.onload = () => {
       this.filePath = reader.result as string;
-      console.log("origin : " + this.filePath.length)
 
       let img = new Image();
       img.src = this.filePath;
@@ -138,8 +136,6 @@ export class CreateEventComponent implements OnInit {
     const prixNC : number = this.creatorForm.get('prixNC')?.value;
     const idPole : number = this.creatorForm.get('idPole')!.value;
 
-    console.log(this.file )
-
     if (this.file == undefined) {
       this.popup.loading$.next(false);
       this.popup.state$.next([false, "Il faut upload une vignette"]);
@@ -157,7 +153,6 @@ export class CreateEventComponent implements OnInit {
           this.resizeImage(this.filePath)
           .then((response:any)=>{
             this.resized_filePath = response;
-            console.log("resized : " + this.resized_filePath.length);
             this.event.createEvent(titre, description, date, date_end, lieu, this.resized_filePath, idPole, this.createurid, undefined, undefined, nPlaces, prixC, prixNC, undefined, false)
               .then((response) => {
                 this.popup.loading$.next(false);
@@ -179,7 +174,6 @@ export class CreateEventComponent implements OnInit {
           })
         }
         else {
-          console.log("no resize")
           this.resized_filePath = this.filePath;
           this.event.createEvent(titre, description, date, date_end, lieu, this.resized_filePath, idPole, this.createurid, undefined, undefined, nPlaces, prixC, prixNC, undefined, false)
             .then((response) => {

@@ -24,7 +24,6 @@ export class DefaultComponent implements OnInit {
     this.events.getEventsTocome()
     .then((response) => {
       this.eventsToCome = response;
-      console.log(this.eventsToCome)
       if (this.eventsToCome.length < 1) {
         
         this.eventExist = false;
@@ -40,7 +39,6 @@ export class DefaultComponent implements OnInit {
       
       this.popup.state$.next([false, "Erreur : merci de contacter un administrateur"]);
       this.popup.loading$.next(false);
-      console.log(error.message);
     })
   };
 

@@ -27,14 +27,12 @@ export class AppComponent implements OnInit {
     this.loadingSub = this.popup.loading$.subscribe(
       (loading) => {
         this.loading = loading;
-        console.log(loading)
       }
     )
     
 
     this.token = localStorage.getItem('token');
 
-    console.log("token : " + this.token)
 
     if (this.token) {
       this.auth.loginFromToken(this.token)
@@ -43,7 +41,7 @@ export class AppComponent implements OnInit {
       })
       .catch((error) => {
         this.popup.loading$.next(false);
-        console.log(error.message)
+        this.popup.state$.next([false, error.message]);
       }
     );
     }
