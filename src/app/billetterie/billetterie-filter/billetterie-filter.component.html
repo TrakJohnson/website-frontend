@@ -1,1 +1,29 @@
-<p>billetterie-filter works!</p>
+<div id="container-requirement-form">
+
+    <div>
+        <form [formGroup]="requirementsForm" id="requirementsForm">
+            <div class="form-group form-unit" >
+                <label for="pole_id" class="form-label">Pôle</label>
+                <select formControlName="pole_id" class="form-control form-input">
+                    <option [ngValue]="null"> --- </option>
+                    <option *ngFor="let pole of polesChoices" [ngValue]="pole.value">
+                     {{ pole.viewValue }}
+                    </option>
+                </select> 
+            </div>
+            <div class="form-group form-unit" >
+                <label for="title" class="form-label">Titre</label>
+                <input type="text" id="title" formControlName="title">
+            </div>
+            <div class="custom-control custom-switch form-group form-unit">
+                <input type="checkbox" formControlName="on_sale" class="custom-control-input" id="on_sale" checked>
+                <label class="custom-control-label" for="on_sale">En vente</label>
+            </div>
+      </form>
+      <div id="container-form-btn">
+        <button class="btn btn-outline-primary" (click)="onChangeRequirements()"> Filtrer </button>
+        <button class="btn btn-outline-warning" (click)="clearAllRequirements()"> Nettoyer les filtres </button>
+      </div>
+    </div>
+
+</div> 

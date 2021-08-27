@@ -216,19 +216,61 @@ export class EventService {
       });
   }
   
-  deleteEvent(idEvent : number) {
-    return new Promise<any>((resolve, reject) => {
-        this.http.post(environment.apiUrl + '/api/event/deleteEvent', {event_id : idEvent})
-        .subscribe(
-            (response) => {
-                resolve(response)
-            },
-            (error) => {
-                reject(error);
-            }
-        );
-    });
-}
+    deleteEvent(idEvent : number) {
+        return new Promise<any>((resolve, reject) => {
+            this.http.post(environment.apiUrl + '/api/event/deleteEvent', {event_id : idEvent})
+            .subscribe(
+                (response) => {
+                    resolve(response)
+                },
+                (error) => {
+                    reject(error);
+                }
+            );
+        });
+    }
 
+
+    satisfyRequirements(event: any, requirements : any) : boolean {
+        var satisfy = true;
+        return Object.keys(requirements).every(key => {
+            var satisfyThisKey = false;
+            var keyValues = requirements[key];
+            const eventVal = event[key] as any;
+            console.log({keyVals : keyValues, eventVal : eventVal, type : typeof eventVal});
+            if (eventVal == undefined) {
+                satisfy = false;
+                return false;
+            } else if (typeof eventVal == "string") {
+                keyValues.forEach((value : string) => {
+                    satisfyThisKey = (eventVal.toUpperCase().includes(value.toUpperCase())) || satisfyThisKey;
+                });
+            } else if (typeof eventVal == "number") {
+                keyValues.forEach((value : number) => {
+                    console.log({val : value});
+                    satisfyThisKey = (eventVal == value) || satisfyThisKey;
+                });
+            } else if (typeof eventVal == "boolean") {
+                keyValues.forEach((value : boolean) => {
+                    satisfyThisKey = (eventVal == value) || satisfyThisKey;
+                });
+            } else {
+                return false;
+            }
+
+            return satisfyThisKey;
+        })
+    }
+
+    filterEvents(eventList : Event[], requirements : any) : Event[] {
+        var selectedEvents : Event[]= [];
+        console.log({requirements: requirements, events : eventList});
+        eventList.forEach((event) => {
+            if (this.satisfyRequirements(event, requirements)) {
+                selectedEvents.push(event);
+            } 
+        });
+        return selectedEvents;
+    }
 
 }

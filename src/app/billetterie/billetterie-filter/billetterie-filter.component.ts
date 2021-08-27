@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Pole } from 'src/app/models/pole.model';
+import { PoleService } from 'src/app/services/poles.service';
 
 @Component({
   selector: 'app-billetterie-filter',
@@ -8,54 +10,30 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class BilletterieFilterComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private poleService : PoleService) { }
   
 
   @Output() requirementsToSend = new EventEmitter();
 
-  requirements : any = {};
+  requirements : any = {"on_sale" : [1]};
   loading = false;
   requirementsForm: FormGroup;
-
-  ecoles = [
-    {value: 'Mines', viewValue: 'Mines'},
-    {value: 'Ponts', viewValue: 'Ponts'},
-    {value: 'ENSTA', viewValue: 'ENSTA'},
-    {value: 'Ete', viewValue: 'Ete'},
-    {value: 'Autre', viewValue: 'Autre'},
-  ];
-
-  typePaiements = [
-    {value : "cheque", viewValue : "Chèque"},
-    {value : "liquide", viewValue : "Liquide"},
-    {value : "lydia", viewValue : "Lydia"},
-    {value : "Autre", viewValue : "Autre"},
-  ]
-
-  promotions = [
-    {value: 'P18', viewValue: 'P18'},
-    {value: 'P19', viewValue: 'P19'},
-    {value: 'P20', viewValue: 'P20'},
-    {value: 'P21', viewValue: 'P21'},
-  ]
-
-  trimestreStatus = [
-    {value: '1', viewValue: 'Cotisé'},
-    {value: '0', viewValue: 'Pas cotisé'},
-  ]
+  polesChoices : any;
 
   ngOnInit() {
     this.emitRequirements();
     this.requirementsForm = this.formBuilder.group({
-        login: [null],
-        ecole: [null],
-        promotion: [null],
-        typePaiement: [null],
-        chambre : [null],
-        T1 : [null],
-        T2 : [null],
-        T3 : [null]
+        pole_id: [null],
+        title: [null],
+        on_sale: [1],
     });
+
+    this.poleService.getPoles()
+    .then((data : Pole[]) => {
+      console.log({dataPoles : data});
+      this.polesChoices = data.map(pole => {return {value : pole.pole_id, viewValue : pole.name}});
+    })
   }
 
   emitRequirements() {
@@ -73,6 +51,7 @@ export class BilletterieFilterComponent implements OnInit {
 
   onChangeRequirements() {
     this.clearAllRequirements();
+    console.log({ctrl : this.requirementsForm.controls});
     Object.keys(this.requirementsForm.controls).forEach(key => {
       this.addRequirement(key, this.requirementsForm.value[key]);
     });

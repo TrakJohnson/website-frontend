@@ -6,6 +6,7 @@ import { EventService } from 'src/app/services/events.service';
 import { Account } from 'src/app/models/account.model';
 import { Event } from 'src/app/models/event.model'
 import { PopupService } from 'src/app/services/popup.service';
+import { PoleService } from 'src/app/services/poles.service';
 
 @Component({
   selector: 'app-viewBilletterie',
@@ -17,7 +18,7 @@ export class ViewBilletterieComponent implements OnInit {
  
 
   constructor(private router : Router,
-              private eventService : EventService,
+              public eventService : EventService,
               private acc : AccountService,
               private popup : PopupService) {}
 
@@ -42,11 +43,18 @@ export class ViewBilletterieComponent implements OnInit {
       (status) => {
         this.isAdmin = status?.admin;
       })
+
+
+  }
+
+  requirements = {"on_sale" : true}
+
+  changeRequirements(newRequirements : any) {
+    this.requirements = newRequirements;
   }
 
   onNavigate(endpoint: string) {
     this.router.navigate([endpoint]);
-
   }
 
   ngOnDestroy() {
