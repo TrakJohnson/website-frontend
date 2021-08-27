@@ -20,8 +20,6 @@ export class HeaderComponent implements OnInit {
   private accountSub: Subscription;
   account: Account;
 
-
-
   constructor(private router: Router,
     private auth: AuthService,
     private acc: AccountService,
@@ -41,8 +39,8 @@ export class HeaderComponent implements OnInit {
     
   }
 
-
   onNavigate(endpoint: string) {
-    this.router.navigate([endpoint]);
+    this.popup.loading$.next(true);
+    this.router.navigate(['/'], {skipLocationChange: true}).then(()=> this.router.navigate([endpoint]));
   }
 }

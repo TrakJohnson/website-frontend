@@ -13,7 +13,7 @@ export class TeamService {
 
    
 
-    getMembrersAllMembers() {
+    getMembersAllMembers() {
         return new Promise<any[]>((resolve, reject) => {
             this.http.get(environment.apiUrl + '/api/team/getMembers')
             .subscribe(

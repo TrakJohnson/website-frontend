@@ -27,7 +27,6 @@ export class ViewBilletterieComponent implements OnInit {
   isBilletterie : boolean;
 
   ngOnInit(): void {
-    this.popup.loading$.next(true);
     this.eventService.getBilletteriesTocome()
     .then((response : Event[]) => {
       this.eventsToDisplay = response;
@@ -37,17 +36,12 @@ export class ViewBilletterieComponent implements OnInit {
     .catch((error) => {
       this.popup.state$.next([false, error.message]);
       this.popup.loading$.next(false);
-      
     })
-
-    
     
     this.accountSub = this.acc.compte$.subscribe(
       (status) => {
         this.isAdmin = status?.admin;
       })
-
-    
   }
 
   onNavigate(endpoint: string) {

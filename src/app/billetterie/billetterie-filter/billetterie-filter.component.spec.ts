@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DisplayPlaceComponent } from './display-place.component';
+import { BilletterieFilterComponent } from './billetterie-filter.component';
 
-describe('DisplayPlaceComponent', () => {
-  let component: DisplayPlaceComponent;
-  let fixture: ComponentFixture<DisplayPlaceComponent>;
+describe('BilletterieFilterComponent', () => {
+  let component: BilletterieFilterComponent;
+  let fixture: ComponentFixture<BilletterieFilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DisplayPlaceComponent ]
+      declarations: [ BilletterieFilterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DisplayPlaceComponent);
+    fixture = TestBed.createComponent(BilletterieFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

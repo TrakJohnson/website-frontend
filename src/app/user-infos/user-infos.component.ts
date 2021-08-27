@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service';
 import { AccountService } from '../services/account.service';
 
 import { Account } from '../models/account.model';
+import { PopupService } from '../services/popup.service';
 
 @Component({
   selector: 'app-user-infos',
@@ -17,7 +18,8 @@ export class UserInfosComponent implements OnInit, OnDestroy {
 
   constructor(private router : Router,
               private auth : AuthService,
-              private acc : AccountService) { }
+              private acc : AccountService,
+              private popup : PopupService) { }
 
   private isAuthSub: Subscription;
   isAuth: boolean = false;
@@ -44,7 +46,8 @@ export class UserInfosComponent implements OnInit, OnDestroy {
   }
 
   onNavigate(endpoint: string) {
-    this.router.navigate([endpoint]);
+    this.popup.loading$.next(true);
+    this.router.navigate(['/'], {skipLocationChange: true}).then(()=> this.router.navigate([endpoint]));
   }
 
   onDisconnect() {

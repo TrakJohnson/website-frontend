@@ -20,15 +20,10 @@ export class LoginComponent implements OnInit {
               ) { }
 
   ngOnInit() {
-
-    this.popup.loading$.next(true);
-
     this.loginForm = this.formBuilder.group({
       login: [null, [Validators.required]],
       password: [null, Validators.required],
     });
-
-    this.popup.loading$.next(false);
   }
 
   onNavigate(endpoint: string) {
@@ -36,18 +31,13 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-
-    this.popup.loading$.next(true);
-    
     const login = this.loginForm.get('login')!.value;
     const password = this.loginForm.get('password')!.value;
     this.auth.login(login, password)
       .then(() => {
-        this.popup.loading$.next(false);
         this.router.navigate(['/default']);
       })
       .catch((error) => {
-        this.popup.loading$.next(false);
         this.popup.state$.next([false, error.error.message]);
       }
     );

@@ -1,12 +1,13 @@
 <app-header></app-header>
+<app-popup></app-popup>
+<mat-spinner *ngIf="loading"></mat-spinner>
 
 <div style="display: block; min-height: 100vh;">
+    <div [style.display]="loading == false ? 'block' : 'none'" style="min-height: 100vh;">
     
-    <app-popup></app-popup>
-    
-    <mat-spinner *ngIf="loading"></mat-spinner>
-    <router-outlet [style.display] = "loading? 'block':'none'" ></router-outlet>
+    <router-outlet ></router-outlet>
 
+    </div>
 </div>
 
 <app-footer></app-footer>

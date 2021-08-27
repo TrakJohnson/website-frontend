@@ -77,7 +77,6 @@ export class ChangeInfosComponent implements OnInit {
   
   
   ngOnInit() {
-    this.popup.loading$.next(true);
 
     this.changeForm = this.formBuilder.group({
       prenom: [null],
@@ -89,7 +88,8 @@ export class ChangeInfosComponent implements OnInit {
       passwordBis : [null, [Validators.required],],
     });
     
-    this.popup.loading$.next(false);
+    this.compte = this.account.compte$.value;
+    this.token = this.auth.token!;
 
     this.accountSub = this.account.compte$.subscribe(
       (compte) => {
@@ -101,24 +101,17 @@ export class ChangeInfosComponent implements OnInit {
       }
     )
 
-    this.token = this.auth.token!;
-
-
+    this.popup.loading$.next(false);
   }
   
   onChangePromotion() {
     this.promotion = this.changeForm.get('promotion')?.value;
   }
-  
-
 
   onChangeInfos() {
     this.popup.loading$.next(true);
     this.prenom = this.changeForm.get('prenom')!.value;
     this.nom = this.changeForm.get('nom')!.value;
-
-
-
 
     this.email = this.changeForm.get('email')!.value;
     const emailBis = this.changeForm.get('emailBis')!.value;

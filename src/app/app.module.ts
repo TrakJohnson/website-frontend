@@ -37,7 +37,6 @@ import { PopupComponent } from './popup/popup.component';
 import { AccountComponent } from './account/account.component';
 import { AccountViewComponent } from './account/account-view/account-view.component';
 import { BilletterieComponent } from './billetterie/billetterie.component';
-import { DisplayPlaceComponent } from './account/display-place/display-place.component'
 import { CreateBilletterieComponent } from './billetterie/create/createbilletterie.component';
 import { ModifyBilletterieComponent } from './billetterie/modify/modifybilletterie.component';
 import { DeleteBilletterieComponent } from './billetterie/delete/deletebilletterie.component';
@@ -63,6 +62,7 @@ import { ViewTeamComponent } from './team/view/viewTeam.component';
 import { CreateEventComponent } from './events/create/createEvent.component';
 import { ModifyEventComponent } from './events/modify/modifyEvent.component';
 import { DeleteEventComponent } from './events/delete/deleteEvent.component';
+import { BilletterieFilterComponent } from './billetterie-filter/billetterie-filter.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -81,7 +81,6 @@ registerLocaleData(localeFr, 'fr');
     AccountComponent,
     AccountViewComponent,
     BilletterieComponent,
-    DisplayPlaceComponent,
     CreateBilletterieComponent,
     ModifyBilletterieComponent,
     MasterclassComponent,
@@ -103,6 +102,7 @@ registerLocaleData(localeFr, 'fr');
     CreateEventComponent,
     ModifyEventComponent,
     DeleteEventComponent,
+    BilletterieFilterComponent,
   ],
     
   imports: [

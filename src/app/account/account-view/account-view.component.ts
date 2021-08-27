@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Account } from 'src/app/models/account.model';
-import { Pole } from 'src/app/models/pole.model';
 import { AccountService } from 'src/app/services/account.service';
 import { EventService } from 'src/app/services/events.service';
 import { PoleService } from 'src/app/services/poles.service';
@@ -18,41 +17,50 @@ export class AccountViewComponent implements OnInit {
   constructor(private accountService : AccountService, 
               private popup : PopupService,
               private event : EventService,
-              private pole : PoleService,
               private router : Router) { }
 
   accountSub : Subscription;
   account : Account | undefined;
 
-  eventsSub : Subscription;
-  events : any;
+  eventsWithPlaceClaimed : any | undefined =  [];
 
-  polesSub : Subscription;
-  poles : any;
+  colorArr = ["orange", "red", "green"];
+  textArr = ["Place pas encore traitée", "Place refusée", "Place acceptée"];
 
-  onNavigate(endpoint: string) {
-    this.router.navigate([endpoint]);
+  colorAccordingToStatus(status : number) {
+    return this.colorArr[status + 1];
+  }
+
+  textAccordingToStatus(status : number) {
+    return this.textArr[status + 1];
   }
 
   ngOnInit(): void {
-    this.popup.loading$.next(true);
+
     this.accountSub = this.accountService.compte$.subscribe(
-      (dataAccount) => {
+      async (dataAccount) => {
         this.account = dataAccount;
+        this.eventsWithPlaceClaimed = {};
+        const getPlaces = async () => {
+          if (this.account?.placesClaimed.length) {
+            for (var i = 0; i < this.account?.placesClaimed.length; i++) {
+              if (this.account?.placesClaimed[i]) {
+                const place = this.account?.placesClaimed[i];
+                this.eventsWithPlaceClaimed[place.event_id] = await this.event.getOneEvent(place.event_id);
+                console.log({newEv : this.eventsWithPlaceClaimed[place.event_id]});   
+              }
+            }
+          }
+        };
+        await getPlaces();
+        console.log({here : this.eventsWithPlaceClaimed});          
+        this.popup.loading$.next(false);
     });
-    this.eventsSub = this.event.events$.subscribe(
-      (dataEvents) => {
-        this.events = dataEvents;
-      }
-    )
-    this.polesSub = this.pole.poles$.subscribe(
-      (polesData) => {
-        this.poles = polesData;
-      }
-    )
-    this.pole.getPoles();
-    this.event.getEvents();
-    this.popup.loading$.next(false);;
+  }
+
+  onNavigate(endpoint: string) {
+    this.popup.loading$.next(true);
+    this.router.navigate([endpoint]);
   }
 
 }

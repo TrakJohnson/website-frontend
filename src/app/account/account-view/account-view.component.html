@@ -3,5 +3,10 @@
 
 
 <div id="view-account-places" *ngFor="let place of account?.placesClaimed? account?.placesClaimed : []">
-    <app-display-place [place]="place" [event]="events[place.event_id]" [poles]="poles"></app-display-place>
+    <div class="card">
+        <div class="card-body">
+            <p [ngStyle]="{'color': colorAccordingToStatus(place.status)}"> Statut : {{textAccordingToStatus(place.status)}}</p>
+        </div>   
+    </div>
+    <app-event-quickview [event]="eventsWithPlaceClaimed[place.event_id]"></app-event-quickview>
 </div>

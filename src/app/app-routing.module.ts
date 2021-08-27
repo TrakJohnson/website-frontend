@@ -37,12 +37,12 @@ import { DeleteEventComponent } from './events/delete/deleteEvent.component';
 const routes: Routes = [
   {path : 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent,
-children : [
-  {path : 'form', component: FormComponent},
-  {path : 'infos', component: InfosRegisterComponent},
-  {path : 'verify-email/:token', component: VerifyEmailComponent},
-  {path: '**', redirectTo: 'form'},
-]},
+  children : [
+    {path : 'form', component: FormComponent},
+    {path : 'infos', component: InfosRegisterComponent},
+    {path : 'verify-email/:token', component: VerifyEmailComponent},
+    {path: '**', redirectTo: 'form'},
+  ]},
   { path : 'account', component : AccountComponent,
 children : [
   {path : 'view', component : AccountViewComponent, canActivate: [AuthGuard]},
@@ -83,7 +83,7 @@ children : [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy', enableTracing: false })],
   exports: [RouterModule],
   providers: [
     AuthGuard,

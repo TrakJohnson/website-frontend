@@ -31,6 +31,7 @@ export class AuthGuardAdmin implements CanActivate {
                             this.auth.admin$.subscribe(
                                 (admin) => {
                                     if (!admin) {
+                                        console.log("lalalala");
                                         this.popup.loading$.next(false);
                                         this.popup.state$.next([false, "Vous n'êtes pas administrateur"]);
                                         observer.next(false);
