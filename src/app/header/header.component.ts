@@ -43,4 +43,8 @@ export class HeaderComponent implements OnInit {
     this.popup.loading$.next(true);
     this.router.navigate(['/'], {skipLocationChange: true}).then(()=> this.router.navigate([endpoint]));
   }
+
+  onNavigateNoLoading(endpoint : string) {
+    this.router.navigate([endpoint])
+  }
 }
