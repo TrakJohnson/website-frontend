@@ -62,7 +62,7 @@ import { ViewTeamComponent } from './team/view/viewTeam.component';
 import { CreateEventComponent } from './events/create/createEvent.component';
 import { ModifyEventComponent } from './events/modify/modifyEvent.component';
 import { DeleteEventComponent } from './events/delete/deleteEvent.component';
-import { BilletterieFilterComponent } from './billetterie-filter/billetterie-filter.component';
+import { BilletterieFilterComponent } from './billetterie/billetterie-filter/billetterie-filter.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
