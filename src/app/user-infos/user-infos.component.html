@@ -3,8 +3,8 @@
         <img id = "profil_pic" src = "/assets/img/const/visitor.png" >
     </div>
     <div class = column >
-        <p> <a id = "login" (click) = "onNavigate('login')"> Se connecter</a></p>
-        <p> <a id = "signin" (click) = "onNavigate('register')"> Créer un compte</a></p>
+        <p> <a id = "login" (click) = "onNavigate('login', false)"> Se connecter</a></p>
+        <p> <a id = "signin" (click) = "onNavigate('register', false)"> Créer un compte</a></p>
     </div>
 </div>
 
@@ -15,7 +15,7 @@
     <div class = column >
         <p> Bienvenue {{account.login}} </p>
         <!-- <p id = "welcome"> Bienvenue 20abcdefgh</p> -->
-        <p> <a id = "view-account" (click) = "onNavigate('account/view')"> Mon Compte </a></p>
+        <p> <a id = "view-account" (click) = "onNavigate('account/view', true)"> Mon Compte </a></p>
         <p> <a id = "signout" (click) = "onDisconnect()"> Deconnexion </a></p>
     </div>
 </div>

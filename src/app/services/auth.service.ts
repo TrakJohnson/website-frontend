@@ -81,7 +81,6 @@ export class AuthService {
     this.isAuth$.next(false);
     this.admin$.next(false);
     this.token = null;
-    localStorage.removeItem('token');
   }    
 
 }          

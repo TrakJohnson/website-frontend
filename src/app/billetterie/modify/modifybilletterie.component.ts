@@ -61,14 +61,11 @@ export class ModifyBilletterieComponent implements OnInit {
               private popup: PopupService,
               private event: EventService,
               private route : ActivatedRoute) { }
-
-
   
   ngOnInit() {
     this.popup.loading$.next(true);
 
-    this.id = this.route.snapshot.params["event_id"]
-
+    this.id = this.route.snapshot.params["event_id"];
 
     this.modifierForm = this.formBuilder.group({
       titre: [null],
@@ -89,10 +86,6 @@ export class ModifyBilletterieComponent implements OnInit {
     
     this.popup.loading$.next(false);
 
-
-   
-    
-
     this.event.getOneEvent(this.id)
     .then((eventInfos : any) => {
       console.log(eventInfos)
@@ -103,11 +96,9 @@ export class ModifyBilletterieComponent implements OnInit {
       this.date = date;
       this.completeDate = this.date.toISOString().slice(0, -5);
 
-    
       var date_end = new Date(eventInfos.dateEvent_end? eventInfos.dateEvent_end : '1999-01-01T00:00:00');
       this.date_end = date_end;
       this.completeDate_end = this.date_end.toISOString().slice(0, -5);
-
 
       var dateOuverture = new Date(eventInfos.date_open);
       this.dateOuverture = dateOuverture;

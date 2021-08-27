@@ -45,15 +45,18 @@ export class UserInfosComponent implements OnInit, OnDestroy {
     this.accountSub.unsubscribe();
   }
 
-  onNavigate(endpoint: string) {
-    this.popup.loading$.next(true);
+  onNavigate(endpoint: string, triggerLoading : boolean) {
+    if (triggerLoading) {
+      this.popup.loading$.next(true);
+    }
     this.router.navigate(['/'], {skipLocationChange: true}).then(()=> this.router.navigate([endpoint]));
   }
 
   onDisconnect() {
+    localStorage.removeItem('token');
     this.auth.logout();
     this.acc.disconnect();
-    this.onNavigate('/');
+    this.onNavigate('/', false);
   }
 
 }

@@ -26,6 +26,8 @@ export class DisplayEventComponent implements OnInit {
   event : Event;
   is_billetterie :boolean;
   isAdmin : boolean | undefined = false;
+  placesAccepted : Place[] = [];
+  placesRejected : Place[] = [];
   is_connected : boolean | undefined = false;
   is_already_claimed : boolean  | undefined = false;
   accountSub : Subscription;
@@ -34,10 +36,12 @@ export class DisplayEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.event_id = this.route.snapshot.params["event_id"] ;
-
     this.eventService.getOneEvent(this.event_id)
     .then((response) =>{
       this.event = response;
+      this.placesAccepted = this.event.placesClaimed.filter((place) => place.status);
+      this.placesRejected = this.event.placesClaimed.filter((place) => !place.status);
+      console.log({event : this.event});
       this.is_billetterie = this.event.is_billetterie;
       this.on_sale = this.event.on_sale;
       this.pole = this.poleService.IDToPole.get(Number(this.event.pole_id))!
@@ -58,7 +62,16 @@ export class DisplayEventComponent implements OnInit {
         } 
     });
 
-    this.acc.getPlacesClaimedByUser()
+    this.acc.getPlacesClaimedByUser();
+  }
+
+  buttonToDisplay() {
+    if (!this.on_sale || !this.is_connected) {
+      return 0
+    } else {
+      console.log({claimed : this.is_already_claimed, out : this.is_already_claimed ? 1 : 2});
+      return this.is_already_claimed ? 2 : 1;
+    }
   }
 
   onClaimePlace(id_billetterie : number) {
@@ -103,6 +116,16 @@ export class DisplayEventComponent implements OnInit {
     .catch(() => {
       this.popup.state$.next([false, "Erreur lors de la réouverture, veuillez contacter l'administrateur immédiatement"]);
     })
+  }
+
+  onGivePlace(place : Place) {
+    this.eventService.givePlaceToUser(place.event_id, place.login)
+    this.onNavigate('/events/display/' + this.event_id.toString());
+  }
+
+  onRetirePlace(place : Place) {
+    this.eventService.retirePlaceToUser(place.event_id, place.login)
+    this.onNavigate('/events/display/' + this.event_id.toString());
   }
 
   onNavigate(endpoint: string) {

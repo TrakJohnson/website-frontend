@@ -23,10 +23,6 @@ export class CreateBilletterieComponent implements OnInit {
 
   file : File;
   resized_filePath : string;
-
-
-
-
   accountSub : Subscription;
   createurid : string;
 

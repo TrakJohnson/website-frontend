@@ -2,8 +2,8 @@
 <app-popup></app-popup>
 <mat-spinner *ngIf="loading"></mat-spinner>
 
-<div style="display: block; min-height: 100vh;">
-    <div [style.display]="loading == false ? 'block' : 'none'" style="min-height: 100vh;">
+<div id="main-view">
+    <div [style.display]="loading == false ? 'block' : 'none'">
     
     <router-outlet ></router-outlet>
 

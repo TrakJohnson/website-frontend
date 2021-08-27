@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
       login: [null, [Validators.required]],
       password: [null, Validators.required],
     });
-    this.popup.loading$.next(false);
   }
 
   onNavigate(endpoint: string) {
