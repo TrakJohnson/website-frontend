@@ -16,7 +16,7 @@ export class PoleService {
     poles$ = new BehaviorSubject<any>({});
 
     getPoles() {
-        return new Promise<any>((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
 
             this.http.get<any>(
             environment.apiUrl + '/api/pole/getPoles')
@@ -26,8 +26,11 @@ export class PoleService {
                   polesData.forEach(pole => {
                     polesTreated[pole.pole_id] = new Pole(pole);
                   });
+
+                  console.log({poleData: polesTreated});
+
                   this.poles$.next(polesTreated);
-                  resolve(polesData);
+                  resolve();
                 },  
                 (error) => {  
                   reject(error);

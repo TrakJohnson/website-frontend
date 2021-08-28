@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Pole } from 'src/app/models/pole.model';
 import { PoleService } from 'src/app/services/poles.service';
 
@@ -19,6 +20,7 @@ export class BilletterieFilterComponent implements OnInit {
   requirements : any = {"on_sale" : [1]};
   loading = false;
   requirementsForm: FormGroup;
+  polesChoicesSub : Subscription;
   polesChoices : any;
 
   ngOnInit() {
@@ -29,11 +31,11 @@ export class BilletterieFilterComponent implements OnInit {
         on_sale: [1],
     });
 
-    this.poleService.getPoles()
-    .then((data : Pole[]) => {
-      console.log({dataPoles : data});
-      this.polesChoices = data.map(pole => {return {value : pole.pole_id, viewValue : pole.name}});
-    })
+    this.polesChoicesSub = this.poleService.poles$.subscribe(
+      (poleData : Pole[]) => {
+        this.polesChoices = poleData.map(pole => {return {value : pole.pole_id, viewValue : pole.name}});
+      }
+    )
   }
 
   emitRequirements() {

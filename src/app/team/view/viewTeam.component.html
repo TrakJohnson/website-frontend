@@ -1,4 +1,4 @@
-<app-display-pole *ngFor = "let pole of poles_infos; index as i" 
-                    [pole] = "poles_infos[i].members" 
-                    [pole_id] = "i + 1" 
-                    [pole_infos] = "poles_infos[i]"></app-display-pole>
+<app-display-pole *ngFor = "let poleID of keys()" 
+                    [pole] = "poles[poleID].members" 
+                    [pole_id] = "poles[poleID].pole_id" 
+                    [pole_infos] = "poles[poleID]"></app-display-pole>

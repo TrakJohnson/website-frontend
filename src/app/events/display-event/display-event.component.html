@@ -31,7 +31,7 @@
         </div>
         <div class = "purchase_container">
 
-            <div *ngIf="on_sale">
+            <div *ngIf="on_sale && isAuth">
                 <div [ngSwitch]="buttonToDisplay()">
                     <button *ngSwitchCase="1" id="purchase_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw;" (click) = "onClaimePlace(event.event_id)"> Réserver un billet </button>
                     <button *ngSwitchCase="2" id="purchase_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onDeClaimePlace(event.event_id)"> Retirer ma réservation </button>
@@ -42,14 +42,15 @@
             </div>
             
 
-            <div *ngIf="!on_sale">
+            <div *ngIf="!on_sale && isAdmin && isAuth">
                 <table style="text-align: center;" class="table table-striped table-bordered" >
                     <thead>
                         <tr scope="col">
-                            <th colspan="3">Places attribuées</th>
+                            <th colspan="4">Places attribuées</th>
                         </tr>
                         <tr scope="col">
                             <th>Login</th>
+                            <th>Cotisant</th>
                             <th>Points</th>
                             <th>Action</th>
                         </tr>
@@ -57,7 +58,8 @@
                     <tbody>
                         <tr *ngFor="let place of placesAccepted">
                             <td scope="row">{{place.login}}</td>
-                            <td>{{place.user_points}}</td>
+                            <td>{{place.contributor ? "Oui" : "Non"}}</td>
+                            <td>{{place.points}}</td>
                             <td><button class="btn btn-outline-danger" (click)="onRetirePlace(place)"> Retirer la place </button></td>
                         </tr>
                     </tbody>
@@ -65,10 +67,11 @@
                 <table style="text-align: center;" class="table table-striped table-bordered">
                     <thead >
                         <tr>
-                            <th colspan="3">Places refusées</th>
+                            <th colspan="4">Places refusées</th>
                         </tr>
                         <tr scope="col">
                             <th>Login</th>
+                            <th>Cotisant</th>
                             <th>Points</th>
                             <th>Action</th>
                         </tr>
@@ -76,7 +79,8 @@
                     <tbody>
                         <tr *ngFor="let place of placesRejected">
                             <td scope="row">{{place.login}}</td>
-                            <td>{{place.user_points}}</td>
+                            <td>{{place.contributor ? "Oui" : "Non"}}</td>
+                            <td>{{place.points}}</td>
                             <td *ngIf="placesAccepted.length < (event.num_places ? event.num_places : 0)"><button class="btn btn-outline-success" (click)="onGivePlace(place)"> Attribuer une place </button></td>
                         </tr>
                     </tbody>
