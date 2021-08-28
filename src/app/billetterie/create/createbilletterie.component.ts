@@ -7,7 +7,7 @@ import { AccountService } from '../../services/account.service';
 import { EventService } from 'src/app/services/events.service';
 import { Subscription } from 'rxjs';
 import { PoleService } from 'src/app/services/poles.service';
-
+import { Pole } from 'src/app/models/pole.model';
 
 
 @Component({
@@ -35,10 +35,21 @@ export class CreateBilletterieComponent implements OnInit {
               private event: EventService,
               private poleService : PoleService) { }
 
-  public poles = this.poleService.PoleForView;
+  polesChoicesSub : Subscription;
+  polesChoices : any;
 
-  ngOnInit() {
+  async ngOnInit() {
     this.popup.loading$.next(true);
+
+    this.polesChoicesSub = this.poleService.poles$.subscribe(
+      (poleData : any) => {
+        this.polesChoices = Object.keys(poleData).map((pole : string) => {return {value : poleData[pole].pole_id, viewValue : poleData[pole].name}});
+        console.log({polesChoices : this.polesChoices});
+        this.polesChoices.push({value: '0', viewValue: 'Autre'});
+      }
+    )
+
+    await this.poleService.getPoles();
 
     this.creatorForm = this.formBuilder.group({
       titre: [null, [Validators.required]],

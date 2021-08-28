@@ -13,10 +13,15 @@ $quickview-width: 95vw;
     
 }
 
-.admin_buttons {
+.admin-buttons {
     display : flex;
-    flex-direction: row;
-    width : 95vw
+    justify-content: space-evenly;
+    width : 95vw;
+}
+
+.admin-buttons button {
+    margin : 1vh;
+    width: 30%;
 }
 
 
@@ -83,7 +88,10 @@ p {
     margin-left : 10vw
 }
 
-
+.purchase-button {
+    width: 100%;
+    margin : 1%;
+}
 
 .small_infos {
     font-size: 1.5vmax;
@@ -97,6 +105,15 @@ p {
 
     #quickview-container, .details_container {
         flex-direction: column;
+    }
+
+    .admin-buttons {
+        width : 95vw;
+        text-align: center;
+    }
+    
+    .admin-buttons button {
+        margin : 1vh;
     }
     
     #thumbnail_container {
@@ -115,10 +132,12 @@ p {
         min-height : 50vw;
         align-items: center;
     }
+
     .purchase_container { 
         margin : auto 0; 
         display : flex; 
         flex-direction : row;
-        align-items : center;}
+        align-items : center;
+    }
     
 }

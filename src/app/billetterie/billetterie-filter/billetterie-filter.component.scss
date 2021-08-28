@@ -20,11 +20,6 @@
     margin: auto 0 auto 0;
 }
 
-.form-input-trimestre {
-    width: 55%;
-    margin: auto;
-}
-
 #container-requirement-form {
     padding: 1em; 
     width: 100%;
@@ -33,4 +28,21 @@
 #container-form-btn {
     display : flex; 
     justify-content: space-around;
+}
+
+@media screen and (max-width: 800px)
+{
+    #requirementsForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 100%;
+    }
+    
+    .form-unit {
+        display: flex; 
+        justify-content: space-around;
+        font-size: 150%;
+        width: 100%;
+    }
 }

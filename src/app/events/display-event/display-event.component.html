@@ -1,11 +1,6 @@
 <div class = "container-fluid" >
 
-    <div *ngIf = "isAdmin" class = "admin-buttons">
-        <button *ngIf = "is_billetterie" id="modifyB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('billetterie/modify/' + event.event_id)"> Modifier cette billetterie </button>
-        <button *ngIf = "!is_billetterie" id="modifyE_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('events/modify/' + event.event_id)"> Modifier cet évènement </button>
-        <button *ngIf = "is_billetterie && on_sale" id="closeB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onCloseBilletterie()"> Retirer de la vente cette billetterie </button>
-        <button *ngIf = "is_billetterie && !on_sale" id="openB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onReSaleBilletterie()"> Remettre en vente cette billetterie </button>
-    </div>
+    
     <div class = "container" id = "quickview-container">
         <div class = "container" id = "thumbnail_container">
             <img id = "event_thumbnail" [src] = "event.thumbnail" alt = "event thumbnail">
@@ -14,6 +9,13 @@
             <h2 id = "title" > {{event.title}} </h2>
             <p id = "description" > {{event.description }} </p>
         </div>
+    </div>
+
+    <div *ngIf = "isAdmin" class = "admin-buttons">
+        <button *ngIf = "is_billetterie" id="modifyB_buttoon" class="btn btn-success"  (click) = "onNavigate('billetterie/modify/' + event.event_id)"> Modifier cette billetterie </button>
+        <button *ngIf = "!is_billetterie" id="modifyE_buttoon" class="btn btn-success" (click) = "onNavigate('events/modify/' + event.event_id)"> Modifier cet évènement </button>
+        <button *ngIf = "is_billetterie && on_sale" id="closeB_buttoon" class="btn btn-success"(click) = "onCloseBilletterie()"> Retirer de la vente cette billetterie </button>
+        <button *ngIf = "is_billetterie && !on_sale" id="openB_buttoon" class="btn btn-success" (click) = "onReSaleBilletterie()"> Remettre en vente cette billetterie </button>
     </div>
     
     <!-- Pour les billetteries -->
@@ -29,18 +31,17 @@
             <p id = "prixC" class = "details" > Prix cotisants : {{event.cost_contributor}} €</p>
             <p id = "prixNC" class = "details"> Prix non cotisants : {{event.cost_non_contributor}} €</p>
             <p class = "small_infos"> {{event.on_sale? "Fermeture" : "Ouverture"}} prévue de la billetterie: {{(event.on_sale ? event.date_close : event.date_open) | date:'EEEE d MMMM y HH:mm'}} </p>
+            <div *ngIf="on_sale">
+                <div [ngSwitch]="buttonToDisplay()">
+                    <button *ngSwitchCase="1" class="btn btn-success purchase-button" (click) = "onClaimePlace(event.event_id, 1)"> Réserver un billet </button>
+                    <button *ngSwitchCase="1" class="btn btn-success purchase-button" (click) = "onClaimePlace(event.event_id, 2)"> Réserver deux billets </button>
+                    <button *ngSwitchCase="2" class="btn btn-success purchase-button" (click) = "onDeClaimePlace(event.event_id)"> Retirer ma réservation </button>
+                </div>
+            </div>
         </div>
         <div class = "purchase_container">
 
-            <div *ngIf="on_sale">
-                <div [ngSwitch]="buttonToDisplay()">
-                    <button *ngSwitchCase="1" id="purchase_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw;" (click) = "onClaimePlace(event.event_id, 1)"> Réserver un billet </button>
-                    <button *ngSwitchCase="1" id="purchase_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw;" (click) = "onClaimePlace(event.event_id, 2)"> Réserver deux billets </button>
-                    <button *ngSwitchCase="2" id="purchase_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onDeClaimePlace(event.event_id)"> Retirer ma réservation </button>
-                </div>
-                
-                <p class = "small_infos"> fermeture prévue avant : {{event.date_close | date:'EEEE d MMMM y HH:mm'}} </p>
-            </div>
+            
             
 
             <div *ngIf="!on_sale && isAdmin && isAuth">

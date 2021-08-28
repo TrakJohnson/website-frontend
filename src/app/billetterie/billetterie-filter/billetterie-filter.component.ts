@@ -23,7 +23,7 @@ export class BilletterieFilterComponent implements OnInit {
   polesChoicesSub : Subscription;
   polesChoices : any;
 
-  ngOnInit() {
+  async ngOnInit() {
     this.emitRequirements();
     this.requirementsForm = this.formBuilder.group({
         pole_id: [null],
@@ -32,10 +32,13 @@ export class BilletterieFilterComponent implements OnInit {
     });
 
     this.polesChoicesSub = this.poleService.poles$.subscribe(
-      (poleData : Pole[]) => {
-        this.polesChoices = poleData.map(pole => {return {value : pole.pole_id, viewValue : pole.name}});
+      (poleData : any) => {
+        this.polesChoices = Object.keys(poleData).map((pole : string) => {return {value : poleData[pole].pole_id, viewValue : poleData[pole].name}});
       }
     )
+
+    await this.poleService.getPoles();
+
   }
 
   emitRequirements() {
