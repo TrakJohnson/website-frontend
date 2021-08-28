@@ -22,15 +22,15 @@ export class ViewTeamComponent implements OnInit {
   ngOnInit(): void {
     for (let index = 0; index < this.number_of_poles; index ++) {this.poles.push([])};
 
-    this.team.getTeamAllMembers()
-    .then((data) => {
-      for(let member of data) {
-        this.poles[member.pole_id - 1].push(member);
-      }
-    })
-    .catch((error) => {
-      this.popup.state$.next([false, error.message])
-    })
+    // this.team.getTeamAllMembers()
+    // .then((data) => {
+    //   for(let member of data) {
+    //     this.poles[member.pole_id - 1].push(member);
+    //   }
+    // })
+    // .catch((error) => {
+    //   this.popup.state$.next([false, error.message])
+    // })
     
     
 
