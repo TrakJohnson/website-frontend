@@ -6,7 +6,7 @@ $quickview-width: 95vw;
     margin: 3vh auto 4vh auto;
     padding : 0;
     max-width: $quickview-width;
-    height : $quickview-height;
+    min-height : $quickview-height;
 
     display : flex;
     flex-direction : column;

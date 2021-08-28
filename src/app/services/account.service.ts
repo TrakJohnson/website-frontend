@@ -57,11 +57,11 @@ export class AccountService {
         });
     }
 
-    claimePlace(id_billetterie : number) {
+    claimePlace(id_billetterie : number, size : number) {
         return new Promise<void>((resolve, reject) => {
             this.http.post(
             environment.apiUrl +'/api/user/claimePlace',
-            {id_billetterie : id_billetterie, login : this.compte$.value?.login})
+            {id_billetterie : id_billetterie, size : size, login : this.compte$.value?.login})
             .subscribe(
                 () => {
                     resolve();

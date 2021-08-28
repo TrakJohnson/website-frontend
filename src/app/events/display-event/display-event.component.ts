@@ -66,6 +66,7 @@ export class DisplayEventComponent implements OnInit {
   }
 
   buttonToDisplay() {
+    console.log({one : this.on_sale, two : this.on_sale});
     if (!this.on_sale || !this.isAuth) {
       return 0
     } else {
@@ -74,8 +75,8 @@ export class DisplayEventComponent implements OnInit {
     }
   }
 
-  onClaimePlace(id_billetterie : number) {
-    this.acc.claimePlace(id_billetterie)
+  onClaimePlace(id_billetterie : number, size : number) {
+    this.acc.claimePlace(id_billetterie, size)
     .then(() => {
       this.popup.state$.next([true, "Demande enregistrée"]);
       this.onNavigate('/events/display/' + this.event_id.toString());
