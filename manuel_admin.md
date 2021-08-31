@@ -183,6 +183,15 @@ Comme déjà énoncé, la mise en vente et fin de vente des billetteries se fait
 
 ### 6. Gestion des places d'une billetterie
 
+Une fois que l'utilisateur a pris sa place, il la voit apparaître dans l'onglet compte accessible depuis le composant en à droite de la bannière. Celui-ci affiche ses places et donne leur statut : refusée, en attente de traitement ou acceptée. Ce choix vient plus ou moins directement de l'administrateur.
+
+Après la fermeture d'une billetterie (voir III. 5.) un onglet apparait en bas à droite de la page détails de la billetterie et montre le résultat du semi-PAPS (qui fonctionne sur un classement par point puis par PAPS). L'administrateur peut alors donner ou refuser la place aux personnes, le but principal étant de vérifier à ce qu'il n'y ait aps de problème. L'utilisateur sait alors qu'il a été pris depuis son compte. Afin d'être payé il est pour l'instant du devoir de l'administrateur de se débrouiller, par exemple en envoyant un mail aux personnes prises une fois la séléction terminée, afin de s'assurer qu'elles sont en connaissance de la validation de leur place et leur donner les indications de paiement.
+
+#### Comming Soon :
+* Acceptation du billet automatiquement envoyée par mail à l'utilisateur
+* Paiement en ligne
+* Amélioration de l'interface de gestion
+
 ________________
 
 ## IV. Calendrier
