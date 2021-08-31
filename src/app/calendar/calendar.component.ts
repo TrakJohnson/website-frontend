@@ -43,19 +43,14 @@ export class CalendarComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
-
   viewDate: Date = new Date();
-
-
-
   refresh: Subject<any> = new Subject();
 
- 
+  polesSub : Subscription;
+  poles : any = {};
   events : CalendarEvent[] = [];
-
   isAdmin : boolean |undefined = false;
   accountSub : Subscription;
-
   activeDayIsOpen: boolean = false;
 
   constructor(private router : Router,
@@ -65,33 +60,33 @@ export class CalendarComponent implements OnInit {
               private acc : AccountService) {}
 
 
-  ngOnInit() {
+  async ngOnInit() {
     this.popup.loading$.next(true);
 
-  this.accountSub = this.acc.compte$.subscribe(
-    (status) => {
-      this.isAdmin = status?.admin;
+    this.polesSub = this.poleService.poles$.subscribe(
+      dataPoles => {
+        this.poles = dataPoles;
+      }
+    );
+
+    await this.poleService.getPoles();
+
+    this.accountSub = this.acc.compte$.subscribe(
+      (status) => {
+        this.isAdmin = status?.admin;
     })
 
     this.eventService.getEventsForCalendar()
     .then((data) => {
-      
-      
-
       data.forEach((event)=> {
-
-        var color = this.poleService.PolesColors.get(this.poleService.IDToPole.get(event.pole_id)!)!
-
+        var color = this.poles[event.pole_id].color;
         this.events.push({
           start : new Date(event.dateEvent),
           end : event.dateEvent_end ? new Date(event.dateEvent_end) : addHours(new Date(event.dateEvent), 1),
           title : event.title,
-          
           color: {primary : color, secondary : "#a4cdf4"},
           id : event.event_id,
-
         });
-
       })
       
       this.refresh.next();

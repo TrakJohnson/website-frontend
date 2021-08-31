@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content : space-between;
 
-  background-color: lightgrey;
+  background-color: whitesmoke;
   min-height : 8vh;
 }
 
@@ -51,17 +51,15 @@ a {
 
 
 #profil_pic {
-  height : 6vh;
-  width : 6vh;
-  margin : 1vh;
-  padding : 0;
+  height: 10vh;
+  margin: 1vh;
+  padding: 0;
+  aspect-ratio: 0.9;
 }
 
 
 @media only screen and (max-width: 800px) {
-  #profil_pic {
-    display : none;
-  }
+
   #signin, #view-account, #signout {
     text-decoration: underline;
     font-size : 2vmax;
@@ -69,6 +67,10 @@ a {
 
   .container-fluid {
     justify-content: space-evenly;
+  }
+
+  .column {
+    align-items: center;
   }
 
   #welcome {display :none}

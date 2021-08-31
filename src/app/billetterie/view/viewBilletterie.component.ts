@@ -1,12 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router'
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
 import { EventService } from 'src/app/services/events.service';
-import { Account } from 'src/app/models/account.model';
 import { Event } from 'src/app/models/event.model'
 import { PopupService } from 'src/app/services/popup.service';
-import { PoleService } from 'src/app/services/poles.service';
 
 @Component({
   selector: 'app-viewBilletterie',

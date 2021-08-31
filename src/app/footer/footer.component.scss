@@ -23,11 +23,13 @@ html, body {
 }
 
 footer {
-  width: 100%;
   display: inline-block;
-  margin: 2em 0;
   height: 70px;
   background-color: hsl(216, 97%, 51%);
+  position: relative; 
+  bottom: 0;    
+  width: 100%;
+  margin-top: 5em;
   .sponsor-container {
     width: 50%;
     display : flex;
@@ -67,6 +69,9 @@ footer {
          background-color: #222;
          @include transition(all, .3s);
        }
+       @media (max-width: 600px) {
+        width: 100%;
+      }
     }
   }
 }

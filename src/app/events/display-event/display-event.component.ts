@@ -28,7 +28,7 @@ export class DisplayEventComponent implements OnInit {
   isAdmin : boolean | undefined = false;
   placesAccepted : Place[] = [];
   placesRejected : Place[] = [];
-  is_connected : boolean | undefined = false;
+  isAuth : boolean | undefined = false;
   is_already_claimed : boolean  | undefined = false;
   accountSub : Subscription;
   on_sale : boolean;
@@ -57,16 +57,17 @@ export class DisplayEventComponent implements OnInit {
       (status) => {
         if (status) {
           this.isAdmin = status.admin;
-          this.is_connected = status.login != "";
+          this.isAuth = status.login != "";
           this.is_already_claimed = !status?.placesClaimed.every(place => {return place.event_id != this.event_id});
         } 
     });
 
-    this.acc.getPlacesClaimedByUser();
+    this.acc.getPlacesClaimedByUser();  
   }
 
   buttonToDisplay() {
-    if (!this.on_sale || !this.is_connected) {
+    console.log({one : this.on_sale, two : this.on_sale});
+    if (!this.on_sale || !this.isAuth) {
       return 0
     } else {
       console.log({claimed : this.is_already_claimed, out : this.is_already_claimed ? 1 : 2});
@@ -74,8 +75,8 @@ export class DisplayEventComponent implements OnInit {
     }
   }
 
-  onClaimePlace(id_billetterie : number) {
-    this.acc.claimePlace(id_billetterie)
+  onClaimePlace(id_billetterie : number, size : number) {
+    this.acc.claimePlace(id_billetterie, size)
     .then(() => {
       this.popup.state$.next([true, "Demande enregistrée"]);
       this.onNavigate('/events/display/' + this.event_id.toString());

@@ -38,7 +38,7 @@
     <div class="form-group">
       <label for="Pole">Pole</label>
       <select formControlName="idPole" style = "width: 40%" class="form-control" >
-        <option *ngFor="let pole of poles" [ngValue]="pole.value">
+        <option *ngFor="let pole of polesChoices" [ngValue]="pole.value">
           {{ pole.viewValue }}
         </option>
     </select> 

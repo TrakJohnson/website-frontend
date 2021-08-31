@@ -1,13 +1,6 @@
 <div class = "container-fluid" >
 
-    <div *ngIf = "isAdmin" class = "admin-buttons">
-        <button *ngIf = "is_billetterie" id="modifyB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('billetterie/modify/' + event.event_id)"> Modifier cette billetterie </button>
-        <button *ngIf = "is_billetterie && on_sale" id="closeB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onCloseBilletterie()"> Retirer de la vente cette billetterie </button>
-        <button *ngIf = "is_billetterie && !on_sale" id="openB_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onReSaleBilletterie()"> Remettre en vente cette billetterie </button>
-
-        <button *ngIf = "!is_billetterie" id="modifyE_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onNavigate('events/modify/' + event.event_id)"> Modifier cet évènement </button>
-
-    </div>
+    
     <div class = "container" id = "quickview-container">
         <div class = "container" id = "thumbnail_container">
             <img id = "event_thumbnail" [src] = "event.thumbnail" alt = "event thumbnail">
@@ -17,47 +10,60 @@
             <p id = "description" > {{event.description }} </p>
         </div>
     </div>
+
+    <div *ngIf = "isAdmin" class = "admin-buttons">
+        <button *ngIf = "is_billetterie" id="modifyB_buttoon" class="btn btn-success"  (click) = "onNavigate('billetterie/modify/' + event.event_id)"> Modifier cette billetterie </button>
+        <button *ngIf = "!is_billetterie" id="modifyE_buttoon" class="btn btn-success" (click) = "onNavigate('events/modify/' + event.event_id)"> Modifier cet évènement </button>
+        <button *ngIf = "is_billetterie && on_sale" id="closeB_buttoon" class="btn btn-success"(click) = "onCloseBilletterie()"> Retirer de la vente cette billetterie </button>
+        <button *ngIf = "is_billetterie && !on_sale" id="openB_buttoon" class="btn btn-success" (click) = "onReSaleBilletterie()"> Remettre en vente cette billetterie </button>
+    </div>
     
     <!-- Pour les billetteries -->
     <div *ngIf = "is_billetterie" class = "details_container" id = "details_billetterie">
         <div class = "infos-container" >
-            <p id = "pole" class = "detals" > Proposé par : {{pole}} </p>
+            <p class = "details" > Cet évènement {{event.on_sale ? "est en vente" : "n'est plus en vente"}} </p>
+            <p id = "pole" class = "details" > Proposé par : {{pole}} </p>
             <p id = "lieu" class = "details" > Lieu de l'évènement : {{event.event_place}} </p>
             <p id = "date" class = "details" > Date de l'évènement : {{(event.dateEvent | date:'EEEE d MMMM y HH:mm')}} (heure de Paris) </p>
             <p *ngIf = "event.dateEvent_end" id = "date_end" class = "details" > Date de la fin de l'évènement: {{(event.dateEvent_end | date:'EEEE d MMMM y HH:mm')}} </p>
             <p id = "num_places" class = "details"> Nombre de places displonibles :  {{event.num_places}}</p>
+            <p id = "prixC" class = "details" > Points de l'évènement : {{event.points}} </p>
             <p id = "prixC" class = "details" > Prix cotisants : {{event.cost_contributor}} €</p>
             <p id = "prixNC" class = "details"> Prix non cotisants : {{event.cost_non_contributor}} €</p>
+            <p class = "small_infos"> {{event.on_sale? "Fermeture" : "Ouverture"}} prévue de la billetterie: {{(event.on_sale ? event.date_close : event.date_open) | date:'EEEE d MMMM y HH:mm'}} </p>
+            <div *ngIf="on_sale">
+                <div [ngSwitch]="buttonToDisplay()">
+                    <button *ngSwitchCase="1" class="btn btn-success purchase-button" (click) = "onClaimePlace(event.event_id, 1)"> Réserver un billet </button>
+                    <button *ngSwitchCase="1" class="btn btn-success purchase-button" (click) = "onClaimePlace(event.event_id, 2)"> Réserver deux billets </button>
+                    <button *ngSwitchCase="2" class="btn btn-success purchase-button" (click) = "onDeClaimePlace(event.event_id)"> Retirer ma réservation </button>
+                </div>
+            </div>
         </div>
         <div class = "purchase_container">
 
-            <div *ngIf="on_sale">
-                <div [ngSwitch]="buttonToDisplay()">
-                    <button *ngSwitchCase="1" id="purchase_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw;" (click) = "onClaimePlace(event.event_id)"> Réserver un billet </button>
-                    <button *ngSwitchCase="2" id="purchase_buttoon" class="btn btn-success" style="margin : 1%; width : 20vw" (click) = "onDeClaimePlace(event.event_id)"> Retirer ma réservation </button>
-                </div>
-                
-                <p class = "small_infos"> ouverture prévue : {{event.date_open | date:'EEEE d MMMM y HH:mm'}} </p>
-                <p class = "small_infos"> fermeture prévue avant : {{event.date_close | date:'EEEE d MMMM y HH:mm'}} </p>
-            </div>
+            
             
 
-            <div *ngIf="!on_sale">
+            <div *ngIf="!on_sale && isAdmin && isAuth">
                 <table style="text-align: center;" class="table table-striped table-bordered" >
                     <thead>
                         <tr scope="col">
-                            <th colspan="3">Places attribuées</th>
+                            <th colspan="4">Places attribuées</th>
                         </tr>
                         <tr scope="col">
                             <th>Login</th>
-                            <th>Points</th>
+                            <th>Cotisant</th>
+                            <th>Points sans place</th>
+                            <th>Points avec place</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let place of placesAccepted">
                             <td scope="row">{{place.login}}</td>
-                            <td>{{place.user_points}}</td>
+                            <td>{{place.contributor ? "Oui" : "Non"}}</td>
+                            <td>{{(place.points - (event.points ? event.points : 0) - (place.size - 1))}}</td>
+                            <td>{{place.points}}</td>
                             <td><button class="btn btn-outline-danger" (click)="onRetirePlace(place)"> Retirer la place </button></td>
                         </tr>
                     </tbody>
@@ -65,10 +71,11 @@
                 <table style="text-align: center;" class="table table-striped table-bordered">
                     <thead >
                         <tr>
-                            <th colspan="3">Places refusées</th>
+                            <th colspan="4">Places refusées</th>
                         </tr>
                         <tr scope="col">
                             <th>Login</th>
+                            <th>Cotisant</th>
                             <th>Points</th>
                             <th>Action</th>
                         </tr>
@@ -76,7 +83,8 @@
                     <tbody>
                         <tr *ngFor="let place of placesRejected">
                             <td scope="row">{{place.login}}</td>
-                            <td>{{place.user_points}}</td>
+                            <td>{{place.contributor ? "Oui" : "Non"}}</td>
+                            <td>{{place.points}}</td>
                             <td *ngIf="placesAccepted.length < (event.num_places ? event.num_places : 0)"><button class="btn btn-outline-success" (click)="onGivePlace(place)"> Attribuer une place </button></td>
                         </tr>
                     </tbody>

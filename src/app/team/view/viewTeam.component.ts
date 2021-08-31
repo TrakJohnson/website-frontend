@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Pole } from 'src/app/models/pole.model';
 import { PoleService } from 'src/app/services/poles.service';
 import { PopupService } from 'src/app/services/popup.service';
@@ -15,34 +16,23 @@ export class ViewTeamComponent implements OnInit {
               private popup : PopupService,
               private poleService : PoleService,) { }
 
-  poles_infos : any;
-  number_of_poles = 18; // provisoire : permet de set la bonne taille pour le tableau regrupant les memebres par poles
-  poles = new Array();
+  polesSub : Subscription;
+  poles : any = {};
 
   ngOnInit(): void {
-    for (let index = 0; index < this.number_of_poles; index ++) {this.poles.push([])};
 
-    this.team.getTeamAllMembers()
-    .then((data) => {
-      for(let member of data) {
-        this.poles[member.pole_id - 1].push(member);
+    this.polesSub = this.poleService.poles$.subscribe(
+      (poleData) => {
+        console.log({poles: poleData});
+        this.poles = poleData;
       }
-    })
-    .catch((error) => {
-      this.popup.state$.next([false, error.message])
-    })
-    
-    
+    )
+    this.poleService.getPoles();
+    this.popup.loading$.next(false);
+  }
 
-    this.poleService.getPoles()
-    .then((data :any) => {
-      console.log({dataPoles : data});
-      this.poles_infos = data;
-      this.popup.loading$.next(false);
-    })
-    .catch((error) => {
-      this.popup.state$.next([false, error.message]);
-    })
+  keys() : Array<string> {
+    return Object.keys(this.poles);
   }
 
 }
