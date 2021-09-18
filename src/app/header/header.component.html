@@ -47,8 +47,9 @@
                 <a class="nav-item nav-link" (click)="onNavigate('team/view', true)">L'équipe</a>
                 <a class="nav-item nav-link" (click)="onNavigate('masterclass', false)">Masterclass</a>
                 <a *ngIf = "!isAuth" class = "nav-item nav-link" id = "adminLink" (click) = "onNavigate('login', false)"> Administration</a>
-   
+                <a *ngIf = "isAuth && account.admin" class = "nav-item nav-link" id = "adminLink" (click) = "onNavigate('admin', false)"> Gestion</a>
+                
             </div>
         </div>
-    </nav>
+    </nav>  
 </header>

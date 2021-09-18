@@ -1,0 +1,16 @@
+
+<h1> Espace gestion </h1>
+
+<p> Cet espace permet différentes fonctionnalités de gestion de l'association, il a pour but d'être modifié selon les besoins des différents mandats BDA </p>
+
+<h1> Mettre à jour les cotisations </h1>
+
+<p> A partir d'un fichier Excel comprenant les bons champs, le site mettra à jour les status de cotisation de tous les comptes créés qui figurent dans le fichier. 
+    <br> Cela ne dispense pas d'aller checker dans la base de données ! (<a href="https://phpmyadmin.alwaysdata.com/" target="_blank">https://phpmyadmin.alwaysdata.com/</a>) 
+    <br> Les champs requis sont sensible à la casse, il y en a 3 : </p>
+    <ul>
+        <li>Nom</li>
+        <li>Promotion (format : P + N° promo, ex P21)</li>
+        <li>Cotisant BDA (valeurs acceptées : <i>Oui / Non</i>)</li>
+    </ul>
+<input type="file" (change) = "setContributorsBasedOnExcel($event)"/>

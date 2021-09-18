@@ -17,15 +17,6 @@ export class ChangeInfosComponent implements OnInit {
 
   changeForm: FormGroup;
 
-
-  public prenom : string;
-  public nom : string;
-  public email :string;
-  public password : string;
-  public promotion :string;
-
-
-
   public promotions = [
     {value: 'P17', viewValue: 'P17'},
     {value: 'P18', viewValue: 'P18'},
@@ -61,7 +52,7 @@ export class ChangeInfosComponent implements OnInit {
 
   public acceptCharte = false;
   public login : string;
-  
+  public promotion : string;
 
   token : string;
 
@@ -84,8 +75,8 @@ export class ChangeInfosComponent implements OnInit {
       email: [null, [Validators.email]],
       emailBis: [null, [Validators.email]],
       promotion : [null,],
-      password : [null, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}')]],
-      passwordBis : [null, [Validators.required],],
+      password : [null, [Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}')]],
+      passwordBis : [null, ],
     });
     
     this.compte = this.account.compte$.value;
@@ -93,11 +84,8 @@ export class ChangeInfosComponent implements OnInit {
 
     this.accountSub = this.account.compte$.subscribe(
       (compte) => {
-        this.compte = compte
-        this.prenom = compte!.prenom;
-        this.nom = compte!.nom;
-        this.email = compte!.email;
         this.promotion = compte!.promo;
+        this.login = compte!.login;
       }
     )
 
@@ -109,26 +97,30 @@ export class ChangeInfosComponent implements OnInit {
   }
 
   onChangeInfos() {
+    var newInfos : any = {};
     this.popup.loading$.next(true);
-    this.prenom = this.changeForm.get('prenom')!.value;
-    this.nom = this.changeForm.get('nom')!.value;
+    newInfos.prenom = this.changeForm.get('prenom')!.value;
+    newInfos.nom = this.changeForm.get('nom')!.value;
 
-    this.email = this.changeForm.get('email')!.value;
+    newInfos.email = this.changeForm.get('email')!.value;
     const emailBis = this.changeForm.get('emailBis')!.value;
-    this.password = this.changeForm.get('password')!.value;
-    const passwordBis = this.changeForm.get('passwordBis')!.value;
-    if (this.email != emailBis) { // Les emails ne correspondent pas, on renvoie une erreur
+    if (this.changeForm.get('password')) {
+      newInfos.password = this.changeForm.get('password')!.value;
+      const passwordBis = this.changeForm.get('passwordBis')!.value;
+      if (newInfos.password != passwordBis) {
+        this.popup.loading$.next(false);
+        this.popup.state$.next([false, "Les mots de passe ne correspondent pas !"]);
+      }
+    }
+
+    if (newInfos.email != emailBis) { // Les emails ne correspondent pas, on renvoie une erreur
       this.popup.loading$.next(false);
       this.popup.state$.next([false, "Les emails ne correspondent pas !"]);
     } 
-    else if (this.password != passwordBis) {
-      this.popup.loading$.next(false);
-      this.popup.state$.next([false, "Les mots de passe ne correspondent pas !"]);
-    }
     
     else {
-      this.account.modifyAccount(this.token, this.prenom, this.nom, this.password, this.email, this.promotion)
-        .then((response) => {
+      this.account.modifyAccount(this.login, newInfos, true)
+        .then(() => {
           this.popup.loading$.next(false);
           this.popup.state$.next([true, "Compte modifié !"]);
           this.router.navigate(['/default']); 

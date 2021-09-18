@@ -96,7 +96,7 @@ export class FormComponent implements OnInit {
     this.popup.loading$.next(true);
     const prenom = this.registerForm.get('prenom')!.value;
     const nom = this.registerForm.get('nom')!.value;
-    var nom_processed = nom.toLowerCase().replaceAll('\'', "").replaceAll(" ", "_").substring(0, 8);
+    var nom_processed = nom.toLowerCase().replaceAll('\'', "").replaceAll(" ", "_").substring(0, 8);  
     const promotion = this.registerForm.get('promotion')!.value;
 
 

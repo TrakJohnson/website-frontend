@@ -63,6 +63,7 @@ import { CreateEventComponent } from './events/create/createEvent.component';
 import { ModifyEventComponent } from './events/modify/modifyEvent.component';
 import { DeleteEventComponent } from './events/delete/deleteEvent.component';
 import { BilletterieFilterComponent } from './billetterie/billetterie-filter/billetterie-filter.component';
+import { AdminManagementComponent } from './admin-management/admin-management.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -103,6 +104,7 @@ registerLocaleData(localeFr, 'fr');
     ModifyEventComponent,
     DeleteEventComponent,
     BilletterieFilterComponent,
+    AdminManagementComponent,
   ],
     
   imports: [

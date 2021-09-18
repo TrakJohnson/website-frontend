@@ -120,12 +120,12 @@ export class AccountService {
         });
     }
 
-    modifyAccount(token: string, prenom : string, nom : string, newPassword: string, email : string, promo : string) {
-        var newPassword_encr =  CryptoJS.SHA3(newPassword, { outputLength: 512 }).toString(CryptoJS.enc.Hex);
+    modifyAccount(login : string, newInfos : any, sendEmail : boolean) {
+        if (newInfos.password) newInfos.password = CryptoJS.SHA3(newInfos.password, { outputLength: 512 }).toString(CryptoJS.enc.Hex)
         return new Promise<void>((resolve, reject) => {
             this.http.post(
             environment.apiUrl +'/api/user/changeInfos',
-            {token : token, prenom : prenom, nom : nom, password : newPassword_encr, email : email, promo : promo})
+            {login : login, newInfos : newInfos, sendEmail : sendEmail})
             .subscribe(
                 () => {
                     resolve();

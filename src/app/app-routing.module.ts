@@ -32,6 +32,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CreateEventComponent } from './events/create/createEvent.component';
 import { ModifyEventComponent } from './events/modify/modifyEvent.component';
 import { DeleteEventComponent } from './events/delete/deleteEvent.component';
+import { AdminManagementComponent } from './admin-management/admin-management.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
     {path : 'verify-email/:token', component: VerifyEmailComponent},
     {path: '**', redirectTo: 'form'},
   ]},
+  { path : 'admin', component : AdminManagementComponent, canActivate : [AuthGuardAdmin]},
   { path : 'account', component : AccountComponent,
 children : [
   {path : 'view', component : AccountViewComponent, canActivate: [AuthGuard]},

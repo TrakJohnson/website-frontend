@@ -59,7 +59,6 @@ export class AccountViewComponent implements OnInit {
   }
 
   onNavigate(endpoint: string) {
-    this.popup.loading$.next(true);
     this.router.navigate([endpoint]);
   }
 
