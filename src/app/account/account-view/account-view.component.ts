@@ -14,7 +14,7 @@ import { PopupService } from 'src/app/services/popup.service';
 })
 export class AccountViewComponent implements OnInit {
 
-  constructor(private accountService : AccountService, 
+  constructor(private accountService : AccountService,
               private popup : PopupService,
               private event : EventService,
               private router : Router) { }
@@ -36,7 +36,6 @@ export class AccountViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.accountSub = this.accountService.compte$.subscribe(
       async (dataAccount) => {
         this.account = dataAccount;
@@ -47,18 +46,19 @@ export class AccountViewComponent implements OnInit {
               if (this.account?.placesClaimed[i]) {
                 const place = this.account?.placesClaimed[i];
                 this.eventsWithPlaceClaimed[place.event_id] = await this.event.getOneEvent(place.event_id);
-                console.log({newEv : this.eventsWithPlaceClaimed[place.event_id]});   
+                console.log({newEv : this.eventsWithPlaceClaimed[place.event_id]});
               }
             }
           }
         };
         await getPlaces();
-        console.log({here : this.eventsWithPlaceClaimed});          
+        console.log({here : this.eventsWithPlaceClaimed});
         this.popup.loading$.next(false);
     });
   }
 
   onNavigate(endpoint: string) {
+    console.log('navigated to ' + endpoint)
     this.router.navigate([endpoint]);
   }
 

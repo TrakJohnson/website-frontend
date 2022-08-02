@@ -21,6 +21,7 @@ Les cours disponibles sont :
 * 9 places (10 places au second semestre)
 * Horaires : Jeudi de 15h à 18h / 20 minutes par personne (L312 - École des Mines)
 * Professeure : Nausicaa Passaris
+
 ### Dessin
 * 10 places
 * Horaires : Mercredi de 17h30 à 19h30 (L213 - École des Mines)

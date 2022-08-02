@@ -1,20 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-    margin :0;
+@import 'variables';
+
+// spinner load
+mat-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-mat-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+mat-spinner circle {
+  stroke-width: 5% !important;
+  stroke: $header-text-color !important;
+}
 
 
-@import '~bootstrap/dist/css/bootstrap.min.css'; 
-// @import "~/font-awesome/css/font-awesome.css"; 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import '~bootstrap/dist/css/bootstrap.min.css';
+// @import "~/font-awesome/css/font-awesome.css";
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
 
 
 /* angular-cli file: src/styles.css */

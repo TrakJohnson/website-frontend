@@ -1,18 +1,16 @@
-<div *ngIf = "isAdmin" class = "admin_options_container" >
-
-    <button class="btn btn-success createB_button" style="margin : 1%;" (click) = "onNavigate('billetterie/create')"> Créer une nouvelle billetterie </button>
-
+<div *ngIf="isAdmin" class="admin_options_container">
+  <button class="btn btn-success createB_button" style="margin : 1%;" (click)="onNavigate('billetterie/create')">
+    Créer une nouvelle billetterie
+  </button>
 </div>
 
-<div  *ngIf = "isBilletterie" class = "container-fluid" id="events-container" >
-    <app-billetterie-filter (requirementsToSend)='changeRequirements($event)'> </app-billetterie-filter>
-    <app-event-quickview *ngFor = "let event of this.eventService.filterEvents(eventsToDisplay, requirements)" [event] = "event"> </app-event-quickview>
-
+<div *ngIf="isBilletterie" class="container-fluid" id="events-container">
+  <app-billetterie-filter (requirementsToSend)='changeRequirements($event)'></app-billetterie-filter>
+  <app-event-quickview *ngFor="let event of this.eventService.filterEvents(eventsToDisplay, requirements)"
+                       [event]="event"></app-event-quickview>
 </div>
 
 
-<div  *ngIf = "!isBilletterie" class = "container" id="noevents-container" >
-
-    <h2 class = "no_event_message"> Il n'y a pas de billetterie à venir. </h2>
-
+<div *ngIf="!isBilletterie" class="container" id="noevents-container">
+  <h2 class="no_event_message"> Il n'y a pas de billetterie à venir. </h2>
 </div>

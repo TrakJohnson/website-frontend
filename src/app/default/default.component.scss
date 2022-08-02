@@ -1,65 +1,60 @@
-carousel {
-    display : flex;
-    // height : 80vmin;
-    margin : 2vmin 0;
+@import 'variables';
+
+a {
+  display: block;
+  height: 100%;
 }
 
-.event_title {
-    position :absolute;
-    z-index : 99;
+$container-height: calc(100vh - #{$header-height});
+.event-container {
+  height: $container-height;
+  overflow: hidden;
 }
 
-figure {
-    padding : 0;
-}
-.title {
-    font-size : 5vmin;
-    line-height: 4vmin;
-    font-weight: 300;
+#next-event {
+  position: relative;
+  height: 100%;
 }
 
-
-figcaption{
-    position: absolute;
-    bottom: 2vmin;
-    height: 15vmin;
-    left: 5.8vmin;
-    right : 5.8vmin;
-    background: rgba(239, 239, 239, 0.6);
-    -webkit-transition: all 1s ease;
-    -ms-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
+$max-img-width: 100vw;
+#next-event img {
+  min-width: 100vw;
+  min-height: $container-height;
+  //max-width: $max-img-width;
+  overflow-x: hidden;
 }
 
-figcaption p {
-    margin : .5vh 1vh;
+#next-event > div {
+  background: $transparent-pink;
+  color: white;
+  text-decoration: none;
+  position: absolute;
+  padding: 20px;
+  top: 30px;
+  left: 30px;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
 }
 
-figure:hover figcaption{
-        height: 25vmin;
-    }
-
-.details {
-    opacity : 0;
-    -webkit-transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    -ms-transition: opacity 1s ease-in-out;
-    -o-transition: opacity 1s ease-in-out;
-    transition: opacity 1s ease-in-out;
+#next-event .title {
+  font-weight: 600;
+  font-size: 200%;
+  margin-bottom: 10px;
+  line-height: 30px;
 }
 
-figure:hover .details {
-    opacity : 1
+#next-event .details {
+  text-align: justify;
 }
 
-
-#noEventContainer {
-    display : flex;
-    justify-content: space-around;
+#no-event-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background: #222222;
 }
+
 #noEvent {
-    width : 70%;
+  width: 70%;
 }
-
-a{cursor : pointer}

@@ -1,79 +1,84 @@
+@import 'variables';
 
-.container-fluid { 
-  display : flex;
+// Not connected
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-11 {
+  outline: none;
+  width: 180px;
+  height: 70px;
+  padding: 10px 25px;
+  border: 3px solid $header-text-color;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-11:hover {
+  background: $header-text-color;
+  color: #fff;
+}
+
+.btn-11:before {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+.btn-11:active {
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+  -4px -4px 6px 0 rgba(116, 125, 136, .2),
+  inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+  inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+// connected
+
+.connected-user-info {
+  display: flex;
   flex-direction: row;
-  justify-content : space-between;
 
-  background-color: whitesmoke;
-  min-height : 8vh;
+  $img-border: 3px;
+  $img-padding: 5px;
+
+  // image de profil
+  img {
+    border: $img-border solid $header-text-color;
+    height: calc(#{$logo-height} - 2 * (#{$img-border} + #{$img-padding}));
+  }
 }
 
-.column {
-  display : flex;
+// info utilisateur et liens
+.connected-user-info > div {
+  display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items:flex-end;
-}
-
-p { 
-  margin : 0 1vmin 0vmin 0;
-}
-
-#welcome {font-size : 2.3vmin}
-
-a {
-    color: black;  
-    &:hover {
-      opacity: 0.6;
-      cursor: pointer;
-    }
-  }
-  
-.active {
-  background-color: #6eb5ff;
-  color: white;
-  padding: 0.3rem 0.5rem;
-}
-  
-#login {
-  font-size : 2.5vmin;
-}
-
-#signin, #view-account {
-  text-decoration: underline;
-  font-size : 1.8vmin;
-}
-
-#signout {
-  text-decoration: underline;
-  font-size : 1.8vmin;
-}
-
-
-#profil_pic {
-  height: 10vh;
-  margin: 1vh;
-  padding: 0;
-  aspect-ratio: 0.9;
-}
-
-
-@media only screen and (max-width: 800px) {
-
-  #signin, #view-account, #signout {
-    text-decoration: underline;
-    font-size : 2vmax;
+  text-align: right;
+  margin-right: 15px;
+  span {
+    font-weight: 300;
+    // padding-top: 5px;
   }
 
-  .container-fluid {
-    justify-content: space-evenly;
+  span:first-of-type {
+    font-size: 150%;
+    font-weight: bold;
+    padding-top: 0;
+    padding-bottom: 5px;
   }
-
-  .column {
-    align-items: center;
-  }
-
-  #welcome {display :none}
-
-  
 }
+
+

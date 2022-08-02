@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
         this.account = account!;
       }
     )
-    
+
   }
 
   onNavigate(endpoint: string, triggerLoading : boolean) {

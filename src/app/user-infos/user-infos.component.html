@@ -1,21 +1,22 @@
-<div *ngIf = "!isAuth" class="container-fluid">
-    <div class = column >
-        <img id = "profil_pic" src = "/assets/img/const/visitor.png" >
-    </div>
-    <div class = column >
-        <p> <a id = "login" (click) = "onNavigate('login', false)"> Se connecter</a></p>
-        <p> <a id = "signin" (click) = "onNavigate('register', false)"> Créer un compte</a></p>
-    </div>
+<div *ngIf="!isAuth" class="container-fluid">
+  <button (click)='onNavigate("login", false)'
+          class="btn-11">Se connecter
+  </button>
 </div>
 
-<div *ngIf = "isAuth" class="container-fluid">
-    <div class = column >
-        <img id = "profil_pic" src = "{{'https://eleves.mines-paris.eu/static/img/trombi/' + account.login + '.jpg'}}" onerror="this.src='/assets/img/const/defautUserImage.jpg';" >
-    </div>
-    <div class = column >
-        <p> Bienvenue {{account.login}} </p>
-        <!-- <p id = "welcome"> Bienvenue 20abcdefgh</p> -->
-        <p> <a id = "view-account" (click) = "onNavigate('account/view', true)"> Mon Compte </a></p>
-        <p> <a id = "signout" (click) = "onDisconnect()"> Deconnexion </a></p>
-    </div>
+<div *ngIf="isAuth" class="container-fluid connected-user-info">
+  <div>
+    <div class="flex-filler"></div>
+    <span>{{account.login}}</span>
+    <span><a [routerLink]="" id="view-account" (click)="onNavigate('account/view', true)">
+      Mon Compte
+    </a></span>
+    <span><a [routerLink]="" id="signout" (click)="onDisconnect()">
+      Déconnexion
+    </a></span>
+  </div>
+
+  <img id="profil_pic"
+       src="{{'https://eleves.mines-paris.eu/static/img/trombi/' + account.login + '.jpg'}}"
+       onerror="this.src='/assets/img/const/defautUserImage.jpg';">
 </div>

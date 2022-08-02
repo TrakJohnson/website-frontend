@@ -1,109 +1,57 @@
-@import '~compass-mixins/lib/compass/css3';
-
-@import url(https://fonts.googleapis.com/css?family=Raleway);
-
-// /* Colors */
-
-$dk-blue: #1E83AE;
-$blue: #3D5B94;
-$light-blue: #3DACDD;
-$green: #6dcd9a;
-$social-size: 1.2em;
-$social-width: 30%;
-
-* {
-  margin: 0;
-  padding: 0;
-  @include box-sizing(border-box);
-}
-
-html, body {
-  font-family: Raleway, sans-serif;  
-  background-color: #fff;
-}
+@import 'variables';
 
 footer {
-  display: inline-block;
-  height: 70px;
-  background-color: hsl(216, 97%, 51%);
-  position: relative; 
-  bottom: 0;    
   width: 100%;
-  margin-top: 5em;
-  .sponsor-container {
-    width: 50%;
-    display : flex;
-    flex-direction: row;
-    float: left;
-
-    @media (max-width: 600px) {
-      width: 100%;
-    }
-    p {
-      padding-left: 5%;
-      color: white;
-      font-size: 1em;
-      line-height: 70px;
-      letter-spacing: 1px;
-      margin-right : 3vw;
-      @media (max-width: 980px) {
-        display : none;
-      }
-    }
-  }
-  .social {
-      width: 50%;
-      float: right;
-    @media (max-width: 600px) {
-      width: 100%;
-    }
-     a {
-      float: left;
-      line-height: 70px;
-      text-decoration: none;
-      color: white;
-      text-align: center;
-      font-weight: bold; 
-      @include transition(all, 0.3s);
-       &:hover {
-         background-color: #222;
-         @include transition(all, .3s);
-       }
-       @media (max-width: 600px) {
-        width: 100%;
-      }
-    }
-  }
+  display: flex;
+  flex-direction: row;
+  background-color: $footer-bg;
+  padding: $footer-padding;
 }
 
-.linked {
-  background-color: $dk-blue;
-  font-size: $social-size;
-  width: $social-width;
+/* layout */
+footer > * {
+  margin-right: 15px;
 }
 
-.face {
-  background-color: $blue;
-  font-size: $social-size;
-  width: $social-width;
+footer > :last-child {
+  margin-right: 0;
 }
 
-.tweet {
-  background-color: $light-blue;
-  font-size: $social-size;
-  width: $social-width;
+/* sponsor */
+.sponsor-container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
 }
 
-.support {
-  background-color: $green;
-  font-size: $social-size;
-  width: 40%;
-  cursor : pointer
+.sponsor-container > span, #contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+/* social media */
+.social {
+  display: flex;
+  flex-direction: row;
+}
+
+.social a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  padding: 0 7px;
+  color: inherit;
+  text-decoration: none;
 }
 
 
-.sponsor {
-    max-height : 50px;
-    margin-top : 10px;
-    object-fit: contain;
+/* image links */
+$image-height: calc(#{$footer-height} - 2*#{$footer-padding});
+img.sponsor, #logo-liste, #logo-bde {
+  height: $image-height;
+  width: auto;
 }

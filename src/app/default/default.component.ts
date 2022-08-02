@@ -17,17 +17,20 @@ export class DefaultComponent implements OnInit {
 
   eventsToCome : any[] = [];
   eventExist : boolean = false;
+  eventsLoaded : boolean = false;
 
   ngOnInit(): void {
+    console.log('setting loading to true')
     this.popup.loading$.next(true);
-    
+
     this.events.getEventsTocome()
     .then((response) => {
+      this.eventsLoaded = true;
       this.eventsToCome = response;
       if (this.eventsToCome.length < 1) {
-        
+
         this.eventExist = false;
-        // this.eventsToCome = [{title : " ", description : " ", image : "../assets/img/const/noEvent.jpg"}] 
+        // this.eventsToCome = [{title : " ", description : " ", image : "../assets/img/const/noEvent.jpg"}]
       }
 
       else {
@@ -36,7 +39,7 @@ export class DefaultComponent implements OnInit {
       this.popup.loading$.next(false);
     })
     .catch((error) => {
-      
+
       this.popup.state$.next([false, "Erreur : merci de contacter un administrateur"]);
       this.popup.loading$.next(false);
     })

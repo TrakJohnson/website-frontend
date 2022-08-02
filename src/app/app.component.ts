@@ -28,6 +28,8 @@ export class AppComponent implements OnInit {
 
     this.loadingSub = this.popup.loading$.subscribe(
       (loading) => {
+        console.log('loading status changed')
+        console.log(loading)
         this.loading = loading;
       }
     )

@@ -1,83 +1,66 @@
+@import 'variables';
+
 header {
-    display: flex;
-    flex-direction : column;
-    // align-items: center;
-    
-    color: white;
-    // padding: 0.2rem 2%;
-    margin: 0 0 1vmin 0;
-    padding :0;
-  }
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px 20px;
+  min-height: $header-height;
+  color: $header-text-color;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+}
+
+.container-fluid {
+  padding: 0
+}
+
+// central logo
+
+#logo {
+  height: $logo-height;
+  width: $logo-width;
+  /* pour pouvoir le centrer sur la page */
+  position: absolute;
+  left: calc(50vw - #{$logo-width} / 2);
+  cursor: pointer;
+}
+
+// navigation links, underlining
+
+.navbar a {
+  padding: 0;
+  margin: 0 10px;
+  position: relative;
+  cursor: pointer;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+$link-animation-time: .3s;
+.navbar a:after {
+    position: absolute;
+    content: '';
+    height: 1px;
+    bottom: -5px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: $header-text-color;
+    -o-transition: $link-animation-time;
+    -ms-transition:$link-animation-time;
+    -moz-transition:$link-animation-time;
+    -webkit-transition:$link-animation-time;
+    transition:$link-animation-time;
+    transition-timing-function: ease-in-out;
+}
+
+.navbar a:hover:after {
+  width: 10%;
+}
 
 
 
-  #container-logbar {
-    display: flex; 
-    color: black;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content : space-between;
-    margin-bottom : 0%;
-    margin-top : 0;
-    min-height: 8vh;
-
-  }
-
-  .container-fluid { padding : 0}
-  
-  app-user-infos {   
-    margin : 0;  
-    width : 20%;
-    min-height : 8vh;
-    background-color: lightgrey;
-   
-  }
-
-  @media only screen and (max-width: 800px) {
-    app-user-infos {   
-      margin : 0;  
-      width : 100%;
-      min-height : 8vh;
-      background-color: lightgrey;
-    }
-  }
-
-  #title {
-    font-size : 6vmin;
-    text-align : center;
-    margin-bottom: 1vmin;
-    max-height: 5vmin;
-    transform : translateY(3vmin);
-  }
-
-  #logo {
-    max-width: 6vmin;
-    max-height: 6vmin;
-    margin : 1vmin 0 0 3vmin
-  }
-
-  .navbar-brand {
-    margin-left : 1rem
-  }
-
-  .navbar-nav a{
-    color : white
-  }
-
-  #adminLink {
-    color : rgba(255, 255, 255, 0.596)
-  }
-
-  a {
-    &:hover {
-      opacity: 0.6;
-      cursor: pointer;
-    }
-  }
-  
-  .active {
-    background-color: #6eb5ff;
-    color: white;
-    padding: 0.3rem 0.5rem;
-  }
-  

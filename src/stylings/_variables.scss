@@ -1,0 +1,25 @@
+/// Variables
+// header
+$header-text-color: #102444;
+$logo-height: 145px;
+$logo-width: 250px;
+$logo-height: 145px;
+$logo-margin: auto;
+$header-height: $logo-height;
+// footer
+$footer-height: 100px;
+$footer-bg: #C3D5EC;
+$footer-padding: 10px;
+// home page
+$transparent-pink: #c26dbc69;  // used for the text background on the image
+
+
+/// fixes
+// don't show border on FF while image is loading
+img:-moz-loading {
+  visibility: hidden;
+}
+
+/// general objects
+.flex-filler { flex-grow: 1; }
+
