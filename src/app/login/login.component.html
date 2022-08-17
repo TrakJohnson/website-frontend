@@ -1,17 +1,17 @@
-<h2 class="titre-page-login"> Connexion </h2>
-
-<div class="col-sm-8 offset-sm-2 mt-2">
+<div id="login-container">
   <form [formGroup]="loginForm">
     <div class="form-group">
       <label for="login"> Nom d'utilisateur</label>
-      <input type="text" id="login" formControlName="login" class="form-control" >
+      <input type="text" id="login" formControlName="login" class="form-control bda-input">
     </div>
     <div class="form-group">
       <label for="password">Mot de passe</label>
-      <input type="password" id="password" formControlName="password" class="form-control" >
+      <input type="password" id="password" formControlName="password" class="form-control bda-input">
     </div>
-    <p id="external-link-login" (click)="onNavigate('/recover/demand')">  Mot de passe oublié ? </p>
-    <p id="external-link-login" (click)="onNavigate('/signup')"> Créer mon compte </p>
     <button class="btn btn-success" (click)="onLogin()" [disabled]="loginForm.invalid"> Je me connecte</button>
+    <div class="links">
+      <a href="javascript:void(0)" (click)="onNavigate('/recover/demand')"> Mot de passe oublié ? </a>
+      <a [routerLink]="" (click)="onNavigate('/signup')"> Créer mon compte </a>
+    </div>
   </form>
 </div>

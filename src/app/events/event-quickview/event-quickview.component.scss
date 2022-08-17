@@ -1,98 +1,82 @@
-$quickview-height: 30vw;
-$quickview-width: 95vw;
-
+$thumbnail-width: 30vw;
+$thumbnail-height: calc(3*#{$thumbnail-width}/4);
 
 .container {
-    border: 1px solid black;
-    margin: 0 auto 4vh auto;
-    padding : 0;
-    max-width: $quickview-width;
-    max-height : $quickview-height
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  height: $thumbnail-height;
 }
 
-
-.container a {
-    display : flex;
-    flex-direction: row;
-    color : black;
-    text-decoration: None;
-    max-width: $quickview-width;
-    max-height : $quickview-height
+.thumbnail-container {
+  width: $thumbnail-width;
+  height: $thumbnail-height;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.thumbnail_container {
-    max-width: 50%;
-    min-height : 100% !important;
-    max-height : 100%
+.thumbnail-container img {
+  min-width: $thumbnail-width;
+  min-height: $thumbnail-height;
+  // l'image doit remplir le parent
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
-#thumbnail {
-    max-width:100%;
-    min-height : 100% !important;
-    max-height : 100%
+.text-container {
+  margin-left: 25px;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-weight: 300;
+  }
+
+  .info-container {
+    font-size: 1.1em;
+    padding: 5px 0;
+  }
+
+  i {
+    margin: 0 7px;
+  }
+
+  .bda-btn {
+    width: 200px;
+    padding: 20px 0;
+    margin-bottom: 10px;
+  }
+
+  #description {
+
+  }
 }
 
-.text_container {
-    display : flex;
-    flex-direction: column;
-    max-height : 100%;
-    max-width : 50%;
-    margin-left : 5%;
-    margin-right : 2%
+$date-size: max(calc(#{$thumbnail-width}/5.5), 65px);
+#thumbnail-date {
+  width: $date-size;
+  height: $date-size;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: 10;
+  color: rgb(51, 51, 51);
 }
 
-.desc_container {
-    max-width: 100%;
-    max-height: 100%;
-    overflow : hidden;
+#thumbnail-date > :nth-child(2) {
+  font-size: 14px;
+  margin-bottom: -4px;
 }
 
-#titre, #description {
-    color :black;
-    
-}
-
-#title {
-    margin-top : .5vmin;
-    margin-bottom : 1vmin
-}
-
-h2 {
-    font-size : 3.5vmax;
-    line-height: 4vmax;
-}
-
-p {
-    font-size : 2.5vmax;
-    line-height : 2.5vmax
-}
-
-
-// $font-size: 1em;
-// $line-height: 1.5em;
-// $lines-to-show: 3;
-
-//$font-size*$line-height*$lines-to-show//
-
-// display: block; /* Fallback for non-webkit */
-//     display: -webkit-box;
-//     max-width: 90%;
-//     height: 100%; /* Fallback for non-webkit */
-//     margin: 0 auto;
-//     font-size: $font-size;
-//     line-height: $line-height;
-//     -webkit-box-orient: vertical;
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-
-
-#description {
-    max-height : $quickview-height;
-    overflow : hidden;
-    
-    
-}
-
-a {
-    cursor : pointer
+#thumbnail-date > :nth-child(3) {
+  font-size: 30px;
+  margin-top: -4px;
+  font-weight: 300;
 }

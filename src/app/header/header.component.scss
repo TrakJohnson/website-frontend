@@ -6,7 +6,7 @@ header {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 10px 20px;
+  margin: 10px $header-left-margin;
   min-height: $header-height;
   color: $header-text-color;
   font-family: 'Lato', sans-serif;
@@ -24,7 +24,7 @@ header {
   width: $logo-width;
   /* pour pouvoir le centrer sur la page */
   position: absolute;
-  left: calc(50vw - #{$logo-width} / 2);
+  left: calc(50vw - #{$logo-width}/2 - #{$header-left-margin});
   cursor: pointer;
 }
 

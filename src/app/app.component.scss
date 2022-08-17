@@ -1,3 +1,6 @@
+@import 'variables';
+
 #main-view {
   width: 100%;
+  min-height: $body-container-height;
 }

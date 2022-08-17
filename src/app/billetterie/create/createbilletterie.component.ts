@@ -157,7 +157,7 @@ export class CreateBilletterieComponent implements OnInit {
     } else {
       if (dateFermeture < dateOuverture || date > date_end) {
         this.popup.loading$.next(false);
-        this.popup.state$.next([false, "Les dates de début et de fin de l'évènement sont incohérentes"]);
+        this.popup.state$.next([false, "Les dates de début et de fin de l'évènement et/ou de la billeterie sont incohérentes"]);
       } else if (date < dateFermeture) {
         this.popup.loading$.next(false);
         this.popup.state$.next([false, "La billetterie ferme après le début de l'évènement"]);

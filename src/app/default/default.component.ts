@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router'
 import { EventService } from '../services/events.service';
 import { PopupService } from '../services/popup.service';
+import { Event } from '../models/event.model';
+
 
 @Component({
   selector: 'app-default',
@@ -27,15 +29,7 @@ export class DefaultComponent implements OnInit {
     .then((response) => {
       this.eventsLoaded = true;
       this.eventsToCome = response;
-      if (this.eventsToCome.length < 1) {
-
-        this.eventExist = false;
-        // this.eventsToCome = [{title : " ", description : " ", image : "../assets/img/const/noEvent.jpg"}]
-      }
-
-      else {
-        this.eventExist = true;
-      }
+      this.eventExist = this.eventsToCome.length >= 1;
       this.popup.loading$.next(false);
     })
     .catch((error) => {
@@ -44,6 +38,11 @@ export class DefaultComponent implements OnInit {
       this.popup.loading$.next(false);
     })
   };
+
+  getEventShortInfos(event : Event) : string {
+    return `${event.event_place}, ${Event.getEventStrDay(event)}
+    ${Event.getEventMonthDateStr(event)} ${Event.getEventMonthStrLong(event)}`;
+  }
 
   onNavigate(endpoint: string) {
     this.router.navigate([endpoint]);

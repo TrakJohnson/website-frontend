@@ -1,11 +1,15 @@
 /// Variables
 // header
-$header-text-color: #102444;
+$header-text-color: #072957;
 $logo-height: 145px;
 $logo-width: 250px;
 $logo-height: 145px;
 $logo-margin: auto;
 $header-height: $logo-height;
+$header-left-margin: 20px;
+// body
+$body-container-height: calc(100vh - #{$header-height});
+
 // footer
 $footer-height: 100px;
 $footer-bg: #C3D5EC;
@@ -22,4 +26,69 @@ img:-moz-loading {
 
 /// general objects
 .flex-filler { flex-grow: 1; }
+
+
+/// general themes
+.admin-btn {
+  $admin-red: #df5656;
+  background: $admin-red;
+  border-color: $admin-red;
+  &:hover {
+    background: lighten($admin-red, 0.5);
+    border: lighten($admin-red, 0.5);
+  }
+}
+
+// inputs
+.bda-input {
+  background: white;
+  border-width: 0 0 2px 0;
+  border-color: $header-text-color;
+  border-radius: 0;
+  border-style: solid;
+}
+
+.bda-select {
+
+}
+
+// buttons
+.bda-btn {
+  outline: none;
+  padding: 10px 25px;
+  border: 3px solid $header-text-color;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.bda-btn:hover {
+  background: $header-text-color;
+  color: #fff;
+}
+
+.bda-btn:before {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+.bda-btn:active {
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+  -4px -4px 6px 0 rgba(116, 125, 136, .2),
+  inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+  inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+// title on pages
 

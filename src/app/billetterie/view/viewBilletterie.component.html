@@ -1,13 +1,16 @@
 <div *ngIf="isAdmin" class="admin_options_container">
-  <button class="btn btn-success createB_button" style="margin : 1%;" (click)="onNavigate('billetterie/create')">
+  <button class="btn btn-success createB_button admin-btn" style="margin : 1%;" (click)="onNavigate('billetterie/create')">
     Créer une nouvelle billetterie
   </button>
 </div>
 
-<div *ngIf="isBilletterie" class="container-fluid" id="events-container">
+<div *ngIf="isBilletterie" id="events-container">
   <app-billetterie-filter (requirementsToSend)='changeRequirements($event)'></app-billetterie-filter>
+  <div id="results-count">{{this.eventService.filterEvents(eventsToDisplay, requirements).length}} résultat(s)</div>
+  <div id="quickview-container">
   <app-event-quickview *ngFor="let event of this.eventService.filterEvents(eventsToDisplay, requirements)"
                        [event]="event"></app-event-quickview>
+  </div>
 </div>
 
 

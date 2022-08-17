@@ -13,7 +13,7 @@ export class BilletterieFilterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private poleService : PoleService) { }
-  
+
 
   @Output() requirementsToSend = new EventEmitter();
 
@@ -38,6 +38,8 @@ export class BilletterieFilterComponent implements OnInit {
     )
 
     await this.poleService.getPoles();
+
+    this.requirementsForm.valueChanges.subscribe(this.onChangeRequirements);
 
   }
 

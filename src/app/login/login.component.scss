@@ -1,23 +1,51 @@
-#external-link-login{
-  font-size: 1em;
-  text-decoration: underline;
-  &:hover{
-    opacity: 0.6;  
-    cursor: pointer;
+@import 'variables';
+
+#login-container {
+  width: 400px;
+  margin: 20vh auto 0 auto;
+}
+
+
+.titre-page-login {
+  border-bottom: solid;
+  padding: 0.5em;
+  width: 8em;
+  margin: auto;
+  text-align: center;
+}
+
+.signal-response-login {
+  text-align: center;
+  width: 60%;
+  margin: 20px auto auto auto;
+}
+
+
+#login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#login-container form .form-group {
+  //display: flex;
+  label {
+    font-size: 1.5em;
+    font-weight: 300;
   }
 }
 
-.titre-page-login {
-border-bottom: solid; 
-padding: 0.5em; 
-width: 8em;
-margin : auto;
-text-align : center
-;
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: $header-text-color;
+  border-radius: 0;
 }
 
-.signal-response-login{
-text-align: center; 
-width: 60%; 
-margin: 20px auto auto auto;
+
+#login-container .links {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  font-weight: 300;
 }

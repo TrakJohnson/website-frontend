@@ -5,9 +5,8 @@ a {
   height: 100%;
 }
 
-$container-height: calc(100vh - #{$header-height});
 .event-container {
-  height: $container-height;
+  height: $body-container-height;
   overflow: hidden;
 }
 
@@ -19,7 +18,7 @@ $container-height: calc(100vh - #{$header-height});
 $max-img-width: 100vw;
 #next-event img {
   min-width: 100vw;
-  min-height: $container-height;
+  min-height: $body-container-height;
   //max-width: $max-img-width;
   overflow-x: hidden;
 }
@@ -34,18 +33,19 @@ $max-img-width: 100vw;
   left: 30px;
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  //max-width: 500px;
 }
 
 #next-event .title {
-  font-weight: 600;
-  font-size: 200%;
+  font-weight: 800;
+  font-size: 3em;
   margin-bottom: 10px;
-  line-height: 30px;
+  line-height: 50px;
 }
 
 #next-event .details {
   text-align: justify;
+  font-size: 1.3em;
 }
 
 #no-event-container {
@@ -57,4 +57,29 @@ $max-img-width: 100vw;
 
 #noEvent {
   width: 70%;
+}
+
+// partie homepage statique
+#homepage-text {
+  width: 32vw;
+  margin: 12vh auto;
+  font-size: 2rem;
+  text-align: center;
+  color: $header-text-color;
+}
+
+h2 {
+  text-transform: uppercase;
+  color: $header-text-color;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+#calendar {
+  margin: 20px auto 10vh auto;
+  height: 50vw;
+  width: 50vw;
+  background: darkgrey;
 }

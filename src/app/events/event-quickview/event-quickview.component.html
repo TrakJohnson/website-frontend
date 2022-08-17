@@ -1,21 +1,30 @@
-
-
-
-
-<div class = "container">
-    <a class = "event_link" (click) = "onNavigate('events/display/' + event.event_id )">
-        <div class = "thumbnail_container">
-            <img id = "thumbnail" [src] = "event.thumbnail" alt = "event thumbnail">
-        </div>
-        <div class = "text_container">
-            <div class = titre_container>
-                <h2 id = "title"> {{event.title}}</h2>
-            </div>
-            <div class = desc_container>
-                <p id = "description"> {{event.description}}
-
-                </p>
-            </div>
-        </div>
-    </a>
+<div class="container">
+  <div class="thumbnail-container">
+    <img id="thumbnail" [src]="event.thumbnail" alt="event thumbnail">
+    <div id="thumbnail-date">
+      <div class="flex-filler"></div>
+      <div>{{getEventMonthStr(event.dateEvent)}}</div>
+      <div>{{getEventDay(event.dateEvent)}}</div>
+      <div class="flex-filler"></div>
+    </div>
+  </div>
+  <div class="text-container">
+    <div class="title-container">
+      <h2 id="title">{{event.title.toUpperCase()}}</h2>
+    </div>
+    <div class="info-container">
+      <i class="fa-solid fa-clock fa-fw"></i>
+      {{event.dateEvent | date: 'HH:mm'}}
+      <span *ngIf="event.dateEvent_end !== undefined"> - {{event.dateEvent_end | date: 'HH:mm'}}</span>
+    </div>
+    <div class="info-container">
+      <i class="fa-solid fa-location-dot fa-fw"></i>
+      {{event.event_place}}
+    </div>
+    <div class="flex-filler"></div>
+    <button (click)="onNavigate('events/display/' + event.event_id )"
+            class="bda-btn">
+      Réserver ma place <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
 </div>

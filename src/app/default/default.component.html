@@ -5,8 +5,8 @@
     <div id="next-event">
       <img alt="{{eventsToCome[0].title}}" src="{{eventsToCome[0].thumbnail}}"/>
       <div>
-        <span class="title">{{eventsToCome[0].title}}</span>
-        <span class="details">{{eventsToCome[0].description}}</span>
+        <span class="title">{{eventsToCome[0].title.toUpperCase()}}</span>
+        <span class="details">{{getEventShortInfos(eventsToCome[0])}}</span>
       </div>
     </div>
   </a>
@@ -14,4 +14,13 @@
 
 <div *ngIf="!eventExist" id="no-event-container">
   <img alt="Salle vide" id="noEvent" src="/assets/img/const/noEvent.jpg">
+</div>
+
+<div id="homepage">
+  <div id="homepage-text">
+    Le <b>BDA</b> (Bureau des Arts) des Mines de Paris te fait profiter de la vie culturelle
+    foisonnante de Paris : sorties, expos, théâtre, concerts… et bien plus encore !
+  </div>
+  <h2>Prochains évènements</h2>
+  <div id="calendar"></div>
 </div>

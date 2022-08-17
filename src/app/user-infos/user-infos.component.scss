@@ -7,43 +7,9 @@
   align-items: center;
 }
 
-.btn-11 {
-  outline: none;
+.bda-btn {
   width: 180px;
   height: 70px;
-  padding: 10px 25px;
-  border: 3px solid $header-text-color;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.btn-11:hover {
-  background: $header-text-color;
-  color: #fff;
-}
-
-.btn-11:before {
-  position: absolute;
-  content: '';
-  display: inline-block;
-  top: -180px;
-  left: 0;
-  width: 30px;
-  height: 100%;
-  background-color: #fff;
-  animation: shiny-btn1 3s ease-in-out infinite;
-}
-
-.btn-11:active {
-  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
-  -4px -4px 6px 0 rgba(116, 125, 136, .2),
-  inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
-  inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
 }
 
 // connected
