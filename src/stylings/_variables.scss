@@ -102,3 +102,17 @@ img:-moz-loading {
   margin-top: 8vh;
   margin-bottom: 5vh;
 }
+
+// headings in general
+h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+// page container
+$page-side-margin: 10vw;
+.page-container {
+  margin: 20px $page-side-margin 10vh $page-side-margin;
+}

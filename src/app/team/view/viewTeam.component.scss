@@ -1,0 +1,46 @@
+@import 'variables';
+
+.fw-img-wrapper {
+  text-align: center;
+  img {
+    width: calc(100vw - #{$page-side-margin}*4);
+    margin: auto;
+  }
+}
+
+#team-container > h3 {
+  margin: 70px 0 30px 0;
+}
+
+#bureau-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 20px;
+}
+
+// images du bureau
+#bureau-container > div {
+  // width: 200px;
+}
+
+$bureau-img-width: 280px;
+#bureau-container img {
+  width: $bureau-img-width;
+}
+
+#bureau-container .subtitle {
+  padding-left: 3px;
+  padding-top: 6px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+  :first-child {
+    font-size: 1.2rem;
+  }
+  :last-child {
+    margin-top: -3px;
+    font-size: 0.8rem;
+  }
+  font-family: "Montserrat", sans-serif;
+}

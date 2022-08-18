@@ -1,8 +1,23 @@
+<div class="pole-container">
+  <div class="pole-name">{{pole_infos.name}}</div>
+  <div class="pole-members">
+    <div *ngFor="let member of pole" >
+        <img class="member-pic" alt="photo de trombi"
+             src="{{'https://eleves.mines-paris.eu/static/img/trombi/' + member.login + '.jpg'}}">
+        <div class="nom">
+          <span>{{member.prenom}} {{member.nom}}</span>
+          <span>{{member.role}}</span>
+        </div>
+    </div>
+  </div>
+</div>
+<!--
+
 <mat-accordion >
     <mat-expansion-panel
-        (opened)="panelOpenState = true" 
+        (opened)="panelOpenState = true"
         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header [collapsedHeight]="customCollapsedHeight"       
+      <mat-expansion-panel-header [collapsedHeight]="customCollapsedHeight"
                                  [expandedHeight]="customExpandedHeight">
         <mat-panel-title *ngIf = "panelOpenState" class = "title_expanded">
           <h2 class = "nom_pole"> {{pole_infos.name}} </h2>
@@ -43,3 +58,4 @@
       <p></p>
     </mat-expansion-panel>
   </mat-accordion>
+-->

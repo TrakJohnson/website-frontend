@@ -1,82 +1,53 @@
-mat-accordion {
-    margin : 5vh
+@import 'variables';
+
+.pole-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 25px;
 }
 
-.profil_pic {
-    object-fit: cover;
-    max-width : 100%;
-    max-height : calc(100% - 3em);
+.pole-name {
+  font-size: 1.5em;
+  font-weight: 800;
+  text-align: right;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.pole-members {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-left: 30px;
+}
+
+.pole-members > div {
+  // individual member
+  text-align: center;
 }
 
 .nom {
-    max-width : 100%;
-    color : black;
-    font-size : 2vmin;
-    line-height : 2vmin
-}
-
-.memberCollapsed {
-    display : flex;
-    flex-direction : column;
-    width : 10vw;
-    margin : .5vw;
-    align-items : center;
+  padding-top: 6px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+  text-align:center;
+  :first-child {
+    font-size: 1.1rem;
     text-align: center;
+    word-wrap: break-word;
+
+  }
+  :last-child {
+    margin-top: -3px;
+    font-size: 0.7rem;
+  }
+  font-family: "Montserrat", sans-serif;
 }
 
-.memberExpanded { 
-    display : flex;
-    flex-direction : row; 
-    border : solid 1px;
-    margin : .5vh 10vw .5vh auto;
-    padding : 1vw;
-    width : 50vw
-
+img.member-pic {
+  height: 160px;
+  margin: auto;
+  border: 2px solid $header-text-color;
 }
-
-.recap_expanded {
-    display : flex;
-    flex-direction : column;
-    width : 6vw ;
-    font-size : 1.8vmin;
-    line-height: 2vmin;
-}
-
-.profil_pic {
-    
-    object-fit: contain;
-}
-
-
-
-.member_description {
-    color : black;
-    margin-left : 3vw;
-    font-size : 1.8vmin;
-    line-height: 2vmin;
-}
-
-
-.title_expanded {
-    align-items: center !important;
-    margin : 4vw;
-    display : flex;
-    flex-direction : column;
-    font-size : 2vmin;
-    line-height : 2vmin;
-}
-
-
-.title_collapsed {
-    align-items: center !important;
-    margin : 0;
-    font-size : 2vmin
-}
-
-.nom_pole {
-    font-size : 2em;
-    max-width : 10vw;
-    line-height: 1em;
-}
-mat-panel-description {display : flex; flex-direction : row}
 

@@ -1,4 +1,53 @@
-<app-display-pole *ngFor = "let poleID of keys()" 
-                    [pole] = "poles[poleID].members" 
-                    [pole_id] = "poles[poleID].pole_id" 
+<div id="team-container" class="page-container">
+  <h2 class="page-title">L'équipe</h2>
+  <div class="fw-img-wrapper">
+    <img src="../../../assets/img/var/equipe.jpg" alt="photo groupe BDA">
+  </div>
+
+  <h3>Le bureau</h3>
+  <div id="bureau-container">
+    <div>
+      <img src="../../../assets/img/var/bureau_blandine.jpg" alt="bureau">
+      <div class="subtitle">
+        <span>Blandine Geisler</span><span>Présidente</span>
+      </div>
+    </div>
+
+    <div>
+      <img src="../../../assets/img/var/bureau_guillaume.JPG" alt="burea">
+      <div class="subtitle">
+        <span>Guillaume Taret</span><span>Vice-président</span>
+      </div>
+    </div>
+
+    <div>
+      <img src="../../../assets/img/var/bureau_lucie.JPG" alt="burea">
+      <div class="subtitle">
+        <span>Lucie Tarazona</span><span>Secrétaire-Générale</span>
+      </div>
+    </div>
+
+    <div>
+      <img src="../../../assets/img/var/bureau_augustin.JPG" alt="burea">
+      <div class="subtitle">
+        <span>Augustin</span><span>Trésorier</span>
+      </div>
+    </div>
+
+    <div>
+      <img src="../../../assets/img/var/bureau_charlotte.JPG" alt="burea">
+      <div class="subtitle">
+        <span>Charlotte</span><span>Respo Com'</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>Les pôles</h3>
+
+  <app-display-pole *ngFor = "let poleID of keys().slice(1)"
+                    [pole] = "poles[poleID].members"
+                    [pole_id] = "poles[poleID].pole_id"
                     [pole_infos] = "poles[poleID]"></app-display-pole>
+
+</div>
+
