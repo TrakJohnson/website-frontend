@@ -26,6 +26,7 @@ $max-img-width: 100vw;
   //max-width: $max-img-width;
   overflow-x: hidden;
   z-index: -1;
+  flex-shrink: 0;
 }
 
 #next-event > div {
