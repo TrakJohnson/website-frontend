@@ -13,6 +13,10 @@ a {
 #next-event {
   position: relative;
   height: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  background-color: rgba(194, 109, 188, 0.40);
 }
 
 $max-img-width: 100vw;
@@ -21,24 +25,26 @@ $max-img-width: 100vw;
   min-height: $body-container-height;
   //max-width: $max-img-width;
   overflow-x: hidden;
+  z-index: -1;
 }
 
 #next-event > div {
-  background: $transparent-pink;
+  // background: $transparent-pink;
   color: white;
   text-decoration: none;
   position: absolute;
   padding: 20px;
-  top: 30px;
+  top: $body-container-height/3;
   left: 30px;
   display: flex;
   flex-direction: column;
+  z-index: 2;
   //max-width: 500px;
 }
 
 #next-event .title {
-  font-weight: 800;
-  font-size: 3em;
+  font-weight: 700;
+  font-size: 4rem;
   margin-bottom: 10px;
   line-height: 50px;
 }

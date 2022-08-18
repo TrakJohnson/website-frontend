@@ -1,4 +1,45 @@
-.md-container {
-    margin : 5vh 20vw;
-    width : 50vw
+.masterclass-container {
+  margin: 20px 15vw 10vh 15vw;
+}
+
+$row-height: 25vh;
+.single-masterclass {
+  display: flex;
+  flex-direction: row;
+  //height: $row-height;
+  margin: 30px 0;
+  .thumbnail-container {
+    overflow: hidden;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-shrink: 0;
+    img {
+      object-fit: cover;
+      width: 40vw;
+    }
+    margin-right: 4vw;
+  }
+}
+
+.reverse .thumbnail-container {
+  margin-right: 0;
+  margin-left: 4vw;
+}
+
+.description-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.2rem;
+  h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+}
+
+.reverse {
+  flex-direction: row-reverse;
 }

@@ -4,7 +4,6 @@ $thumbnail-height: calc(3*#{$thumbnail-width}/4);
 .container {
   display: flex;
   flex-direction: row;
-  cursor: pointer;
   height: $thumbnail-height;
 }
 
