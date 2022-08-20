@@ -1,16 +1,16 @@
+@import 'variables';
+
 .signal-response-registerForm{
-    text-align: center; 
-    width: 60%; 
+    text-align: center;
+    width: 60%;
     margin: 20px auto auto auto;
 }
 
-.titre-page-registerForm {
-    border-bottom: solid; 
-    padding: 0.5em; 
-    width: 8em;
-  }
+form {
+  margin-bottom: 20vh;
+}
 
 #btn-before-redirection {
-    text-align: center; 
+    text-align: center;
     margin: 20px auto auto auto;
 }

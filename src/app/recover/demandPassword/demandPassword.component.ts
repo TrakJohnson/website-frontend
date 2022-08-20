@@ -21,6 +21,7 @@ export class DemandPasswordComponent implements OnInit {
               ) { }
 
   ngOnInit() {
+    console.log('pw')
     this.popup.loading$.next(true);
     this.demandPasswordForm = this.formBuilder.group({
       login: [null, [Validators.required]],

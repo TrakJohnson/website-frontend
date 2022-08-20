@@ -42,10 +42,11 @@
   }
 
   span:first-of-type {
+    // username
     font-size: 150%;
     font-weight: bold;
     padding-top: 0;
-    padding-bottom: 5px;
+    margin-bottom: -3px;
   }
 }
 

@@ -1,4 +1,4 @@
-<div id="login-container">
+<div class="bda-fw-form">
   <form [formGroup]="loginForm">
     <div class="form-group">
       <label for="login"> Nom d'utilisateur</label>
@@ -11,7 +11,7 @@
     <button class="btn btn-success bda-btn bda-btn-fill" (click)="onLogin()" [disabled]="loginForm.invalid"> Je me connecte</button>
     <div class="links">
       <a href="javascript:void(0)" (click)="onNavigate('/recover/demand')"> Mot de passe oublié ? </a>
-      <a href="javascript:void(0)" (click)="onNavigate('/signup')"> Créer mon compte </a>
+      <a href="javascript:void(0)" (click)="onNavigate('/register/form')"> Créer mon compte </a>
     </div>
   </form>
 </div>

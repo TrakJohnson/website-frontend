@@ -1,22 +1,35 @@
+@import 'variables';
+
 $quickview-height: 30vw;
 $quickview-width: 95vw;
 
+.event-view-container {
+  margin: 10vh 5vw 5vh 5vw;
+}
 
-.container-fluid {
-    margin: 3vh auto 4vh auto;
-    padding : 0;
-    max-width: $quickview-width;
-    min-height : $quickview-height;
+.lien-retour {
+  display: block;
+  margin: 0 0 3vh 20px;
+  color: $header-text-color !important;  // fk bootstrap
+  text-decoration: none;
+}
 
-    display : flex;
-    flex-direction : column;
-    
+#thumbnail_container {
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  //justify-content: center;
+  img {
+    height: 500px;
+    width: auto;
+    flex-shrink: 0;
+  }
 }
 
 .admin-buttons {
     display : flex;
     justify-content: space-evenly;
-    width : 95vw;
+  margin-top: 20px;
 }
 
 .admin-buttons button {
@@ -42,12 +55,6 @@ $quickview-width: 95vw;
     padding : 0
 }
 
-#event_thumbnail {
-    max-width:100%;
-    // min-height : 100%;
-    max-height : 100%;
-}
-
 #text_container {
     padding-left: 2vw;
 }
@@ -62,7 +69,7 @@ $quickview-width: 95vw;
 #titre, #description {
     color :black;
 
-    
+
 }
 
 #title {
@@ -70,12 +77,6 @@ $quickview-width: 95vw;
     margin-bottom : 1vmin;
     font-size : 2.5vmax;
     line-height: 3vmax;
-}
-
-
-p {
-    font-size : 1.5vmax;
-    line-height : 2vmax;
 }
 
 .details_container {
@@ -93,13 +94,12 @@ p {
     margin : 1%;
 }
 
-.small_infos {
-    font-size: 1.5vmax;
-    line-height: 1.5vmax;
+.sale-btn-container {
+  display: flex;
+  flex-direction: row;
 }
 
-
-@media screen and (max-width: 800px)
+@media screen and (max-width: 1000px)
 {
 
 
@@ -111,11 +111,11 @@ p {
         width : 95vw;
         text-align: center;
     }
-    
+
     .admin-buttons button {
         margin : 1vh;
     }
-    
+
     #thumbnail_container {
         max-width : 100%;
         max-height : 50%;
@@ -133,11 +133,11 @@ p {
         align-items: center;
     }
 
-    .purchase_container { 
-        margin : auto 0; 
-        display : flex; 
+    .purchase_container {
+        margin : auto 0;
+        display : flex;
         flex-direction : row;
         align-items : center;
     }
-    
+
 }

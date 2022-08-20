@@ -43,15 +43,19 @@ img:-moz-loading {
 }
 
 // inputs
-.bda-input {
+.bda-input,
+.bda-form input {
   background: white;
   border-width: 0 0 2px 0;
   border-color: $header-text-color;
   border-radius: 0;
   border-style: solid;
+  padding-left: .3rem;
 }
 
-.bda-select {
+
+.bda-select,
+.bda-form select {
 
 }
 
@@ -133,4 +137,28 @@ h3 {
 $page-side-margin: 10vw;
 .page-container {
   margin: 20px $page-side-margin 10vh $page-side-margin;
+}
+
+// form
+.bda-fw-form {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  form .form-group {
+    label {
+      font-size: 1.3em;
+      font-weight: 300;
+    }
+  }
+}
+
+.bda-fw-form-wide {
+  width: 600px;
 }
