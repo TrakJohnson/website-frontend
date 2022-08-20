@@ -60,6 +60,8 @@ img:-moz-loading {
   outline: none;
   padding: 10px 25px;
   border: 3px solid $header-text-color;
+  color: $header-text-color;
+  border-radius: 0;
   font-weight: 500;
   background: transparent;
   cursor: pointer;
@@ -91,6 +93,22 @@ img:-moz-loading {
   -4px -4px 6px 0 rgba(116, 125, 136, .2),
   inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
   inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+.bda-btn-fill {
+  background-color: $header-text-color;
+  color: white;
+}
+
+.bda-btn-fill:hover {
+  background-color: white;
+  color: $header-text-color;
+}
+
+.bda-btn:disabled {
+  background-color: lighten($header-text-color, 10%);
+  border-color: lighten($header-text-color, 10%);
+  color: whitesmoke;
 }
 
 // title on pages

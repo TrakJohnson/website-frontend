@@ -6,6 +6,9 @@ footer {
   flex-direction: row;
   background-color: $footer-bg;
   padding: $footer-padding;
+  font-size: 1.1rem;
+  font-weight: 300;
+  align-items: center;
 }
 
 /* layout */
@@ -20,18 +23,30 @@ footer > :last-child {
 /* sponsor */
 .sponsor-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   text-align: center;
 }
 
-.sponsor-container > span, #contact {
+.sponsor-container > span {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 10px;
+  font-style: italic;
+}
+
+.sponsor-container img {
+  width: min(350px, 90vw);
+  height: auto;
 }
 
 /* social media */
+#follow-container > div:first-child {
+  text-align: center;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
 .social {
   display: flex;
   flex-direction: row;
@@ -42,7 +57,7 @@ footer > :last-child {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 30px;
   padding: 0 7px;
   color: inherit;
   text-decoration: none;
@@ -51,7 +66,7 @@ footer > :last-child {
 
 /* image links */
 $image-height: calc(#{$footer-height} - 2*#{$footer-padding});
-img.sponsor, #logo-liste, #logo-bde {
+img.sponsor, #logo-liste, #logo-bde, #logo-mines {
   height: $image-height;
   width: auto;
 }

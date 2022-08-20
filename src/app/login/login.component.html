@@ -8,7 +8,7 @@
       <label for="password">Mot de passe</label>
       <input type="password" id="password" formControlName="password" class="form-control bda-input">
     </div>
-    <button class="btn btn-success" (click)="onLogin()" [disabled]="loginForm.invalid"> Je me connecte</button>
+    <button class="btn btn-success bda-btn bda-btn-fill" (click)="onLogin()" [disabled]="loginForm.invalid"> Je me connecte</button>
     <div class="links">
       <a href="javascript:void(0)" (click)="onNavigate('/recover/demand')"> Mot de passe oublié ? </a>
       <a href="javascript:void(0)" (click)="onNavigate('/signup')"> Créer mon compte </a>

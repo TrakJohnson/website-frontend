@@ -23,7 +23,7 @@ header {
   width: $logo-width;
   /* pour pouvoir le centrer sur la page */
   position: absolute;
-  left: calc(50vw - #{$logo-width}/2 - #{$header-left-margin});
+  left: calc(50vw - #{$logo-width} / 2 - #{$header-left-margin});
   cursor: pointer;
 }
 
@@ -40,21 +40,21 @@ header {
 
 $link-animation-time: .3s;
 .navbar a:after {
-    position: absolute;
-    content: '';
-    height: 1px;
-    bottom: -5px;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background: $header-text-color;
-    -o-transition: $link-animation-time;
-    -ms-transition:$link-animation-time;
-    -moz-transition:$link-animation-time;
-    -webkit-transition:$link-animation-time;
-    transition:$link-animation-time;
-    transition-timing-function: ease-in-out;
+  position: absolute;
+  content: '';
+  height: 1px;
+  bottom: -5px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: $header-text-color;
+  -o-transition: $link-animation-time;
+  -ms-transition: $link-animation-time;
+  -moz-transition: $link-animation-time;
+  -webkit-transition: $link-animation-time;
+  transition: $link-animation-time;
+  transition-timing-function: ease-in-out;
 }
 
 .navbar a:hover:after {
