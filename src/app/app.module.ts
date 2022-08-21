@@ -64,6 +64,7 @@ import { ModifyEventComponent } from './events/modify/modifyEvent.component';
 import { DeleteEventComponent } from './events/delete/deleteEvent.component';
 import { BilletterieFilterComponent } from './billetterie/billetterie-filter/billetterie-filter.component';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
+import { ImgFallbackDirective } from './img-fallback.directive';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -105,8 +106,9 @@ registerLocaleData(localeFr, 'fr');
     DeleteEventComponent,
     BilletterieFilterComponent,
     AdminManagementComponent,
+    ImgFallbackDirective,
   ],
-    
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -126,7 +128,7 @@ registerLocaleData(localeFr, 'fr');
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-  
+
   ],
   providers: [NgxImageCompressService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

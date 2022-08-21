@@ -1,4 +1,4 @@
-<div class="pole-container">
+<!--<div class="pole-container">
   <div class="pole-name">{{pole_infos.name}}</div>
   <div class="pole-members">
     <div *ngFor="let member of pole" >
@@ -10,7 +10,22 @@
         </div>
     </div>
   </div>
+</div>-->
+
+<div *ngFor="let member of pole" >
+  <object data="{{'https://eleves.mines-paris.eu/static/img/trombi/' + member.login + '.jpg'}}" type="image/png"
+          class="member-pic">
+    <img src="{{'https://eleves.mines-paris.eu/static/img/trombi/' + member.login + member.prenom[0].toLowerCase() + '.jpg'}}"
+         alt="Stack Overflow logo and icons and such"
+         class="member-pic">
+  </object>
+
+  <div class="nom">
+    <span>{{member.prenom}} {{member.nom}}</span>
+    <span>{{member.role}}</span>
+  </div>
 </div>
+
 <!--
 
 <mat-accordion >

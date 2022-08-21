@@ -8,6 +8,14 @@
 }
 
 @font-face {
+  font-family: 'Chloe';
+  src: url('../assets/fonts/Chloe-Regular.otf');
+}
+.chloe {
+  font-family: 'Chloe', sans-serif;
+}
+
+@font-face {
   font-family: 'InterFace';
   src: url("../assets/fonts/InterFace/InterFace_Trial_Rg.ttf");
   font-weight: normal;

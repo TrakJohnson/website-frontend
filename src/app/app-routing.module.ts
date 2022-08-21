@@ -92,7 +92,6 @@ const routes: Routes = [
   {path: 'default', component: DefaultComponent},
   {path: '', pathMatch: 'full', component: DefaultComponent},
   {path: '**', redirectTo: ''}
-
 ];
 
 @NgModule({

@@ -12,6 +12,13 @@
   margin: 70px 0 30px 0;
 }
 
+.large-text {
+  margin: 5vh auto;
+}
+
+
+// bureau
+
 #bureau-container {
   display: flex;
   flex-wrap: wrap;
@@ -43,4 +50,66 @@ $bureau-img-width: 280px;
     font-size: 0.8rem;
   }
   font-family: "Montserrat", sans-serif;
+}
+
+
+// poles
+#poles-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.pole-img-container {
+  text-align: center;
+  position: relative;
+  display: flex;
+  transition: background-color 0.5s ease-in-out;
+  .nom {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s ease-in-out;
+  }
+}
+
+.pole-img-container:hover {
+  background-color: rgba(194, 109, 188, 0.90);
+  transition: background-color 0.3s ease-in-out ;
+  .nom {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.2s, opacity 0.2s ease-in-out;
+  }
+}
+
+.nom {
+  padding: 10px 5px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+  text-align: center;
+  word-wrap: break-word;
+  :first-child {
+    font-size: 1.1rem;
+    line-height: 1.2rem;
+  }
+  :last-child {
+    margin-top: 3px;
+    font-size: 0.7rem;
+  }
+  font-family: "Montserrat", sans-serif;
+  color: white;
+}
+
+img.member-pic {
+  height: 160px;
+  margin: auto;
+  border: 2px solid $header-text-color;
+  z-index: -1;
 }

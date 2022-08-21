@@ -67,12 +67,9 @@ $max-img-width: 100vw;
 }
 
 // partie homepage statique
-#homepage-text {
-  width: 32vw;
+
+.large-text {
   margin: 12vh auto;
-  font-size: 2rem;
-  text-align: center;
-  color: $header-text-color;
 }
 
 h2 {

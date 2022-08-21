@@ -133,6 +133,15 @@ h3 {
   margin-bottom: 20px;
 }
 
+.large-text {
+  width: 32vw;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2rem;
+  text-align: center;
+  color: $header-text-color;
+}
+
 // page container
 $page-side-margin: 10vw;
 .page-container {

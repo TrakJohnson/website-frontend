@@ -3,6 +3,9 @@
   <div class="fw-img-wrapper">
     <img src="../../../assets/img/var/equipe.jpg" alt="photo groupe BDA">
   </div>
+  <div class="large-text">
+    Réunissant plus de 40 étudiants motivés, le BDA est une grande famille !
+  </div>
 
   <h3>Le bureau</h3>
   <div id="bureau-container">
@@ -44,10 +47,27 @@
 
   <h3>Les pôles</h3>
 
-  <app-display-pole *ngFor = "let poleID of keys().slice(1)"
-                    [pole] = "poles[poleID].members"
-                    [pole_id] = "poles[poleID].pole_id"
-                    [pole_infos] = "poles[poleID]"></app-display-pole>
+  <div id="poles-container">
+    <ng-container *ngFor="let poleID of keys().slice(1)">
+      <div class="pole-img-container" *ngFor="let member of poles[poleID].members">
+          <img src="{{'https://eleves.mines-paris.eu/static/img/trombi/' + member.login
+          .replace('é', 'e')
+          .replace('ç', 'c') + '.jpg'}}"
+               appImgFallback="{{'https://eleves.mines-paris.eu/static/img/trombi/' + member.login.slice(0, 9) + member.prenom[0].toLowerCase() + '.jpg'}}"
+               alt="Photo de profil"
+               class="member-pic"/>
+
+        <div class="nom">
+          <span>{{member.prenom}} {{member.nom}}</span>
+          <span>{{poles[poleID].name}}<br/>{{member.role}}</span>
+        </div>
+      </div>
+    </ng-container>
+<!--    <app-display-pole *ngFor = "let poleID of keys().slice(1)"-->
+<!--                      [pole] = "poles[poleID].members"-->
+<!--                      [pole_id] = "poles[poleID].pole_id"-->
+<!--                      [pole_infos] = "poles[poleID]"></app-display-pole>-->
+  </div>
 
 </div>
 
