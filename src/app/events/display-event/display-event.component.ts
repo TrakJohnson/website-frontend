@@ -17,7 +17,7 @@ export class DisplayEventComponent implements OnInit {
 
   constructor(private popup : PopupService,
               private route : ActivatedRoute,
-              private router : Router, 
+              private router : Router,
               private eventService : EventService,
               private acc : AccountService,
               private poleService : PoleService) { }
@@ -38,10 +38,10 @@ export class DisplayEventComponent implements OnInit {
     this.event_id = this.route.snapshot.params["event_id"] ;
     this.eventService.getOneEvent(this.event_id)
     .then((response) =>{
+      console.log(response.pole_id)
       this.event = response;
       this.placesAccepted = this.event.placesClaimed.filter((place) => place.status);
       this.placesRejected = this.event.placesClaimed.filter((place) => !place.status);
-      console.log({event : this.event});
       this.is_billetterie = this.event.is_billetterie;
       this.on_sale = this.event.on_sale;
       this.pole = this.poleService.IDToPole.get(Number(this.event.pole_id))!
@@ -59,10 +59,10 @@ export class DisplayEventComponent implements OnInit {
           this.isAdmin = status.admin;
           this.isAuth = status.login != "";
           this.is_already_claimed = !status?.placesClaimed.every(place => {return place.event_id != this.event_id});
-        } 
+        }
     });
 
-    this.acc.getPlacesClaimedByUser();  
+    this.acc.getPlacesClaimedByUser();
   }
 
   buttonToDisplay() {

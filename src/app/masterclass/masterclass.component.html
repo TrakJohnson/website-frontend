@@ -10,50 +10,32 @@
       <li>Aucun matériel n'est requis, sauf pour le dessin.</li>
     </ul>
   </div>
-  <div class="single-masterclass">
-    <div class="thumbnail-container"><img src="../../assets/img/const/masterclasse_theatre.JPG"
-              alt="masterclass théâtre"/>
-    </div>
-    <div class="description-container">
-      <h3>Théâtre</h3>
-      <p>La masterclass de théâtre propose une représentation pour tous les mineurs en fin d’année.
-      Au menu : un concentré d’émotions, de technique… et de fous-rires !</p>
-      <ul>
-        <li>15 places</li>
-        <li>Horaires : Lundi de 19h à 21h</li>
-        <li>Professeur : Cédrick Lanoë</li>
-      </ul>
-    </div>
-    <div class="flex-filler"></div>
+
+  <div id="masterclass-infos">
+    <div id="top-infos"></div>
+    <div id="bottom-infos"></div>
   </div>
-  <div class="single-masterclass reverse">
-    <div class="thumbnail-container"><img src="../../assets/img/const/masterclasse_theatre.JPG"
-                                          alt="masterclass théâtre"/>
-    </div>
-    <div class="description-container">
-      <h3>Dessin</h3>
-      <p></p>
-      <ul>
-        <li>10 places</li>
-        <li>Horaires : Mercredi de 17h30 à 19h30 (L213 - École des Mines)</li>
-        <li>Professeur : Louis Debailleul</li>
-      </ul>
-    </div>
-    <div class="flex-filler"></div>
-  </div>
-  <div class="single-masterclass">
-    <div class="thumbnail-container"><img src="../../assets/img/const/masterclasse_theatre.JPG"
-                                          alt="masterclass théâtre"/>
-    </div>
-    <div class="description-container">
-      <h3>Chant</h3>
-      <p></p>
-      <ul>
-        <li>9 places (10 places au second semestre)</li>
-        <li>Horaires : Jeudi de 15h à 18h / 20 minutes par personne (L312 - École des Mines)</li>
-        <li>Professeure : Nausicaa Passaris</li>
-      </ul>
-    </div>
-    <div class="flex-filler"></div>
-  </div>
+
+  <app-masterclass-quickview titre="théâtre"
+                             places="15 places"
+                             horaires="Lundi de 19h à 21h"
+                             prof="Professeur : Cédrick Lanoë"
+                             photo="../../assets/img/const/masterclasse_theatre.JPG"></app-masterclass-quickview>
+
+
+  <app-masterclass-quickview titre="dessin"
+                             places="10 places"
+                             horaires="Mercredi de 17h30 à 19h30"
+                             salle="(L213 - École des Mines)"
+                             prof="Professeur : Louis Debailleul"
+                             photo="../../assets/img/const/masterclasse_theatre.JPG"
+                             [reverse]=true></app-masterclass-quickview>
+
+
+  <app-masterclass-quickview titre="chant"
+                             places="9 places (10 au S2)"
+                             horaires="Jeudi de 15h à 18h / 20 minutes par personne"
+                             salle="(L312 - École des Mines)"
+                             prof="Professeure : Nausicaa Passaris"
+                             photo="../../assets/img/const/masterclasse_theatre.JPG"></app-masterclass-quickview>
 </div>

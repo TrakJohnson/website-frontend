@@ -13,13 +13,23 @@ export class ImgFallbackDirective {
   loadFallbackOnError() {
     const element: HTMLImageElement = <HTMLImageElement>this.eRef.nativeElement;
     let cleared : string = element.src.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const defaultPic = '../assets/img/const/defaultUserImage.jpg';
     if (cleared !== element.src) {
       console.log(element.src);
       element.src = cleared;
     } else {
-      fetch(this.appImgFallback, {mode: "no-cors"})
-        .then(res => element.src = this.appImgFallback)
-        .catch(err => element.src = '../assets/img/dev/default_profile_pic.jpg')
+      console.log('not changed')
+      // doesn't have a profile pic
+      if (this.appImgFallback.includes('21belkasm')) {
+        element.src = defaultPic;
+      } else {
+        // TODO: this doesn't work because of cors
+        // https://stackoverflow.com/questions/54896998/how-to-process-fetch-response-from-an-opaque-type
+        // find a better way
+        fetch(this.appImgFallback, {mode: "no-cors"})
+          .then(res => console.log(res)) //element.src = this.appImgFallback)
+          .catch(err => console.log('error')) //element.src = )
+      }
     }
   }
 

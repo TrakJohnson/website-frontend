@@ -1,0 +1,16 @@
+<div class="single-masterclass-container">
+  <div class="flex-filler"></div>
+  <div class="single-masterclass">
+    <div class="masterclass-title">
+      <h3 [ngStyle]="{'background-image': 'url(\'' + photo + '\')'}">{{titre}}</h3>
+    </div>
+    <div [ngClass]="{'reverse': reverse}">
+      <div>{{places}}</div>
+      <div>{{horaires}}
+        <ng-container *ngIf=salle.length><br/>{{salle}}</ng-container>
+      </div>
+      <div>{{prof}}</div>
+    </div>
+  </div>
+  <div class="flex-filler"></div>
+</div>

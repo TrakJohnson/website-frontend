@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  // TODO: change that to the new one
   apiUrl: 'http://localhost:4000'
 };
 

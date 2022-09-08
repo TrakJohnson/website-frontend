@@ -65,6 +65,7 @@ import { DeleteEventComponent } from './events/delete/deleteEvent.component';
 import { BilletterieFilterComponent } from './billetterie/billetterie-filter/billetterie-filter.component';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
 import { ImgFallbackDirective } from './img-fallback.directive';
+import { MasterclassQuickviewComponent } from './masterclass/masterclass-quickview/masterclass-quickview.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -107,6 +108,7 @@ registerLocaleData(localeFr, 'fr');
     BilletterieFilterComponent,
     AdminManagementComponent,
     ImgFallbackDirective,
+    MasterclassQuickviewComponent,
   ],
 
   imports: [
