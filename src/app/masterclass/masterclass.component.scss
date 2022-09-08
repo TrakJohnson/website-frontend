@@ -1,6 +1,40 @@
+@import '_variables';
+
 .masterclass-container {
   margin: 20px 15vw 10vh 15vw;
 }
+
+#masterclass-infos {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 15vh 0 15vh 0;
+  gap: 20px;
+}
+
+#top-infos, #bottom-infos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  div {
+    width: 33.333%;
+  }
+}
+
+#top-infos {
+  font-family: "Chloe", serif;
+  font-size: 3.5rem;
+  border-bottom: 3px solid lightgrey;
+  color: $pink;
+}
+
+#bottom-infos {
+  font-size: 1.3rem;
+}
+
+.semestre { text-align: left; }
+.prix { text-align: center; }
+.materiel { text-align: right; }
 
 .description-container {
   display: flex;
