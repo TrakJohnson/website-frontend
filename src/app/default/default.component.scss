@@ -47,7 +47,7 @@ $max-img-width: 100vw;
   font-weight: 700;
   font-size: 4rem;
   margin-bottom: 10px;
-  line-height: 50px;
+  line-height: 60px;
 }
 
 #next-event .details {
@@ -70,6 +70,7 @@ $max-img-width: 100vw;
 
 .large-text {
   margin: 12vh auto;
+  width: 530px;
 }
 
 h2 {
@@ -83,7 +84,5 @@ h2 {
 
 #calendar {
   margin: 20px auto 10vh auto;
-  height: 50vw;
-  width: 50vw;
-  background: darkgrey;
+  width: 740px;
 }

@@ -41,7 +41,7 @@ import { CreateBilletterieComponent } from './billetterie/create/createbilletter
 import { ModifyBilletterieComponent } from './billetterie/modify/modifybilletterie.component';
 import { DeleteBilletterieComponent } from './billetterie/delete/deletebilletterie.component';
 import { MasterclassComponent } from './masterclass/masterclass.component';
-import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarComponent } from './default/calendar/calendar.component';
 import { RecoverComponent } from './recover/recover.component';
 import { DemandPasswordComponent } from './recover/demandPassword/demandPassword.component';
 import { ChangePasswordComponent } from './recover/changePassword/changePassword.component';

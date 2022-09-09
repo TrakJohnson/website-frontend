@@ -15,7 +15,7 @@ import {AccountComponent} from './account/account.component';
 import {AccountViewComponent} from './account/account-view/account-view.component';
 import {BilletterieComponent} from './billetterie/billetterie.component';
 import {CreateBilletterieComponent} from './billetterie/create/createbilletterie.component';
-import {CalendarComponent} from './calendar/calendar.component';
+import {CalendarComponent} from './default/calendar/calendar.component';
 import {MasterclassComponent} from './masterclass/masterclass.component';
 import {RecoverComponent} from './recover/recover.component';
 import {DemandPasswordComponent} from './recover/demandPassword/demandPassword.component';
