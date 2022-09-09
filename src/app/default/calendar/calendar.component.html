@@ -2,9 +2,58 @@
 
 
 <div class="row text-center calendar-container">
-  <div>
-    <div class="col-md-12">
-      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}</h3>
+  <div class="col-md-3">
+    <div class="calendar-controls">
+      <!--class="btn btn-primary"-->
+      <div
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        <i class="fa-solid fa-circle-chevron-left fa-fw"></i>
+      </div>
+      <div
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+        <i class="fa-solid fa-house fa-fw"></i>
+      </div>
+      <div
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        <i class="fa-solid fa-circle-chevron-right fa-fw"></i>
+      </div>
+      <div class="flex-filler"></div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}</h3>
+  </div>
+  <div class="col-md-3">
+    <div class="calendar-controls">
+      <div class="flex-filler"></div>
+      <div
+        (click)="setView(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month"
+      >
+        Mois
+      </div>
+      <div
+        (click)="setView(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week"
+      >
+        Semaine
+      </div>
+      <!--<div
+        (click)="setView(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day"
+      >
+        Jour
+      </div>-->
     </div>
   </div>
 </div>
@@ -37,63 +86,6 @@
     (eventClicked)="handleEvent('Clicked', $event.event)"
   >
   </mwl-calendar-day-view>
-</div>
-
-<div class="row text-center">
-  <div class="col-md-6">
-    <div class="btn-group">
-      <div
-        class="btn btn-primary"
-        mwlCalendarPreviousView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        (viewDateChange)="closeOpenMonthViewDay()"
-      >
-        Précédent
-      </div>
-      <div
-        class="btn btn-outline-secondary"
-        mwlCalendarToday
-        [(viewDate)]="viewDate"
-      >
-        Actuel
-      </div>
-      <div
-        class="btn btn-primary"
-        mwlCalendarNextView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        (viewDateChange)="closeOpenMonthViewDay()"
-      >
-        Suivant
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="btn-group">
-      <div
-        class="btn btn-primary"
-        (click)="setView(CalendarView.Month)"
-        [class.active]="view === CalendarView.Month"
-      >
-        Mois
-      </div>
-      <div
-        class="btn btn-primary"
-        (click)="setView(CalendarView.Week)"
-        [class.active]="view === CalendarView.Week"
-      >
-        Semaine
-      </div>
-      <div
-        class="btn btn-primary"
-        (click)="setView(CalendarView.Day)"
-        [class.active]="view === CalendarView.Day"
-      >
-        Jour
-      </div>
-    </div>
-  </div>
 </div>
 
 <!--
