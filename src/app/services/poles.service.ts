@@ -24,12 +24,12 @@ export class PoleService {
         .subscribe(
           (polesData: Array<any>) => {
             var polesTreated: any = {};
+            console.log("pole data")
+            console.log(polesData)
             polesData.forEach(pole => {
               polesTreated[pole.pole_id] = new Pole(pole);
             });
-
-            console.log({poleData: polesTreated});
-
+            console.log(polesTreated)
             this.poles$.next(polesTreated);
             resolve();
           },

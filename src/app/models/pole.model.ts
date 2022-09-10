@@ -3,9 +3,10 @@ import { Member } from "./member.model";
 export class Pole {
     pole_id : number;
     name : string;
-    description : string;  
+    description : string;
     color : string;
     members : Array<Member>;
+    hasBilletterie : boolean;
 
     constructor(data: any | undefined) {
       this.pole_id = data.pole_id || undefined;
@@ -13,5 +14,6 @@ export class Pole {
       this.description = data.description || undefined;
       this.color = data.color;
       this.members = data.members || undefined;
+      this.hasBilletterie = data.hasBilletterie;
     }
 }
