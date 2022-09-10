@@ -22,6 +22,8 @@ export class ImgFallbackDirective {
       // doesn't have a profile pic
       if (this.appImgFallback.includes('21belkasm')) {
         element.src = defaultPic;
+      } else if (this.appImgFallback.includes('21dureau')) {
+        console.log(this.appImgFallback)
       } else {
         // TODO: this doesn't work because of cors
         // https://stackoverflow.com/questions/54896998/how-to-process-fetch-response-from-an-opaque-type
