@@ -63,6 +63,12 @@ $bureau-img-width: 280px;
   width: 1410px; // TODO: add a media query to resize when smaller, to another rectangle
 }
 
+@media (max-width: 1700px) {
+  #poles-container {
+    width: 1160px;
+  }
+}
+
 .pole-img-container {
   text-align: center;
   position: relative;
