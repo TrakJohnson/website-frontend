@@ -21,10 +21,30 @@
       <i class="fa-solid fa-location-dot fa-fw"></i>
       {{event.event_place}}
     </div>
+
+    <div class="info-container" [ngClass]="{'open': event.on_sale, 'closed': !notYet && !event.on_sale}">
+      <i class="fa-solid fa-ticket fa-fw"></i>
+      <ng-container *ngIf="event.on_sale">
+        La billeterie est ouverte !
+      </ng-container>
+      <ng-container  *ngIf="notYet && !event.on_sale">
+        Ouverture de la billetterie: {{(event.date_open | date: 'dd/MM/yyyy')}}
+      </ng-container>
+      <ng-container *ngIf="!notYet && !event.on_sale">
+        La billetterie est fermée
+      </ng-container>
+    </div>
+
     <div class="flex-filler"></div>
+
     <button (click)="onNavigate('events/display/' + event.event_id )"
             class="bda-btn">
-      Réserver ma place <i class="fa-solid fa-arrow-right"></i>
+      <ng-container *ngIf="event.on_sale">
+        Réserver ma place <i class="fa-solid fa-arrow-right"></i>
+      </ng-container>
+      <ng-container *ngIf="!event.on_sale">
+        Voir les détails <i class="fa-solid fa-arrow-right"></i>
+      </ng-container>
     </button>
   </div>
 </div>

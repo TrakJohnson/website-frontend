@@ -71,33 +71,33 @@
         </div>
       </div>
     </div>
-    <!-- Pour les billetteries -->
   </div>
 
-  <div *ngIf="isAdmin" class="admin-buttons">
-    <button *ngIf="is_billetterie" id="modifyB_buttoon" class="btn btn-success admin-btn"
-            (click)="onNavigate('billetterie/modify/' + event.event_id)"> Modifier cette billetterie
-    </button>
-    <button *ngIf="!is_billetterie" id="modifyE_buttoon" class="btn btn-success admin-btn"
-            (click)="onNavigate('events/modify/' + event.event_id)"> Modifier cet évènement
-    </button>
-    <button *ngIf="is_billetterie && on_sale" id="closeB_buttoon" class="btn btn-success admin-btn"
-            (click)="onCloseBilletterie()"> Retirer de la vente cette billetterie
-    </button>
-    <button *ngIf="is_billetterie && !on_sale" id="openB_buttoon" class="btn btn-success admin-btn"
-            (click)="onReSaleBilletterie()"> Remettre en vente cette billetterie
-    </button>
-  </div>
+  <div *ngIf="!isAuth" id="noauth"><i>Connectez-vous ou créez un compte pour pouvoir acheter des billets !</i></div>
 
-  <div *ngIf="!isAuth"><i>Connectez-vous ou créez un compte pour pouvoir acheter des billets !</i></div>
+  <!-- Section admin -->
+  <div *ngIf="isAdmin && isAuth" id="admin-section">
+    <h3>Section admin</h3>
+    <div class="admin-buttons">
+      <button *ngIf="is_billetterie" id="modifyB_buttoon" class="btn btn-success admin-btn"
+              (click)="onNavigate('billetterie/modify/' + event.event_id)"> Modifier cette billetterie
+      </button>
+      <button *ngIf="!is_billetterie" id="modifyE_buttoon" class="btn btn-success admin-btn"
+              (click)="onNavigate('events/modify/' + event.event_id)"> Modifier cet évènement
+      </button>
+      <button *ngIf="is_billetterie && on_sale" id="closeB_buttoon" class="btn btn-success admin-btn"
+              (click)="onCloseBilletterie()"> Retirer de la vente cette billetterie
+      </button>
+      <button *ngIf="is_billetterie && !on_sale" id="openB_buttoon" class="btn btn-success admin-btn"
+              (click)="onReSaleBilletterie()"> Remettre en vente cette billetterie
+      </button>
+    </div>
 
-
-  <div class="purchase_container">
-    <div *ngIf="!on_sale && isAdmin && isAuth">
+    <div class="purchase_container" >
       <table style="text-align: center;" class="table table-striped table-bordered">
         <thead>
         <tr scope="col">
-          <th colspan="4">Places attribuées</th>
+          <th colspan="5">Places attribuées</th>
         </tr>
         <tr scope="col">
           <th>Login</th>

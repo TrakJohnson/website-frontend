@@ -12,6 +12,8 @@ export class EventQuickviewComponent implements OnInit {
   constructor(private router: Router) {
   }
 
+  notYet : boolean = false;
+
   @Input() event: Event;
   @Input() image: string;
   @Input() link: string;
@@ -20,6 +22,12 @@ export class EventQuickviewComponent implements OnInit {
     if (this.event.thumbnail == undefined || this.event.thumbnail.length < 1
       || this.event.thumbnail == null) {
       this.event.thumbnail = "../../../assets/img/dev/default_event_pic.jpg"
+    }
+
+    if (this.event.date_open) {
+      let d_open = new Date(this.event.date_open);
+      let now = new Date()
+      this.notYet = d_open.getTime() > now.getTime();
     }
   }
 

@@ -39,6 +39,9 @@ $thumbnail-height: calc(3*#{$thumbnail-width}/4);
     padding: 5px 0;
   }
 
+  .info-container.open { color: green }
+  .info-container.closed { color: darkred }
+
   i {
     margin: 0 7px;
   }

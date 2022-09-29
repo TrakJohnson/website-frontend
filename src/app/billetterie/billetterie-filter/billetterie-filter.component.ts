@@ -18,7 +18,7 @@ export class BilletterieFilterComponent implements OnInit {
 
   @Output() requirementsToSend = new EventEmitter();
 
-  requirements: any = {"on_sale": [1]};
+  requirements: any = {};
   loading = false;
   requirementsForm: FormGroup;
   polesChoicesSub: Subscription;
@@ -29,7 +29,7 @@ export class BilletterieFilterComponent implements OnInit {
     this.requirementsForm = this.formBuilder.group({
       pole_id: [null],
       title: [null],
-      on_sale: [1],
+      on_sale: [0],
     });
 
     this.polesChoicesSub = this.poleService.poles$.subscribe(

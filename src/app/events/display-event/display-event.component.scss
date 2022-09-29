@@ -10,7 +10,7 @@ $quickview-width: 95vw;
 .lien-retour {
   display: block;
   margin: 0 0 3vh 20px;
-  color: $header-text-color !important;  // fk bootstrap
+  color: $header-text-color !important; // fk bootstrap
   text-decoration: none;
 }
 
@@ -26,68 +26,93 @@ $quickview-width: 95vw;
   }
 }
 
+#admin-section > h3 {
+  margin: 10px 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#admin-section {
+  margin-top: calc(10vh + 30px);
+  padding: 5px;
+  background: #fff9f9;
+  border: 3px solid #ff8080;
+
+
+  table.table-bordered,
+  table.table-bordered > thead > tr > th,
+  table.table-bordered > tbody > tr > td{
+    border: 1px solid #7b7b7b;
+  }
+
+  table {
+    margin-bottom: 0;
+  }
+}
+
 .admin-buttons {
-    display : flex;
-    justify-content: space-evenly;
-  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0;
 }
 
 .admin-buttons button {
-    margin : 1vh;
-    width: 30%;
+  margin: 1vh;
+  width: 30%;
 }
 
 
 #quickview-container {
-    display : flex;
-    flex-direction : row;
-    margin : 0;
-    min-width : 90%;
-    max-width : 100%;
-    max-height : 100%;
-    padding : 0
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  min-width: 90%;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0
 }
 
 #thumbnail_container {
-    max-width: 50%;
-    min-height : 100%;
-    max-height : 100%;
-    padding : 0
+  max-width: 50%;
+  min-height: 100%;
+  max-height: 100%;
+  padding: 0
 }
 
 #text_container {
-    padding-left: 2vw;
+  padding-left: 2vw;
 }
 
 
 #description {
-    max-width: 100%;
-    max-height: 100%;
-    overflow : hidden;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
 }
 
 #titre, #description {
-    color :black;
+  color: black;
 
 
 }
 
 #title {
-    margin-top : .5vmin;
-    margin-bottom : 1vmin;
-    font-size : 2.5vmax;
-    line-height: 3vmax;
+  margin-top: .5vmin;
+  margin-bottom: 1vmin;
+  font-size: 2.5vmax;
+  line-height: 3vmax;
 }
 
 .details_container {
-    margin-top : 2vh;
-    display : flex;
-    flex-direction : row;
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: row;
 }
 
 .purchase-button {
-    width: 100%;
-    margin : 1%;
+  width: 100%;
+  margin: 1%;
 }
 
 .sale-btn-container {
@@ -95,45 +120,51 @@ $quickview-width: 95vw;
   flex-direction: row;
 }
 
-@media screen and (max-width: 1000px)
-{
+.purchase_container {
+  margin: auto 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#noauth {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
 
 
-    #quickview-container, .details_container {
-        flex-direction: column;
-    }
+@media screen and (max-width: 1000px) {
+  #quickview-container, .details_container {
+    flex-direction: column;
+  }
 
-    .admin-buttons {
-        width : 95vw;
-        text-align: center;
-    }
+  .admin-buttons {
+    width: 95vw;
+    text-align: center;
+  }
 
-    .admin-buttons button {
-        margin : 1vh;
-    }
+  .admin-buttons button {
+    margin: 1vh;
+  }
 
-    #thumbnail_container {
-        max-width : 100%;
-        max-height : 50%;
-        min-height : 50%;
-        display : flex;
-        justify-content: center;
-    }
+  #thumbnail_container {
+    max-width: 100%;
+    max-height: 50%;
+    min-height: 50%;
+    display: flex;
+    justify-content: center;
+  }
 
-    #event_thumbnail { margin : auto}
+  #event_thumbnail {
+    margin: auto
+  }
 
-    .container-fluid {
-        max-width : 95vw;
-        max-height : none;
-        min-height : 50vw;
-        align-items: center;
-    }
-
-    .purchase_container {
-        margin : auto 0;
-        display : flex;
-        flex-direction : row;
-        align-items : center;
-    }
-
+  .container-fluid {
+    max-width: 95vw;
+    max-height: none;
+    min-height: 50vw;
+    align-items: center;
+  }
 }

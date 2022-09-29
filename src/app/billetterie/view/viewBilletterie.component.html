@@ -8,8 +8,9 @@
   <app-billetterie-filter (requirementsToSend)='changeRequirements($event)'></app-billetterie-filter>
   <div id="results-count">{{this.eventService.filterEvents(eventsToDisplay, requirements).length}} résultat(s)</div>
   <div id="quickview-container">
-  <app-event-quickview *ngFor="let event of this.eventService.filterEvents(eventsToDisplay, requirements)"
-                       [event]="event"></app-event-quickview>
+  <app-event-quickview
+    *ngFor="let event of this.eventService.filterEvents(eventsToDisplay, requirements, true)"
+    [event]="event"></app-event-quickview>
   </div>
 </div>
 
