@@ -1,14 +1,60 @@
-<h2 class="page-title">Bienvenue, <b>{{account?.login}}</b>  </h2>
+<h2 class="page-title">Bienvenue, <b>{{account?.prenom}}</b></h2>
+
+<div id="account-info">
+  <table>
+    <tr>
+      <td>Login</td>
+      <td>{{account?.login}}
+        <span *ngIf="account?.login_portail && (account?.login !== account?.login_portail)">
+          <i>(ce sera bientôt {{account?.login_portail}}, comme sur le portail)</i>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Prénom</td>
+      <td>{{account?.prenom}}</td>
+    </tr>
+    <tr>
+      <td>Nom</td>
+      <td>{{account?.nom?.toUpperCase()}}</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>{{account?.email}}</td>
+    </tr>
+    <tr>
+      <td>Promo</td>
+      <td>{{account?.promo}}</td>
+    </tr>
+    <tr>
+      <td>Cotisant</td>
+      <td *ngIf="account?.contributor" style="color: green; font-weight: bold;">Oui</td>
+      <td *ngIf="!account?.contributor">Non</td>
+    </tr>
+    <tr>
+      <td>Statut</td>
+      <td *ngIf="account?.admin" style="color: darkred; font-weight: bold">Admin</td>
+      <td *ngIf="!account?.admin">Utilisateur</td>
+    </tr>
+  </table>
+</div>
+
 <div style="text-align: center"><button id="modif_buttoon" class="btn btn-success" style="margin : 1%;" (click) = "onNavigate('account/modify')">
   Modifier mes informations
 </button></div>
 
 
-<div id="view-account-places" *ngFor="let place of account?.placesClaimed? account?.placesClaimed : []">
-    <div class="card">
-        <div class="card-body">
-            <p [ngStyle]="{'color': colorAccordingToStatus(place.status)}"> Statut : {{textAccordingToStatus(place.status)}}</p>
-        </div>
+<h2 class="page-title">Mes évènements</h2>
+
+<div id="no-account-places"*ngIf="account?.placesClaimed?.length == 0">
+  <i>Vous n'avez assisté à aucun évènement du BDA.</i>
+</div>
+
+<div id="view-account-places" *ngFor="let place of account?.placesClaimed ? account?.placesClaimed : []">
+  <div class="card">
+    <div class="card-body">
+      <p [ngStyle]="{'color': colorAccordingToStatus(place.status)}"> Statut : {{textAccordingToStatus(place.status)}}</p>
     </div>
-    <app-event-quickview [event]="eventsWithPlaceClaimed[place.event_id]"></app-event-quickview>
+  </div>
+  <app-event-quickview [event]="eventsWithPlaceClaimed[place.event_id]"></app-event-quickview>
 </div>

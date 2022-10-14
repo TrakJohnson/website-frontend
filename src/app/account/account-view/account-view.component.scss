@@ -1,8 +1,20 @@
+#account-info {
+  table {
+    margin: 0 auto;
+    border-spacing: 5px;
+    border-collapse: separate;
+  }
+  tr > td:first-child {
+    color: grey;
+    text-align: right;
+  }
+}
 
+#no-account-places {
+  text-align: center;
+}
 
 #view-account-places{
-
     width: 70%;
     margin: auto;
-
 }

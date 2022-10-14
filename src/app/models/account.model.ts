@@ -2,11 +2,12 @@ import { Place } from "./place.model";
 
 export class Account {
     id : number;
-    prenom : string;  
+    prenom : string;
     nom : string;
     login: string;
+    login_portail: string;
     email: string;
-    email_verified: number; 
+    email_verified: number;
     contributor: number;
     admin: boolean;
     points: number;
@@ -20,6 +21,7 @@ export class Account {
       this.prenom = data.prenom || undefined;
       this.nom = data.nom || undefined;
       this.login = data.login || undefined;
+      this.login_portail = data.login_portail || undefined;
       this.email = data.email || undefined;
       this.email_verified = data.email_verified || undefined;
       this.contributor = data.contributor || undefined;
