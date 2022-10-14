@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AuthService } from './services/auth.service';
-import { PopupService } from './services/popup.service';
+import {Component, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {AuthService} from './services/auth.service';
+import {PopupService} from './services/popup.service';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +12,23 @@ export class AppComponent implements OnInit {
   title = 'app';
 
   constructor(private popup: PopupService,
-    private auth : AuthService) {}
+              private auth: AuthService) {
+  }
 
-  loadingSub : Subscription;
-  loading : boolean;
+  loadingSub: Subscription;
+  loading: boolean;
 
-  authSub : Subscription;
-  isAuth : boolean;
-  token : string | null;
+  authSub: Subscription;
+  isAuth: boolean;
+  token: string | null;
 
 
-  events = [{title: "1", description :"desc1", link: "#", image : "image"},{title: "2" , description : "desc2", link: "#", image : "image2"}]
+  events = [{title: "1", description: "desc1", link: "#", image: "image"}, {
+    title: "2",
+    description: "desc2",
+    link: "#",
+    image: "image2"
+  }]
 
   async ngOnInit() {
 
@@ -44,14 +50,14 @@ export class AppComponent implements OnInit {
     if (this.token && !this.isAuth) {
       console.log("Want To connecct");
       await this.auth.loginFromToken(this.token)
-      .then(() => {
-        this.popup.loading$.next(false);
-      })
-      .catch((error) => {
-        this.popup.loading$.next(false);
-        this.popup.state$.next([false, error.message]);
-      }
-    );
+        .then(() => {
+          this.popup.loading$.next(false);
+        })
+        .catch((error) => {
+            this.popup.loading$.next(false);
+            this.popup.state$.next([false, error.message]);
+          }
+        );
     }
   }
 }

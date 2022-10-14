@@ -45,7 +45,7 @@ export class DisplayEventComponent implements OnInit {
       this.is_billetterie = this.event.is_billetterie;
       this.on_sale = this.event.on_sale;
       this.pole = this.poleService.IDToPole.get(Number(this.event.pole_id))!
-      if (this.event.thumbnail == undefined || this.event.thumbnail.length < 1 || this.event.thumbnail == null) {
+      if (this.event.thumbnail == undefined || this.event.thumbnail.length < 1) {
         this.event.thumbnail = "../../../assets/img/dev/default_event_pic.jpg"
       }
     })
@@ -127,6 +127,11 @@ export class DisplayEventComponent implements OnInit {
   onRetirePlace(place : Place) {
     this.eventService.retirePlaceToUser(place.event_id, place.login)
     this.onNavigate('/events/display/' + this.event_id.toString());
+  }
+
+  getEmailsParticipants() {
+    /* Obtenir la liste des emails des participants, pour les membres gérant l'évènement */
+    return this.placesAccepted.map((x: Place) => x.login).join("; ")
   }
 
   onNavigate(endpoint: string) {
