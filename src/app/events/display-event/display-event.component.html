@@ -91,19 +91,21 @@
       <button *ngIf="is_billetterie && !on_sale" id="openB_buttoon" class="btn btn-success admin-btn"
               (click)="onReSaleBilletterie()"> Remettre en vente cette billetterie
       </button>
-      <button *ngIf="is_billetterie" id="get-emails" class="btn btn-success"
-              (click)="getEmailsParticipants()">Récupérer les mails des participants (presse-papier)
-      </button>
     </div>
 
     <div class="purchase_container" >
       <table style="text-align: center;" class="table table-striped table-bordered">
         <thead>
         <tr scope="col">
-          <th colspan="5">Places attribuées</th>
+          <th colspan="7">Places attribuées ({{placesAccepted.length}}/{{event.num_places}})
+            <button *ngIf="is_billetterie" id="get-emails" class="btn btn-success"
+                    (click)="getEmailsParticipants()">Récupérer les mails des participants (presse-papier)
+          </button></th>
         </tr>
         <tr scope="col">
           <th>Login</th>
+          <th>Nom</th>
+          <th>Prénom</th>
           <th>Cotisant</th>
           <th>Points sans place</th>
           <th>Points avec place</th>
@@ -113,6 +115,8 @@
         <tbody>
         <tr *ngFor="let place of placesAccepted">
           <td scope="row">{{place.login}}</td>
+          <td scope="row">{{this.usersInfos[place.login][0]}}</td>
+          <td scope="row">{{this.usersInfos[place.login][1]}}</td>
           <td>{{place.contributor ? "Oui" : "Non"}}</td>
           <td>{{(place.points - (event.points ? event.points : 0) - (place.size - 1))}}</td>
           <td>{{place.points}}</td>
