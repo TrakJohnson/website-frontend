@@ -25,7 +25,7 @@
           <p class="details"> Cet évènement {{event.on_sale ? "est en vente" : "n'est plus en vente"}} </p>
           <p id="pole"> Proposé par : {{pole}} </p>
 
-          <p *ngIf="event.dateEvent_end" id="date_end" class="details"> Date de la fin de
+          <p *ngIf="event.dateEvent_end" class="details"> Date de la fin de
             l'évènement: {{(event.dateEvent_end | date:'EEEE d MMMM y, HH:mm')}} </p>
           <p> Nombre de places displonibles :  {{event.num_places}}</p>
           <p> Points de l'évènement : {{event.points}} </p>
@@ -39,10 +39,10 @@
                       (click)="onClaimePlace(event.event_id, 1)">
                 Réserver un billet
               </button>
-              <button *ngSwitchCase="1" class="btn btn-success purchase-button"
+              <!--<button *ngSwitchCase="1" class="btn btn-success purchase-button"
                       (click)="onClaimePlace(event.event_id, 2)">
                 Réserver deux billets
-              </button>
+              </button>-->
               <button *ngSwitchCase="2" class="btn btn-success purchase-button"
                       (click)="onDeClaimePlace(event.event_id)">
                 Retirer ma réservation
@@ -60,7 +60,7 @@
           <p *ngIf="event.event_place" id="lieu" class="details"> Lieu de l'évènement : {{event.event_place}} </p>
           <p *ngIf="event.dateEvent" id="date" class="details"> Date de l'évènement
             : {{(event.dateEvent | date:'EEEE d MMMM y HH:mm')}} (heure de Paris) </p>
-          <p *ngIf="event.dateEvent_end" id="date_end" class="details"> Date de la fin de
+          <p *ngIf="event.dateEvent_end" class="details"> Date de la fin de
             l'évènement: {{(event.dateEvent_end | date:'EEEE d MMMM y HH:mm')}} </p>
           <p *ngIf="event.num_places" id="num_places" class="details"> Nombre de places displonibles
             :  {{event.num_places}}</p>
@@ -96,13 +96,13 @@
     <div class="purchase_container" >
       <table style="text-align: center;" class="table table-striped table-bordered">
         <thead>
-        <tr scope="col">
+        <tr>
           <th colspan="7">Places attribuées ({{placesAccepted.length}}/{{event.num_places}})
             <button *ngIf="is_billetterie" id="get-emails" class="btn btn-success"
                     (click)="getEmailsParticipants()">Récupérer les mails des participants (presse-papier)
           </button></th>
         </tr>
-        <tr scope="col">
+        <tr>
           <th>Login</th>
           <th>Nom</th>
           <th>Prénom</th>
@@ -112,11 +112,12 @@
           <th>Action</th>
         </tr>
         </thead>
+
         <tbody>
         <tr *ngFor="let place of placesAccepted">
-          <td scope="row">{{place.login}}</td>
-          <td scope="row">{{this.usersInfos[place.login][0]}}</td>
-          <td scope="row">{{this.usersInfos[place.login][1]}}</td>
+          <td>{{place.login}}</td>
+          <td>{{this.usersInfos[place.login][0]}}</td>
+          <td>{{this.usersInfos[place.login][1]}}</td>
           <td>{{place.contributor ? "Oui" : "Non"}}</td>
           <td>{{(place.points - (event.points ? event.points : 0) - (place.size - 1))}}</td>
           <td>{{place.points}}</td>
@@ -131,7 +132,7 @@
         <tr>
           <th colspan="4">Places refusées</th>
         </tr>
-        <tr scope="col">
+        <tr>
           <th>Login</th>
           <th>Cotisant</th>
           <th>Points</th>
@@ -140,7 +141,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let place of placesRejected">
-          <td scope="row">{{place.login}}</td>
+          <td>{{place.login}}</td>
           <td>{{place.contributor ? "Oui" : "Non"}}</td>
           <td>{{place.points}}</td>
           <td *ngIf="placesAccepted.length < (event.num_places ? event.num_places : 0)">
