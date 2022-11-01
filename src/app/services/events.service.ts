@@ -230,6 +230,13 @@ export class EventService {
         });
     }
 
+    getEmailsParticipants(logins : string[]) {
+      return new Promise<any>((resolve, reject) => {
+        this.http
+          .post(environment.apiUrl + '/api/event/getEmailsBilletterie', {logins: logins})
+          .subscribe(resolve, reject)
+      })
+    }
 
     satisfyRequirements(event: any, requirements : any) : boolean {
         var satisfy = true;

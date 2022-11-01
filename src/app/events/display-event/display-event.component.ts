@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ClipboardService } from 'ngx-clipboard'
 import { Event } from 'src/app/models/event.model';
 import { Place } from 'src/app/models/place.model';
 import { AccountService } from 'src/app/services/account.service';
@@ -20,7 +21,8 @@ export class DisplayEventComponent implements OnInit {
               private router : Router,
               private eventService : EventService,
               private acc : AccountService,
-              private poleService : PoleService) { }
+              private poleService : PoleService,
+              private _clipboardService: ClipboardService) { }
 
   event_id : number;
   event : Event;
@@ -129,9 +131,20 @@ export class DisplayEventComponent implements OnInit {
     this.onNavigate('/events/display/' + this.event_id.toString());
   }
 
+  copy(text: string){
+    this._clipboardService.copy(text)
+  }
+
+  getInfosParticipants() {
+    let logins = this.placesAccepted.map((x: Place) => x.login);
+    return this.eventService.getEmailsParticipants(logins)
+  }
+
   getEmailsParticipants() {
     /* Obtenir la liste des emails des participants, pour les membres gérant l'évènement */
-    return this.placesAccepted.map((x: Place) => x.login).join("; ")
+    this.getInfosParticipants()
+      .then(users => users.map((user : any) => user.email_mines ? user.email_mines : user.email))
+      .then((emails : string[]) => this.copy(emails.join("; ")));
   }
 
   onNavigate(endpoint: string) {

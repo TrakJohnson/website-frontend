@@ -66,7 +66,6 @@ import { BilletterieFilterComponent } from './billetterie/billetterie-filter/bil
 import { AdminManagementComponent } from './admin-management/admin-management.component';
 import { ImgFallbackDirective } from './img-fallback.directive';
 import { MasterclassQuickviewComponent } from './masterclass/masterclass-quickview/masterclass-quickview.component';
-import {ClipboardModule} from "ngx-clipboard";
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -130,8 +129,7 @@ registerLocaleData(localeFr, 'fr');
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
-    }),
-    ClipboardModule
+    })
   ],
   providers: [NgxImageCompressService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

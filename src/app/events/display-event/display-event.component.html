@@ -92,7 +92,6 @@
               (click)="onReSaleBilletterie()"> Remettre en vente cette billetterie
       </button>
       <button *ngIf="is_billetterie" id="get-emails" class="btn btn-success"
-              ngxClipboard [cbContent]="getEmailsParticipants()"
               (click)="getEmailsParticipants()">Récupérer les mails des participants (presse-papier)
       </button>
     </div>
