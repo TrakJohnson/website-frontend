@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {ClipboardService} from 'ngx-clipboard'
+import {Clipboard} from '@angular/cdk/clipboard';
 import {Event} from 'src/app/models/event.model';
 import {Place} from 'src/app/models/place.model';
 import {AccountService} from 'src/app/services/account.service';
@@ -22,7 +22,7 @@ export class DisplayEventComponent implements OnInit {
               private eventService: EventService,
               private acc: AccountService,
               private poleService: PoleService,
-              private _clipboardService: ClipboardService) {
+              private clipboard: Clipboard) {
   }
 
   event_id: number;
@@ -142,7 +142,14 @@ export class DisplayEventComponent implements OnInit {
   }
 
   copy(text: string) {
-    this._clipboardService.copy(text)
+    /// this.clipboard.copy(text)
+    console.log("safari method")
+    const el = document.createElement('textarea');
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
   }
 
   getInfosParticipants() {
@@ -151,6 +158,7 @@ export class DisplayEventComponent implements OnInit {
   }
 
   getEmailsParticipants() {
+    console.log("get participants")
     /* Obtenir la liste des emails des participants, pour les membres gérant l'évènement */
     // TODO: send an error when empty list, add confirmation when worked
     if (this.placesAccepted.length > 0) {
