@@ -2,7 +2,7 @@
 
   <div class="navbar">
     <a class="nav-item nav-link" (click)="onNavigate('default', true)">Accueil </a>
-    <a class="nav-item nav-link" (click)="onNavigate('billetterie/view', true)"> Billetterie</a>
+    <a class="nav-item nav-link" (click)="onNavigate('billetterie/view', true)">Billetterie</a>
     <a class="nav-item nav-link" (click)="onNavigate('masterclass', false)">Masterclass</a>
     <a class="nav-item nav-link" (click)="onNavigate('team/view', true)">Équipe</a>
     <!--<a *ngIf="!isAuth" class="nav-item nav-link" id="adminLink" (click)="onNavigate('login', false)">
@@ -16,4 +16,28 @@
        (click)="onNavigate('default', false)">
 
   <app-user-infos></app-user-infos>
+  <div id="mobile-wrapper">
+    <div class="flex-filler"></div>
+    <div id="mobile-hamburger" (click)="mobileMenuToggle()">
+<!--         [ngClass]="{'active': mobileMenuOpen, 'not-active': !mobileMenuOpen}">-->
+      <div>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
 </header>
+
+<div id="mobile-full-screen-menu"
+     [ngClass]="{shown: mobileMenuOpen, hidden: !mobileMenuOpen}">
+  <div class="flex-filler"></div>
+  <div id="mobile-menu-inner">
+    <a class="nav-item nav-link" (click)="mobileMenuToggle(); onNavigate('default', true)">Accueil </a>
+    <a class="nav-item nav-link" (click)="mobileMenuToggle(); onNavigate('billetterie/view', true)">Billetterie</a>
+    <a class="nav-item nav-link" (click)="mobileMenuToggle(); onNavigate('masterclass', false)">Masterclass</a>
+    <a class="nav-item nav-link" (click)="mobileMenuToggle(); onNavigate('team/view', true)">Équipe</a>
+  </div>
+  <div class="flex-filler"></div>
+  <app-user-infos (navigated)="mobileMenuToggle(true)"></app-user-infos>
+</div>

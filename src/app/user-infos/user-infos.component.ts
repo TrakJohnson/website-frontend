@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs';
 
@@ -27,6 +27,9 @@ export class UserInfosComponent implements OnInit, OnDestroy {
   private accountSub: Subscription;
   account: Account;
 
+  @Output()
+  navigated = new EventEmitter<any>();
+
   ngOnInit() {
     this.isAuthSub = this.auth.isAuth$.subscribe(
       (status) => {
@@ -46,6 +49,8 @@ export class UserInfosComponent implements OnInit, OnDestroy {
   }
 
   onNavigate(endpoint: string, triggerLoading : boolean) {
+    // tell the parent component we changed page hide header)
+    this.navigated.emit(null)
     if (triggerLoading) {
       this.popup.loading$.next(true);
     }

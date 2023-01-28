@@ -63,10 +63,28 @@ footer > :last-child {
   text-decoration: none;
 }
 
-
 /* image links */
 $image-height: calc(#{$footer-height} - 2*#{$footer-padding});
 img.sponsor, #logo-liste, #logo-bde, #logo-mines {
   height: $image-height;
   width: auto;
+}
+
+
+/// ----- mobile
+
+
+@media screen and (max-width: $footer-mobile-limit) {
+  footer {
+    flex-direction: column;
+  }
+
+  footer > * {
+    margin-right: 0;
+    text-align: center;
+  }
+
+  footer > .flex-filler {
+    height: 15px;
+  }
 }

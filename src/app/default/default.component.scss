@@ -70,7 +70,7 @@ $max-img-width: 100vw;
 
 .large-text {
   margin: 12vh auto;
-  width: 530px;
+  width: min(95vw, 530px);
 }
 
 h2 {
@@ -84,5 +84,29 @@ h2 {
 
 #calendar {
   margin: 20px auto 10vh auto;
-  width: 740px;
+  width: min(90vw, 740px);
+}
+
+
+/// mobile
+
+@media screen and (max-width: $header-mobile-limit) {
+  #next-event .title {
+    font-size: 3em;
+  }
+
+  #next-event .details {
+    text-align: left;
+  }
+
+  .event-container {
+    height: $body-container-height-mobile;
+  }
+  #next-event img {
+    min-height: $body-container-height-mobile;
+  }
+
+  .large-text {
+    font-size: 1.5rem;
+  }
 }

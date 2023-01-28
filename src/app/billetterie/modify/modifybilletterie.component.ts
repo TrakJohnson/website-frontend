@@ -61,7 +61,7 @@ export class ModifyBilletterieComponent implements OnInit {
               private popup: PopupService,
               private event: EventService,
               private route : ActivatedRoute) { }
-  
+
   ngOnInit() {
     this.popup.loading$.next(true);
 
@@ -83,12 +83,11 @@ export class ModifyBilletterieComponent implements OnInit {
       points : [null],
       sendMail: [false]
     });
-    
+
     this.popup.loading$.next(false);
 
     this.event.getOneEvent(this.id)
     .then((eventInfos : any) => {
-      console.log(eventInfos)
       this.titre = eventInfos.title;
       this.description  = eventInfos.description;
       this.lieu  = eventInfos.event_place;
@@ -113,20 +112,20 @@ export class ModifyBilletterieComponent implements OnInit {
       this.points = eventInfos.points;
       this.idPole = eventInfos.pole_id
 
-      
+
       this.filePath = eventInfos.thumbnail
 
     })
-    .catch((error) =>{ 
+    .catch((error) =>{
       this.popup.loading$.next(false);
       this.popup.state$.next([false, "Erreur lors du chargement de l'évènement"]);
     })
-      
+
   }
-  
+
   fileChangedEvent(e : any) {
     this.file = (e.target as HTMLInputElement).files![0];
-    
+
     this.modifierForm.patchValue({
       img: this.file
     });
@@ -150,7 +149,7 @@ export class ModifyBilletterieComponent implements OnInit {
 
 
     }
-    
+
 
   }
 
@@ -166,7 +165,7 @@ export class ModifyBilletterieComponent implements OnInit {
         let width = img.width
         let height = img.height
 
-  
+
         if (width > height) {
           if (width > MAX_WIDTH) {
             height *= MAX_WIDTH / width
@@ -248,7 +247,7 @@ export class ModifyBilletterieComponent implements OnInit {
             .then((response) => {
               this.popup.loading$.next(false);
               this.popup.state$.next([true, "Billetterie créé !"]);
-              this.router.navigate(['/event/display/'+this.id]); 
+              this.router.navigate(['/event/display/'+this.id]);
             })
             .catch((error) => {
               // this.popup.loading$.next(false);
@@ -258,10 +257,10 @@ export class ModifyBilletterieComponent implements OnInit {
             });
         })
         .catch((error)=> {
-        
+
           this.popup.loading$.next(false);
           this.popup.state$.next([false, error]);
-      
+
         })
       }
       else {
@@ -270,7 +269,7 @@ export class ModifyBilletterieComponent implements OnInit {
           .then((response) => {
             this.popup.loading$.next(false);
             this.popup.state$.next([true, "Billetterie modifiée !"]);
-            this.router.navigate(['/default']); 
+            this.router.navigate(['/default']);
           })
           .catch((error) => {
             // this.popup.loading$.next(false);
@@ -280,7 +279,7 @@ export class ModifyBilletterieComponent implements OnInit {
           });
       }
 
-      
+
     }
   }
 }

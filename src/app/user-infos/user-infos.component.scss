@@ -50,4 +50,14 @@
   }
 }
 
-
+@media screen and (max-width: $header-mobile-limit) {
+  // hide image on mobile
+  #profil_pic {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+  }
+  .connected-user-info > div {
+    margin-right: 0;
+  }
+}

@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'hamburger.scss';
 
 header {
   position: relative;
@@ -29,7 +30,7 @@ header {
 
 // navigation links, underlining
 
-.navbar a {
+.navbar a, .nav-item {
   padding: 0;
   margin: 0 10px;
   position: relative;
@@ -57,9 +58,93 @@ $link-animation-time: .3s;
   transition-timing-function: ease-in-out;
 }
 
-.navbar a:hover:after {
+.navbar a:hover:after, .nav-item:hover:after {
   width: 10%;
 }
 
+
+/// ----- mobile
+
+#mobile-full-screen-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 20;
+}
+
+#mobile-full-screen-menu.hidden {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 250ms ease-in, visibility 250ms ease-in;
+  transition: opacity 250ms ease-in, visibility 250ms ease-in;
+}
+
+#mobile-full-screen-menu.shown {
+  // transition: opacity 250ms ease-out;
+  -webkit-transition: opacity 250ms ease-out, visibility 250s ease-out;
+  transition: opacity 250ms ease-out, visibility 250ms ease-out;
+  opacity: 100%;
+}
+
+@keyframes fadeOut {
+  0%   {opacity: 1.0; z-index: 20}
+  99% {opacity: 0.0; z-index: 20}
+  100% {opacity: 0.0; z-index: -1}
+}
+
+#mobile-menu-inner {
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#mobile-menu-inner > a {
+  font-size: 1.8em;
+}
+
+@media screen and (min-width: $header-mobile-limit) {
+  #mobile-wrapper {
+    display: none;
+    height: 0;
+    width: 0;
+  }
+}
+
+@media screen and (max-width: $header-mobile-limit) {
+  .navbar, header > app-user-infos {
+    display: none;
+    height: 0;
+    width: 0;
+  }
+
+  header {
+    min-height: calc(#{$header-height}/2);
+    margin: 10px;
+  }
+  #logo {
+    left: 0;
+    height: calc(#{$logo-height}/2);
+    top: 0;
+    width: auto;
+  }
+
+  #mobile-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  #mobile-hamburger {
+    height: calc(#{$header-height}/2);
+    width: 50px;
+    z-index: 30;
+  }
+}
 
 

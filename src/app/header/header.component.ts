@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { AuthService } from '../services/auth.service';
-import { AccountService } from '../services/account.service';
-import { Account } from '../models/account.model';
-import { PopupService } from '../services/popup.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {AuthService} from '../services/auth.service';
+import {AccountService} from '../services/account.service';
+import {Account} from '../models/account.model';
+import {PopupService} from '../services/popup.service';
+
 
 @Component({
   selector: 'app-header',
@@ -13,17 +14,19 @@ import { PopupService } from '../services/popup.service';
 })
 export class HeaderComponent implements OnInit {
 
-
   private isAuthSub: Subscription;
   isAuth: boolean = false;
 
   private accountSub: Subscription;
   account: Account;
 
+  mobileMenuOpen: boolean = false;
+
   constructor(private router: Router,
-    private auth: AuthService,
-    private acc: AccountService,
-    private popup : PopupService) { }
+              private auth: AuthService,
+              private acc: AccountService,
+              private popup: PopupService) {
+  }
 
   ngOnInit(): void {
     this.isAuthSub = this.auth.isAuth$.subscribe(
@@ -36,13 +39,25 @@ export class HeaderComponent implements OnInit {
         this.account = account!;
       }
     )
-
   }
 
-  onNavigate(endpoint: string, triggerLoading : boolean) {
+  mobileMenuToggle(forceClose : boolean | null = null) {
+    let closeMenuAction = forceClose == null ? this.mobileMenuOpen : forceClose
+    if (closeMenuAction) {
+      document.body.classList.remove("fixed");
+      this.mobileMenuOpen = false;
+    } else {
+      document.body.classList.add("fixed");
+      this.mobileMenuOpen = true;
+    }
+  }
+
+  onNavigate(endpoint: string, triggerLoading: boolean) {
+    this.mobileMenuToggle(true);
     if (triggerLoading) {
       this.popup.loading$.next(true);
     }
-    this.router.navigate(['/'], {skipLocationChange: true}).then(()=> this.router.navigate([endpoint]));
+    this.router.navigate(['/'], {skipLocationChange: true})
+      .then(() => this.router.navigate([endpoint]));
   }
 }

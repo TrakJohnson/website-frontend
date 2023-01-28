@@ -1,0 +1,147 @@
+@import 'variables';
+
+$hamburger-height: 20px;
+$hamburger-thickness: 3px;
+$hamburger-spacing: calc((#{$hamburger-height} - 3*#{$hamburger-thickness})/2);
+
+#mobile-hamburger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#mobile-hamburger.active {
+  // glue it
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+#mobile-hamburger span {
+  display: block;
+  width: 100%;
+  border-radius: 1px;
+  height: $hamburger-thickness;
+  background: $header-text-color;
+  transition: all .3s;
+  position: relative;
+  z-index: 40;
+}
+
+#mobile-hamburger > div {
+  // inner
+  width: $hamburger-height;
+  height: $hamburger-height;
+}
+
+#mobile-hamburger span + span {
+  margin-top: $hamburger-spacing
+}
+
+/* attempt at animating
+#mobile-hamburger.active span:nth-child(1) {
+  animation: ease .7s top forwards;
+}
+
+#mobile-hamburger.not-active span:nth-child(1) {
+  animation: ease .7s top-2 forwards;
+}
+
+#mobile-hamburger.active span:nth-child(2) {
+  animation: ease .7s scaled forwards;
+}
+
+#mobile-hamburger.not-active span:nth-child(2) {
+  animation: ease .7s scaled-2 forwards;
+}
+
+#mobile-hamburger.active span:nth-child(3) {
+  animation: ease .7s bottom forwards;
+}
+
+#mobile-hamburger.not-active span:nth-child(3) {
+  animation: ease .7s bottom-2 forwards;
+}
+
+$animation-shift: calc(#{$hamburger-height}/2.1);
+@keyframes top {
+  0% {
+    top: 0;
+    transform: rotate(0);
+  }
+  50% {
+    top: $animation-shift;
+    transform: rotate(0);
+  }
+  100% {
+    top: $animation-shift;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes top-2 {
+  0% {
+    top: $animation-shift;
+    transform: rotate(45deg);
+  }
+  50% {
+    top: $animation-shift;
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 0;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes bottom {
+  0% {
+    bottom: 0;
+    transform: rotate(0);
+  }
+  50% {
+    bottom: $animation-shift;
+    transform: rotate(0);
+  }
+  100% {
+    bottom: $animation-shift;
+    transform: rotate(135deg);
+  }
+}
+
+@keyframes bottom-2 {
+  0% {
+    bottom: $animation-shift;
+    transform: rotate(135deg);
+  }
+  50% {
+    bottom: $animation-shift;
+    transform: rotate(0);
+  }
+  100% {
+    bottom: 0;
+    transform: rotate(0);
+  }
+}
+
+@keyframes scaled {
+  50% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes scaled-2 {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+*/

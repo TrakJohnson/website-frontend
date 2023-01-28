@@ -25,6 +25,10 @@ body {
   font-family: "InterFace", serif;
 }
 
+body.fixed {
+  height: 100%;
+  overflow: hidden;
+}
 
 /* angular-cli file: src/styles.css */
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
