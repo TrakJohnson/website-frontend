@@ -1,15 +1,15 @@
 @import 'variables';
 
+#team-container > h3 {
+  margin: 70px 0 30px 0;
+}
+
 .fw-img-wrapper {
   text-align: center;
   img {
     width: calc(100vw - #{$page-side-margin}*4);
     margin: auto;
   }
-}
-
-#team-container > h3 {
-  margin: 70px 0 30px 0;
 }
 
 .large-text {
@@ -63,17 +63,15 @@ $bureau-img-width: 280px;
   width: 1100px;
 }
 
-@media (max-width: 1700px) {
-  #poles-container {
-    width: 1100px;
-  }
-}
 
-@media (max-width: 1400px) {
-  #poles-container {
-    width: 845px;
-  }
-}
+// TODO: meilleur système pour que la grille soit toujours "jolie"
+// pour l'instant, c'est tout manuel
+@media (max-width: 1700px) { #poles-container { width: 1100px;} }
+@media (max-width: 1400px) { #poles-container { width: 845px; } }
+@media (max-width: 1400px) { #poles-container { width: 845px; } }
+@media (max-width: 1000px) { #poles-container { width: 560px; } }
+@media (max-width: 700px) { #poles-container { width: 420px; } }
+@media (max-width: 400px) { #poles-container { width: 280px; } }
 
 .pole-img-container {
   text-align: center;
@@ -125,4 +123,16 @@ img.member-pic {
   margin: auto;
   border: 2px solid $header-text-color;
   z-index: -1;
+}
+
+
+// Mobile
+@media (max-width: $header-mobile-limit) {
+  .fw-img-wrapper img {
+    width: 100vw;
+  }
+  .large-text {
+    width: 100%;
+    text-align: center;
+  }
 }

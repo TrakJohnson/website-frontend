@@ -1,4 +1,4 @@
-@import '_variables';
+@import 'variables';
 
 .masterclass-container {
   margin: 20px 15vw 10vh 15vw;
@@ -28,13 +28,23 @@
   color: $pink;
 }
 
+#top-infos > div {
+  display: flex;
+  align-items: flex-end;
+}
+
+#bottom-infos > div {
+  display: flex;
+  align-items: flex-start;
+}
+
 #bottom-infos {
   font-size: 1.3rem;
 }
 
-.semestre { text-align: left; }
-.prix { text-align: center; }
-.materiel { text-align: right; }
+.semestre { text-align: left; justify-content: flex-start; }
+.prix { text-align: center; justify-content: center; }
+.materiel { text-align: right; justify-content: flex-end; }
 
 .description-container {
   display: flex;
@@ -48,4 +58,17 @@
     margin-bottom: 20px;
   }
   margin-bottom: 30px;
+}
+
+
+@media screen and (max-width: $header-mobile-limit) {
+  .masterclass-container {
+    margin: 20px 20px 10vh 20px;
+  }
+  #top-infos { font-size: 2rem; }
+  #bottom-infos { font-size: 1rem; }
+  #masterclass-infos {
+    margin-top: 7vh;
+    margin-bottom: 7vh;
+  }
 }

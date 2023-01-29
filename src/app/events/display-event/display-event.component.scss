@@ -39,6 +39,10 @@ $quickview-width: 95vw;
   background: #fff9f9;
   border: 3px solid #ff8080;
 
+  // TODO: fix that (add a wrapper around the table to avoid buttons scrolling)
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
 
   table.table-bordered,
   table.table-bordered > thead > tr > th,
@@ -93,16 +97,8 @@ $quickview-width: 95vw;
 
 #titre, #description {
   color: black;
-
-
 }
 
-#title {
-  margin-top: .5vmin;
-  margin-bottom: 1vmin;
-  font-size: 2.5vmax;
-  line-height: 3vmax;
-}
 
 .details_container {
   margin-top: 2vh;
@@ -172,6 +168,7 @@ th > button {
     min-height: 50%;
     display: flex;
     justify-content: center;
+    margin-bottom: 15px
   }
 
   #event_thumbnail {

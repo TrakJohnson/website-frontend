@@ -1,6 +1,4 @@
 @import 'fonts';
-@import 'mobile';
-// @import 'common';
 
 /// Variables
 // header
@@ -167,6 +165,9 @@ $page-side-margin: 10vw;
 .page-container {
   margin: 20px $page-side-margin 10vh $page-side-margin;
 }
+.mid-page-container {
+  margin: 0 $page-side-margin 0 $page-side-margin;
+}
 
 // form
 .bda-fw-form {
@@ -191,3 +192,6 @@ $page-side-margin: 10vw;
 .bda-fw-form-wide {
   width: 600px;
 }
+
+// must be set at the end to overide
+@import 'mobile';
