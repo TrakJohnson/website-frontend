@@ -59,7 +59,7 @@ export class ModifyEventComponent implements OnInit {
               private route : ActivatedRoute) { }
 
 
-  
+
   ngOnInit() {
     this.popup.loading$.next(true);
 
@@ -81,12 +81,12 @@ export class ModifyEventComponent implements OnInit {
       points : [null],
       sendMail: [false]
     });
-    
+
     this.popup.loading$.next(false);
 
 
-   
-    
+
+
 
     this.event.getOneEvent(this.id)
     .then((eventInfos : any) => {
@@ -96,13 +96,12 @@ export class ModifyEventComponent implements OnInit {
       var date = new Date(eventInfos.dateEvent); //here is the WORST way of casting a string to date
       this.date = date;
       this.completeDate = this.date.toISOString().slice(0, -5);
-      
-     
+
+
       var date_end = new Date(eventInfos.dateEvent_end? eventInfos.dateEvent_end : '1999-01-01T00:00:00');
       this.date_end = date_end;
       this.completeDate_end = this.date_end.toISOString().slice(0, -5);
 
-    
       this.nPlaces  = eventInfos.num_places;
       this.prixC  = eventInfos.cost_contributor;
       this.prixNC  = eventInfos.cost_non_contributor;
@@ -112,19 +111,19 @@ export class ModifyEventComponent implements OnInit {
 
       this.filePath = eventInfos.thumbnail
 
-      
+
 
     })
-    .catch((error) =>{ 
+    .catch((error) =>{
       this.popup.loading$.next(false);
       this.popup.state$.next([false, "Erreur lors du chargement de l'évènement"]);
     })
-      
+
   }
-  
+
   fileChangedEvent(e : any) {
     this.file = (e.target as HTMLInputElement).files![0];
-    
+
     this.modifierForm.patchValue({
       img: this.file
     });
@@ -148,7 +147,7 @@ export class ModifyEventComponent implements OnInit {
 
 
     }
-    
+
 
   }
 
@@ -164,7 +163,7 @@ export class ModifyEventComponent implements OnInit {
         let width = img.width
         let height = img.height
 
-  
+
         if (width > height) {
           if (width > MAX_WIDTH) {
             height *= MAX_WIDTH / width
@@ -238,7 +237,7 @@ export class ModifyEventComponent implements OnInit {
             .then((response) => {
               this.popup.loading$.next(false);
               this.popup.state$.next([true, "Evenement modifié !"]);
-              this.router.navigate(['/default']); 
+              this.router.navigate(['/default']);
             })
             .catch((error) => {
               // this.popup.loading$.next(false);
@@ -248,10 +247,8 @@ export class ModifyEventComponent implements OnInit {
             });
         })
         .catch((error)=> {
-        
           this.popup.loading$.next(false);
           this.popup.state$.next([false, error]);
-      
         })
       }
       else {
@@ -260,7 +257,7 @@ export class ModifyEventComponent implements OnInit {
           .then((response) => {
             this.popup.loading$.next(false);
             this.popup.state$.next([true, "Evènement modifiée !"]);
-            this.router.navigate(['/default']); 
+            this.router.navigate(['/default']);
           })
           .catch((error) => {
             // this.popup.loading$.next(false);
@@ -269,8 +266,6 @@ export class ModifyEventComponent implements OnInit {
             this.popup.state$.next([false, "ERROR"]);
           });
       }
-
-      
     }
   }
 }
