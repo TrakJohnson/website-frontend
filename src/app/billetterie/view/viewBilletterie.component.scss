@@ -1,9 +1,11 @@
+@import 'variables';
+
 :host {
   margin-left: 4vh;
   margin-right: 4vh;
 }
 
-.no_event_message {
+#no-events-container > h2 {
   text-align: center;
   font-size: 3em;
   line-height: 1em;
@@ -35,4 +37,11 @@
   text-align: center;
 }
 
-
+// Mobile
+// TODO: we have to make a mobile-friendly
+@media screen and (max-width: $header-mobile-limit) {
+  app-billetterie-filter {
+    visibility: hidden;
+    display: none;
+  }
+}

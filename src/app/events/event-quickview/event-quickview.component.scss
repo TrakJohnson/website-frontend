@@ -1,5 +1,9 @@
+@import 'variables';
+
 $thumbnail-width: 30vw;
+$thumbnail-width-mobile: 100%;
 $thumbnail-height: calc(3*#{$thumbnail-width}/4);
+$thumbnail-height-mobile: calc(3*#{$thumbnail-width-mobile}/4);
 
 .container {
   display: flex;
@@ -81,4 +85,19 @@ $date-size: max(calc(#{$thumbnail-width}/5.5), 65px);
   font-size: 30px;
   margin-top: -4px;
   font-weight: 300;
+}
+
+
+// Mobile
+@media screen and (max-width: $header-mobile-limit) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .thumbnail-container {
+    width: $thumbnail-width-mobile;
+    height: $thumbnail-height-mobile;
+    margin-bottom: 10px;
+  }
 }
