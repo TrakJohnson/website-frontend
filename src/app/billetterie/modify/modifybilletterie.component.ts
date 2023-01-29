@@ -27,7 +27,7 @@ export class ModifyBilletterieComponent implements OnInit {
   description : string;
   lieu : string;
   date : Date;
-  date_end : Date |undefined;
+  dateEnd : Date | undefined;
   filePath: string;
   idPole : number;
   dateOuverture : Date;
@@ -42,10 +42,10 @@ export class ModifyBilletterieComponent implements OnInit {
   tmp_points : number;
   tmp_idPole : number;
 
-  completeDate : string;
-  completeDate_end : string;
-  completeDateOuverture : string;
-  completeDateFermeture : string;
+  dateStr : string;
+  dateEndStr : string;
+  dateOuvertureStr : string;
+  dateFermetureStr : string;
 
   public poles = [
     {value: '1', viewValue: 'Bureau'},
@@ -54,7 +54,6 @@ export class ModifyBilletterieComponent implements OnInit {
   ]
 
   // public dateEvent :
-
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private account: AccountService,
@@ -91,20 +90,18 @@ export class ModifyBilletterieComponent implements OnInit {
       this.titre = eventInfos.title;
       this.description  = eventInfos.description;
       this.lieu  = eventInfos.event_place;
-      var date = new Date(eventInfos.dateEvent); //here is the WORST way of casting a string to date
-      this.date = date;
-      this.completeDate = this.date.toISOString().slice(0, -5);
 
-      var date_end = new Date(eventInfos.dateEvent_end? eventInfos.dateEvent_end : '1999-01-01T00:00:00');
-      this.date_end = date_end;
-      this.completeDate_end = this.date_end.toISOString().slice(0, -5);
+      // Shady things happening with dates
+      // The problem is with the Date object
+      this.dateStr = eventInfos.dateEvent
+      this.date = new Date(this.dateStr)
+      this.dateEndStr = eventInfos.dateEvent_end ? eventInfos.dateEvent_end : '1999-01-01T00:00:00'
+      this.dateEnd = new Date(this.dateEndStr)  // TODO: allow an empty date
+      this.dateOuvertureStr = eventInfos.date_open
+      this.dateOuverture = new Date(this.dateOuvertureStr)
+      this.dateFermetureStr = eventInfos.date_close
+      this.dateFermeture = new Date(this.dateFermetureStr)
 
-      var dateOuverture = new Date(eventInfos.date_open);
-      this.dateOuverture = dateOuverture;
-      this.completeDateOuverture = this.dateOuverture.toISOString().slice(0, -5);
-      var dateFermeture = new Date(eventInfos.date_close)
-      this.dateFermeture = dateFermeture;
-      this.completeDateFermeture = this.dateFermeture.toISOString().slice(0, -5);
       this.nPlaces  = eventInfos.num_places;
       this.prixC  = eventInfos.cost_contributor;
       this.prixNC  = eventInfos.cost_non_contributor;
@@ -210,11 +207,11 @@ export class ModifyBilletterieComponent implements OnInit {
     this.description = this.modifierForm.get('description')?.value;
     this.lieu = this.modifierForm.get('lieu')?.value;
     this.date = this.modifierForm.get('date')?.value;
-    this.date_end = this.modifierForm.get('date_end')?.value;
+    this.dateEnd = this.modifierForm.get('date_end')?.value;
     const date_min = new Date('2000-01-01T00:00:00')
-    var date_end = new Date(this.date_end? this.date_end : '2000-01-01T00:00:00')
-    if (this.date_end != undefined && date_end <= date_min) {
-      this.date_end = undefined
+    var date_end = new Date(this.dateEnd? this.dateEnd : '2000-01-01T00:00:00')
+    if (this.dateEnd != undefined && date_end <= date_min) {
+      this.dateEnd = undefined
     }
     this.dateOuverture = this.modifierForm.get('dateOuverture')?.value;
     this.dateFermeture = this.modifierForm.get('dateFermeture')?.value;
@@ -243,7 +240,7 @@ export class ModifyBilletterieComponent implements OnInit {
         this.resizeImage(this.filePath)
         .then((response:any)=>{
           this.resized_filePath = response;
-          this.event.modifyBilletterie(this.id, this.titre, this.description, this.date, this.date_end, this.lieu, this.resized_filePath, this.idPole, this.dateOuverture, this.dateFermeture, this.nPlaces, this.prixC, this.prixNC, this.points, this.sendMail)
+          this.event.modifyBilletterie(this.id, this.titre, this.description, this.date, this.dateEnd, this.lieu, this.resized_filePath, this.idPole, this.dateOuverture, this.dateFermeture, this.nPlaces, this.prixC, this.prixNC, this.points, this.sendMail)
             .then((response) => {
               this.popup.loading$.next(false);
               this.popup.state$.next([true, "Billetterie créé !"]);
@@ -265,7 +262,7 @@ export class ModifyBilletterieComponent implements OnInit {
       }
       else {
         this.resized_filePath = this.filePath;
-        this.event.modifyBilletterie(this.id, this.titre, this.description, this.date, this.date_end, this.lieu, this.resized_filePath, this.idPole, this.dateOuverture, this.dateFermeture, this.nPlaces, this.prixC, this.prixNC, this.points, this.sendMail)
+        this.event.modifyBilletterie(this.id, this.titre, this.description, this.date, this.dateEnd, this.lieu, this.resized_filePath, this.idPole, this.dateOuverture, this.dateFermeture, this.nPlaces, this.prixC, this.prixNC, this.points, this.sendMail)
           .then((response) => {
             this.popup.loading$.next(false);
             this.popup.state$.next([true, "Billetterie modifiée !"]);

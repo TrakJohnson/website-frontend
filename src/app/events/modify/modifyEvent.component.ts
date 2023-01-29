@@ -93,9 +93,7 @@ export class ModifyEventComponent implements OnInit {
       this.titre = eventInfos.title;
       this.description  = eventInfos.description;
       this.lieu  = eventInfos.event_place;
-      console.log("Date de l'evenement")
-      console.log(eventInfos.dateEvent);
-      var date = new Date(eventInfos.dateEvent);  // here is the WORST way of casting a string to date
+      var date = new Date(eventInfos.dateEvent); //here is the WORST way of casting a string to date
       this.date = date;
       this.completeDate = this.date.toISOString().slice(0, -5);
 
@@ -103,7 +101,6 @@ export class ModifyEventComponent implements OnInit {
       var date_end = new Date(eventInfos.dateEvent_end? eventInfos.dateEvent_end : '1999-01-01T00:00:00');
       this.date_end = date_end;
       this.completeDate_end = this.date_end.toISOString().slice(0, -5);
-
 
       this.nPlaces  = eventInfos.num_places;
       this.prixC  = eventInfos.cost_contributor;
@@ -250,10 +247,8 @@ export class ModifyEventComponent implements OnInit {
             });
         })
         .catch((error)=> {
-
           this.popup.loading$.next(false);
           this.popup.state$.next([false, error]);
-
         })
       }
       else {
@@ -271,8 +266,6 @@ export class ModifyEventComponent implements OnInit {
             this.popup.state$.next([false, "ERROR"]);
           });
       }
-
-
     }
   }
 }
