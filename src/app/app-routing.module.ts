@@ -4,7 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {DefaultComponent} from './default/default.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {FormComponent} from './register/form/form.component';
+import {FormComponent} from "./register/form/form.component";
 import {InfosRegisterComponent} from './register/infos-register/infos-register.component';
 import {VerifyEmailComponent} from './register/verify-email/verify-email.component';
 

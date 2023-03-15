@@ -1,16 +1,29 @@
 @import 'variables';
 
-.signal-response-registerForm{
-    text-align: center;
-    width: 60%;
-    margin: 20px auto auto auto;
+h4 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
-form {
-  margin-bottom: 20vh;
+#form-selector-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-#btn-before-redirection {
-    text-align: center;
-    margin: 20px auto auto auto;
+#form-selector-wrapper > div {
+  border: 4px solid whitesmoke;
+  padding: 5px 15px;
+  background: whitesmoke;
+}
+#form-selector-wrapper > div:hover {
+  cursor: pointer;
+}
+
+#form-selector-wrapper > div.selected {
+  color: white;
+  border: 4px solid $header-text-color;
+  background: $header-text-color;
 }

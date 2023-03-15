@@ -30,7 +30,7 @@ import { UserInfosComponent } from './user-infos/user-infos.component';
 import { LoginComponent } from './login/login.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { RegisterComponent } from './register/register.component';
-import { FormComponent } from './register/form/form.component';
+import { FormLegacyComponent } from './register/form-legacy/form-legacy.component';
 import { VerifyEmailComponent } from './register/verify-email/verify-email.component';
 import { InfosRegisterComponent } from './register/infos-register/infos-register.component';
 import { PopupComponent } from './popup/popup.component';
@@ -66,6 +66,8 @@ import { BilletterieFilterComponent } from './billetterie/billetterie-filter/bil
 import { AdminManagementComponent } from './admin-management/admin-management.component';
 import { ImgFallbackDirective } from './img-fallback.directive';
 import { MasterclassQuickviewComponent } from './masterclass/masterclass-quickview/masterclass-quickview.component';
+import { FormSimplifiedComponent } from './register/form-simplified/form-simplified.component';
+import { FormComponent } from './register/form/form.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -78,7 +80,7 @@ registerLocaleData(localeFr, 'fr');
     LoginComponent,
     PopupComponent,
     RegisterComponent,
-    FormComponent,
+    FormLegacyComponent,
     VerifyEmailComponent,
     InfosRegisterComponent,
     AccountComponent,
@@ -109,6 +111,8 @@ registerLocaleData(localeFr, 'fr');
     AdminManagementComponent,
     ImgFallbackDirective,
     MasterclassQuickviewComponent,
+    FormSimplifiedComponent,
+    FormComponent,
   ],
 
   imports: [
