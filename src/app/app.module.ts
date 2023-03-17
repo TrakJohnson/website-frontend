@@ -17,8 +17,6 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-
-
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 
@@ -68,6 +66,7 @@ import { ImgFallbackDirective } from './img-fallback.directive';
 import { MasterclassQuickviewComponent } from './masterclass/masterclass-quickview/masterclass-quickview.component';
 import { FormSimplifiedComponent } from './register/form-simplified/form-simplified.component';
 import { FormComponent } from './register/form/form.component';
+import { ViewMobileComponent } from './billetterie/view-mobile/view-mobile.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -113,6 +112,7 @@ registerLocaleData(localeFr, 'fr');
     MasterclassQuickviewComponent,
     FormSimplifiedComponent,
     FormComponent,
+    ViewMobileComponent,
   ],
 
   imports: [

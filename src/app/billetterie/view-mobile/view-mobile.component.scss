@@ -1,0 +1,39 @@
+@import 'variables';
+
+// Thumbnails
+
+.thumbnails-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+$thumb-size: 5vh;
+.event-thumbnail {
+  height: $thumb-size;
+  width: auto;
+}
+.event-thumbnail.selected {
+  outline: 5px solid $pink;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+$button-size: 4vw;
+.fa-solid {
+  width: $button-size;
+  font-size: 10vw;
+  z-index: 10;
+  margin-top: 15vh;
+  color: $pink;
+}
+app-event-quickview {
+  width: 85%;
+}

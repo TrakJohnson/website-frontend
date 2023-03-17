@@ -6,13 +6,24 @@ $header-mobile-limit: 1000px;
 // footer
 $footer-mobile-limit: 850px;
 
-
 // .large-text doesn't need a margin
 @media (max-width: $header-mobile-limit) {
   .large-text {
     width: 100%;
     text-align: center;
   }
+
+  .page-title {
+    font-size: 3.2rem;
+    margin-top: 5vh;
+  }
+}
+
+.desktop-only { display: block; }
+.mobile-only { display: none; }
+@media (max-width: $header-mobile-limit) {
+  .desktop-only { display: none; }
+  .mobile-only { display: block; }
 }
 
 // forms must fit

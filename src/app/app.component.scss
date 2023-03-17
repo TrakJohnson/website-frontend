@@ -5,17 +5,8 @@
   min-height: $body-container-height;
 }
 
-#mobile-warning {
-  text-align: center;
-  background-color: orangered;
-  color: white;
-  padding: 5px;
-  font-size: 14px;
-}
-
-@media (min-width: 900px) {
-  #mobile-warning {
-    visibility: hidden;
-    height: 0;
+@media (max-width: $header-mobile-limit) {
+  #main-view {
+    min-height: $body-container-height-mobile;
   }
 }

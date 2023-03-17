@@ -194,5 +194,7 @@ $form-width: 400px;
   width: 600px;
 }
 
-// must be set at the end to overide
+/// --- Mobile ---
+
+// must be set at the end to override
 @import 'mobile';

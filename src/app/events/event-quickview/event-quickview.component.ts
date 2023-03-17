@@ -17,6 +17,7 @@ export class EventQuickviewComponent implements OnInit {
   @Input() event: Event;
   @Input() image: string;
   @Input() link: string;
+  @Input() reducedLayout: boolean = false;
 
   ngOnInit(): void {
     if (this.event.thumbnail == undefined || this.event.thumbnail.length < 1

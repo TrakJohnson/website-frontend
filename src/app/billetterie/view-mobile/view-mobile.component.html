@@ -1,0 +1,13 @@
+<div class="thumbnails-container">
+  <img class="event-thumbnail"
+       *ngFor="let event of eventsToDisplay; index as i"
+       [src]="event.thumbnail"
+       [class.selected]="i === currentEventIndex"
+       (click)="onChangeEvent(i)" />
+</div>
+
+<div class="container">
+  <i (click)="onPreviousEvent()" class="previous fa-solid fa-angle-left"></i>
+  <app-event-quickview [event]="eventsToDisplay[currentEventIndex]" [reducedLayout]="true"></app-event-quickview>
+  <i (click)="onNextEvent()" class="next fa-solid fa-angle-right"></i>
+</div>

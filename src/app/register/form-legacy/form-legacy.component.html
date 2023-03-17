@@ -1,0 +1,70 @@
+<div class="bda-fw-form bda-fw-form-wide">
+  <div class="help-text">
+    Merci de n'utiliser ce formulaire seulement si le formulaire simplifié ne marche pas,
+    ou bien que vous n'avez pas de compte sur le portail.
+  </div>
+
+  <form [formGroup]="registerForm" class="bda-form">
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input type="text" id="prenom" formControlName="prenom" class="form-control bda-input">
+    </div>
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" formControlName="nom" class="form-control bda-input">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" id="email" formControlName="email" class="form-control">
+      <span class="help-block" style="color: red;"
+            *ngIf="!registerForm.get('email')!.valid && registerForm.get('email')!.touched">
+            Adresse email invalide
+       </span>
+    </div>
+    <div class="form-group">
+      <label for="emailBis">Vérification email</label>
+      <input type="text" id="emailBis" formControlName="emailBis" class="form-control">
+      <span class="help-block" style="color: red;"
+            *ngIf="!registerForm.get('emailBis')!.valid && registerForm.get('emailBis')!.touched">
+          Vérification invalide
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" name="password" formControlName="password" class="form-control">
+      <span class="help-block" style="color: red;"
+            *ngIf="!registerForm.get('password')!.valid && registerForm.get('password')!.touched">
+        Mot de passe invalide : doit contenir au minimum 8 caractères dont 1 minuscule, 1 majuscule, 1 chiffre.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="passwordBis">Vérification mot de passe</label>
+      <input type="password" id="passwordBis" formControlName="passwordBis" class="form-control">
+      <span class="help-block" style="color: red;"
+            *ngIf="!registerForm.get('passwordBis')!.valid && registerForm.get('passwordBis')!.touched">
+        Vérification invalide
+      </span>
+    </div>
+
+    <div class="form-group" style="display: flex;">
+      <select formControlName="promotion" style="width: 40%" class="form-control">
+        <option [ngValue]="null" disabled> Promotion</option>
+        <option *ngFor="let promotion of promotions" [ngValue]="promotion.value">
+          {{ promotion.viewValue }}
+        </option>
+      </select>
+    </div>
+
+    <!-- <div class="form-legacy-check">
+      <input class="form-legacy-check-input" (click)="updateAcceptCharte()" type="checkbox" value="" id="acceptCharte">
+      <label class="form-legacy-check-label" for="acceptCharte">
+        J'ai lu et j'accepte la <a href="/assets/doc/Charte_VF.pdf" target="_blank">charte d'utilisation du réseau</a>
+      </label>
+    </div> -->
+    <button class="btn btn-success bda-btn bda-btn-fill" style="margin : 1%;" (click)="onCreateAccount()"
+            [disabled]="registerForm.invalid"> Je crée mon compte
+    </button>
+  </form>
+</div>
