@@ -87,6 +87,21 @@ h2 {
   width: min(90vw, 740px);
 }
 
+#starsup-ad {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  background: black;
+  padding-bottom: 5vh;
+  img {
+    height: 150px;
+  }
+}
+
 
 /// mobile
 
