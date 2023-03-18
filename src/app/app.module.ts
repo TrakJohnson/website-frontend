@@ -55,7 +55,6 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import { DisplayPoleComponent } from './team/display-pole/displayPole.component';
 import { ViewTeamComponent } from './team/view/viewTeam.component';
 import { CreateEventComponent } from './events/create/createEvent.component';
 import { ModifyEventComponent } from './events/modify/modifyEvent.component';
@@ -99,7 +98,6 @@ registerLocaleData(localeFr, 'fr');
     EventQuickviewComponent,
     ViewBilletterieComponent,
     TeamComponent,
-    DisplayPoleComponent,
     ViewTeamComponent,
     ChangeInfosComponent,
     ContactUsComponent,

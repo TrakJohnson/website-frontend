@@ -71,7 +71,7 @@ $bureau-img-width: 280px;
 @media (max-width: 1400px) { #poles-container { width: 845px; } }
 @media (max-width: 1000px) { #poles-container { width: 560px; } }
 @media (max-width: 700px) { #poles-container { width: 420px; } }
-@media (max-width: 400px) { #poles-container { width: 280px; } }
+@media (max-width: 500px) { #poles-container { width: 280px; } }
 
 .pole-img-container {
   text-align: center;
@@ -88,6 +88,7 @@ $bureau-img-width: 280px;
 .pole-img-container:hover {
   background-color: rgba(194, 109, 188, 0.90);
   transition: background-color 0.3s ease-in-out ;
+  overflow-y: scroll;  // lorsque le nom + l'activité prennent trop de place
   .nom {
     visibility: visible;
     opacity: 1;
@@ -123,6 +124,16 @@ img.member-pic {
   margin: auto;
   border: 2px solid $header-text-color;
   z-index: -1;
+}
+
+@media (max-width: 700px) {
+  img.member-pic {
+    height: 100px;
+  }
+  .nom {
+    :first-child { font-size: 0.7rem }
+    :last-child { font-size: 0.6rem }
+  }
 }
 
 

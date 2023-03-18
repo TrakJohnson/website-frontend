@@ -54,6 +54,7 @@
   <div id="poles-container">
     <ng-container *ngFor="let poleID of keys().slice(1)">
       <div class="pole-img-container" *ngFor="let member of poles[poleID].members">
+        <!-- TODO: this is a mess. We are progressively switching to portail IDs, which avoid this mess. -->
           <img src="{{'https://eleves.mines-paris.eu/static/img/trombi/' + member.login
           .replace('é', 'e')
           .replace('ç', 'c') + '.jpg'}}"
@@ -68,6 +69,4 @@
       </div>
     </ng-container>
   </div>
-
 </div>
-
