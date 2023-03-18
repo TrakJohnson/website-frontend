@@ -73,7 +73,9 @@
     </div>
   </div>
 
-  <div *ngIf="!isAuth" id="noauth"><i>Connectez-vous ou créez un compte pour pouvoir acheter des billets !</i></div>
+  <div *ngIf="!isAuth" id="noauth">
+    <i><a href='/login/'>Connectez-vous ou créez un compte</a> pour pouvoir acheter des billets !</i>
+  </div>
 
   <!-- Section admin -->
   <div *ngIf="isAdmin && isAuth" id="admin-section">
