@@ -20,7 +20,6 @@
       <!-- Lieu -->
       <p><i class="fa-solid fa-location-dot fa-fw"></i>{{event.event_place}}</p>
 
-
       <div *ngIf="is_billetterie" class="details_container" id="details_billetterie">
         <div class="infos-container">
           <p class="details"> Cet évènement {{event.on_sale ? "est en vente" : "n'est plus en vente"}} </p>
@@ -52,7 +51,6 @@
 
         </div>
       </div>
-
 
       <!-- Pour les events hors billetterie -->
       <div *ngIf="!is_billetterie" class="details_container" id="details_event">

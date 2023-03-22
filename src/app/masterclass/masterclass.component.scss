@@ -10,6 +10,7 @@
   width: 100%;
   margin: 15vh 0 15vh 0;
   gap: 20px;
+  justify-content: center;
 }
 
 #top-infos, #bottom-infos {
@@ -60,13 +61,32 @@
   margin-bottom: 30px;
 }
 
-
 @media screen and (max-width: $header-mobile-limit) {
   .masterclass-container {
     margin: 20px 20px 10vh 20px;
   }
-  #top-infos { font-size: 2rem; }
-  #bottom-infos { font-size: 1rem; }
+  #masterclass-infos {
+    flex-direction: row;
+  }
+  #top-infos {
+    font-size: min(max(1.8rem, 8vw), 3rem);
+    flex-direction: column;
+    border-bottom: 0;
+    div {
+      width: auto;
+      text-align: right;
+      justify-content: flex-end;
+    }
+  }
+  #bottom-infos {
+    font-size: 1rem;
+    flex-direction: column;
+    div {
+      width: auto;
+      text-align: left;
+      justify-content: flex-start;
+    }
+  }
   #masterclass-infos {
     margin-top: 7vh;
     margin-bottom: 7vh;

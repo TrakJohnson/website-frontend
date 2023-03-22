@@ -1,3 +1,5 @@
+@import 'variables';
+
 .single-masterclass-container {
   display: flex;
   flex-direction: row;
@@ -24,21 +26,46 @@
   margin: 0 0 -25px 0;
 }
 
-$single-pad: 50px;
-.single-masterclass > div > div:nth-child(2) {
-  padding-left: $single-pad;
-  font-size: 1.7rem;
+@mixin gradual-left-pads($single-pad) {
+  // why use mixins ?
+  // https://stackoverflow.com/a/28986779/4489998
+
+  .single-masterclass > div > div:nth-child(2) {
+    padding-left: $single-pad;
+    font-size: 1.7rem;
+  }
+
+  .single-masterclass > div > div:nth-child(3) {
+    padding-left: calc(#{$single-pad} * 2);
+    font-size: 1.3rem;
+  }
+
+  .reverse > div:nth-child(2) { padding-right: $single-pad; }
+  .reverse > div:nth-child(3) { padding-right: calc(#{$single-pad} * 2); }
 }
 
-.single-masterclass > div > div:nth-child(3) {
-  padding-left: calc(#{$single-pad} * 2);
-  font-size: 1.3rem;
-}
+// desktop view: large left padding
+@include gradual-left-pads(50px);
 
 .reverse {
   text-align: right;
   padding-left: 0;
 }
 
-.reverse > div:nth-child(2) { padding-right: $single-pad; }
-.reverse > div:nth-child(3) { padding-right: calc(#{$single-pad} * 2); }
+@media (max-width: $header-mobile-limit) {
+  // mobile view: shorten left padding
+  @include gradual-left-pads(20px);
+
+  .masterclass-title > h3 {
+    line-height: 1.3;
+  }
+  .single-masterclass {
+    font-size: 2.2rem;
+  }
+  .single-masterclass > div > div:nth-child(2) {
+    font-size: 1.3rem;
+  }
+  .single-masterclass > div > div:nth-child(3) {
+    font-size: 1rem;
+  }
+}

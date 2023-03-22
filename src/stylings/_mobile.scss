@@ -11,10 +11,11 @@ $footer-mobile-limit: 850px;
   .large-text {
     width: 100%;
     text-align: center;
+    font-size: 1.5rem;
   }
 
   .page-title {
-    font-size: 3.2rem;
+    font-size: min(11.0vw, 3.5rem);
     margin-top: 5vh;
   }
 }
