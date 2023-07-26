@@ -8,10 +8,10 @@
   <div>
     <div class="flex-filler"></div>
     <span>{{account.login}}</span>
-    <span><a [routerLink]="" id="view-account" (click)="onNavigate('account/view', true)">
+    <span><a [routerLink]="[]" id="view-account" (click)="onNavigate('account/view', true)">
       Mon Compte
     </a></span>
-    <span><a [routerLink]="" id="signout" (click)="onDisconnect()">
+    <span><a [routerLink]="[]" id="signout" (click)="onDisconnect()">
       Déconnexion
     </a></span>
   </div>

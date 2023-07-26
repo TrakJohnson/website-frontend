@@ -1,6 +1,6 @@
 <div *ngIf="eventExist" class="event-container">
   <a id="{{eventsToCome[0].id}}"
-     [routerLink]=""
+     [routerLink]="[]"
      (click)="onNavigate('events/display/' + eventsToCome[0].event_id )">
     <div id="next-event">
       <img alt="{{eventsToCome[0].title}}" src="{{eventsToCome[0].thumbnail}}"/>
