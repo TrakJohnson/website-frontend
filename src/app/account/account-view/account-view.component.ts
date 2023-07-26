@@ -6,6 +6,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { EventService } from 'src/app/services/events.service';
 import { PoleService } from 'src/app/services/poles.service';
 import { PopupService } from 'src/app/services/popup.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-account-view',

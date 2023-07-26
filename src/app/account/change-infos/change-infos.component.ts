@@ -1,4 +1,4 @@
-import { Component, OnInit, SystemJsNgModuleLoaderConfig } from '@angular/core';
+import { Component, OnInit, /*SystemJsNgModuleLoaderConfig */} from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -65,8 +65,8 @@ export class ChangeInfosComponent implements OnInit {
               private popup: PopupService,
               private auth : AuthService) { }
 
-  
-  
+
+
   ngOnInit() {
 
     this.changeForm = this.formBuilder.group({
@@ -78,7 +78,7 @@ export class ChangeInfosComponent implements OnInit {
       password : [null, [Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}')]],
       passwordBis : [null, ],
     });
-    
+
     this.compte = this.account.compte$.value;
     this.token = this.auth.token!;
 
@@ -91,7 +91,7 @@ export class ChangeInfosComponent implements OnInit {
 
     this.popup.loading$.next(false);
   }
-  
+
   onChangePromotion() {
     this.promotion = this.changeForm.get('promotion')?.value;
   }
@@ -116,22 +116,22 @@ export class ChangeInfosComponent implements OnInit {
     if (newInfos.email != emailBis) { // Les emails ne correspondent pas, on renvoie une erreur
       this.popup.loading$.next(false);
       this.popup.state$.next([false, "Les emails ne correspondent pas !"]);
-    } 
-    
+    }
+
     else {
       this.account.modifyAccount(this.login, newInfos, true)
         .then(() => {
           this.popup.loading$.next(false);
           this.popup.state$.next([true, "Compte modifié !"]);
-          this.router.navigate(['/default']); 
+          this.router.navigate(['/default']);
         })
         .catch((error) => {
           // this.popup.loading$.next(false);
           // this.popup.state$.next([false, error.error.message]);
           this.popup.loading$.next(false);
           this.popup.state$.next([false, "Erreur, le compte n'a pas pu être modifié merci réessayer et de contacter un administrateur si l'erreur se reproduit."]);
-          this.router.navigate(['/account/modify']); 
-        
+          this.router.navigate(['/account/modify']);
+
         }
       );
     }

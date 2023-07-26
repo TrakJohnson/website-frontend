@@ -1,0 +1,10 @@
+angular-responsive-carousel": "^2.1.2"
+"ng-image-slider": "^2.8.0",
+"ngx-bootstrap": "^7.1.2",
+
+breaking edits ?:
+In /src/app/account/change-infos/change-infos.component.ts and /src/app/register/form-legacy/form-legacy.component.ts removed import for SystemJsNgModuleLoaderConfig
+
+In /src/app/register/form-legacy/form-legacy.component.ts removed import for {CalendarEventActionsComponent}
+
+In /src/app/app.module.ts removed import IvyCarouselModule (2 commented lines)

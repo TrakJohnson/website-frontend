@@ -5,7 +5,7 @@ import {CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, Cale
 import {Router} from '@angular/router';
 import {EventService} from '../../services/events.service';
 import {PopupService} from '../../services/popup.service';
-import {CalendarEventActionsComponent} from 'angular-calendar/modules/common/calendar-event-actions.component';
+//import {CalendarEventActionsComponent} from 'angular-calendar/modules/common/calendar-event-actions.component';
 import {PoleService} from '../../services/poles.service';
 import {AccountService} from '../../services/account.service';
 
