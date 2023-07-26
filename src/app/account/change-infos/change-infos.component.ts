@@ -119,6 +119,7 @@ export class ChangeInfosComponent implements OnInit {
     }
 
     else {
+      newInfos.token = this.auth.token;
       this.account.modifyAccount(this.login, newInfos, true)
         .then(() => {
           this.popup.loading$.next(false);

@@ -129,9 +129,10 @@ export class AccountService {
   modifyAccount(login: string, newInfos: any, sendEmail: boolean) {
     if (newInfos.password) newInfos.password = CryptoJS.SHA3(newInfos.password, {outputLength: 512}).toString(CryptoJS.enc.Hex)
     return new Promise<void>((resolve, reject) => {
+      newInfos.login = login;
       this.http.post(
         environment.apiUrl + '/api/user/changeInfos',
-        {login: login, newInfos: newInfos, sendEmail: sendEmail})
+        {login: login, token: newInfos.token, newInfos: newInfos, sendEmail: sendEmail})
         .subscribe(
           () => {
             resolve();
