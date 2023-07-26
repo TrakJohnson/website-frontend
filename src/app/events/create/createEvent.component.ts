@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { PopupService } from 'src/app/services/popup.service';
@@ -17,7 +17,7 @@ import { PoleService } from 'src/app/services/poles.service';
 })
 export class CreateEventComponent implements OnInit {
 
-  creatorForm: FormGroup;
+  creatorForm: UntypedFormGroup;
 
   filePath: string;
 
@@ -32,7 +32,7 @@ export class CreateEventComponent implements OnInit {
 
   // public dateEvent :
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private router: Router,
               private account: AccountService,
               private popup: PopupService,

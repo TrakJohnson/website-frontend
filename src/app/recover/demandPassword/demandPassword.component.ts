@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AccountService } from "src/app/services/account.service";
 import { PopupService } from "src/app/services/popup.service";
@@ -12,9 +12,9 @@ styleUrls: ['./demandPassword.component.scss']
  })
 export class DemandPasswordComponent implements OnInit {
 
-  demandPasswordForm: FormGroup;
+  demandPasswordForm: UntypedFormGroup;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private router : Router,
               private popup: PopupService,
               private acc : AccountService

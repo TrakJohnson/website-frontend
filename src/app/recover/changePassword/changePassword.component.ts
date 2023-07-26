@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AccountService } from "src/app/services/account.service";
 import { AuthService } from "src/app/services/auth.service";
@@ -12,13 +12,13 @@ styleUrls: ['./changePassword.component.scss']
  })
 export class ChangePasswordComponent implements OnInit {
 
-  changePWDForm: FormGroup;
+  changePWDForm: UntypedFormGroup;
 
   public password : string;
 
   private token : string;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private auth : AuthService,
               private router : Router,
               private route : ActivatedRoute,

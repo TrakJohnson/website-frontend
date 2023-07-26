@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContactService } from '../services/contact-service';
 
@@ -13,7 +13,7 @@ import { PopupService } from 'src/app/services/popup.service';
 })
 export class ContactUsComponent implements OnInit {
 
-  contactForm: FormGroup;
+  contactForm: UntypedFormGroup;
 
   public subjects = [
     {value: 'feedback', viewValue: 'Faire un retour'},
@@ -24,7 +24,7 @@ export class ContactUsComponent implements OnInit {
     ]
 
     
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
     private contactService : ContactService,
     private popup : PopupService) {}
 

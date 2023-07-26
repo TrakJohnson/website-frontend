@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopupService } from 'src/app/services/popup.service';
 
@@ -10,14 +10,14 @@ import { PopupService } from 'src/app/services/popup.service';
 })
 export class InfosRegisterComponent implements OnInit {
 
-  texteLuForm : FormGroup;
+  texteLuForm : UntypedFormGroup;
   texteLu : boolean = false;
   
   login : string;
   password : string;
 
   constructor(private router : Router,
-              private formBuilder: FormBuilder,
+              private formBuilder: UntypedFormBuilder,
               private route: ActivatedRoute,
               private popup: PopupService) { }
 

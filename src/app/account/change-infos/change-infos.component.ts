@@ -1,5 +1,5 @@
 import { Component, OnInit, SystemJsNgModuleLoaderConfig } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Account } from 'src/app/models/account.model';
@@ -15,7 +15,7 @@ import { AccountService } from '../../services/account.service';
 })
 export class ChangeInfosComponent implements OnInit {
 
-  changeForm: FormGroup;
+  changeForm: UntypedFormGroup;
 
   public promotions = [
     {value: 'P17', viewValue: 'P17'},
@@ -59,7 +59,7 @@ export class ChangeInfosComponent implements OnInit {
   compte : Account | undefined;
   accountSub : Subscription;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private router: Router,
               private account: AccountService,
               private popup: PopupService,

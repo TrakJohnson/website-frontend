@@ -1,5 +1,5 @@
 import { Component, OnInit, SystemJsNgModuleLoaderConfig } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 import { Router } from '@angular/router';
 import { PopupService } from 'src/app/services/popup.service';
 import { AccountService } from '../../services/account.service';
@@ -12,7 +12,7 @@ import { AccountService } from '../../services/account.service';
 })
 export class FormLegacyComponent implements OnInit {
 
-  registerForm: FormGroup;
+  registerForm: UntypedFormGroup;
 
   public ecole = "";
   public ecoles = [
@@ -60,7 +60,7 @@ export class FormLegacyComponent implements OnInit {
   public login : string;
   public password : string;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private router: Router,
               private account: AccountService,
               private popup: PopupService,) { }

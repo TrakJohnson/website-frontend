@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {Pole} from 'src/app/models/pole.model';
 import {PoleService} from 'src/app/services/poles.service';
@@ -11,7 +11,7 @@ import {PoleService} from 'src/app/services/poles.service';
 })
 export class BilletterieFilterComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private poleService: PoleService) {
   }
 
@@ -20,7 +20,7 @@ export class BilletterieFilterComponent implements OnInit {
 
   requirements: any = {};
   loading = false;
-  requirementsForm: FormGroup;
+  requirementsForm: UntypedFormGroup;
   polesChoicesSub: Subscription;
   polesChoices: any;
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PopupService } from 'src/app/services/popup.service';
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class ModifyEventComponent implements OnInit {
 
-  modifierForm: FormGroup;
+  modifierForm: UntypedFormGroup;
 
   id : number;
 
@@ -51,7 +51,7 @@ export class ModifyEventComponent implements OnInit {
 
   // public dateEvent :
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private router: Router,
               private account: AccountService,
               private popup: PopupService,

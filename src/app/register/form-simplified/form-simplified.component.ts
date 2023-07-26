@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 import { Router } from '@angular/router';
 import { PopupService } from 'src/app/services/popup.service';
 import { AccountService } from '../../services/account.service';
 
 
-const passwordEqualityValidator = (fg: FormGroup) => {
+const passwordEqualityValidator = (fg: UntypedFormGroup) => {
   const pw1 = fg.get('password')!.value;
   const pw2 = fg.get('passwordBis')!.value;
   return pw1 === pw2 ? null : { pwEq : true };
@@ -19,14 +19,14 @@ const passwordEqualityValidator = (fg: FormGroup) => {
 })
 export class FormSimplifiedComponent implements OnInit {
 
-  registerFormSimplified: FormGroup;
+  registerFormSimplified: UntypedFormGroup;
 
   public loginPortailChecked : boolean = false;
   public prenom : string;
   public nom : string;
   public promotion : string;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private router: Router,
               private account: AccountService,
               private popup: PopupService,) { }
