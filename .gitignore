@@ -1,6 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
+.angular
 /tmp
 /dist
 /out-tsc
@@ -46,3 +47,4 @@ Thumbs.db
 
 # Custom files
 *.old
+

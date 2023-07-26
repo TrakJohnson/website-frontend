@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {IvyCarouselModule} from 'angular-responsive-carousel';
+//import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import {NgxImageCompressService} from 'ngx-image-compress';
@@ -119,7 +119,7 @@ registerLocaleData(localeFr, 'fr');
     AppRoutingModule,
     NgbModule,
     MatProgressSpinnerModule,
-    IvyCarouselModule,
+    //IvyCarouselModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
