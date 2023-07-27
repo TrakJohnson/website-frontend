@@ -101,9 +101,11 @@ export class ChangeInfosComponent implements OnInit {
     this.popup.loading$.next(true);
     newInfos.prenom = this.changeForm.get('prenom')!.value;
     newInfos.nom = this.changeForm.get('nom')!.value;
+    newInfos.promo = this.changeForm.get('promotion')!.value;
 
     newInfos.email = this.changeForm.get('email')!.value;
     const emailBis = this.changeForm.get('emailBis')!.value;
+
     if (this.changeForm.get('password')) {
       newInfos.password = this.changeForm.get('password')!.value;
       const passwordBis = this.changeForm.get('passwordBis')!.value;
@@ -117,13 +119,12 @@ export class ChangeInfosComponent implements OnInit {
       this.popup.loading$.next(false);
       this.popup.state$.next([false, "Les emails ne correspondent pas !"]);
     }
-
     else {
-      newInfos.token = this.auth.token;
-      this.account.modifyAccount(this.login, newInfos, true)
+      this.account.modifyAccount(this.token, newInfos, true)
         .then(() => {
           this.popup.loading$.next(false);
           this.popup.state$.next([true, "Compte modifié !"]);
+          this.auth.loginFromToken(this.token)
           this.router.navigate(['/default']);
         })
         .catch((error) => {
