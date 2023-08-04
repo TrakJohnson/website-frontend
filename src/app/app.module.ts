@@ -66,6 +66,8 @@ import { MasterclassQuickviewComponent } from './masterclass/masterclass-quickvi
 import { FormSimplifiedComponent } from './register/form-simplified/form-simplified.component';
 import { FormComponent } from './register/form/form.component';
 import { ViewMobileComponent } from './billetterie/view-mobile/view-mobile.component';
+
+import { PlaceComponent } from './place/place.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -111,6 +113,7 @@ registerLocaleData(localeFr, 'fr');
     FormSimplifiedComponent,
     FormComponent,
     ViewMobileComponent,
+    PlaceComponent,
   ],
 
   imports: [
