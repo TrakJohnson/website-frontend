@@ -9,9 +9,12 @@ import { PopupService } from '../services/popup.service';
   styleUrls: ['./place.component.scss']
 })
 export class PlaceComponent implements OnInit{
-  pixelA = {color: "red"}
-  pixelB = {color: "blue"}
-  placeGrid = [[this.pixelA, this.pixelB]];
+  pixelA = {colorIndex:1, colorHex: "red"}
+  pixelB = {colorHex: "blue"}
+  placeGrid = [[this.pixelA]];
+  palette = []
+
+  //testColor = 'blue';
 
   serverUpdateInterval: any;
 
@@ -19,6 +22,10 @@ export class PlaceComponent implements OnInit{
               private popup: PopupService) {}
 
   ngOnInit(): void {
+    this.placeService.getPalette().then((response)=>{
+      this.palette = response
+      this.popup.loading$.next(false);
+    });
     this.updateGrid();
     this.serverUpdateInterval = setInterval(()=>{this.updateGrid()}, 2*1000);
     //this.popup.loading$.next(false); //loading popup disabled for now

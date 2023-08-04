@@ -22,4 +22,16 @@ export class PlaceService {
         })
     });
   }
+
+  getPalette(){
+    return new Promise<any>((resolve, reject)=>{
+      this.http.get<any>(environment.apiUrl+'/api/r/meuh/palette')
+        .subscribe((data: any)=> {
+          resolve(data);
+        },
+        (error) => {
+          reject(error);
+        })
+    });
+  }
 }

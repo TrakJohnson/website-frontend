@@ -3,7 +3,7 @@
   <thead></thead>
   <tbody>
     <tr *ngFor="let row of placeGrid">
-      <td *ngFor="let pixel of row">{{ pixel.color }}</td>
+      <td *ngFor="let pixel of row" [ngStyle]="{'background-color': pixel.colorHex}"></td>
     </tr>
   </tbody>
 </table>
