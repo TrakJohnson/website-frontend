@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaceService } from '../services/place.service';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { PopupService } from '../services/popup.service';
 
 @Component({
   selector: 'app-place',
@@ -14,11 +15,13 @@ export class PlaceComponent implements OnInit{
 
   serverUpdateInterval: any;
 
-  constructor(private placeService: PlaceService) {}
+  constructor(private placeService: PlaceService,
+              private popup: PopupService) {}
 
   ngOnInit(): void {
     this.updateGrid();
     this.serverUpdateInterval = setInterval(()=>{this.updateGrid()}, 2*1000);
+    //this.popup.loading$.next(false); //loading popup disabled for now
   }
 
   ngOnDestroy(): void {
