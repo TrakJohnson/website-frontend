@@ -14,6 +14,9 @@ export class PlaceComponent implements OnInit{
   placeGrid = [[this.pixelA]];
   palette = []
 
+  currentX = -1;
+  currentY = -1;
+
   //testColor = 'blue';
 
   serverUpdateInterval: any;
@@ -41,5 +44,12 @@ export class PlaceComponent implements OnInit{
       this.placeGrid = response.grid;
       console.log(this.placeGrid)
     })
+  }
+
+  blockSelected(event: any, x:number,y:number){
+    console.log(x,y)
+    console.log(event)
+    this.currentX = x
+    this.currentY = y
   }
 }

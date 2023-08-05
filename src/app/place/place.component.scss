@@ -1,6 +1,7 @@
+
 table td{
-  width:20px;
-  height: 20px;
+  width:30px;
+  height: 30px;
   padding: 0px;
   margin: 0px;
 }
@@ -9,4 +10,9 @@ table{
   border: 2px black solid;
   margin-left: auto;
   margin-right: auto;
+}
+
+td.selected{
+  border: 3px orange ridge;
+  box-shadow: inset 0 0 3px white;
 }

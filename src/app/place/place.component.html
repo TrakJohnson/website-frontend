@@ -2,8 +2,8 @@
 <table>
   <thead></thead>
   <tbody>
-    <tr *ngFor="let row of placeGrid">
-      <td *ngFor="let pixel of row" [ngStyle]="{'background-color': pixel.colorHex}"></td>
+    <tr *ngFor="let row of placeGrid; let y = index;">
+      <td *ngFor="let pixel of row; let x = index;" [class.selected] = "x==currentX && y==currentY" [ngStyle]="{'background-color': pixel.colorHex}" (click)="blockSelected($event, x,y)"></td>
     </tr>
   </tbody>
 </table>
