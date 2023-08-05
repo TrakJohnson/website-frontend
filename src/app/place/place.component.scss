@@ -1,9 +1,14 @@
 
 table td{
-  width:30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
   padding: 0px;
   margin: 0px;
+}
+
+table td:not(.selected){
+  border-left: 1px solid lightgray;
+  border-top: 1px solid lightgray;
 }
 
 table{
@@ -12,7 +17,18 @@ table{
   margin-right: auto;
 }
 
-td.selected{
+.selected{
   border: 3px orange ridge;
   box-shadow: inset 0 0 3px white;
+}
+
+ul li{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+ul li:not(.selected){
+  border: 1px solid black;
 }

@@ -7,3 +7,10 @@
     </tr>
   </tbody>
 </table>
+<aside>
+  <p>Select color</p>
+  <ul>
+    <li *ngFor="let color of palette; let index=index;" [ngStyle]="{'background-color': color.colorHex}" (click)="paletteSelect(color.colorIndex)" [class.selected] ="index == currentColor"></li>
+  </ul>
+  <button (click)="updatePixel()">Valider</button>
+</aside>

@@ -27,6 +27,19 @@ export class PlaceService {
     return new Promise<any>((resolve, reject)=>{
       this.http.get<any>(environment.apiUrl+'/api/r/meuh/palette')
         .subscribe((data: any)=> {
+          console.log(data)
+          resolve(data);
+        },
+        (error) => {
+          reject(error);
+        })
+    });
+  }
+
+  updatePixel(x:number, y:number, color: number){
+    return new Promise<any>((resolve, reject) => {
+      this.http.post<any>(environment.apiUrl+'/api/r/meuh/requestPixelChange', {pixel: {x:x, y:y, colorIndex: color}})
+        .subscribe((data: any) => {
           resolve(data);
         },
         (error) => {
