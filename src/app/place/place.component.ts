@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { PlaceService } from '../services/place.service';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { PopupService } from '../services/popup.service';
@@ -54,7 +54,6 @@ export class PlaceComponent implements OnInit{
       .then(()=>{
         this.updateGrid();
       })
-
   }
 
   blockSelected(event: any, x:number,y:number){
@@ -66,5 +65,32 @@ export class PlaceComponent implements OnInit{
 
   paletteSelect(c: number){
     this.currentColor = c;
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if(this.currentX != -1 && this.currentY != -1){
+      switch(event.key){
+        case 'z':
+          this.currentY-=1;
+          if(this.currentY < 0) this.currentY=0;
+        break;
+        case 's':
+          this.currentY+=1;
+          if(this.currentY >= this.placeGrid.length) this.currentY=this.placeGrid.length;
+        break;
+        case 'q':
+          this.currentX-=1;
+          if(this.currentX < 0) this.currentX=0;
+        break;
+        case 'd':
+          this.currentX+=1;
+          if(this.currentX >= this.placeGrid[0].length) this.currentX=this.placeGrid[0].length;
+        break;
+        case 'Enter':
+          this.updatePixel()
+        break;
+      }
+    }
   }
 }
