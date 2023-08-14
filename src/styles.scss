@@ -2,10 +2,23 @@
 @import 'fonts';
 
 // spinner load
+background-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
 mat-spinner {
-  position: absolute;
-  top: 20%;
-  left: 50%;
+  margin-left: 46.5%;
+  margin-right: 46.5%;
+  width: 150px;
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+  margin-top: 20%;
 }
 
 mat-spinner circle {
