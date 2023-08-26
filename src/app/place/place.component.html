@@ -1,0 +1,16 @@
+<p>place works!</p>
+<table>
+  <thead></thead>
+  <tbody>
+    <tr *ngFor="let row of placeGrid; let y = index;">
+      <td *ngFor="let pixel of row; let x = index;" [class.selected] = "x==currentX && y==currentY" [ngStyle]="{'background-color': pixel.colorHex}" (click)="blockSelected($event, x,y)"></td>
+    </tr>
+  </tbody>
+</table>
+<aside>
+  <p>Select color</p>
+  <ul>
+    <li *ngFor="let color of palette; let index=index;" [ngStyle]="{'background-color': color.colorHex}" (click)="paletteSelect(color.colorIndex)" [class.selected] ="index == currentColor"></li>
+  </ul>
+  <button (click)="updatePixel()">Valider</button>
+</aside>

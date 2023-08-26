@@ -34,6 +34,7 @@ import {ModifyEventComponent} from './events/modify/modifyEvent.component';
 import {DeleteEventComponent} from './events/delete/deleteEvent.component';
 import {AdminManagementComponent} from './admin-management/admin-management.component';
 
+import {PlaceComponent} from './place/place.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -90,6 +91,12 @@ const routes: Routes = [
     ]
   },
   {path: 'default', component: DefaultComponent},
+  {
+    path: 'r', component: PlaceComponent,
+    children: [
+      {path: 'meuh', component: PlaceComponent}
+    ]
+  },
   {path: '', pathMatch: 'full', component: DefaultComponent},
   {path: '**', redirectTo: ''}
 ];
