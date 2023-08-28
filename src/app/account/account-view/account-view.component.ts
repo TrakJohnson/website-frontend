@@ -46,15 +46,22 @@ export class AccountViewComponent implements OnInit {
             for (var i = 0; i < this.account?.placesClaimed.length; i++) {
               if (this.account?.placesClaimed[i]) {
                 const place = this.account?.placesClaimed[i];
-                this.eventsWithPlaceClaimed[place.event_id] = await this.event.getOneEvent(place.event_id);
-                console.log({newEv : this.eventsWithPlaceClaimed[place.event_id]});
+                this.event.getOneEvent(place.event_id).then((data)=>{
+                  this.eventsWithPlaceClaimed[place.event_id] = data;
+                  console.log({here : this.eventsWithPlaceClaimed});
+                  this.popup.loading$.next(false);
+                }).catch((error)=>{
+                  console.log("ERROR")
+                  console.log(error)
+                  this.popup.state$.next([false,"Impossible d'obtenir les événements"]);
+                  this.popup.loading$.next(false);
+                })
               }
             }
           }
         };
         await getPlaces();
-        console.log({here : this.eventsWithPlaceClaimed});
-        this.popup.loading$.next(false);
+
     });
   }
 
