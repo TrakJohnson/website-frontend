@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import * as XLSX from 'xlsx';
 import {AccountService} from '../services/account.service';
+import {AuthService} from '../services/auth.service'
 
 @Component({
   selector: 'app-admin-management',
@@ -10,12 +11,14 @@ import {AccountService} from '../services/account.service';
 export class AdminManagementComponent implements OnInit {
 
 
-  constructor(private account: AccountService,
+  constructor(private account: AccountService, private auth: AuthService
   ) {
   }
+  
+  token: string | null;
 
   ngOnInit(): void {
-
+      this.token = this.auth.token;
   }
 
   setContributorsBasedOnExcel(event: any) {
@@ -46,16 +49,16 @@ export class AdminManagementComponent implements OnInit {
       const formatted_sheet = cleaned_sheet.map(
         (infos : any) => {
           console.log(infos);
-          const login = infos.Promotion.slice(1)
+          const subscriberLogin = infos.Promotion.slice(1)
             + infos.Nom.toLowerCase().replaceAll('\'', "").replaceAll(" ", "").substring(0, 8)
           const is_contrib = infos["Cotisant BDA"].toLowerCase() === "oui"
-          return {login: login, contributor: is_contrib}
+          return {subscriberLogin : subscriberLogin, contributor: is_contrib}
         }
       )
 
       formatted_sheet.forEach(
         async element => {
-          await this.account.modifyAccount(element.login, {contributor: element.contributor}, false);
+          await this.account.modifySubscriber(this.token, element.subscriberLogin, {contributor: element.contributor}, false); // Why login and not token ? Not consistent with modifyAccount declaration
         }
       )
       console.log("Comptes à mettre à jour:")

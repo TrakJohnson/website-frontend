@@ -143,6 +143,23 @@ export class AccountService {
     });
   }
 
+  modifySubscriber(token: string | null, subscriberLogin: string, newInfos: any, sendEmail: boolean) {
+    if (newInfos.password) newInfos.password = CryptoJS.SHA3(newInfos.password, {outputLength: 512}).toString(CryptoJS.enc.Hex)
+    return new Promise<void>((resolve, reject) => {
+      this.http.post(
+        environment.apiUrl + '/api/user/modifySubscriber',
+        {token: token, subscriberLogin: subscriberLogin, newInfos: newInfos, sendEmail: sendEmail})
+        .subscribe(
+          () => {
+            resolve();
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+
   demandSendEmailChangePassword(login: string, email: string) {
     return new Promise<void>((resolve, reject) => {
       this.http.post(
