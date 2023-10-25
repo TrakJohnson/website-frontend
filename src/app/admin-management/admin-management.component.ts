@@ -55,12 +55,16 @@ export class AdminManagementComponent implements OnInit {
           return {subscriberLogin : subscriberLogin, contributor: is_contrib}
         }
       )
-
-      formatted_sheet.forEach(
-        async element => {
+      const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+      
+     (async () => {
+        for (let element of formatted_sheet) {
           await this.account.modifySubscriber(this.token, element.subscriberLogin, {contributor: element.contributor}, false); // Why login and not token ? Not consistent with modifyAccount declaration
+          await sleep(200);
+          console.log(element.subscriberLogin);
         }
-      )
+      })();
+
       console.log("Comptes à mettre à jour:")
       console.log(formatted_sheet);
     }
