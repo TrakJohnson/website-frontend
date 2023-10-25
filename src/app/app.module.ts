@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -68,6 +68,8 @@ import { FormComponent } from './register/form/form.component';
 import { ViewMobileComponent } from './billetterie/view-mobile/view-mobile.component';
 
 import { PlaceComponent } from './place/place.component';
+import { LibraryComponent } from './library/library.component';
+import { BarcodeScannerLivestreamModule } from 'ngx-barcode-scanner';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -114,6 +116,7 @@ registerLocaleData(localeFr, 'fr');
     FormComponent,
     ViewMobileComponent,
     PlaceComponent,
+    LibraryComponent,
   ],
 
   imports: [
@@ -134,8 +137,10 @@ registerLocaleData(localeFr, 'fr');
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
-    })
+    }),
+    BarcodeScannerLivestreamModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [NgxImageCompressService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: LOCALE_ID, useValue: 'fr' }],

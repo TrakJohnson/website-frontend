@@ -35,6 +35,7 @@ import {DeleteEventComponent} from './events/delete/deleteEvent.component';
 import {AdminManagementComponent} from './admin-management/admin-management.component';
 
 import {PlaceComponent} from './place/place.component';
+import { LibraryComponent } from './library/library.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -97,6 +98,7 @@ const routes: Routes = [
       {path: 'meuh', component: PlaceComponent}
     ]
   },
+  {path: 'library', component: LibraryComponent},
   {path: '', pathMatch: 'full', component: DefaultComponent},
   {path: '**', redirectTo: ''}
 ];

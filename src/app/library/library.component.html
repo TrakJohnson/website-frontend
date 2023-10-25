@@ -1,0 +1,8 @@
+<section>
+  <h2>Scan Barcode</h2>
+  <barcode-scanner-livestream #scanner type="code_128" (valueChanges)="onValueChanges($event)">
+  </barcode-scanner-livestream>
+  <div>
+    Serial Number: {{barcodeValue}}
+  </div>
+</section>
