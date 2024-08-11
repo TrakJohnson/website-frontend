@@ -1,20 +1,43 @@
-<div *ngIf="eventExist" class="event-container">
-  <a id="{{eventsToCome[0].id}}"
-     [routerLink]="[]"
-     (click)="onNavigate('events/display/' + eventsToCome[0].event_id )">
-    <div id="next-event">
-      <img alt="{{eventsToCome[0].title}}" src="{{eventsToCome[0].thumbnail}}"/>
-      <div>
-        <span class="title montserrat">{{eventsToCome[0].title.toUpperCase()}}</span>
-        <span class="details">{{getEventShortInfos(eventsToCome[0])}}</span>
+<div *ngIf="eventsToCome.length > 0; else noEvents">
+  <div class="events-displayer">
+    <div class="events-container">
+      <!-- Boucle à travers les 4 emplacements disponibles -->
+      <div *ngFor="let event of eventsToCome; let i = index"
+           class="event-item"
+           [ngClass]="{
+             'first-event': selectedEventIndex === i,
+             'truncated-event': selectedEventIndex !== i && event,
+             'placeholder-event': !event,
+             'selected': selectedEventIndex === i
+           }"
+           (click)="onSelectEvent(i)">
+        <!-- Si un événement est présent, affichez les détails -->
+        <a *ngIf="event"
+           id="{{event.event_id}}"
+           [routerLink]="['/events/display', event.event_id]">
+          <div class="event-content">
+            <img [alt]="event.title" [src]="event.thumbnail" />
+            <div class="event-info">
+              <span class="title montserrat">{{event.title.toUpperCase()}}</span>
+              <span class="details">{{getEventShortInfos(event)}}</span>
+            </div>
+          </div>
+        </a>
+        <!-- Sinon, affichez le placeholder -->
+        <div *ngIf="!event" class="event-content placeholder-event">
+          <div class="placeholder"></div>
+          <div class="event-info">
+            <span class="details">Bientôt disponible</span>
+          </div>
+        </div>
       </div>
     </div>
-  </a>
+  </div>
 </div>
 
-<div *ngIf="!eventExist" id="no-event-container">
-  <img alt="Salle vide" id="noEvent" src="/assets/img/const/noEvent.jpeg">
-</div>
+<ng-template #noEvents>
+  <p>Aucun événement à venir.</p>
+</ng-template>
 
 <div id="homepage">
   <div class="large-text">

@@ -3,71 +3,95 @@
 a {
   display: block;
   height: 100%;
+  text-decoration: none; /* Assurez-vous qu'il n'y a pas de soulignement des liens */
 }
 
-.event-container {
-  height: $body-container-height;
-  overflow: hidden;
+.events-displayer {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 100px;
 }
 
-#next-event {
-  position: relative;
-  height: 100%;
+.events-container {
   display: flex;
-  justify-items: center;
-  align-items: center;
-  background-color: rgba(194, 109, 188, 0.40);
+  justify-content: space-between;
+  width: 70vw;
 }
 
-$max-img-width: 100vw;
-#next-event img {
-  min-width: 100vw;
-  min-height: $body-container-height;
-  //max-width: $max-img-width;
-  overflow-x: hidden;
-  z-index: -1;
-  flex-shrink: 0;
+.event-item {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  margin-right: 1%;
+  transition: flex 0.3s ease;
+  cursor: pointer;
+  height: 500px;
 }
 
-#next-event > div {
-  // background: $transparent-pink;
-  color: white;
-  text-decoration: none;
-  position: absolute;
-  padding: 20px;
-  top: $body-container-height/3;
-  left: 30px;
+.event-item:last-child {
+  margin-right: 0;
+}
+
+.event-content {
   display: flex;
   flex-direction: column;
-  z-index: 2;
-  //max-width: 500px;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  position: relative;
 }
 
-#next-event .title {
-  font-weight: 700;
-  font-size: 4rem;
-  margin-bottom: 10px;
-  line-height: 60px;
-}
-
-#next-event .details {
-  text-align: justify;
-  font-size: 1.3em;
-}
-
-#no-event-container {
+.event-item img {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
-  background: #222222;
+  height: auto;
 }
 
-#noEvent {
-  width: 70%;
+.first-event {
+  flex: 4; /* L'élément sélectionné prend plus de place */
 }
 
-// partie homepage statique
+.first-event img {
+  object-fit: contain; /* Image complète pour l'événement sélectionné */
+}
 
+.truncated-event img {
+  object-fit: cover; /* Tronque l'image des événements non sélectionnés */
+}
+
+.placeholder-event {
+  background-color: #ccc; /* Fond gris pour les événements manquants */
+}
+
+.placeholder-event .event-info {
+  color: #666;
+}
+
+.placeholder-event .title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.placeholder-event .details {
+  font-size: 0.9em;
+}
+
+/* Styles pour le texte des événements */
+.event-info {
+  position: absolute;
+  bottom: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 100%;
+  color: white;
+  display: none;
+}
+
+.event-item.selected .event-info {
+  display: block; /* Afficher lorsque l'événement est sélectionné */
+}
+
+/* Partie homepage statique */
 .large-text {
   margin: 12vh auto;
   width: min(95vw, 530px);
@@ -102,9 +126,7 @@ h2 {
   }
 }
 
-
-/// mobile
-
+/* Mobile */
 @media screen and (max-width: $header-mobile-limit) {
   #next-event .title {
     font-size: 2.5em;
