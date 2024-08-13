@@ -12,22 +12,20 @@
            }"
            (click)="onSelectEvent(i)">
         <!-- Si un événement est présent, affichez les détails -->
-        <a *ngIf="event"
-           id="{{event.event_id}}"
-           [routerLink]="['/events/display', event.event_id]">
-          <div class="event-content">
-            <img [alt]="event.title" [src]="event.thumbnail" />
-            <div class="event-info">
-              <span class="title montserrat">{{event.title.toUpperCase()}}</span>
-              <span class="details">{{getEventShortInfos(event)}}</span>
-            </div>
+        <div *ngIf="event" class="event-content">
+          <img [alt]="event.title" [src]="event.thumbnail" />
+          <div class="event-info">
+            <div class="title montserrat">{{event.title.toUpperCase()}}</div>
+            <div class="details">{{getEventShortInfos(event)}}</div>
+            <!-- Bouton pour la redirection -->
+            <button (click)="onNavigate('/events/display/' + event.event_id)" class="event-button">Voir Détails</button>
           </div>
-        </a>
+        </div>
         <!-- Sinon, affichez le placeholder -->
         <div *ngIf="!event" class="event-content placeholder-event">
           <div class="placeholder"></div>
           <div class="event-info">
-            <span class="details">Bientôt disponible</span>
+            <div class="details">Bientôt disponible</div>
           </div>
         </div>
       </div>

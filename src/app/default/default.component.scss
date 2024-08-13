@@ -28,6 +28,12 @@ a {
   height: 500px;
 }
 
+.event-item img {
+  height: 500px !important;
+  max-width: 70vw;
+  width: fit-content;
+}
+
 .event-item:last-child {
   margin-right: 0;
 }
@@ -42,11 +48,6 @@ a {
   position: relative;
 }
 
-.event-item img {
-  width: 100%;
-  height: auto;
-}
-
 .first-event {
   flex: 4; /* L'élément sélectionné prend plus de place */
 }
@@ -57,15 +58,29 @@ a {
 
 .truncated-event img {
   object-fit: cover; /* Tronque l'image des événements non sélectionnés */
+  height: 500px !important;
+}
+
+.event-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.event-button:hover {
+  background-color: #0056b3;
 }
 
 .placeholder-event {
   background-color: #ccc; /* Fond gris pour les événements manquants */
+  color: white !important;
 }
 
-.placeholder-event .event-info {
-  color: #666;
-}
 
 .placeholder-event .title {
   font-size: 1.2em;
@@ -80,12 +95,14 @@ a {
 .event-info {
   position: absolute;
   bottom: 10px;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   width: 100%;
   color: white;
   display: none;
 }
+
+
 
 .event-item.selected .event-info {
   display: block; /* Afficher lorsque l'événement est sélectionné */

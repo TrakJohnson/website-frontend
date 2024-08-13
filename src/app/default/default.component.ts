@@ -77,7 +77,7 @@ export class DefaultComponent implements OnInit {
         points: 10,
         on_sale: true,
         is_billetterie: true,
-        thumbnail: "https://via.placeholder.com/150",
+        thumbnail: "https://www.deutschland.de/sites/default/files/styles/image_carousel_mobile/public/feeduploaded-b055bb3830d8de2c9a2263a0d6638833.jpg?itok=LT_F9ofk",
         placesClaimed: []
       }),
       new Event({
@@ -97,7 +97,27 @@ export class DefaultComponent implements OnInit {
         points: 8,
         on_sale: true,
         is_billetterie: true,
-        thumbnail: "https://via.placeholder.com/150",
+        thumbnail: "https://fr.muzeo.com/sites/default/files/styles/image_oeuvre_search/public/oeuvres/peinture/moderne/composition_n4136454.jpg?itok=b003MnZY",
+        placesClaimed: []
+      }),
+      new Event({
+        event_id: 3,
+        title: "Pièce de Théâtre",
+        description: "Assitez à une représentation des Misérables",
+        dateEvent: new Date(),
+        dateEvent_end: new Date(),
+        event_place: "Palais Garnier",
+        pole_id: "2",
+        login_creator: "admin",
+        date_open: new Date(),
+        date_close: new Date(),
+        num_places: 200,
+        cost_contributor: 15,
+        cost_non_contributor: 25,
+        points: 8,
+        on_sale: true,
+        is_billetterie: true,
+        thumbnail: "https://images.radio-canada.ca/q_auto,w_700/v1/ici-info/16x9/les-miserables-place-des-arts-montreal.jpg",
         placesClaimed: []
       }),
     ];
