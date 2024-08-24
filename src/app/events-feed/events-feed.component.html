@@ -1,0 +1,17 @@
+<div class="events-feed-container">
+  <div *ngFor="let event of events" class="event-item">
+    <img [src]="event.thumbnail || 'assets/img/default_event_pic.jpg'" alt="Event Thumbnail" class="event-thumbnail">
+    <div class="event-details">
+      <h2>{{ event.title.toUpperCase() }}</h2>
+      <p class="event-description">{{ event.description }}</p>
+      <p class="event-date">
+        <i class="fa-solid fa-calendar"></i>
+        {{(event.dateEvent | date:'EEEE d MMMM y HH:mm')}} (heure de Paris)
+      </p>
+      <p class="event-location">
+        <i class="fa-solid fa-location-dot"></i> 
+        {{ event.event_place }}
+      </p>
+    </div>
+  </div>
+</div>

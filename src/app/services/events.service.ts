@@ -4,37 +4,30 @@ import { BehaviorSubject } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Event } from "../models/event.model";
 
-
 @Injectable({
-providedIn: 'root'
+  providedIn: 'root'
 })
 export class EventService {
 
-    constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-    events$ = new BehaviorSubject<any>({});
+  events$ = new BehaviorSubject<Event[]>([]);
 
-    getEvents() {
-        return new Promise<void>((resolve, reject) => {
-
-            this.http.get<any>(
-            environment.apiUrl + '/api/event/getAllEvents')
-            .subscribe(
-                (eventData : Array<any>) => {
-                  var eventsTreated : any = {};
-                  eventData.forEach(event => {
-                    eventsTreated[event.event_id] = new Event(event);
-                  });
-                  this.events$.next(eventsTreated);
-                  console.log(eventsTreated)
-                  resolve();
-                },
-                (error) => {
-                  reject(error);
-                }
-            );
-        });
-    }
+  getEvents(): Promise<Event[]> {
+    return new Promise<Event[]>((resolve, reject) => {
+      this.http.get<Event[]>(environment.apiUrl + '/api/event/getAllEvents')
+        .subscribe(
+          (eventData: Event[]) => {
+            const eventsTreated: Event[] = eventData.map(event => new Event(event));
+            this.events$.next(eventsTreated);
+            resolve(eventsTreated);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
 
     getOneEvent(event_id : number){
         const params = new HttpParams().append('event_id', event_id);
