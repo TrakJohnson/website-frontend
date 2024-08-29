@@ -80,10 +80,9 @@ and (min-resolution:.001dpcm) {
 // buttons
 .bda-btn {
   outline: none;
-  padding: 10px 25px;
-  border: 3px solid $header-text-color;
-  color: $header-text-color;
+  color: white;
   border-radius: 0;
+  font-size: 25px !important;
   font-weight: 500;
   background: transparent;
   cursor: pointer;
@@ -91,6 +90,7 @@ and (min-resolution:.001dpcm) {
   display: inline-block;
   overflow: hidden;
   transition: all 0.3s ease;
+  border:none;
 }
 
 .bda-btn:hover {

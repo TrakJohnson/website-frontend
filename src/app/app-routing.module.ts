@@ -34,7 +34,7 @@ import { DeleteEventComponent } from './events/delete/deleteEvent.component';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
 
 import { PlaceComponent } from './place/place.component';
-import { EventsFeedComponent } from './events-feed/events-feed.component'; // Assurez-vous que ce chemin est correct
+import { EventsFeedComponent } from './events-feed/events-feed.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

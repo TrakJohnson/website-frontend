@@ -1,4 +1,7 @@
 <div class="events-feed-container">
+  <div *ngIf="events.length === 0" class="no-events-message">
+    Aucun événement disponible pour le moment.
+  </div>
   <div *ngFor="let event of events" class="event-item">
     <img [src]="event.thumbnail || 'assets/img/default_event_pic.jpg'" alt="Event Thumbnail" class="event-thumbnail">
     <div class="event-details">

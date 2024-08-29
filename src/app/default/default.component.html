@@ -1,4 +1,9 @@
-<div *ngIf="eventsToCome.length > 0; else noEvents">
+
+
+
+
+
+<div class="second-container">
   <div class="events-displayer">
     <div class="events-container">
       <!-- Boucle à travers les 4 emplacements disponibles -->
@@ -31,11 +36,10 @@
       </div>
     </div>
   </div>
+  <button class="other-events" (click)="navigateToEventsFeed()">Voir les événements</button>
 </div>
 
-<ng-template #noEvents>
-  <p>Aucun événement à venir.</p>
-</ng-template>
+
 
 
 

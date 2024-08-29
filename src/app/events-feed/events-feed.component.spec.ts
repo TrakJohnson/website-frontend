@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventsFeedComponent } from './events-feed.component';
 import { EventService } from 'src/app/services/events.service'; // Ajustez le chemin si nécessaire
-import { of } from 'rxjs';
 import { Event } from 'src/app/models/event.model';
+import { CommonModule } from '@angular/common'; // Importer CommonModule
 
 describe('EventsFeedComponent', () => {
   let component: EventsFeedComponent;
@@ -13,6 +13,7 @@ describe('EventsFeedComponent', () => {
     mockEventService = jasmine.createSpyObj('EventService', ['getEvents']);
 
     await TestBed.configureTestingModule({
+      imports: [CommonModule],
       declarations: [ EventsFeedComponent ],
       providers: [
         { provide: EventService, useValue: mockEventService }

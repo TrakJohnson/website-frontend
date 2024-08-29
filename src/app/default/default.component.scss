@@ -6,6 +6,27 @@ a {
   text-decoration: none; /* Assurez-vous qu'il n'y a pas de soulignement des liens */
 }
 
+.first-container {
+  display: flex;
+  justify-content: center;
+}
+
+.facade-img {
+  width: 70vw;
+}
+
+
+
+
+
+
+.second-container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .events-displayer {
   display: flex !important;
   justify-content: center !important;
@@ -106,6 +127,19 @@ a {
 
 .event-item.selected .event-info {
   display: block; /* Afficher lorsque l'événement est sélectionné */
+}
+
+
+.other-events {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 50px;
 }
 
 /* Partie homepage statique */

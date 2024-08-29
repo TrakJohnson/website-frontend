@@ -50,6 +50,7 @@ import { ViewBilletterieComponent } from './billetterie/view/viewBilletterie.com
 import { TeamComponent } from './team/team.component';
 import { ChangeInfosComponent } from './account/change-infos/change-infos.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { EventsFeedComponent } from './events-feed/events-feed.component';
 
 
 
@@ -114,6 +115,7 @@ registerLocaleData(localeFr, 'fr');
     FormComponent,
     ViewMobileComponent,
     PlaceComponent,
+    EventsFeedComponent,
   ],
 
   imports: [

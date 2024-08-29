@@ -1,5 +1,10 @@
 <header>
 
+
+  <img id="logo" alt="logo"
+  src="/assets/img/const/BDA_logo_large.png"
+  (click)="onNavigate('default', false)">
+  
   <div class="navbar">
     <a class="nav-item nav-link" (click)="onNavigate('default', true)">Accueil </a>
     <a class="nav-item nav-link" (click)="onNavigate('billetterie/view', true)">Billetterie</a>
@@ -12,9 +17,6 @@
       Gestion</a>-->
   </div>
 
-  <img id="logo" alt="logo"
-       src="/assets/img/const/BDA_logo_large.png"
-       (click)="onNavigate('default', false)">
 
   <app-user-infos></app-user-infos>
   <div id="mobile-wrapper">

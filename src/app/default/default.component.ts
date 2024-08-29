@@ -16,10 +16,12 @@ export class DefaultComponent implements OnInit {
   constructor(private router: Router,
               private events: EventService,
               private popup: PopupService) { }
+              
 
   eventsToCome: (Event | null)[] = [];
   eventExist: boolean = false;
   eventsLoaded: boolean = false;
+  
 
   ngOnInit(): void {
     console.log('setting loading to true');
@@ -143,4 +145,7 @@ export class DefaultComponent implements OnInit {
   onNavigate(endpoint: string) {
     this.router.navigate([endpoint]);
   }
+
+  navigateToEventsFeed(): void {
+    this.router.navigate(['/events-feed']);}
 }
